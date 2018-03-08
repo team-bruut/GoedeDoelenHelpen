@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -24,10 +25,15 @@ namespace GoedeDoelenHelpen.Data
     public class Charity
     {
         public int Id { get; set; }
+        [Required]
         public string Adress { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string KVKNumber { get; set; }
+        [Required]
         public string FiscalNumber { get; set; }
+        [Required]
         public string IBAN { get; set; }
 
         /// <summary>
@@ -44,6 +50,7 @@ namespace GoedeDoelenHelpen.Data
     {
         public int Id { get; set; }
 
+        [Required]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
@@ -62,6 +69,7 @@ namespace GoedeDoelenHelpen.Data
     public class Project
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
 
         public int CharityId { get; set; }
@@ -85,6 +93,7 @@ namespace GoedeDoelenHelpen.Data
         public decimal Amount { get; set; }
         public DateTime DateTime { get; set; }
 
+        [Required]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
     }
@@ -122,6 +131,7 @@ namespace GoedeDoelenHelpen.Data
 
     public class EventTeam
     {
+        [Required]
         public string Name { get; set; }
 
         public int EventId { get; set; }
@@ -145,13 +155,16 @@ namespace GoedeDoelenHelpen.Data
 
     public class TeamParticipantActivated: TeamParticipant
     {
+        [Required]
         public string AplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
     }
 
     public class TeamParticipantNotActivated: TeamParticipant
     {
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Name { get; set; }
     }
 
