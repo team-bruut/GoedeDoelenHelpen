@@ -18,21 +18,35 @@ namespace GoedeDoelenHelpen.Data
 
     public class ApplicationUser: IdentityUser
     {
-
         public IEnumerable<Donation> Donations { get; set; }
+        
+        public IEnumerable<EventParticipant> EventParticipants { get; set; }
+
+        public IEnumerable<CharityApplicationUser> CharityApplicationUsers { get; set; }
+
+        public IEnumerable<TeamParticipant> TeamParticipants { get; set; }
     }
 
     public class Charity
     {
         public int Id { get; set; }
         [Required]
+        [StringLength(250)]
         public string Adress { get; set; }
         [Required]
+        [StringLength(250)]
         public string Name { get; set; }
         [Required]
+        [StringLength(maximumLength: 8, MinimumLength = 8)]
         public string KVKNumber { get; set; }
-        [Required]
+        /// <remarks>
+        /// check the official specs
+        /// </remarks>
+        [Required]        
         public string FiscalNumber { get; set; }
+        /// <summary>
+        /// TODO: need format check
+        /// </summary>
         [Required]
         public string IBAN { get; set; }
 
@@ -90,6 +104,7 @@ namespace GoedeDoelenHelpen.Data
     public abstract class Donation
     {
         public int Id { get; set; }
+        [Range(0, 10_000)]
         public decimal Amount { get; set; }
         public DateTime DateTime { get; set; }
 
@@ -151,6 +166,8 @@ namespace GoedeDoelenHelpen.Data
 
         public int EventId { get; set; }
         public EventTeam EventTeam { get; set; }
+
+        public TeamParticipantRole TeamParticipantRole { get; set; }
     }
 
     public class TeamParticipantActivated: TeamParticipant
@@ -163,6 +180,7 @@ namespace GoedeDoelenHelpen.Data
     public class TeamParticipantNotActivated: TeamParticipant
     {
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
         public string Name { get; set; }
