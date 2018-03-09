@@ -1,0 +1,53 @@
+
+
+/*.bgImage {
+    height: 100%;
+    background-image: url('/resource/bg.jpg');
+    background-color: #ffff00;
+    background-position: center;
+    background-size: cover; 
+}*/
+
+body {
+    background-color: #000;
+    background-image: url('resource/bg.jpg');
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-x: center;
+    color: #fff;
+    height: 100%;
+}
+
+@media only screen and (min-width: 800px) {
+    [class *="middleText"] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+       
+        
+    }
+    h1{
+        font-size: 100px;
+    }
+    h2{
+        font-size: 70px;
+    }
+}
+
+@media only screen and (max-width: 799px) {
+    [class *="middleText"] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        
+    }
+}
+
+.justify{
+    text-align: center;
+}
