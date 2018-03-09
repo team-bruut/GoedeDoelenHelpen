@@ -1,0 +1,76 @@
+﻿@page
+@model GoedeDoelenHelpen.Pages.Charity.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Charity</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Charity.Adress" class="control-label"></label>
+                <input asp-for="Charity.Adress" class="form-control" />
+                <span asp-validation-for="Charity.Adress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Charity.PostCode" class="control-label"></label>
+                <input asp-for="Charity.PostCode" class="form-control" />
+                <span asp-validation-for="Charity.PostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Charity.City" class="control-label"></label>
+                <input asp-for="Charity.City" class="form-control" />
+                <span asp-validation-for="Charity.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Charity.Name" class="control-label"></label>
+                <input asp-for="Charity.Name" class="form-control" />
+                <span asp-validation-for="Charity.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Charity.KVKNumber" class="control-label"></label>
+                <input asp-for="Charity.KVKNumber" class="form-control" />
+                <span asp-validation-for="Charity.KVKNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Charity.Email" class="control-label"></label>
+                <input asp-for="Charity.Email" class="form-control" />
+                <span asp-validation-for="Charity.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Charity.Activated" /> @Html.DisplayNameFor(model => model.Activated))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Charity.FiscalNumber" class="control-label"></label>
+                <input asp-for="Charity.FiscalNumber" class="form-control" />
+                <span asp-validation-for="Charity.FiscalNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Charity.IBAN" class="control-label"></label>
+                <input asp-for="Charity.IBAN" class="form-control" />
+                <span asp-validation-for="Charity.IBAN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

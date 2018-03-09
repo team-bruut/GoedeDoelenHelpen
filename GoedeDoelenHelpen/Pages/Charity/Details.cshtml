@@ -1,0 +1,73 @@
+﻿@page
+@model GoedeDoelenHelpen.Pages.Charity.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Charity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Charity.Adress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Charity.Adress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Charity.PostCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Charity.PostCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Charity.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Charity.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Charity.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Charity.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Charity.KVKNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Charity.KVKNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Charity.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Charity.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Charity.Activated)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Charity.Activated)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Charity.FiscalNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Charity.FiscalNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Charity.IBAN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Charity.IBAN)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Charity.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
