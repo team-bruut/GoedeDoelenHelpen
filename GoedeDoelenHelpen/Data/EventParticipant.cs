@@ -10,7 +10,7 @@ namespace GoedeDoelenHelpen.Data
         public Event Event { get; set; }
         
         public string AplicationUserId { get; set; }
-+       public ApplicationUser ApplicationUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
         
         public IEnumerable<EventParticipantDonation> Donations { get; set; }
     }
