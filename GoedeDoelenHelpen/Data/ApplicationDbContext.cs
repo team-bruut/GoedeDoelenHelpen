@@ -108,7 +108,7 @@ namespace GoedeDoelenHelpen.Data
         public string IBAN { get; set; }
 
         /// <summary>
-        /// relation to intersention entity CharityApplicationUser
+        /// relation to intersection entity CharityApplicationUser
         /// </summary>
         public IEnumerable<CharityApplicationUser> CharityApplicationUsers { get; set; }
 
@@ -156,7 +156,7 @@ namespace GoedeDoelenHelpen.Data
     /// base type for all the different types of Donations
     /// </summary>
     /// <remarks>
-    /// EF will putt all different donation in one table and usses a shadow propperty the "discriminator" to determin wich type it actualy is.
+    /// EF will put all different donations in one table and uses a shadow property named the "discriminator" to determine wich type it actualy is.
     /// </remarks>
     public abstract class Donation
     {
@@ -256,6 +256,10 @@ namespace GoedeDoelenHelpen.Data
 
         public int EventId { get; set; }
         public Event Event { get; set; }
+        
+        public string AplicationUserId { get; set; }
++       public ApplicationUser ApplicationUser { get; set; }
+        
         public IEnumerable<EventParticipantDonation> Donations { get; set; }
     }
 
