@@ -25,4 +25,9 @@
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\Extensions.Functional\Extensions.Functional.csproj" />
+  </ItemGroup>
+
 </Project>
