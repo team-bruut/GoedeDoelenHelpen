@@ -8,6 +8,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="FunctionalExtensionsCsharp" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-preview1-final" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0-preview1-final" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.1.0-preview1-final" />
@@ -23,11 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <ProjectReference Include="..\Extensions.Functional\Extensions.Functional.csproj" />
   </ItemGroup>
 
 </Project>
