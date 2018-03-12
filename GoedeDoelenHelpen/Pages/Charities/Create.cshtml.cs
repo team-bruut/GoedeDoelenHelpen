@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using GoedeDoelenHelpen.Data;
 
-namespace GoedeDoelenHelpen.Pages.Charity
+namespace GoedeDoelenHelpen.Pages.Charities
 {
     public class CreateModel : PageModel
     {
@@ -24,12 +24,13 @@ namespace GoedeDoelenHelpen.Pages.Charity
         }
 
         [BindProperty]
-        public Data.Charity Charity { get; set; }
+        public Charity Charity { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || Charity.Activated == true)
             {
+                Charity.Activated = false;
                 return Page();
             }
 

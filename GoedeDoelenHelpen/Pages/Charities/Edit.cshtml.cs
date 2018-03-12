@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GoedeDoelenHelpen.Data;
 
-namespace GoedeDoelenHelpen.Pages.Charity
+namespace GoedeDoelenHelpen.Pages.Charities
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace GoedeDoelenHelpen.Pages.Charity
         }
 
         [BindProperty]
-        public Data.Charity Charity { get; set; }
+        public Charity Charity { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

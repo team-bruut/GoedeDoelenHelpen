@@ -1,5 +1,5 @@
 ﻿@page
-@model GoedeDoelenHelpen.Pages.Charity.CreateModel
+@model GoedeDoelenHelpen.Pages.Charities.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -42,13 +42,6 @@
                 <label asp-for="Charity.Email" class="control-label"></label>
                 <input asp-for="Charity.Email" class="form-control" />
                 <span asp-validation-for="Charity.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Charity.Activated" /> @Html.DisplayNameFor(model => model.Activated))
-                    </label>
-                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Charity.FiscalNumber" class="control-label"></label>

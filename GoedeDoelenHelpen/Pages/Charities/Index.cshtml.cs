@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using GoedeDoelenHelpen.Data;
 
-namespace GoedeDoelenHelpen.Pages.Charity
+namespace GoedeDoelenHelpen.Pages.Charities
 {
     public class IndexModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace GoedeDoelenHelpen.Pages.Charity
             _context = context;
         }
 
-        public IList<Data.Charity> Charity { get;set; }
+        public IList<Charity> Charity { get;set; }
 
         public async Task OnGetAsync()
         {

@@ -7,19 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using GoedeDoelenHelpen.Data;
 
-namespace GoedeDoelenHelpen.Pages.Charity
+namespace GoedeDoelenHelpen.Pages.Charities
 {
-    public class DeleteModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly GoedeDoelenHelpen.Data.ApplicationDbContext _context;
 
-        public DeleteModel(GoedeDoelenHelpen.Data.ApplicationDbContext context)
+        public DetailsModel(GoedeDoelenHelpen.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        [BindProperty]
-        public Data.Charity Charity { get; set; }
+        public Charity Charity { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -35,24 +34,6 @@ namespace GoedeDoelenHelpen.Pages.Charity
                 return NotFound();
             }
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Charity = await _context.Charities.FindAsync(id);
-
-            if (Charity != null)
-            {
-                _context.Charities.Remove(Charity);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
         }
     }
 }
