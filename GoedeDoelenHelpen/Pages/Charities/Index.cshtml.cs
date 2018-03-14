@@ -22,7 +22,7 @@ namespace GoedeDoelenHelpen.Pages.Charities
 
         public async Task OnGetAsync()
         {
-            Charity = await _context.Charities.ToListAsync();
+            Charity = await _context.Charities.Include(charity => charity.CharityApplicationUsers).ToListAsync();
         }
     }
 }

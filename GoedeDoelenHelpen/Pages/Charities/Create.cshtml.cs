@@ -6,16 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using GoedeDoelenHelpen.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace GoedeDoelenHelpen.Pages.Charities
 {
-    public class CreateModel : PageModel
+    [Authorize]
+    public class CreateModel : DI_BasePageModel
     {
-        private readonly GoedeDoelenHelpen.Data.ApplicationDbContext _context;
-
-        public CreateModel(GoedeDoelenHelpen.Data.ApplicationDbContext context)
+        public CreateModel(
+        ApplicationDbContext context,
+        IAuthorizationService authorizationService,
+        UserManager<ApplicationUser> userManager)
+        : base(context, authorizationService, userManager)
         {
-            _context = context;
         }
 
         public IActionResult OnGet()
@@ -34,8 +38,10 @@ namespace GoedeDoelenHelpen.Pages.Charities
                 return Page();
             }
 
-            _context.Charities.Add(Charity);
-            await _context.SaveChangesAsync();
+            Charity.CharityApplicationUsers = new[] { new CharityApplicationUser { ApplicationUserId = UserManager.GetUserId(User), CharityApplicationUserRole = CharityApplicationUserRole.Admin } };
+
+            Context.Charities.Add(Charity);
+            await Context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
