@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GoedeDoelenHelpen.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using GoedeDoelenHelpen.Authorization;
 
 namespace GoedeDoelenHelpen.Pages.Charities
 {
-    public class EditModel : PageModel
+    [Authorize]
+    public class EditModel : DI_BasePageModel
     {
-        private readonly GoedeDoelenHelpen.Data.ApplicationDbContext _context;
-
-        public EditModel(GoedeDoelenHelpen.Data.ApplicationDbContext context)
+        public EditModel(
+            ApplicationDbContext context,
+            IAuthorizationService authorizationService,
+            UserManager<ApplicationUser> userManager)
+        : base(context, authorizationService, userManager)
         {
-            _context = context;
         }
 
         [BindProperty]
@@ -29,11 +34,15 @@ namespace GoedeDoelenHelpen.Pages.Charities
                 return NotFound();
             }
 
-            Charity = await _context.Charities.FirstOrDefaultAsync(m => m.Id == id);
+            Charity = await Context.Charities.Include(charity => charity.CharityApplicationUsers).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Charity == null)
             {
                 return NotFound();
+            }
+            else if (!(await base.AuthorizationService.AuthorizeAsync(User, Charity, Operations.Update)).Succeeded)
+            {
+                return this.Unauthorized();
             }
             return Page();
         }
@@ -45,11 +54,17 @@ namespace GoedeDoelenHelpen.Pages.Charities
                 return Page();
             }
 
-            _context.Attach(Charity).State = EntityState.Modified;
+            Context.Attach(Charity).State = EntityState.Modified;
+
+            var origenalCharity = await Context.Charities.Include(charity => charity.CharityApplicationUsers).FirstOrDefaultAsync(charity => charity.Id == Charity.Id);
+            if (!(await base.AuthorizationService.AuthorizeAsync(User, origenalCharity, Constants.UpdateOperationName)).Succeeded)
+            {
+                return this.Unauthorized();
+            }
 
             try
             {
-                await _context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -68,7 +83,7 @@ namespace GoedeDoelenHelpen.Pages.Charities
 
         private bool CharityExists(int id)
         {
-            return _context.Charities.Any(e => e.Id == id);
+            return Context.Charities.Any(e => e.Id == id);
         }
     }
 }

@@ -6,16 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using GoedeDoelenHelpen.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace GoedeDoelenHelpen.Pages.Charities
 {
-    public class DetailsModel : PageModel
+    public class DetailsModel : DI_BasePageModel
     {
-        private readonly GoedeDoelenHelpen.Data.ApplicationDbContext _context;
-
-        public DetailsModel(GoedeDoelenHelpen.Data.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context, IAuthorizationService authorizationService, UserManager<ApplicationUser> userManager) : base(context, authorizationService, userManager)
         {
-            _context = context;
         }
 
         public Charity Charity { get; set; }
@@ -27,7 +26,7 @@ namespace GoedeDoelenHelpen.Pages.Charities
                 return NotFound();
             }
 
-            Charity = await _context.Charities.FirstOrDefaultAsync(m => m.Id == id);
+            Charity = await Context.Charities.Include(m => m.CharityApplicationUsers).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Charity == null)
             {

@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using GoedeDoelenHelpen.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using GoedeDoelenHelpen.Authorization;
 
 namespace GoedeDoelenHelpen.Pages.Charities
 {
-    public class DeleteModel : PageModel
+    public class DeleteModel : DI_BasePageModel
     {
-        private readonly GoedeDoelenHelpen.Data.ApplicationDbContext _context;
-
-        public DeleteModel(GoedeDoelenHelpen.Data.ApplicationDbContext context)
+        public DeleteModel(ApplicationDbContext context, IAuthorizationService authorizationService, UserManager<ApplicationUser> userManager) : base(context, authorizationService, userManager)
         {
-            _context = context;
         }
 
         [BindProperty]
@@ -28,11 +28,16 @@ namespace GoedeDoelenHelpen.Pages.Charities
                 return NotFound();
             }
 
-            Charity = await _context.Charities.FirstOrDefaultAsync(m => m.Id == id);
+            Charity = await Context.Charities.FirstOrDefaultAsync(m => m.Id == id);
+
 
             if (Charity == null)
             {
                 return NotFound();
+            }
+            if (!(await base.AuthorizationService.AuthorizeAsync(User, Charity, Constants.UpdateOperationName)).Succeeded)
+            {
+                return this.Unauthorized();
             }
             return Page();
         }
@@ -44,12 +49,16 @@ namespace GoedeDoelenHelpen.Pages.Charities
                 return NotFound();
             }
 
-            Charity = await _context.Charities.FindAsync(id);
+            Charity = await Context.Charities.FindAsync(id);
+            if (!(await base.AuthorizationService.AuthorizeAsync(User, Charity, Constants.UpdateOperationName)).Succeeded)
+            {
+                return Unauthorized();
+            }
 
             if (Charity != null)
             {
-                _context.Charities.Remove(Charity);
-                await _context.SaveChangesAsync();
+                Context.Charities.Remove(Charity);
+                await Context.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");

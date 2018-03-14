@@ -35,7 +35,7 @@
         <dd>
             @Html.DisplayFor(model => model.Charity.City)
         </dd>
-        <hr/>
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Charity.KVKNumber)
         </dt>
@@ -69,6 +69,10 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Charity.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    @if ((await AuthorizationService.AuthorizeAsync(User, Model, Operations.Read)).Succeeded)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Charity.Id">Edit</a> <text>|</text>
+        <a asp-page="./Index">Back to List</a>
+    }
+       
 </div>
