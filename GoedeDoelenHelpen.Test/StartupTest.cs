@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace GoedeDoelenHelpen.Test
 {
@@ -11,7 +12,7 @@ namespace GoedeDoelenHelpen.Test
 
         public StartupTest()
         {
-            config = new ConfigurationBuilder().Build();
+            IConfiguration config = new ConfigurationBuilder().Build();
             
         }
 
@@ -24,24 +25,11 @@ namespace GoedeDoelenHelpen.Test
                 Startup startup = new Startup(config);
                 build = true;
             }
-            catch
+            catch (Exception e)
             {
-
+                Console.WriteLine(e);
             }
             Assert.IsTrue(build == true);
         }
-
-        //[TestMethod]
-        //public void DummyTestGetTarget()
-        //{
-        //    Assert.IsTrue(dummy.getTarget() == 1);
-        //}
-        //
-        //[TestMethod]
-        //public void DummyTestsetTarget()
-        //{
-        //    dummy.setTarget(5);
-        //    Assert.IsTrue(dummy.getTarget() == 5);
-        //}
     }
 }
