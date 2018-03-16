@@ -10,10 +10,10 @@ namespace GoedeDoelenHelpen.Test
         //private Startup startup;
         private IConfiguration config;
 
-        [AssemblyInitialize]
+        [TestInitialize]
         public void StartupTestInitialize()
         {
-            IConfiguration config = new ConfigurationBuilder().Build();   
+            config = new ConfigurationBuilder().Build();   
         }
 
         [TestMethod]
