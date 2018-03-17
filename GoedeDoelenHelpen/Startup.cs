@@ -55,7 +55,7 @@ namespace GoedeDoelenHelpen
 
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "ReactApp";
 
                 if (env.IsDevelopment())
                 {
