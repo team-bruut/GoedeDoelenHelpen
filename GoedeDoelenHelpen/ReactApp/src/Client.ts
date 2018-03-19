@@ -6,14 +6,62 @@
 //----------------------
 // ReSharper disable InconsistentNaming
 
-export class Client {
+export class BaseWrapper {
+    transformOptions(_options: RequestInit): Promise<RequestInit> {
+        _options.credentials = 'same-origin';
+        return Promise.resolve(_options);
+    }
+}
+
+export class Client extends BaseWrapper {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
+        super();
         this.http = http ? http : <any>window;
         this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    /**
+     * @model (optional) 
+     * @return Success
+     */
+    apiAuthenticationRegisterPost(model: RegisterViewModel | null | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/Authentication/Register";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ = <RequestInit>{
+            body: content_,
+            method: "POST",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processApiAuthenticationRegisterPost(_response);
+        });
+    }
+
+    protected processApiAuthenticationRegisterPost(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v, k) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
 
     /**
@@ -35,7 +83,9 @@ export class Client {
             })
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
             return this.processApiSampleDataWeatherForecastsGet(_response);
         });
     }
@@ -77,7 +127,9 @@ export class Client {
             })
         };
 
-        return this.http.fetch(url_, options_).then((_response: Response) => {
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
             return this.processApiSampleDataAuthorGet(_response);
         });
     }
@@ -99,6 +151,46 @@ export class Client {
         }
         return Promise.resolve<string>(<any>null);
     }
+}
+
+export class RegisterViewModel implements IRegisterViewModel {
+    username?: string | undefined;
+    password?: string | undefined;
+
+    constructor(data?: IRegisterViewModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.username = data["username"];
+            this.password = data["password"];
+        }
+    }
+
+    static fromJS(data: any): RegisterViewModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new RegisterViewModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["username"] = this.username;
+        data["password"] = this.password;
+        return data; 
+    }
+}
+
+export interface IRegisterViewModel {
+    username?: string | undefined;
+    password?: string | undefined;
 }
 
 export class WeatherForecast implements IWeatherForecast {

@@ -9,6 +9,7 @@ import about from './pages/about';
 import Home from './pages/Home';
 import Topics from './pages/Topics';
 import Page404 from './pages/Page404';
+import { RegisterComponent } from './pages/register';
 
 const App = () => (
   <Router>
@@ -25,6 +26,7 @@ const App = () => (
         <Route exact={true} path="/" component={Home}/>
         <Route path="/about" component={about}/>
         <Route path="/topics" component={Topics}/>
+        <Route path="/register" component={RegisterComponent}/>
         <Route component={Page404} />
       </Switch>
     </div>

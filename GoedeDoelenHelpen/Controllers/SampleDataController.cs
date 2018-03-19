@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoedeDoelenHelpen.Controllers
@@ -33,6 +34,7 @@ namespace GoedeDoelenHelpen.Controllers
         /// </summary>
         /// <returns>The author name</returns>
         [HttpGet("[action]")]
+        [Authorize]
         public ActionResult<string> Author()
         {
             if(DateTime.Now.Hour < 6)
