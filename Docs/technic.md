@@ -1,0 +1,16 @@
+
+# technic
+
+## Back-end
+The back-end is created in ASP.NET core with the programming language C#.
+
+The primarily part used of ASP.net is Web API see https://blogs.msdn.microsoft.com/webdev/2018/02/27/asp-net-core-2-1-web-apis/ for new techniques. Other documentation is found at https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api
+
+### use of swagger.io
+
+## Frontend
+The frontend application is created in React typescript using the template: https://github.com/Microsoft/TypeScript-React-Starter 
+
+The frontend is served by asp.net using a proxy to the frontend server.
+
+For routing within the frontend application `react-router` is used. Documentation can be found at: https://reacttraining.com/react-router/web/guides/philosophy

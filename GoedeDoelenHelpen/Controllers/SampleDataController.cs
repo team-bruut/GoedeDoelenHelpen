@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GoedeDoelenHelpen.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class SampleDataController : Controller
     {
         private static string[] Summaries = new[]
@@ -24,6 +25,22 @@ namespace GoedeDoelenHelpen.Controllers
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
+        }
+
+        
+        /// <summary>
+        /// Hold the name of the author from the controller
+        /// </summary>
+        /// <returns>The author name</returns>
+        [HttpGet("[action]")]
+        public ActionResult<string> Author()
+        {
+            if(DateTime.Now.Hour < 6)
+            {
+                return NotFound("The author is still a sleep");
+            }
+
+            return "Barld Boot";
         }
 
         public class WeatherForecast
