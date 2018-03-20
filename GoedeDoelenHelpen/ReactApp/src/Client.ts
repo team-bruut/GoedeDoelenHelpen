@@ -13,7 +13,7 @@ export class BaseWrapper {
     }
 }
 
-export class Client extends BaseWrapper {
+export class AuthenticationClient extends BaseWrapper {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -28,7 +28,7 @@ export class Client extends BaseWrapper {
      * @model (optional) 
      * @return Success
      */
-    apiAuthenticationRegisterPost(model: RegisterViewModel | null | undefined): Promise<void> {
+    register(model: RegisterViewModel | null | undefined): Promise<void> {
         let url_ = this.baseUrl + "/api/Authentication/Register";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -45,11 +45,11 @@ export class Client extends BaseWrapper {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processApiAuthenticationRegisterPost(_response);
+            return this.processRegister(_response);
         });
     }
 
-    protected processApiAuthenticationRegisterPost(response: Response): Promise<void> {
+    protected processRegister(response: Response): Promise<void> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v, k) => _headers[k] = v); };
         if (status === 200) {
@@ -63,11 +63,23 @@ export class Client extends BaseWrapper {
         }
         return Promise.resolve<void>(<any>null);
     }
+}
+
+export class SampleDataClient extends BaseWrapper {
+    private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
+        super();
+        this.http = http ? http : <any>window;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
 
     /**
      * @return Success
      */
-    apiSampleDataWeatherForecastsGet(startDateIndex: number): Promise<WeatherForecast[]> {
+    weatherForecasts(startDateIndex: number): Promise<WeatherForecast[]> {
         let url_ = this.baseUrl + "/api/SampleData/WeatherForecasts?";
         if (startDateIndex === undefined || startDateIndex === null)
             throw new Error("The parameter 'startDateIndex' must be defined and cannot be null.");
@@ -86,11 +98,11 @@ export class Client extends BaseWrapper {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processApiSampleDataWeatherForecastsGet(_response);
+            return this.processWeatherForecasts(_response);
         });
     }
 
-    protected processApiSampleDataWeatherForecastsGet(response: Response): Promise<WeatherForecast[]> {
+    protected processWeatherForecasts(response: Response): Promise<WeatherForecast[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v, k) => _headers[k] = v); };
         if (status === 200) {
@@ -115,7 +127,7 @@ export class Client extends BaseWrapper {
     /**
      * @return Success
      */
-    apiSampleDataAuthorGet(): Promise<string> {
+    author(): Promise<string> {
         let url_ = this.baseUrl + "/api/SampleData/Author";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -130,11 +142,11 @@ export class Client extends BaseWrapper {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processApiSampleDataAuthorGet(_response);
+            return this.processAuthor(_response);
         });
     }
 
-    protected processApiSampleDataAuthorGet(response: Response): Promise<string> {
+    protected processAuthor(response: Response): Promise<string> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v, k) => _headers[k] = v); };
         if (status === 200) {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Client, RegisterViewModel } from '../Client';
+import { RegisterViewModel, AuthenticationClient } from '../Client';
 
 export class RegisterComponent extends React.Component<{}, {username: string, password: string}> {
 
@@ -20,8 +20,9 @@ export class RegisterComponent extends React.Component<{}, {username: string, pa
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        let client = new Client();
-        client.apiAuthenticationRegisterPost(new RegisterViewModel(this.state)).then(() => alert('user registered'));
+        let client = new AuthenticationClient();
+        client.register(new RegisterViewModel(this.state))
+            .then(() => alert('user registered'));
         
     }
 
