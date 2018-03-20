@@ -56,5 +56,41 @@ namespace GoedeDoelenHelpen.Controllers
             // If we got this far, something failed, redisplay form
             return this.BadRequest();
         }
+
+        [HttpPost("[action]")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody]RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
+                else if (result.IsLockedOut)
+                {
+                    return Unauthorized();
+                }
+                else
+                {
+                    return Unauthorized();
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return Unauthorized();
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
+
+
     }
 }
