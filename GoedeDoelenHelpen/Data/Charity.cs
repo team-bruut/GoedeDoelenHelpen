@@ -10,20 +10,11 @@ namespace GoedeDoelenHelpen.Data
         [StringLength(250)]
         public string Adress { get; set; }
         [Required]
-        public string PostCode { get; set; }
-        [Required]
-        public string City { get; set; }
-        [Required]
         [StringLength(250)]
         public string Name { get; set; }
         [Required]
         [StringLength(maximumLength: 8, MinimumLength = 8)]
         public string KVKNumber { get; set; }
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        public bool Activated { get; set; } = false;
         /// <remarks>
         /// check the official specs
         /// </remarks>
