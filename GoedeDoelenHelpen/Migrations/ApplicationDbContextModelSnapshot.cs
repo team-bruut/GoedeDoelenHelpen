@@ -78,17 +78,9 @@ namespace GoedeDoelenHelpen.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("Activated");
-
                     b.Property<string>("Adress")
                         .IsRequired()
                         .HasMaxLength(250);
-
-                    b.Property<string>("City")
-                        .IsRequired();
-
-                    b.Property<string>("Email")
-                        .IsRequired();
 
                     b.Property<string>("FiscalNumber")
                         .IsRequired();
@@ -104,16 +96,7 @@ namespace GoedeDoelenHelpen.Migrations
                         .IsRequired()
                         .HasMaxLength(250);
 
-                    b.Property<string>("PostCode")
-                        .IsRequired();
-
                     b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Charities");
                 });
