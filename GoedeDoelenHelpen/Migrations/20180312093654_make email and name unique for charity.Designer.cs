@@ -13,9 +13,10 @@ using Microsoft.EntityFrameworkCore.ValueGeneration;
 namespace GoedeDoelenHelpen.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180312093654_make email and name unique for charity")]
+    partial class makeemailandnameuniqueforcharity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

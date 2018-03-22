@@ -66,6 +66,13 @@ namespace GoedeDoelenHelpen.Data
                 .HasOne(tpd => tpd.TeamParticipant)
                 .WithMany(tp => tp.Donations)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Charity>()
+                .HasIndex(c => c.Name)
+                .IsUnique();
+            modelBuilder.Entity<Charity>()
+                .HasIndex(c => c.Email)
+                .IsUnique();
         }
     }
 }

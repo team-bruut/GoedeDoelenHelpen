@@ -3,3 +3,7 @@
 @using GoedeDoelenHelpen.Data
 @namespace GoedeDoelenHelpen.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GoedeDoelenHelpen.Authorization;
+@using Microsoft.AspNetCore.Authorization
+@using GoedeDoelenHelpen.Data
+@inject IAuthorizationService AuthorizationService
