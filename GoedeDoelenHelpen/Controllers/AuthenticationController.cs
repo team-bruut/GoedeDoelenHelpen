@@ -44,11 +44,11 @@ namespace GoedeDoelenHelpen.Controllers
                 {
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                    //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                    //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    await _emailSender.SendEmailAsync(model.Username, "Confirm your account",
+                        "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    // await _signInManager.SignInAsync(user, isPersistent: false);
                     return Ok();
                 }
             }
@@ -91,6 +91,22 @@ namespace GoedeDoelenHelpen.Controllers
             return Ok();
         }
 
+        [HttpGet("[action]")]
+        [ProducesResponseType(typeof(AuthenticationInfoLoggedIn), 200)]
+        [ProducesResponseType(typeof(AuthenticationInfoNotLoggedIn), 201)]
+        public async Task<ActionResult<IAuthenticationInfo>> AthenticationInfo()
+        {
+            if(!User.Identity.IsAuthenticated)
+            {
+                return new AuthenticationInfoNotLoggedIn();
+            } else
+            {
+                return new AuthenticationInfoLoggedIn
+                {
+                    Username = _userManager.GetUserName(this.User)
+                };
+            }
+        }
 
     }
 }

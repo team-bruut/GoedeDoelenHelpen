@@ -7,17 +7,20 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ReactApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <UserSecretsId>ff8e2c92-6555-4e54-8a15-442047b66f00</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-preview1-final" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.0-preview1-final" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0-preview1-final" />
+    <PackageReference Include="SendGrid" Version="9.9.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.1.0-preview1-final" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +30,40 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ReactApp\" />
+    <None Remove="ReactApp\src\App.test.tsx" />
+    <None Remove="ReactApp\src\App.tsx" />
+    <None Remove="ReactApp\src\baseWrapper.ts" />
+    <None Remove="ReactApp\src\Client.ts" />
+    <None Remove="ReactApp\src\index.tsx" />
+    <None Remove="ReactApp\src\pages\about.tsx" />
+    <None Remove="ReactApp\src\pages\Home.tsx" />
+    <None Remove="ReactApp\src\pages\Login.tsx" />
+    <None Remove="ReactApp\src\pages\Logout.tsx" />
+    <None Remove="ReactApp\src\pages\Page404.tsx" />
+    <None Remove="ReactApp\src\pages\register.tsx" />
+    <None Remove="ReactApp\src\pages\Topics\index.tsx" />
+    <None Remove="ReactApp\src\registerServiceWorker.ts" />
+    <None Remove="ReactApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ReactApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ReactApp\src\App.test.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\App.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\baseWrapper.ts" />
+    <TypeScriptCompile Include="ReactApp\src\Client.ts" />
+    <TypeScriptCompile Include="ReactApp\src\index.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\pages\about.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\pages\Home.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\pages\Login.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\pages\Logout.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\pages\Page404.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\pages\register.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\pages\Topics\index.tsx" />
+    <TypeScriptCompile Include="ReactApp\src\registerServiceWorker.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
