@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27421.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoedeDoelenHelpen", "GoedeDoelenHelpen\GoedeDoelenHelpen.csproj", "{D7F285C2-348F-45CB-9070-4F09821A68B1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoedeDoelenHelpen.Test", "GoedeDoelenHelpen.Test\GoedeDoelenHelpen.Test.csproj", "{EDBD4195-D941-4A94-8AC8-8CCC49F3CD8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoedeDoelenHelpen", "GoedeDoelenHelpen\GoedeDoelenHelpen.csproj", "{1AFE5D37-03C6-4113-B2AE-3FFE3377C1E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D7F285C2-348F-45CB-9070-4F09821A68B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7F285C2-348F-45CB-9070-4F09821A68B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7F285C2-348F-45CB-9070-4F09821A68B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7F285C2-348F-45CB-9070-4F09821A68B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDBD4195-D941-4A94-8AC8-8CCC49F3CD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDBD4195-D941-4A94-8AC8-8CCC49F3CD8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDBD4195-D941-4A94-8AC8-8CCC49F3CD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDBD4195-D941-4A94-8AC8-8CCC49F3CD8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AFE5D37-03C6-4113-B2AE-3FFE3377C1E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AFE5D37-03C6-4113-B2AE-3FFE3377C1E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AFE5D37-03C6-4113-B2AE-3FFE3377C1E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AFE5D37-03C6-4113-B2AE-3FFE3377C1E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
