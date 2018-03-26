@@ -28,7 +28,7 @@ namespace GoedeDoelenHelpen.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("mail@goededoelenhelpen.nl", "goede doelen helpen"),
+                From = new EmailAddress("info@goededoelenhelpen.nl", "goede doelen helpen"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
