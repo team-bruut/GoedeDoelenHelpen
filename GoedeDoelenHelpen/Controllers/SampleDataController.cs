@@ -39,7 +39,7 @@ namespace GoedeDoelenHelpen.Controllers
         {
             if(DateTime.Now.Hour < 6)
             {
-                return NotFound("The author is still a sleep");
+                return NotFound("The author is still asleep");
             }
 
             return "Barld Boot";
