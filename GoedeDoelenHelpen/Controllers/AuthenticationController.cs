@@ -46,8 +46,8 @@ namespace GoedeDoelenHelpen.Controllers
                     // Send an email with this link
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = $"https://{this.Request.Host}/Confirm/{user.Id}/{code}";
-                    await _emailSender.SendEmailAsync(model.Username, "Confirm your account",
-                        "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    await _emailSender.SendEmailAsync(model.Username, "Bevestig je account",
+                        "Bevestig je account door op deze link te klikken: <a href=\"" + callbackUrl + "\">link</a>");
                     // await _signInManager.SignInAsync(user, isPersistent: false);
                     return Ok();
                 }
