@@ -4,7 +4,7 @@
 ## Back-end
 The back-end is created in ASP.NET core with the programming language C#.
 
-The primarily part used of ASP.net is Web API see https://blogs.msdn.microsoft.com/webdev/2018/02/27/asp-net-core-2-1-web-apis/ for new techniques. Other documentation is found at https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api
+Our primary focus within ASP.net will be on the Web API https://blogs.msdn.microsoft.com/webdev/2018/02/27/asp-net-core-2-1-web-apis/ for new techniques. Other documentation is found at https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api
 
 ### use of swagger.io
 The documentation from the web api is visible by running the project and visit https://baseurl/swagger
