@@ -6,7 +6,7 @@ export default class Logout extends React.Component<{}, {message: string}> {
         super(props);
 
         this.state = {
-            message: 'Bassy!'
+            message: 'Busy!'
         };
 
         let client = new AuthenticationClient();
