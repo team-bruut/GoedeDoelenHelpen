@@ -15,6 +15,9 @@ before_build:
 build:
   publish_wap: true
   verbosity: minimal
+after_build:
+  -ps: cd ./GoedeDoelenHelpen/ClientApp
+  -ps: npm run build --prod
 deploy:
 - provider: WebDeploy
   server: 
