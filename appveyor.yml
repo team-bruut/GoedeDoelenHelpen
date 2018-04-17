@@ -17,7 +17,7 @@ build:
   verbosity: minimal
 after_build:
   - ps: cd ./GoedeDoelenHelpen/ClientApp
-  - ps: npm run build --prod
+  - ps: npm run build-ci
 deploy:
 - provider: WebDeploy
   server: 
