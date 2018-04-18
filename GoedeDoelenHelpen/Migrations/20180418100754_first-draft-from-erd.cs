@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GoedeDoelenHelpen.Migrations
 {
-    public partial class NewIdeaDB : Migration
+    public partial class firstdraftfromerd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,7 +60,11 @@ namespace GoedeDoelenHelpen.Migrations
                     EndDate = table.Column<DateTime>(nullable: false),
                     MaxParticipants = table.Column<int>(nullable: false),
                     Active = table.Column<bool>(nullable: false),
-                    ReceivingPartyId = table.Column<Guid>(nullable: false)
+                    ReceivingPartyId = table.Column<Guid>(nullable: false),
+                    DonationId = table.Column<Guid>(nullable: false),
+                    EventSubscriptionId = table.Column<Guid>(nullable: false),
+                    EventUserId = table.Column<Guid>(nullable: false),
+                    ViewRecordId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,7 +74,7 @@ namespace GoedeDoelenHelpen.Migrations
                         column: x => x.ReceivingPartyId,
                         principalTable: "ReceivingParties",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,7 +84,8 @@ namespace GoedeDoelenHelpen.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Timestamp = table.Column<DateTime>(nullable: false),
                     Amount = table.Column<decimal>(nullable: false),
-                    EventId = table.Column<Guid>(nullable: false)
+                    EventId = table.Column<Guid>(nullable: false),
+                    MessageId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,7 +95,7 @@ namespace GoedeDoelenHelpen.Migrations
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,7 +115,7 @@ namespace GoedeDoelenHelpen.Migrations
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -134,13 +139,13 @@ namespace GoedeDoelenHelpen.Migrations
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EventUsers_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,7 +164,7 @@ namespace GoedeDoelenHelpen.Migrations
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,7 +185,7 @@ namespace GoedeDoelenHelpen.Migrations
                         column: x => x.DonationId,
                         principalTable: "Donations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

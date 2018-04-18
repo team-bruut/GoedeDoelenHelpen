@@ -32,6 +32,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20180417103229_new-idea-database.cs" />
     <Compile Remove="Migrations\20180417103229_new-idea-database.Designer.cs" />
+    <Compile Remove="Migrations\20180418091712_New-Idea-DB.cs" />
+    <Compile Remove="Migrations\20180418091712_New-Idea-DB.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

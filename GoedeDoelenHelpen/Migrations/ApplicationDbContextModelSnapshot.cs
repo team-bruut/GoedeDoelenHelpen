@@ -93,6 +93,8 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<Guid>("EventId");
 
+                    b.Property<Guid>("MessageId");
+
                     b.Property<DateTime>("Timestamp");
 
                     b.HasKey("Id");
@@ -112,9 +114,15 @@ namespace GoedeDoelenHelpen.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(255);
 
+                    b.Property<Guid>("DonationId");
+
                     b.Property<DateTime>("EndDate");
 
                     b.Property<DateTime>("EventDate");
+
+                    b.Property<Guid>("EventSubscriptionId");
+
+                    b.Property<Guid>("EventUserId");
 
                     b.Property<int>("MaxParticipants");
 
@@ -125,6 +133,8 @@ namespace GoedeDoelenHelpen.Migrations
                     b.Property<Guid>("ReceivingPartyId");
 
                     b.Property<DateTime>("StartDate");
+
+                    b.Property<Guid>("ViewRecordId");
 
                     b.HasKey("Id");
 
@@ -364,9 +374,9 @@ namespace GoedeDoelenHelpen.Migrations
             modelBuilder.Entity("GoedeDoelenHelpen.Data.Donation", b =>
                 {
                     b.HasOne("GoedeDoelenHelpen.Data.Event", "Event")
-                        .WithMany()
+                        .WithMany("Donations")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.Event", b =>
@@ -374,15 +384,15 @@ namespace GoedeDoelenHelpen.Migrations
                     b.HasOne("GoedeDoelenHelpen.Data.ReceivingParty", "ReceivingParty")
                         .WithMany("Events")
                         .HasForeignKey("ReceivingPartyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.EventSubscription", b =>
                 {
                     b.HasOne("GoedeDoelenHelpen.Data.Event", "Event")
-                        .WithMany()
+                        .WithMany("EventSubscriptions")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.EventUser", b =>
@@ -390,28 +400,28 @@ namespace GoedeDoelenHelpen.Migrations
                     b.HasOne("GoedeDoelenHelpen.Data.ApplicationUser", "ApplicationUser")
                         .WithMany("EventUsers")
                         .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("GoedeDoelenHelpen.Data.Event", "Event")
-                        .WithMany()
+                        .WithMany("EventUsers")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.Message", b =>
                 {
                     b.HasOne("GoedeDoelenHelpen.Data.Donation", "Donation")
-                        .WithMany()
+                        .WithMany("Messages")
                         .HasForeignKey("DonationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.ViewRecord", b =>
                 {
                     b.HasOne("GoedeDoelenHelpen.Data.Event", "Event")
-                        .WithMany()
+                        .WithMany("ViewRecords")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

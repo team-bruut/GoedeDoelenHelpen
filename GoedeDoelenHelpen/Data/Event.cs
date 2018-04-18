@@ -31,8 +31,18 @@ namespace GoedeDoelenHelpen.Data
         
         [Required]
         public bool Active { get; set; }
+
         [Required]
         public Guid ReceivingPartyId { get; set; }
         public ReceivingParty ReceivingParty { get; set; }
+        public Guid DonationId { get; set; }
+        public List<Donation> Donations { get; set; }
+        public Guid EventSubscriptionId { get; set; }
+        public List<EventSubscription> EventSubscriptions { get; set; }
+        [Required]
+        public Guid EventUserId { get; set; }
+        public List<EventUser> EventUsers { get; set; }
+        public Guid ViewRecordId { get; set; }
+        public List<ViewRecord> ViewRecords { get; set; }
     }
 }

@@ -24,12 +24,50 @@ namespace GoedeDoelenHelpen.Data
 
         }
 
-        protected override void OnModelCreating(ModelBuilder builder) {
-            base.OnModelCreating(builder);
-            
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<Donation>()
+            //    .HasOne(d => d.Event)
+            //    .WithMany(e => e.Donations);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Donation)
+                .WithMany(d => d.Messages)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Donation>()
+                .HasOne(d => d.Event)
+                .WithMany(e => e.Donations)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Event>()
+                .HasOne(e => e.ReceivingParty)
+                .WithMany(r => r.Events)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EventSubscription>()
+                .HasOne(es => es.Event)
+                .WithMany(e => e.EventSubscriptions)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EventUser>()
+                .HasOne(eu => eu.Event)
+                .WithMany(e => e.EventUsers)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(a => a.EventUsers)
+                .WithOne(eu => eu.ApplicationUser)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ViewRecord>()
+                .HasOne(vr => vr.Event)
+                .WithMany(e => e.ViewRecords)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //modelBuilder.Entity<EventUser>()
+            //    .HasDiscriminator(eu => eu.EventUserRole);
         }
-
-    }
-
-    
+    }    
 }
