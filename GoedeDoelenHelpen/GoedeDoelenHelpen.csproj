@@ -29,6 +29,7 @@
     <None Remove="ClientApp\e2e\app.e2e-spec.ts" />
     <None Remove="ClientApp\e2e\app.po.ts" />
     <None Remove="ClientApp\src\app\app.component.ts" />
+    <None Remove="ClientApp\src\app\app.material.module.ts" />
     <None Remove="ClientApp\src\app\app.module.ts" />
     <None Remove="ClientApp\src\app\counter\counter.component.spec.ts" />
     <None Remove="ClientApp\src\app\counter\counter.component.ts" />
@@ -53,6 +54,7 @@
     <TypeScriptCompile Include="ClientApp\e2e\app.e2e-spec.ts" />
     <TypeScriptCompile Include="ClientApp\e2e\app.po.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\app.material.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\counter\counter.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\counter\counter.component.ts" />
