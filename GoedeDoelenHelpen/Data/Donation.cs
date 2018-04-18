@@ -12,9 +12,12 @@ namespace GoedeDoelenHelpen.Data
     public class Donation
     {
         public Guid Id { get; set; }
-        public DateTime Timestamp { get; set; }
-        public decimal Amount { get; set; }
 
+        [Required]
+        public DateTime Timestamp { get; set; }
+        [Required]
+        public decimal Amount { get; set; }
+        [Required]
         public Guid EventId { get; set; }
         public Event Event { get; set; }
 

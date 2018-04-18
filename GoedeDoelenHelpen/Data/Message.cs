@@ -12,14 +12,14 @@ namespace GoedeDoelenHelpen.Data
     public class Message
     {
         public int Id { get; set; }
-
-        [StringLength(40)] //optional
+        [Required]
+        [StringLength(64)] //optional
         public string Name { get; set; }
 
         [Required]
         [StringLength(255)]
         public string Content { get; set; }
-
+        [Required]
         public Guid DonationId { get; set; }
         public Donation Donation { get; set; }
         

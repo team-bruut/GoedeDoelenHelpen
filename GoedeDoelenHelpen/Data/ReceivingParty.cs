@@ -13,6 +13,8 @@ namespace GoedeDoelenHelpen.Data
     {
         public Guid Id { get; set; }
 
+        [Required]
+        public Guid EventId { get; set; }
         public List<Event> Events { get; set; }
 
         [Required]
@@ -24,10 +26,10 @@ namespace GoedeDoelenHelpen.Data
 
         [Required]
         public int KvKNumber { get; set; }
-
+        [Required]
         [StringLength(14)]
         public string FiscalNumber { get; set; }
-
+        [Required]
         [StringLength(34)]
         public string IBAN { get; set; }
 

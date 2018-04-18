@@ -16,6 +16,7 @@ namespace GoedeDoelenHelpen.Data
         [Required]
         public DateTime Timestamp { get; set; }
 
+        [Required]
         public Guid EventId { get; set; }
         public Event Event { get; set; }
 

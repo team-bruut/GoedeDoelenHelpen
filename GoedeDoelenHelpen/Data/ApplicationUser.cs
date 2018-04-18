@@ -17,7 +17,14 @@ namespace GoedeDoelenHelpen.Data
         [StringLength(64)]
         public string FirstName { get; set; }
 
+        [Required]
+        [StringLength(64)]
+        public string NameInsertion { get; set; }
+
+        [Required]
         [StringLength(64)]
         public string LastName { get; set; }
+
+         //Tussenvoegsel
     }
 }

@@ -30,6 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180417103229_new-idea-database.cs" />
+    <Compile Remove="Migrations\20180417103229_new-idea-database.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ReactApp\src\App.test.tsx" />
     <None Remove="ReactApp\src\App.tsx" />
     <None Remove="ReactApp\src\baseWrapper.ts" />

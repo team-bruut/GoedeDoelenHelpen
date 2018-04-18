@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GoedeDoelenHelpen.Migrations
 {
-    public partial class newideadatabase : Migration
+    public partial class NewIdeaDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,18 +20,27 @@ namespace GoedeDoelenHelpen.Migrations
                 name: "LastName",
                 table: "AspNetUsers",
                 maxLength: 64,
-                nullable: true);
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "NameInsertion",
+                table: "AspNetUsers",
+                maxLength: 64,
+                nullable: false,
+                defaultValue: "");
 
             migrationBuilder.CreateTable(
                 name: "ReceivingParties",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    EventId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 255, nullable: false),
                     Description = table.Column<string>(maxLength: 255, nullable: true),
                     KvKNumber = table.Column<int>(nullable: false),
-                    FiscalNumber = table.Column<string>(maxLength: 14, nullable: true),
-                    IBAN = table.Column<string>(maxLength: 34, nullable: true),
+                    FiscalNumber = table.Column<string>(maxLength: 14, nullable: false),
+                    IBAN = table.Column<string>(maxLength: 34, nullable: false),
                     ANBIId = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -114,7 +123,7 @@ namespace GoedeDoelenHelpen.Migrations
                     LastEmail = table.Column<DateTime>(nullable: false),
                     LastFacebook = table.Column<DateTime>(nullable: false),
                     EventUserRole = table.Column<int>(nullable: false),
-                    ApplicationUserId = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: false),
                     EventId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -125,7 +134,7 @@ namespace GoedeDoelenHelpen.Migrations
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EventUsers_Events_EventId",
                         column: x => x.EventId,
@@ -159,7 +168,7 @@ namespace GoedeDoelenHelpen.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 40, nullable: true),
+                    Name = table.Column<string>(maxLength: 64, nullable: false),
                     Content = table.Column<string>(maxLength: 255, nullable: false),
                     DonationId = table.Column<Guid>(nullable: false)
                 },
@@ -239,6 +248,10 @@ namespace GoedeDoelenHelpen.Migrations
 
             migrationBuilder.DropColumn(
                 name: "LastName",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "NameInsertion",
                 table: "AspNetUsers");
         }
     }

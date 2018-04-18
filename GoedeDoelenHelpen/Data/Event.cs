@@ -20,14 +20,18 @@ namespace GoedeDoelenHelpen.Data
         [StringLength(255)]
         public string Description { get; set; }
 
+        [Required]
         public DateTime StartDate { get; set; }
+        [Required]
         public DateTime EventDate { get; set; }
+        [Required]
         public DateTime EndDate { get; set; }
 
         public int MaxParticipants { get; set; }
         
+        [Required]
         public bool Active { get; set; }
-        
+        [Required]
         public Guid ReceivingPartyId { get; set; }
         public ReceivingParty ReceivingParty { get; set; }
     }

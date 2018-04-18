@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 namespace GoedeDoelenHelpen.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180417103229_new-idea-database")]
-    partial class newideadatabase
+    [Migration("20180418091712_New-Idea-DB")]
+    partial class NewIdeaDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,11 +42,16 @@ namespace GoedeDoelenHelpen.Migrations
                         .HasMaxLength(64);
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasMaxLength(64);
 
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NameInsertion")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -158,7 +163,8 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<string>("ApplicationUserId");
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired();
 
                     b.Property<Guid>("EventId");
 
@@ -191,7 +197,8 @@ namespace GoedeDoelenHelpen.Migrations
                     b.Property<Guid>("DonationId");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(40);
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
@@ -210,10 +217,14 @@ namespace GoedeDoelenHelpen.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(255);
 
+                    b.Property<Guid>("EventId");
+
                     b.Property<string>("FiscalNumber")
+                        .IsRequired()
                         .HasMaxLength(14);
 
                     b.Property<string>("IBAN")
+                        .IsRequired()
                         .HasMaxLength(34);
 
                     b.Property<int>("KvKNumber");
@@ -379,7 +390,8 @@ namespace GoedeDoelenHelpen.Migrations
                 {
                     b.HasOne("GoedeDoelenHelpen.Data.ApplicationUser", "ApplicationUser")
                         .WithMany("EventUsers")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("GoedeDoelenHelpen.Data.Event", "Event")
                         .WithMany()

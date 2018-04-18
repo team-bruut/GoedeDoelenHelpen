@@ -22,6 +22,7 @@ namespace GoedeDoelenHelpen.Data
         [EmailAddress]
         public string Email { get; set; }
 
+        [Required]
         public Guid EventId { get; set; }
         public Event Event { get; set; }
 
