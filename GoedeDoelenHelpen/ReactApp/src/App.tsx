@@ -12,6 +12,7 @@ import Page404 from './pages/Page404';
 import { RegisterComponent } from './pages/register';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
+import { ActivateComponent } from './pages/Account/activate';
 
 const App = () => (
   <Router>
@@ -34,6 +35,7 @@ const App = () => (
         <Route path="/register" component={RegisterComponent}/>
         <Route path="/login" component={Login}/>
         <Route path="/logout" component={Logout}/>
+        <Route path="/Account/ConfirmEmail" component={ActivateComponent} />
         <Route component={Page404} />
       </Switch>
     </div>

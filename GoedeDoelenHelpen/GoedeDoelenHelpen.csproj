@@ -15,7 +15,7 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.0-preview1-final" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0-preview1-final" />
     <PackageReference Include="SendGrid" Version="9.9.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +27,13 @@
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20180417103229_new-idea-database.cs" />
+    <Compile Remove="Migrations\20180417103229_new-idea-database.Designer.cs" />
+    <Compile Remove="Migrations\20180418091712_New-Idea-DB.cs" />
+    <Compile Remove="Migrations\20180418091712_New-Idea-DB.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
