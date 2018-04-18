@@ -45,7 +45,7 @@ namespace GoedeDoelenHelpen.Controllers
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = $"https://{this.Request.Host}/Confirm/{user.Id}/{code}";
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     await _emailSender.SendEmailAsync(model.Username, "Bevestig je account",
                         "Bevestig je account door op deze link te klikken: <a href=\"" + callbackUrl + "\">link</a>");
                     // await _signInManager.SignInAsync(user, isPersistent: false);
@@ -96,16 +96,37 @@ namespace GoedeDoelenHelpen.Controllers
         [ProducesResponseType(typeof(AuthenticationInfoNotLoggedIn), 201)]
         public async Task<ActionResult<IAuthenticationInfo>> AthenticationInfo()
         {
-            if(!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
             {
                 return new AuthenticationInfoNotLoggedIn();
-            } else
+            }
+            else
             {
                 return new AuthenticationInfoLoggedIn
                 {
                     Username = _userManager.GetUserName(this.User)
                 };
             }
+        }
+
+        [HttpGet("[action]")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return this.BadRequest();
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{userId}'.");
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            return Ok();
         }
 
     }
