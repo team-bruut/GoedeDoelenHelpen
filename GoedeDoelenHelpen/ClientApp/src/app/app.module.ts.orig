@@ -3,16 +3,19 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { AppMaterialModule } from './app.material.module';
+<<<<<<< HEAD
 import { RegisterComponent } from './user/register/register.component';
 import { RegisterService } from './user/register/register.service';
+=======
+import { AppMaterialModule } from './app.material.module';
+>>>>>>> a2e840071a7fa0e1b64a6660d7535fdcd28e2e8f
 
 @NgModule({
   declarations: [
@@ -32,9 +35,13 @@ import { RegisterService } from './user/register/register.service';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+<<<<<<< HEAD
       { path: 'user/register', component: RegisterComponent },
+    ])
+=======
     ]),
     AppMaterialModule
+>>>>>>> a2e840071a7fa0e1b64a6660d7535fdcd28e2e8f
   ],
   providers: [RegisterService],
   bootstrap: [AppComponent]

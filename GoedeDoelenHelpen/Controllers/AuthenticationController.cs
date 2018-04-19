@@ -94,7 +94,7 @@ namespace GoedeDoelenHelpen.Controllers
         [HttpGet("[action]")]
         [ProducesResponseType(typeof(AuthenticationInfoLoggedIn), 200)]
         [ProducesResponseType(typeof(AuthenticationInfoNotLoggedIn), 201)]
-        public async Task<ActionResult<IAuthenticationInfo>> AthenticationInfo()
+        public async Task<ActionResult<IAuthenticationInfo>> AuthenticationInfo()
         {
             if (!User.Identity.IsAuthenticated)
             {

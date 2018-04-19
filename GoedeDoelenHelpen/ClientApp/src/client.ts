@@ -38,7 +38,7 @@ export interface IAuthenticationClient {
     /**
      * @return Success
      */
-    athenticationInfo(): Observable<AuthenticationInfoLoggedIn>;
+    authenticationInfo(): Observable<AuthenticationInfoLoggedIn>;
 }
 
 @Injectable()
@@ -207,8 +207,8 @@ export class AuthenticationClient implements IAuthenticationClient {
     /**
      * @return Success
      */
-    athenticationInfo(): Observable<AuthenticationInfoLoggedIn> {
-        let url_ = this.baseUrl + "/api/Authentication/AthenticationInfo";
+    authenticationInfo(): Observable<AuthenticationInfoLoggedIn> {
+        let url_ = this.baseUrl + "/api/Authentication/AuthenticationInfo";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -221,11 +221,11 @@ export class AuthenticationClient implements IAuthenticationClient {
         };
 
         return this.http.request("get", url_, options_).flatMap((response_ : any) => {
-            return this.processAthenticationInfo(response_);
+            return this.processAuthenticationInfo(response_);
         }).catch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAthenticationInfo(<any>response_);
+                    return this.processAuthenticationInfo(<any>response_);
                 } catch (e) {
                     return <Observable<AuthenticationInfoLoggedIn>><any>Observable.throw(e);
                 }
@@ -234,7 +234,7 @@ export class AuthenticationClient implements IAuthenticationClient {
         });
     }
 
-    protected processAthenticationInfo(response: HttpResponseBase): Observable<AuthenticationInfoLoggedIn> {
+    protected processAuthenticationInfo(response: HttpResponseBase): Observable<AuthenticationInfoLoggedIn> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
