@@ -216,7 +216,8 @@ namespace GoedeDoelenHelpen.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Messages_DonationId",
                 table: "Messages",
-                column: "DonationId");
+                column: "DonationId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ViewRecords_EventId",

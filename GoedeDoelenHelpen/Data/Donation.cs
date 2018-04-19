@@ -22,7 +22,7 @@ namespace GoedeDoelenHelpen.Data
         public Event Event { get; set; }
         [Required]
         public Guid MessageId { get; set; }
-        public List<Message> Messages { get; set; }
+        public Message Message { get; set; }
 
     }
 }

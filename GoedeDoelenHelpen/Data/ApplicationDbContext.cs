@@ -33,7 +33,7 @@ namespace GoedeDoelenHelpen.Data
 
             modelBuilder.Entity<Message>()
                 .HasOne(m => m.Donation)
-                .WithMany(d => d.Messages)
+                .WithOne(d => d.Message)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Donation>()

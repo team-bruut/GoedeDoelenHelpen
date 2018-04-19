@@ -211,7 +211,8 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DonationId");
+                    b.HasIndex("DonationId")
+                        .IsUnique();
 
                     b.ToTable("Messages");
                 });
@@ -411,8 +412,8 @@ namespace GoedeDoelenHelpen.Migrations
             modelBuilder.Entity("GoedeDoelenHelpen.Data.Message", b =>
                 {
                     b.HasOne("GoedeDoelenHelpen.Data.Donation", "Donation")
-                        .WithMany("Messages")
-                        .HasForeignKey("DonationId")
+                        .WithOne("Message")
+                        .HasForeignKey("GoedeDoelenHelpen.Data.Message", "DonationId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
