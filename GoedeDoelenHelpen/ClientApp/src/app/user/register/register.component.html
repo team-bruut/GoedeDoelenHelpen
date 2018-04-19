@@ -1,3 +1,20 @@
-<p>
-  register works!
-</p>
+<form (submit)="onSubmit()" class="register-form" [formGroup]="userRegisterGroup">
+  <mat-form-field  >
+    <input type="email" matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="emailC.hasError('email') && emailC.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailC.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field >
+    <input type="password" matInput placeholder="password" formControlName="password">
+    <mat-error *ngIf="passwordC.hasError('required')">
+      Password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="submit" />
+  </mat-form-field>
+</form>

@@ -14,6 +14,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppMaterialModule } from './app.material.module';
 import { RegisterComponent } from './user/register/register.component';
 import { RegisterService } from './user/register/register.service';
+import { AuthenticationService } from './authentication.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { RegisterService } from './user/register/register.service';
     AppMaterialModule,
     ReactiveFormsModule
   ],
-  providers: [RegisterService],
+  providers: [RegisterService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
