@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -34,7 +34,8 @@ import { RegisterService } from './user/register/register.service';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'user/register', component: RegisterComponent },
     ]),
-    AppMaterialModule
+    AppMaterialModule,
+    ReactiveFormsModule
   ],
   providers: [RegisterService],
   bootstrap: [AppComponent]
