@@ -1,38 +1,55 @@
-<mat-toolbar>
-    Hello GoedeDoelenHelpen
-</mat-toolbar>
-
-
-<!-- <div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>
-            <a class='navbar-brand' [routerLink]='["/"]'>GoedeDoelenHelpen</a>
+<div class="nav" style="height: 100vh;">
+    <mat-toolbar color="primary">
+        <!-- TODO: Make bigger -->
+        <a class="logo" href="/" mat-button>
+            <mat-icon class="logo" svgIcon="logo" fxShow="true" fxHide.lt-sm="true"></mat-icon>
+            <span mat-title fxShow="true" fxHide.lt-sm="true">Goede Doelen Helpen</span>
+            <!-- Show a logo without text on mobile devices -->
+            <mat-icon class="logo logo_mobile" svgIcon="logo_text" fxShow="true" fxHide.gt-xs="true"></mat-icon>
+        </a>
+        <span class="fill-remaining-space"></span>
+        <div fxShow="true" fxHide.lt-sm="true">
+            <a ng-href="/" mat-button>{{ button_1.text }}</a>
+            <a ng-href="/" mat-button>{{ button_2.text }}</a>
+            <a ng-href="/" mat-button>{{ button_3.text }}</a>
+            <a ng-href="/" mat-raised-button>{{ button_4.text }}</a>
         </div>
-        <div class='clearfix'></div>
-        <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-                    <a [routerLink]='["/"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-home'></span> Home
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/counter"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-education'></span> Counter
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
-                    </a>
-                </li>
-            </ul>
+        <div fxShow="true" fxHide.gt-xs="true">
+            <a href="#" (click)="sidenav.toggle()" mat-button>
+                <mat-icon>menu</mat-icon>
+            </a>
         </div>
-    </div>
-</div> -->
+    </mat-toolbar>
+
+    <!-- If on a small screen, change menu -->
+    <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav align="end" #sidenav fxLayout="column">
+            <div fxLayout="column">
+                <a (click)="sidenav.toggle()" href="#" mat-button>
+                    <mat-icon>close</mat-icon>
+                </a>
+                <mat-divider></mat-divider>
+                <a ng-href="/" mat-button>{{ button_1.text }}</a>
+                <a ng-href="/" mat-button>{{ button_2.text }}</a>
+                <a ng-href="/" mat-button>{{ button_3.text }}</a>
+                <a ng-href="/" mat-raised-button>{{ button_4.text }}</a>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+            <!-- For exceptionally small screen sizes, we give a warning
+            <mat-card class="exceptionally-small-screen">
+                <mat-card-title>
+                    Small screen size
+                </mat-card-title>
+                <mat-card-content>
+                    Due to your exceptionally small screen, we can't guarentee the website will work for your device.
+                </mat-card-content>
+            </mat-card> -->
+
+            <!-- Page content goes here -->
+            <div class='body-content'>
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
