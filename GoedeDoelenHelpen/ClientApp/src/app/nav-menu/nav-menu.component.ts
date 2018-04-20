@@ -8,27 +8,27 @@ import { MatIconRegistry } from '@angular/material';
 })
 export class NavMenuComponent {
   isExpanded = false;
-  content = "Awesome content!";
+  content = 'Awesome content!';
 
   button_1 = {
-    text: "hoe werkt het?",
-    link: "/over/hoe-werkt-het"
-  }
+    text: 'hoe werkt het?',
+    link: '/over/hoe-werkt-het'
+  };
 
   button_2 = {
-    text: "waarom?",
-    link: "/over/waarom"
-  }
+    text: 'waarom?',
+    link: '/over/waarom'
+  };
 
   button_3 = {
-    text: "over ons",
-    link: "/over/ons"
-  }
+    text: 'over ons',
+    link: '/over/ons'
+  };
 
   button_4 = {
-    text: "inloggen",
-    link: "/login"
-  }
+    text: 'inloggen',
+    link: '/login'
+  };
 
   collapse() {
     this.isExpanded = false;

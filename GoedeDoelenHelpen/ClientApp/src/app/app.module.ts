@@ -14,6 +14,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppMaterialModule } from './app.material.module';
 import { RegisterComponent } from './user/register/register.component';
 import { RegisterService } from './user/register/register.service';
+import { HomePartialComponent } from './home/home-partial/home-partial.component';
+import { RoundedButtonDirective } from './elements/rounded-button.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { RegisterService } from './user/register/register.service';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomePartialComponent,
+    RoundedButtonDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

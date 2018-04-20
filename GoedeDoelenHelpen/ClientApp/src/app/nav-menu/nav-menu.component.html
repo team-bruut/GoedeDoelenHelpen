@@ -9,10 +9,10 @@
         </a>
         <span class="fill-remaining-space"></span>
         <div fxShow="true" fxHide.lt-sm="true">
-            <a ng-href="/" mat-button>{{ button_1.text }}</a>
-            <a ng-href="/" mat-button>{{ button_2.text }}</a>
-            <a ng-href="/" mat-button>{{ button_3.text }}</a>
-            <a ng-href="/" mat-raised-button>{{ button_4.text }}</a>
+            <button mat-button routerLink="/">{{ button_1.text }}</button>
+            <button routerLink="/" mat-button>{{ button_2.text }}</button>
+            <button routerLink="/" mat-button>{{ button_3.text }}</button>
+            <button routerLink="/"  mat-raised-button >{{ button_4.text }}</button>
         </div>
         <div fxShow="true" fxHide.gt-xs="true">
             <a href="#" (click)="sidenav.toggle()" mat-button>
@@ -29,10 +29,10 @@
                     <mat-icon>close</mat-icon>
                 </a>
                 <mat-divider></mat-divider>
-                <a ng-href="/" mat-button>{{ button_1.text }}</a>
-                <a ng-href="/" mat-button>{{ button_2.text }}</a>
-                <a ng-href="/" mat-button>{{ button_3.text }}</a>
-                <a ng-href="/" mat-raised-button>{{ button_4.text }}</a>
+                <button mat-button routerLink="/" >{{ button_1.text }}</button>
+                <button routerLink="/" mat-button>{{ button_2.text }}</button>
+                <button routerLink="/" mat-button>{{ button_3.text }}</button>
+                <button routerLink="/" mat-raised-button >{{ button_4.text }}</button>
             </div>
         </mat-sidenav>
         <mat-sidenav-content fxFlexFill>

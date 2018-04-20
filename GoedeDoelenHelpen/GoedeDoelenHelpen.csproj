@@ -36,6 +36,10 @@
     <None Remove="ClientApp\src\app\fetch-data\fetch-data.component.ts" />
     <None Remove="ClientApp\src\app\home\home.component.ts" />
     <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.ts" />
+    <None Remove="ClientApp\src\app\user\register\register.component.spec.ts" />
+    <None Remove="ClientApp\src\app\user\register\register.component.ts" />
+    <None Remove="ClientApp\src\app\user\register\register.service.spec.ts" />
+    <None Remove="ClientApp\src\app\user\register\register.service.ts" />
     <None Remove="ClientApp\src\client.ts" />
     <None Remove="ClientApp\src\environments\environment.prod.ts" />
     <None Remove="ClientApp\src\environments\environment.ts" />
@@ -61,6 +65,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\fetch-data\fetch-data.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\home\home.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\nav-menu\nav-menu.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\register\register.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\register\register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\register\register.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\register\register.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\client.ts" />
     <TypeScriptCompile Include="ClientApp\src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="ClientApp\src\environments\environment.ts" />

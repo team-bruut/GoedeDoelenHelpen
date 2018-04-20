@@ -1,0 +1,18 @@
+.partial {
+    display: flex;
+    overflow: hidden;
+}
+
+.column {
+    padding: 5%;
+}
+
+.left {
+    flex: 0 0 50%;
+    padding-top: 10%;
+}
+
+.right {
+    flex: 1;
+}
+

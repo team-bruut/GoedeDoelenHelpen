@@ -11,7 +11,7 @@ import { MatIconRegistry } from '@angular/material';
 export class AppComponent {
   title = 'app';
 
-  // images
+  // icons
   imagefolder = './assets/images/';
   constructor(iconReg: MatIconRegistry, sanitizer: DomSanitizer) {
     iconReg.addSvgIcon('logo', sanitizer.bypassSecurityTrustResourceUrl(this.imagefolder + 'LOGO_NO_TEXT.svg'))
