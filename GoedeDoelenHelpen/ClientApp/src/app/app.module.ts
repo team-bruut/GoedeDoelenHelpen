@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -15,6 +15,8 @@ import { AppMaterialModule } from './app.material.module';
 import { RegisterComponent } from './user/register/register.component';
 import { RegisterService } from './user/register/register.service';
 import { AuthenticationService } from './authentication.service';
+import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
+import { ActivatedComponent } from './user/activated/activated.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AuthenticationService } from './authentication.service';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConfirmEmailComponent,
+    ActivatedComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,6 +40,8 @@ import { AuthenticationService } from './authentication.service';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'user/register', component: RegisterComponent },
+      { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
+      { path: 'user/activated', component: ActivatedComponent },
     ]),
     AppMaterialModule,
     ReactiveFormsModule

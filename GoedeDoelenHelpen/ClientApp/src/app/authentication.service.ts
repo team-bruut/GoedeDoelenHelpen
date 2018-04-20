@@ -7,15 +7,25 @@ export type SignUpModel = {
   password: string;
 };
 
+export type ActivateAccountModel = {
+  userId: string;
+  code: string;
+};
+
 @Injectable()
 export class AuthenticationService {
 
-  signUp(signUpModel: SignUpModel): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/api/Authentication/Register`, signUpModel);
-  }
   constructor(
     private http: HttpClient,
     @Inject('BASE_URL') private baseUrl: string
   ) { }
+
+  activateAccount(model: ActivateAccountModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/ConfirmEmail`, model);
+  }
+  signUp(signUpModel: SignUpModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/api/Authentication/Register`, signUpModel);
+  }
+
 
 }

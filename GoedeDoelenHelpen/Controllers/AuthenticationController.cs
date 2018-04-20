@@ -109,5 +109,26 @@ namespace GoedeDoelenHelpen.Controllers
             }
         }
 
+        [HttpPost("[action]")]
+        [AllowAnonymous]
+        public async Task<ActionResult<bool>> ConfirmEmail([FromBody]ConfirmEmailModel model)
+        {
+            if (model.UserId == null || model.Code == null)
+            {
+                return this.BadRequest();
+            }
+
+            var user = await _userManager.FindByIdAsync(model.UserId);
+
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{model.UserId}'.");
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, model.Code);
+            return Ok(true);
+        }
+
+
     }
 }
