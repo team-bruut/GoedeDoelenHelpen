@@ -45,7 +45,7 @@ namespace GoedeDoelenHelpen.Controllers
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = $"https://{this.Request.Host}/Confirm/{user.Id}/{code}";
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     await _emailSender.SendEmailAsync(model.Username, "Bevestig je account",
                         "Bevestig je account door op deze link te klikken: <a href=\"" + callbackUrl + "\">link</a>");
                     // await _signInManager.SignInAsync(user, isPersistent: false);
@@ -94,12 +94,13 @@ namespace GoedeDoelenHelpen.Controllers
         [HttpGet("[action]")]
         [ProducesResponseType(typeof(AuthenticationInfoLoggedIn), 200)]
         [ProducesResponseType(typeof(AuthenticationInfoNotLoggedIn), 201)]
-        public async Task<ActionResult<IAuthenticationInfo>> AthenticationInfo()
+        public async Task<ActionResult<IAuthenticationInfo>> AuthenticationInfo()
         {
-            if(!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
             {
                 return new AuthenticationInfoNotLoggedIn();
-            } else
+            }
+            else
             {
                 return new AuthenticationInfoLoggedIn
                 {
@@ -107,6 +108,27 @@ namespace GoedeDoelenHelpen.Controllers
                 };
             }
         }
+
+        [HttpPost("[action]")]
+        [AllowAnonymous]
+        public async Task<ActionResult<bool>> ConfirmEmail([FromBody]ConfirmEmailModel model)
+        {
+            if (model.UserId == null || model.Code == null)
+            {
+                return this.BadRequest();
+            }
+
+            var user = await _userManager.FindByIdAsync(model.UserId);
+
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{model.UserId}'.");
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, model.Code);
+            return Ok(true);
+        }
+
 
     }
 }

@@ -1,4 +1,4 @@
-version: 0.0.{build}
+version: 0.1.{build}
 image: Visual Studio 2017 Preview
 dotnet_csproj:
   patch: true
@@ -8,11 +8,16 @@ dotnet_csproj:
   assembly_version: '{version}'
   file_version: '{version}'
   informational_version: '{version}'
+install:
+  - ps: Install-Product node 6
 before_build:
   - nuget restore
 build:
   publish_wap: true
   verbosity: minimal
+after_build:
+  - ps: cd ./GoedeDoelenHelpen/ClientApp
+  - ps: npm run build-ci
 deploy:
 - provider: WebDeploy
   server: 

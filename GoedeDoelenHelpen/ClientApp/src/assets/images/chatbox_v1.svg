@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="390px" height="577px" viewBox="0 0 390 577" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="10" y="13" width="373" height="551" rx="5"></rect>
+        <filter x="-2.4%" y="-1.3%" width="105.9%" height="104.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="2" dy="4" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.700600553   0 0 0 0 0.700600553   0 0 0 0 0.700600553  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M10,18.0045213 C10,15.2406005 12.237615,13 14.9907867,13 L378.009213,13 C380.765549,13 383,15.2424579 383,18.0045213 L383,57 L10,57 L10,18.0045213 Z" id="path-3"></path>
+        <filter x="-0.5%" y="-2.3%" width="101.1%" height="109.1%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.701960784   0 0 0 0 0.701960784   0 0 0 0 0.701960784  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard">
+            <g id="Rectangle-5">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+            <g id="Rectangle">
+                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+            </g>
+            <circle id="Oval-Copy-2" fill="#7DD21B" cx="86.5" cy="30.5" r="7.5"></circle>
+            <circle id="Oval-Copy" fill="#F8E81C" cx="56.5" cy="30.5" r="7.5"></circle>
+            <circle id="Oval" fill="#FF4044" cx="26.5" cy="30.5" r="7.5"></circle>
+            <path d="M50.4727501,115.007109 C50.4727501,101.748349 61.2090437,91 74.4735997,91 L315.000979,91 C330.464411,91 343,103.532422 343,119.004776 L343,129.313514 C343,144.780124 330.457964,157.281837 314.999327,157.236907 L37,156.428913 L44.7981391,146.825304 C47.9321402,142.965702 50.4727501,135.7988 50.4727501,130.836767 L50.4727501,115.007109 Z" id="Rectangle-6-Copy" fill="#FFC883"></path>
+            <path d="M42.4727501,351.007109 C42.4727501,337.748349 53.2090437,327 66.4735997,327 L307.000979,327 C322.464411,327 335,339.532422 335,355.004776 L335,365.313514 C335,380.780124 322.457964,393.281837 306.999327,393.236907 L29,392.428913 L36.7981391,382.825304 C39.9321402,378.965702 42.4727501,371.7988 42.4727501,366.836767 L42.4727501,351.007109 Z" id="Rectangle-6-Copy-2" fill="#FFC883"></path>
+            <path d="M50.4727501,233.007109 C50.4727501,219.748349 61.2090437,209 74.4735997,209 L315.000979,209 C330.464411,209 343,221.532422 343,237.004776 L343,247.313514 C343,262.780124 330.457964,275.281837 314.999327,275.236907 L37,274.428913 L44.7981391,264.825304 C47.9321402,260.965702 50.4727501,253.7988 50.4727501,248.836767 L50.4727501,233.007109 Z" id="Rectangle-6-Copy-3" fill="#E2DEDE" transform="translate(190.000000, 242.118514) scale(-1, 1) translate(-190.000000, -242.118514) "></path>
+            <path d="M42.4727501,469.007109 C42.4727501,455.748349 53.2090437,445 66.4735997,445 L307.000979,445 C322.464411,445 335,457.532422 335,473.004776 L335,483.313514 C335,498.780124 322.457964,511.281837 306.999327,511.236907 L29,510.428913 L36.7981391,500.825304 C39.9321402,496.965702 42.4727501,489.7988 42.4727501,484.836767 L42.4727501,469.007109 Z" id="Rectangle-6-Copy-4" fill="#E2DDDD" transform="translate(182.000000, 478.118514) scale(-1, 1) translate(-182.000000, -478.118514) "></path>
+        </g>
+    </g>
+</svg>
