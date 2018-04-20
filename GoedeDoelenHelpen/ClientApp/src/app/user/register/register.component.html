@@ -1,20 +1,18 @@
-<form (submit)="onSubmit()" class="register-form" [formGroup]="userRegisterGroup">
-  <mat-form-field  >
+<form fxLayout="column" (submit)="onSubmit()" class="register-form" [formGroup]="userRegisterGroup">
+  <mat-form-field fxFlexFill>
     <input type="email" matInput placeholder="Email" formControlName="email">
-    <mat-error *ngIf="emailC.hasError('email') && emailC.hasError('required')">
-      Please enter a valid email address
+    <mat-error *ngIf="emailC.hasError('email') && !emailC.hasError('required')">
+      Vul een geldig e-mailadres in.
     </mat-error>
     <mat-error *ngIf="emailC.hasError('required')">
-      Email is <strong>required</strong>
+      Email is <strong>verplicht</strong>
     </mat-error>
   </mat-form-field>
-  <mat-form-field >
-    <input type="password" matInput placeholder="password" formControlName="password">
+  <mat-form-field fxFlexFill>
+    <input type="password" matInput placeholder="wachtwoord" formControlName="password">
     <mat-error *ngIf="passwordC.hasError('required')">
-      Password is <strong>required</strong>
+      Wachtwoord is <strong>verplicht</strong>
     </mat-error>
   </mat-form-field>
-  <mat-form-field>
-    <input matInput type="submit" />
-  </mat-form-field>
+  <button fxFlexFill role="submit" mat-raised-button color="primary">sign-up</button>
 </form>
