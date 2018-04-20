@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 namespace GoedeDoelenHelpen.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180419105344_new-database")]
+    [Migration("20180420115428_new-database")]
     partial class newdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,17 +92,34 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<decimal>("Amount");
 
-                    b.Property<Guid>("EventId");
-
-                    b.Property<Guid>("MessageId");
+                    b.Property<Guid>("EventUserId");
 
                     b.Property<DateTime>("Timestamp");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventId");
+                    b.HasIndex("EventUserId");
 
                     b.ToTable("Donations");
+                });
+
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.EmailRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<Guid>("EventUserId");
+
+                    b.Property<DateTime>("TimeStamp");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventUserId");
+
+                    b.ToTable("EmailRecords");
                 });
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.Event", b =>
@@ -115,17 +132,9 @@ namespace GoedeDoelenHelpen.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(255);
 
-                    b.Property<Guid>("DonationId");
-
                     b.Property<DateTime>("EndDate");
 
-                    b.Property<DateTime>("EventDate");
-
-                    b.Property<Guid>("EventSubscriptionId");
-
-                    b.Property<Guid>("EventUserId");
-
-                    b.Property<int>("MaxParticipants");
+                    b.Property<DateTime>("EndEvent");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -135,13 +144,34 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<DateTime>("StartDate");
 
-                    b.Property<Guid>("ViewRecordId");
+                    b.Property<DateTime>("StartEvent");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ReceivingPartyId");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.EventInvite", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Accepted");
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<Guid>("EventUserId");
+
+                    b.Property<DateTime>("Timestamp");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventUserId");
+
+                    b.ToTable("EventInvites");
                 });
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.EventSubscription", b =>
@@ -153,7 +183,7 @@ namespace GoedeDoelenHelpen.Migrations
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<Guid>("EventId");
+                    b.Property<Guid>("EventUserId");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -161,7 +191,7 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventId");
+                    b.HasIndex("EventUserId");
 
                     b.ToTable("EventSubscriptions");
                 });
@@ -195,6 +225,22 @@ namespace GoedeDoelenHelpen.Migrations
                     b.ToTable("EventUsers");
                 });
 
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("EventUserId");
+
+                    b.Property<DateTime>("TimeStamp");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventUserId");
+
+                    b.ToTable("FacebookRecords");
+                });
+
             modelBuilder.Entity("GoedeDoelenHelpen.Data.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -207,7 +253,6 @@ namespace GoedeDoelenHelpen.Migrations
                     b.Property<Guid>("DonationId");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(64);
 
                     b.HasKey("Id");
@@ -227,8 +272,6 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<string>("Description")
                         .HasMaxLength(255);
-
-                    b.Property<Guid>("EventId");
 
                     b.Property<string>("FiscalNumber")
                         .IsRequired()
@@ -251,16 +294,15 @@ namespace GoedeDoelenHelpen.Migrations
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.ViewRecord", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<string>("SessionId");
 
                     b.Property<Guid>("EventId");
 
                     b.Property<DateTime>("Timestamp");
 
-                    b.HasKey("Id");
+                    b.HasKey("SessionId", "EventId");
 
-                    b.HasIndex("EventId");
+                    b.HasAlternateKey("EventId", "SessionId");
 
                     b.ToTable("ViewRecords");
                 });
@@ -375,9 +417,17 @@ namespace GoedeDoelenHelpen.Migrations
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.Donation", b =>
                 {
-                    b.HasOne("GoedeDoelenHelpen.Data.Event", "Event")
+                    b.HasOne("GoedeDoelenHelpen.Data.EventUser", "EventUser")
                         .WithMany("Donations")
-                        .HasForeignKey("EventId")
+                        .HasForeignKey("EventUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.EmailRecord", b =>
+                {
+                    b.HasOne("GoedeDoelenHelpen.Data.EventUser", "EventUser")
+                        .WithMany("EmailRecords")
+                        .HasForeignKey("EventUserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -389,11 +439,19 @@ namespace GoedeDoelenHelpen.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.EventInvite", b =>
+                {
+                    b.HasOne("GoedeDoelenHelpen.Data.EventUser", "EventUser")
+                        .WithMany("EventInvites")
+                        .HasForeignKey("EventUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("GoedeDoelenHelpen.Data.EventSubscription", b =>
                 {
-                    b.HasOne("GoedeDoelenHelpen.Data.Event", "Event")
+                    b.HasOne("GoedeDoelenHelpen.Data.EventUser", "EventUser")
                         .WithMany("EventSubscriptions")
-                        .HasForeignKey("EventId")
+                        .HasForeignKey("EventUserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -407,6 +465,14 @@ namespace GoedeDoelenHelpen.Migrations
                     b.HasOne("GoedeDoelenHelpen.Data.Event", "Event")
                         .WithMany("EventUsers")
                         .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookRecord", b =>
+                {
+                    b.HasOne("GoedeDoelenHelpen.Data.EventUser", "EventUser")
+                        .WithMany("FacebookRecords")
+                        .HasForeignKey("EventUserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

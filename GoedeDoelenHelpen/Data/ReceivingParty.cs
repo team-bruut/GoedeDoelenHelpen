@@ -13,8 +13,6 @@ namespace GoedeDoelenHelpen.Data
     {
         public Guid Id { get; set; }
 
-        [Required]
-        public Guid EventId { get; set; }
         public List<Event> Events { get; set; }
 
         [Required]

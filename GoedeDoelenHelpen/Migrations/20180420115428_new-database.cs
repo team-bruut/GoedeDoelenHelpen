@@ -35,7 +35,6 @@ namespace GoedeDoelenHelpen.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    EventId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 255, nullable: false),
                     Description = table.Column<string>(maxLength: 255, nullable: true),
                     KvKNumber = table.Column<int>(nullable: false),
@@ -56,15 +55,11 @@ namespace GoedeDoelenHelpen.Migrations
                     Name = table.Column<string>(maxLength: 255, nullable: false),
                     Description = table.Column<string>(maxLength: 255, nullable: true),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    EventDate = table.Column<DateTime>(nullable: false),
+                    StartEvent = table.Column<DateTime>(nullable: false),
+                    EndEvent = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    MaxParticipants = table.Column<int>(nullable: false),
                     Active = table.Column<bool>(nullable: false),
-                    ReceivingPartyId = table.Column<Guid>(nullable: false),
-                    DonationId = table.Column<Guid>(nullable: false),
-                    EventSubscriptionId = table.Column<Guid>(nullable: false),
-                    EventUserId = table.Column<Guid>(nullable: false),
-                    ViewRecordId = table.Column<Guid>(nullable: false)
+                    ReceivingPartyId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,47 +68,6 @@ namespace GoedeDoelenHelpen.Migrations
                         name: "FK_Events_ReceivingParties_ReceivingPartyId",
                         column: x => x.ReceivingPartyId,
                         principalTable: "ReceivingParties",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Donations",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Timestamp = table.Column<DateTime>(nullable: false),
-                    Amount = table.Column<decimal>(nullable: false),
-                    EventId = table.Column<Guid>(nullable: false),
-                    MessageId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Donations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Donations_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EventSubscriptions",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 255, nullable: false),
-                    Email = table.Column<string>(maxLength: 255, nullable: false),
-                    EventId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventSubscriptions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EventSubscriptions_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -152,17 +106,118 @@ namespace GoedeDoelenHelpen.Migrations
                 name: "ViewRecords",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    SessionId = table.Column<string>(nullable: false),
                     Timestamp = table.Column<DateTime>(nullable: false),
                     EventId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ViewRecords", x => x.Id);
+                    table.PrimaryKey("PK_ViewRecords", x => new { x.SessionId, x.EventId });
+                    table.UniqueConstraint("AK_ViewRecords_EventId_SessionId", x => new { x.EventId, x.SessionId });
                     table.ForeignKey(
                         name: "FK_ViewRecords_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Donations",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Timestamp = table.Column<DateTime>(nullable: false),
+                    Amount = table.Column<decimal>(nullable: false),
+                    EventUserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Donations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Donations_EventUsers_EventUserId",
+                        column: x => x.EventUserId,
+                        principalTable: "EventUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmailRecords",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    TimeStamp = table.Column<DateTime>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    EventUserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmailRecords", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmailRecords_EventUsers_EventUserId",
+                        column: x => x.EventUserId,
+                        principalTable: "EventUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventInvites",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Timestamp = table.Column<DateTime>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Accepted = table.Column<bool>(nullable: false),
+                    EventUserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventInvites", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EventInvites_EventUsers_EventUserId",
+                        column: x => x.EventUserId,
+                        principalTable: "EventUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventSubscriptions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 255, nullable: false),
+                    Email = table.Column<string>(maxLength: 255, nullable: false),
+                    EventUserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventSubscriptions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EventSubscriptions_EventUsers_EventUserId",
+                        column: x => x.EventUserId,
+                        principalTable: "EventUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FacebookRecords",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    TimeStamp = table.Column<DateTime>(nullable: false),
+                    EventUserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FacebookRecords", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FacebookRecords_EventUsers_EventUserId",
+                        column: x => x.EventUserId,
+                        principalTable: "EventUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -173,7 +228,7 @@ namespace GoedeDoelenHelpen.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 64, nullable: false),
+                    Name = table.Column<string>(maxLength: 64, nullable: true),
                     Content = table.Column<string>(maxLength: 255, nullable: false),
                     DonationId = table.Column<Guid>(nullable: false)
                 },
@@ -189,9 +244,19 @@ namespace GoedeDoelenHelpen.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Donations_EventId",
+                name: "IX_Donations_EventUserId",
                 table: "Donations",
-                column: "EventId");
+                column: "EventUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmailRecords_EventUserId",
+                table: "EmailRecords",
+                column: "EventUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EventInvites_EventUserId",
+                table: "EventInvites",
+                column: "EventUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_ReceivingPartyId",
@@ -199,9 +264,9 @@ namespace GoedeDoelenHelpen.Migrations
                 column: "ReceivingPartyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EventSubscriptions_EventId",
+                name: "IX_EventSubscriptions_EventUserId",
                 table: "EventSubscriptions",
-                column: "EventId");
+                column: "EventUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EventUsers_ApplicationUserId",
@@ -214,24 +279,30 @@ namespace GoedeDoelenHelpen.Migrations
                 column: "EventId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FacebookRecords_EventUserId",
+                table: "FacebookRecords",
+                column: "EventUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Messages_DonationId",
                 table: "Messages",
                 column: "DonationId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ViewRecords_EventId",
-                table: "ViewRecords",
-                column: "EventId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "EmailRecords");
+
+            migrationBuilder.DropTable(
+                name: "EventInvites");
+
+            migrationBuilder.DropTable(
                 name: "EventSubscriptions");
 
             migrationBuilder.DropTable(
-                name: "EventUsers");
+                name: "FacebookRecords");
 
             migrationBuilder.DropTable(
                 name: "Messages");
@@ -241,6 +312,9 @@ namespace GoedeDoelenHelpen.Migrations
 
             migrationBuilder.DropTable(
                 name: "Donations");
+
+            migrationBuilder.DropTable(
+                name: "EventUsers");
 
             migrationBuilder.DropTable(
                 name: "Events");

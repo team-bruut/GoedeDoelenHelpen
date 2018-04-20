@@ -18,10 +18,8 @@ namespace GoedeDoelenHelpen.Data
         [Required]
         public decimal Amount { get; set; }
         [Required]
-        public Guid EventId { get; set; }
-        public Event Event { get; set; }
-        [Required]
-        public Guid MessageId { get; set; }
+        public Guid EventUserId { get; set; }
+        public EventUser EventUser { get; set; }
         public Message Message { get; set; }
 
     }

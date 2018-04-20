@@ -26,5 +26,13 @@ namespace GoedeDoelenHelpen.Data
         [Required]
         public Guid EventId { get; set; }
         public Event Event { get; set; }
+
+        //Other dependencies
+        public List<EventInvite> EventInvites { get; set; }
+        public List<EmailRecord> EmailRecords { get; set; } 
+        public List<FacebookRecord> FacebookRecords { get; set; }
+        public List<EventSubscription> EventSubscriptions { get; set; }
+        public List<Donation> Donations { get; set; }
+
     }
 }

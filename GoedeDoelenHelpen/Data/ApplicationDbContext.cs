@@ -17,6 +17,10 @@ namespace GoedeDoelenHelpen.Data
         public DbSet<ReceivingParty> ReceivingParties { get; set; }
         public DbSet<ViewRecord> ViewRecords { get; set; }
         public DbSet<Donation> Donations { get; set; }
+        public DbSet<EmailRecord> EmailRecords { get; set; }
+        public DbSet<FacebookRecord> FacebookRecords { get; set; }
+        public DbSet<EventInvite> EventInvites { get; set;}
+        
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -37,18 +41,33 @@ namespace GoedeDoelenHelpen.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Donation>()
-                .HasOne(d => d.Event)
+                .HasOne(d => d.EventUser)
                 .WithMany(e => e.Donations)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Event>()
-                .HasOne(e => e.ReceivingParty)
-                .WithMany(r => r.Events)
+            modelBuilder.Entity<EventInvite>()
+                .HasOne(ei => ei.EventUser)
+                .WithMany(eu => eu.EventInvites)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<EventSubscription>()
-                .HasOne(es => es.Event)
-                .WithMany(e => e.EventSubscriptions)
+                .HasOne(es => es.EventUser)
+                .WithMany(eu => eu.EventSubscriptions)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<FacebookRecord>()
+                .HasOne(fr => fr.EventUser)
+                .WithMany(eu => eu.FacebookRecords)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EmailRecord>()
+                .HasOne(er => er.EventUser)
+                .WithMany(eu => eu.EmailRecords)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EventUser>()
+                .HasOne(eu => eu.ApplicationUser)
+                .WithMany(au => au.EventUsers)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<EventUser>()
@@ -56,15 +75,20 @@ namespace GoedeDoelenHelpen.Data
                 .WithMany(e => e.EventUsers)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(a => a.EventUsers)
-                .WithOne(eu => eu.ApplicationUser)
+            modelBuilder.Entity<Event>()
+                .HasOne(e => e.ReceivingParty)
+                .WithMany(rp => rp.Events)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ViewRecord>()
                 .HasOne(vr => vr.Event)
                 .WithMany(e => e.ViewRecords)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ViewRecord>()
+                .HasKey(vr => new { vr.SessionId, vr.EventId});
+
+
 
             //modelBuilder.Entity<EventUser>()
             //    .HasDiscriminator(eu => eu.EventUserRole);

@@ -11,12 +11,14 @@ namespace GoedeDoelenHelpen.Data
 {
     public class ViewRecord
     {
-        public Guid Id { get; set; }
+        [Key]
+        public string SessionId { get; set; }
         
         [Required]
         public DateTime Timestamp { get; set; }
 
         [Required]
+        [Key]
         public Guid EventId { get; set; }
         public Event Event { get; set; }
 

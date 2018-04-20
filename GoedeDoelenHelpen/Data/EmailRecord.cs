@@ -9,23 +9,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GoedeDoelenHelpen.Data
 {
-    public class EventSubscription
+    public class EmailRecord
     {
         public Guid Id { get; set; }
-        
-        [Required]
-        [StringLength(255)]
-        public string Name { get; set; }
 
         [Required]
-        [StringLength(255)]
+        public DateTime TimeStamp { get; set; }
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
-
         [Required]
         public Guid EventUserId { get; set; }
         public EventUser EventUser { get; set; }
-
 
     }
 }

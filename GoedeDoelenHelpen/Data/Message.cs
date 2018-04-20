@@ -12,10 +12,9 @@ namespace GoedeDoelenHelpen.Data
     public class Message
     {
         public int Id { get; set; }
-        [Required]
         [StringLength(64)] //optional
         public string Name { get; set; }
-
+        
         [Required]
         [StringLength(255)]
         public string Content { get; set; }
