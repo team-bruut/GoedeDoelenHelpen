@@ -21,6 +21,7 @@ import { ActivatedComponent } from './user/activated/activated.component';
 // Home
 import { HomeModule } from './home/home.module';
 import { HomeComponent } from './home/home.component';
+import { SiteMapComponent } from './site-map/site-map.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HomeComponent } from './home/home.component';
     RegisterComponent,
     RoundedButtonDirective,
     ConfirmEmailComponent,
-    ActivatedComponent
+    ActivatedComponent,
+    SiteMapComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

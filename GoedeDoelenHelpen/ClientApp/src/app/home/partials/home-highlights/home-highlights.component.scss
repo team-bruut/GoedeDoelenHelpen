@@ -1,1 +1,19 @@
 @import '../default.scss';
+@import '../../../../sass/theme/theme.scss';
+
+.partial {
+    display: block;
+    background: white url(../../../../assets/images/home/highlights/worldmap.svg);
+    background-size: cover;
+
+    div {
+        mat-card-title {
+            color: $primary-accent;
+        }
+
+        img {
+            width: 20%;
+            margin-right: 10%;
+        }
+    }
+}

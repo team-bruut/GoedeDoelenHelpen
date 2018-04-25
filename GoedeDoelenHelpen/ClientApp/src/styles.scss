@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-/* To compile and apply our custom sass theme file we've included it in the angular-cli.json file instead of here  */
+@import './sass/mixins.scss';
+@import './sass/theme/theme.scss';
 
 body, html{
     height: 100%;

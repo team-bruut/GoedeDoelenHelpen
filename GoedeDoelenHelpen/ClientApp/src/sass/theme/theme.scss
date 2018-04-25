@@ -80,6 +80,7 @@ $app-theme: (
 );
 
 $primary: mat-color($app-primary);
+$primary-accent: mat-color($app-primary, 800);
 $accent: mat-color($app-accent);
 $warn: mat-color($app-warn);
 
