@@ -6,13 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AppMaterialModule } from './app.material.module';
 
 // General
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { AppMaterialModule } from './app.material.module';
 import { RegisterComponent } from './user/register/register.component';
 import { RegisterService } from './user/register/register.service';
 import { RoundedButtonDirective } from './elements/rounded-button.directive';
@@ -28,8 +26,6 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    CounterComponent,
-    FetchDataComponent,
     RegisterComponent,
     RoundedButtonDirective,
     ConfirmEmailComponent,
@@ -47,8 +43,6 @@ import { HomeComponent } from './home/home.component';
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'user/register', component: RegisterComponent },
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },

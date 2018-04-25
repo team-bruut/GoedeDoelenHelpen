@@ -9,10 +9,10 @@
         </a>
         <span class="fill-remaining-space"></span>
         <div fxShow="true" fxHide.lt-sm="true">
-            <button mat-button routerLink="/">{{ button_1.text }}</button>
-            <button routerLink="/" mat-button>{{ button_2.text }}</button>
-            <button routerLink="/" mat-button>{{ button_3.text }}</button>
-            <button routerLink="/"  mat-raised-button >{{ button_4.text }}</button>
+            <button routerLink="{{ button_1.link }}" mat-button>{{ button_1.text }}</button>
+            <button routerLink="{{ button_2.link }}" mat-button>{{ button_2.text }}</button>
+            <button routerLink="{{ button_3.link }}" mat-button>{{ button_3.text }}</button>
+            <button routerLink="{{ button_4.link }}" mat-raised-button >{{ button_4.text }}</button>
         </div>
         <div fxShow="true" fxHide.gt-xs="true">
             <a href="#" (click)="sidenav.toggle()" mat-button>

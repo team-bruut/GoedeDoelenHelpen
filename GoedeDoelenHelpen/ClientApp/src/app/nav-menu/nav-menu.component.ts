@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
+// import { RoundedButtonDirective } from '../elements/rounded-button.directive';
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css'],
+  styleUrls: ['./nav-menu.component.scss'],
 })
 export class NavMenuComponent {
   isExpanded = false;
@@ -27,7 +28,7 @@ export class NavMenuComponent {
 
   button_4 = {
     text: 'inloggen',
-    link: '/login'
+    link: '/user/login'
   };
 
   collapse() {

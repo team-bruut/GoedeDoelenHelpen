@@ -16,7 +16,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 @Component({
     selector: 'app-circles-generated',
     templateUrl: './circles.component.html',
-    styleUrls: ['./circles.component.css']
+    styleUrls: ['./circles.component.scss']
 })
 export class CirclesGeneratorComponent implements AfterViewInit {
     @ViewChild('CircleCanvas') canvasRef: ElementRef;
