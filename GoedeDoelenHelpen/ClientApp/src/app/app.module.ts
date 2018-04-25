@@ -19,6 +19,8 @@ import { RoundedButtonDirective } from './elements/rounded-button.directive';
 import { AuthenticationService } from './authentication.service';
 import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
 import { ActivatedComponent } from './user/activated/activated.component';
+import { GradientComponent } from './elements/gradient/gradient.component';
+import { CirclesGeneratorComponent } from './elements/circles/circles.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ActivatedComponent } from './user/activated/activated.component';
     HomePartialComponent,
     RoundedButtonDirective,
     ConfirmEmailComponent,
-    ActivatedComponent
+    ActivatedComponent,
+    GradientComponent,
+    CirclesGeneratorComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

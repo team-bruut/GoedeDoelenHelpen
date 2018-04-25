@@ -1,6 +1,7 @@
 .partial {
     display: flex;
     overflow: hidden;
+    position: relative;
 }
 
 .column {

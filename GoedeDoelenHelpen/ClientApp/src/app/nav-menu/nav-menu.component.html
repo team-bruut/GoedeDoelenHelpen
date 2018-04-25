@@ -2,8 +2,8 @@
     <mat-toolbar color="primary">
         <!-- TODO: Make bigger -->
         <a class="logo" href="/" mat-button>
-            <mat-icon class="logo" svgIcon="logo" fxShow="true" fxHide.lt-sm="true"></mat-icon>
-            <span mat-title fxShow="true" fxHide.lt-sm="true">Goede Doelen Helpen</span>
+            <!-- <mat-icon class="logo" svgIcon="logo" fxShow="true" fxHide.lt-sm="true"></mat-icon> -->
+            <p mat-title fxShow="true" fxHide.lt-sm="true">Goede Doelen Helpen</p>
             <!-- Show a logo without text on mobile devices -->
             <mat-icon class="logo logo_mobile" svgIcon="logo_text" fxShow="true" fxHide.gt-xs="true"></mat-icon>
         </a>
@@ -22,7 +22,7 @@
     </mat-toolbar>
 
     <!-- If on a small screen, change menu -->
-    <mat-sidenav-container fxFlexFill class="example-container">
+    <mat-sidenav-container fxFlexFill class="sidenav-container">
         <mat-sidenav align="end" #sidenav fxLayout="column">
             <div fxLayout="column">
                 <a (click)="sidenav.toggle()" href="#" mat-button>
@@ -47,7 +47,7 @@
             </mat-card> -->
 
             <!-- Page content goes here -->
-            <div class='body-content'>
+            <div class='body-content' id='content'>
                 <router-outlet></router-outlet>
             </div>
         </mat-sidenav-content>
