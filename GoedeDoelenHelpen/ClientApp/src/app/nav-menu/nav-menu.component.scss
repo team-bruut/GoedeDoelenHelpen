@@ -32,4 +32,11 @@
   mat-sidenav {
     padding: 0 5px;
   }
+
+  mat-sidenav-content {
+    .body-content {
+      // reserve 50px for the navigation and 220px for the footer
+      min-height: calc(100vh - 270px);
+    }
+  }
 }

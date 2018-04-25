@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeQuoteComponent implements OnInit {
 
+  images = '../../assets/images/home/quote';
+
   constructor() { }
 
   ngOnInit() {
