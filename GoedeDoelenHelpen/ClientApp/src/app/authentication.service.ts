@@ -27,5 +27,8 @@ export class AuthenticationService {
     return this.http.post<void>(`${this.baseUrl}/api/Authentication/Register`, signUpModel);
   }
 
+  public login(model: SignUpModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/api/Authentication/Login`, model);
+  }
 
 }

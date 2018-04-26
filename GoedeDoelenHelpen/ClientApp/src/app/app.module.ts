@@ -19,6 +19,7 @@ import { RoundedButtonDirective } from './elements/rounded-button.directive';
 import { AuthenticationService } from './authentication.service';
 import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
 import { ActivatedComponent } from './user/activated/activated.component';
+import { LoginComponent } from './user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ActivatedComponent } from './user/activated/activated.component';
     HomePartialComponent,
     RoundedButtonDirective,
     ConfirmEmailComponent,
-    ActivatedComponent
+    ActivatedComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,6 +48,7 @@ import { ActivatedComponent } from './user/activated/activated.component';
       { path: 'user/register', component: RegisterComponent },
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
+      { path: 'user/login', component: LoginComponent },
     ]),
     AppMaterialModule,
     ReactiveFormsModule
