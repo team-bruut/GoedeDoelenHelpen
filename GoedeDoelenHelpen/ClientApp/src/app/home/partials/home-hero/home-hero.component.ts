@@ -8,6 +8,8 @@ import { RoundedButtonDirective } from '../../../elements/rounded-button.directi
 })
 export class HomeHeroComponent implements OnInit {
 
+  images = '../../assets/images/home/hero';
+
   constructor() { }
 
   ngOnInit() {

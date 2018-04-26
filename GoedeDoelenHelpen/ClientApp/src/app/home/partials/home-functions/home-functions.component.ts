@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeFunctionsComponent implements OnInit {
 
+  images = '../../assets/images/home/functions';
+  phoneImage: HTMLElement;
+  selected = 0;
+
   constructor() { }
 
   ngOnInit() {
+    this.phoneImage = document.getElementById('phoneImage');
+  }
+
+  setPhoneImage(image: string, i: number) {
+    this.selected = i;
+    this.phoneImage.setAttribute('src', this.images + '/' + image);
   }
 
 }

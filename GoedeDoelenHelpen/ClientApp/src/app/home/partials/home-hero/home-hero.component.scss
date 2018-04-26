@@ -1,1 +1,22 @@
 @import '../default.scss';
+
+.partial {
+    .left {
+        h2 {
+            color: white;
+            font-style: italic;
+        }
+
+        a {
+            margin-top: 40%;
+        }
+    }
+
+    .right {
+        img {
+            width: 80%;
+            min-width: 200px;
+            max-width: 500px;
+        }
+    }
+}
