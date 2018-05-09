@@ -78,7 +78,7 @@ export class CirclesGeneratorComponent implements AfterViewInit {
 
       const x = Math.random() * this.pageWidth;
       const y = Math.random() * this.pageHeight;
-      if (this.distanceToCircles(x, y) === true) {
+      if (this.distanceToCircles(x, y)) {
         return [x, y];
       }
       return this.getCircleCoordinates(timesRan + 1);
