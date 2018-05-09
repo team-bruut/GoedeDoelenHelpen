@@ -45,23 +45,18 @@ export class CirclesGeneratorComponent implements AfterViewInit {
       this.ngAfterViewInit();
     }
 
-    // Generate the circles using a semi-random process
-    generateImprovedCircles(ctx: CanvasRenderingContext2D) {
-      // TODO
-    }
-
     // Generate the circles using a random process
     generateCircles(ctx: CanvasRenderingContext2D) {
       ctx.canvas.width = this.pageWidth;
       ctx.canvas.height = this.pageHeight;
       // ctx.scale(2, 2);
 
-      // Draw circles at random points with a minimum distance
+      // Draw circles at random points
       ctx.beginPath();
       ctx.fillStyle = '#FFAD4D';
       for (let i = 0 ; i < 50 ; i++) {
         const r = this.min_size + Math.random() * (this.max_size - this.min_size);
-        const coordinates = this.getCircleCoordinates(0);
+        const coordinates = this.getCircleCoordinates();
         this.circleCoordinates.push(coordinates);
 
         ctx.moveTo(coordinates['0'], coordinates['1']);
@@ -71,38 +66,9 @@ export class CirclesGeneratorComponent implements AfterViewInit {
     }
 
     // Get random circle coordinates with a minimum distance from the others
-    getCircleCoordinates(timesRan: number): [number, number] {
-      if (timesRan > 10) {
-        throw Error('Infinite loop or can\'t find fitting coordinates');
-      }
-
+    getCircleCoordinates(): [number, number] {
       const x = Math.random() * this.pageWidth;
       const y = Math.random() * this.pageHeight;
-      if (this.distanceToCircles(x, y)) {
-        return [x, y];
-      }
-      return this.getCircleCoordinates(timesRan + 1);
-    }
-
-    distanceToCircles(x: number, y: number): boolean {
-      let result = true;
-      const offset = this.max_size + this.min_distance;
-
-      this.circleCoordinates.forEach(coordinate => {
-        const diffX = coordinate['0'] - x;
-        const diffY = coordinate['1'] - y;
-
-        if (
-          (diffX < offset || diffX > offset) ||
-          (diffY < offset || diffY > offset) &&
-          result === true
-        ) {
-          result = true;
-        } else {
-          result = false;
-        }
-      });
-
-      return result;
+      return [x, y];
     }
 }
