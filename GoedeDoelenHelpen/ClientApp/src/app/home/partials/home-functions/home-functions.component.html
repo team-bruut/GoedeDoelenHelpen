@@ -1,0 +1,23 @@
+<div class="partial" id="partial_1">
+    <app-gradient></app-gradient>
+    <div class="column left" fxLayout="column">
+        <ul>
+          <li (click)="setPhoneImage('event.svg', 0)" [class.active]="selected == 0">
+            Maak je evenement aan</li>
+          <li (click)="setPhoneImage('facebook_v3.svg', 1)" [class.active]="selected == 1">
+            Creëer draagvlak via social media</li>
+          <li (click)="setPhoneImage('tweet_v3.svg', 2)" [class.active]="selected == 2">
+            Laat anderen gemakkelijk helpen</li>
+          <li (click)="setPhoneImage('dashboard_v3.svg', 3)" [class.active]="selected == 3">
+            Houdt je voortgang bij en vergroot je draagvlak via het dashboard</li>
+        </ul>
+        <a appRoundedButton mat-raised-button color="accent">
+            <h1 fxHide.lt-sm="true">Meld je nu aan!</h1>
+        </a>
+    </div>
+    <div class="column right" fxLayout="column">
+        <div>
+            <img id="phoneImage" src="{{images}}/tweet_v3.svg"/>
+        </div>
+    </div>
+</div>
