@@ -11,17 +11,23 @@ import { AppMaterialModule } from './app.material.module';
 // General
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { RegisterComponent } from './user/register/register.component';
-import { RegisterService } from './user/register/register.service';
+import { SiteMapComponent } from './site-map/site-map.component';
 import { RoundedButtonDirective } from './elements/rounded-button.directive';
-import { AuthenticationService } from './authentication.service';
-import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
-import { ActivatedComponent } from './user/activated/activated.component';
 
 // Home
 import { HomeModule } from './home/home.module';
 import { HomeComponent } from './home/home.component';
-import { SiteMapComponent } from './site-map/site-map.component';
+
+// Authentication
+import { RegisterComponent } from './user/register/register.component';
+import { RegisterService } from './user/register/register.service';
+import { AuthenticationService } from './authentication.service';
+import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
+import { ActivatedComponent } from './user/activated/activated.component';
+
+// Dashboard
+import { DashboardComponent } from './user/dashboard/dashboard.component';
+import { NavMenuService } from './nav-menu/nav-menu.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +37,8 @@ import { SiteMapComponent } from './site-map/site-map.component';
     RoundedButtonDirective,
     ConfirmEmailComponent,
     ActivatedComponent,
-    SiteMapComponent
+    SiteMapComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -48,9 +55,10 @@ import { SiteMapComponent } from './site-map/site-map.component';
       { path: 'user/register', component: RegisterComponent },
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
+      { path: 'dashboard', component: DashboardComponent }
     ])
   ],
-  providers: [RegisterService, AuthenticationService],
+  providers: [RegisterService, AuthenticationService, NavMenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

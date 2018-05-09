@@ -1,15 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
-// import { RoundedButtonDirective } from '../elements/rounded-button.directive';
+import { NavMenuService } from './nav-menu.service';
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.scss'],
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit {
   isExpanded = false;
   content = 'Awesome content!';
+
+  theme = 'default';
 
   button_1 = {
     text: 'hoe werkt het?',
@@ -30,6 +32,16 @@ export class NavMenuComponent {
     text: 'inloggen',
     link: '/user/login'
   };
+
+  constructor(
+    private navMenuService: NavMenuService
+  ) { }
+
+  ngOnInit() {
+    this.navMenuService.change.subscribe(theme => {
+      this.theme = theme;
+    });
+  }
 
   collapse() {
     this.isExpanded = false;

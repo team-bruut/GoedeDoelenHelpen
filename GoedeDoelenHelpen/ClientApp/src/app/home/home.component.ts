@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NavMenuService } from '../nav-menu/nav-menu.service';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  constructor(private service: NavMenuService) {
+    service.setTheme('homepage');
+  }
+
+  ngOnInit() {
+  }
 }

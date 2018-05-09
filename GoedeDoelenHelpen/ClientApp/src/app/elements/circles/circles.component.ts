@@ -41,8 +41,7 @@ export class CirclesGeneratorComponent implements AfterViewInit {
     }
 
     // Draw the circles again after a resize
-    @HostListener('window:resize', ['$event'])
-    onResize(event) {
+    @HostListener('window:resize', ['$event']) onResize(event: Event) {
       this.ngAfterViewInit();
     }
 
@@ -59,8 +58,8 @@ export class CirclesGeneratorComponent implements AfterViewInit {
 
       // Draw circles at random points with a minimum distance
       ctx.beginPath();
-      ctx.fillStyle = 'rgb(249, 168, 74)';
-      for (let i = 0 ; i < 30 ; i++) {
+      ctx.fillStyle = '#FFAD4D';
+      for (let i = 0 ; i < 50 ; i++) {
         const r = this.min_size + Math.random() * (this.max_size - this.min_size);
         const coordinates = this.getCircleCoordinates(0);
         this.circleCoordinates.push(coordinates);

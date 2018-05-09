@@ -1,5 +1,8 @@
+@import '~imports.scss';
+
 .nav {
   width: 100vw;
+  height: 100vh;
 
   .fill-remaining-space {
     flex: 1 1 auto;
@@ -37,6 +40,24 @@
     .body-content {
       // reserve 50px for the navigation and 220px for the footer
       min-height: calc(100vh - 270px);
+    }
+  }
+}
+
+.default {
+  mat-toolbar {
+    background-color: white;
+    .mat-button {
+      color: orange;
+    }
+  }
+}
+
+.homepage {
+  mat-toolbar {
+    background-color: $primary;
+    .mat-button {
+      color: black;
     }
   }
 }
