@@ -22,7 +22,7 @@ export class CirclesGeneratorComponent implements AfterViewInit {
     @ViewChild('CircleCanvas') canvasRef: ElementRef;
     pageWidth: number;
     pageHeight: number;
-    circleCoordinates: Array<[number, number]> = [];
+    circleCoordinates: [number, number][] = [];
 
     // Circle settings
     min_distance = 100;
