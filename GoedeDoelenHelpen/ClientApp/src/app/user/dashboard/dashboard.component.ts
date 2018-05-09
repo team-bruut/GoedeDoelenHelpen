@@ -6,10 +6,11 @@ import { NavMenuService } from '../../nav-menu/nav-menu.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
 export class DashboardComponent implements OnInit {
 
-  constructor(private service: NavMenuService) {
-    service.setTheme('default');
+  constructor(private navMenuService: NavMenuService) {
+    navMenuService.setTheme('default');
   }
 
   ngOnInit() {

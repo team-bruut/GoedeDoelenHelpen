@@ -1,17 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { NavMenuService } from './nav-menu.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.scss'],
 })
-export class NavMenuComponent implements OnInit {
+export class NavMenuComponent implements OnInit, OnDestroy {
   isExpanded = false;
   content = 'Awesome content!';
 
   theme = 'default';
+  subscription: Subscription;
 
   button_1 = {
     text: 'hoe werkt het?',
@@ -33,14 +35,18 @@ export class NavMenuComponent implements OnInit {
     link: '/user/login'
   };
 
-  constructor(
-    private navMenuService: NavMenuService
-  ) { }
+  constructor(private navMenuService: NavMenuService) { }
 
   ngOnInit() {
-    this.navMenuService.change.subscribe(theme => {
-      this.theme = theme;
-    });
+    this.subscription = this.navMenuService.theme.subscribe(
+      theme => {
+        this.theme = theme;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   collapse() {
