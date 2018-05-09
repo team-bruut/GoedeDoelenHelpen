@@ -9,8 +9,8 @@ import { NavMenuService } from '../nav-menu/nav-menu.service';
 
 export class HomeComponent implements OnInit {
 
-  constructor(private service: NavMenuService) {
-    service.setTheme('homepage');
+  constructor(private navMenuService: NavMenuService) {
+    navMenuService.setTheme('homepage');
   }
 
   ngOnInit() {
