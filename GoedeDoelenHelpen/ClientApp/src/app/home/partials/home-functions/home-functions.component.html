@@ -11,13 +11,13 @@
           <li (click)="setPhoneImage('dashboard_v3.svg', 3)" [class.active]="selected == 3">
             Houdt je voortgang bij en vergroot je draagvlak via het dashboard</li>
         </ul>
+        <a appRoundedButton mat-raised-button color="accent">
+            <h1 fxHide.lt-sm="true">Meld je nu aan!</h1>
+        </a>
     </div>
     <div class="column right" fxLayout="column">
         <div>
             <img id="phoneImage" src="{{images}}/tweet_v3.svg"/>
         </div>
-        <a appRoundedButton mat-raised-button color="accent">
-            <h1 fxHide.lt-sm="true">Meld je nu aan!</h1>
-        </a>
     </div>
 </div>

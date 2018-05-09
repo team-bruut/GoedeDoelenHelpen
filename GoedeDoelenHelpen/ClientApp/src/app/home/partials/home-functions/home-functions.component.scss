@@ -12,6 +12,12 @@
         .active {
             color: white;
         }
+
+        .mat-raised-button {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
     }
 
     .right {
@@ -19,12 +25,6 @@
             width: 80%;
             min-width: 200px;
             max-width: 350px;
-        }
-
-        a {
-            margin-top: 15%;
-            margin-bottom: 20%;
-            margin-left: -3%;
         }
     }
 }
