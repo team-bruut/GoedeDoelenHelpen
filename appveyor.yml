@@ -9,7 +9,7 @@ dotnet_csproj:
   file_version: '{version}'
   informational_version: '{version}'
 install:
-  - ps: Install-Product node 6
+  - ps: Install-Product node 10
 before_build:
   - nuget restore
 build:
