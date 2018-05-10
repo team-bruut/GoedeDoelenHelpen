@@ -1,0 +1,13 @@
+@import '../default.scss';
+
+.partial {
+
+    overflow: visible;
+
+    .image {
+        img {
+            margin-top: -70px;
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+@import '../default.scss';
+@import '../../../../sass/theme/theme.scss';
+
+.partial {
+    display: block;
+    background: white url(../../../../assets/images/home/highlights/worldmap.svg);
+    background-size: cover;
+    padding-top: 5%;
+    padding-bottom: 10%;
+
+    div {
+        margin-bottom: 5%;
+
+        mat-card-title {
+            color: $primary-accent;
+            text-align: center;
+        }
+    }
+
+    .images {
+        margin-left: auto;
+        margin-right: auto;
+
+        img {
+            height: 6vw;
+            margin-right: 5vw;
+            margin-left: 5vw;
+        }
+    }
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="354px" height="656px" viewBox="0 0 354 656" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>chat_voorbeeld</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="332" height="634" rx="34"></rect>
+        <filter x="-4.8%" y="-2.2%" width="111.4%" height="106.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="3" dy="5" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.701960784   0 0 0 0 0.701960784   0 0 0 0 0.701960784  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3-Copy" transform="translate(-10.000000, -19.000000)">
+            <g id="chat_voorbeeld" transform="translate(18.000000, 25.000000)">
+                <g id="iphone-2">
+                    <g id="Rectangle">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <rect id="Rectangle-13" fill="#F4F4F4" x="15.4418605" y="70.6898955" width="303.322259" height="489.30662"></rect>
+                    <ellipse id="Oval" fill="#F2F2F2" cx="164.89701" cy="592.580139" rx="24.8172757" ry="24.8519164"></ellipse>
+                    <rect id="Rectangle-14" fill="#F1F1F1" x="135.667774" y="35.3449477" width="62.8704319" height="7.73170732" rx="3.86585366"></rect>
+                    <path d="M52.3012414,124.001676 C52.3012414,110.745916 63.0542406,100 76.2920547,100 L273.627421,100 C289.088643,100 301.62244,112.544314 301.62244,127.992476 L301.62244,128.530653 C301.62244,143.99047 289.087286,156.486696 273.61902,156.441738 L40.8184061,155.765112 L46.6271046,148.611551 C49.7608438,144.752271 52.3012414,137.59483 52.3012414,132.617616 L52.3012414,124.001676 Z" id="Rectangle-6-Copy-5" fill="#E8E8E8"></path>
+                    <path d="M45.4828352,274.001676 C45.4828352,260.745916 56.2358345,250 69.4736486,250 L266.809015,250 C282.270237,250 294.804034,262.544314 294.804034,277.992476 L294.804034,278.530653 C294.804034,293.99047 282.268879,306.486696 266.800614,306.441738 L34,305.765112 L39.8086985,298.611551 C42.9424377,294.752271 45.4828352,287.59483 45.4828352,282.617616 L45.4828352,274.001676 Z" id="Rectangle-6-Copy-6" fill="#E8E8E8"></path>
+                    <path d="M47.4828352,405.002578 C47.4828352,391.74632 58.2358345,381 71.4736486,381 L268.809015,381 C284.270237,381 296.804034,393.542216 296.804034,409.009487 L296.804034,456.116877 C296.804034,471.58609 284.268879,484.059893 268.800614,483.977867 L36,482.743364 L43.8259221,465.159169 C45.8455795,460.621167 47.4828352,452.913016 47.4828352,447.93258 L47.4828352,405.002578 Z" id="Rectangle-6-Copy-8" fill="#FFC883" transform="translate(166.402017, 432.489135) scale(-1, 1) translate(-166.402017, -432.489135) "></path>
+                    <path d="M290.139605,196.032768 C290.139605,184.732316 280.989053,175.57149 269.683662,175.57149 L64.6819928,175.57149 C51.5024978,175.57149 40.8184061,186.252883 40.8184061,199.439982 L40.8184061,208.226127 C40.8184061,221.408331 51.5079929,232.06355 64.6834011,232.025256 L301.62244,231.336602 L294.97608,223.15144 C292.304968,219.861897 290.139605,213.753542 290.139605,209.524397" id="Rectangle-6-Copy-7" fill="#FFC883"></path>
+                </g>
+                <path d="M37,409.990334 C37,394.531699 49.5456711,382 65.0035946,382 L258.004436,382 C272.36139,382 284,393.646373 284,407.999907 L284,443.000529 C284,447.418515 280.413118,451 275.992096,451 L45.007904,451 C40.5852607,451 37,447.411519 37,443.000529 L37,409.990334 Z" id="Rectangle-3-Copy-2" fill="#F3BC78"></path>
+                <text id="Hey!-Ik-hoor-dat-jij" opacity="0.740496735" font-family="Chivo-Bold, Chivo" font-size="15" font-weight="bold" fill="#000000">
+                    <tspan x="74" y="124">Hey! Ik hoor dat jij iets </tspan>
+                    <tspan x="74" y="142">organiseerde?  </tspan>
+                </text>
+                <text id="Oke,-wat-goed!-Hoe-k" opacity="0.740496735" font-family="Chivo-Bold, Chivo" font-size="15" font-weight="bold" fill="#030303">
+                    <tspan x="64" y="275">Oke, wat goed! Hoe kan ik </tspan>
+                    <tspan x="64" y="293">meehelpen? </tspan>
+                </text>
+                <text id="Ja-klopt!-Ik-haal-ge" opacity="0.740496735" font-family="Chivo-Bold, Chivo" font-size="15" font-weight="bold" fill="#030303">
+                    <tspan x="70" y="199">Ja klopt! Ik haal geld op </tspan>
+                    <tspan x="70" y="217">voor de Europarun.  </tspan>
+                </text>
+                <text id="Steun-evenementen-vi" font-family="Chivo-Bold, Chivo" font-size="10" font-weight="bold" fill="#030303">
+                    <tspan x="65" y="397">Steun evenementen via social </tspan>
+                    <tspan x="65" y="409">media!</tspan>
+                    <tspan x="97.15" y="409" font-family="Chivo-Light, Chivo" font-weight="300"></tspan>
+                    <tspan x="65" y="421" font-family="Chivo-Light, Chivo" font-weight="300"></tspan>
+                    <tspan x="65" y="433" font-family="Chivo-Light, Chivo" font-weight="300"></tspan>
+                    <tspan x="65" y="445" font-family="Chivo-Light, Chivo" font-weight="300"></tspan>
+                    <tspan x="65" y="457" font-family="Chivo-Light, Chivo" font-weight="300"></tspan>
+                    <tspan x="65" y="469" font-family="Chivo-Light, Chivo" font-weight="300">  </tspan>
+                </text>
+                <text id="Eenvoudig-en-veilig" opacity="0.364797108" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" fill="#030303">
+                    <tspan x="66" y="420">Eenvoudig en veilig evenementen </tspan>
+                    <tspan x="66" y="432">steunen via goededoelen.nl</tspan>
+                    <tspan x="66" y="444"></tspan>
+                    <tspan x="66" y="456"></tspan>
+                    <tspan x="66" y="468"></tspan>
+                    <tspan x="66" y="480"></tspan>
+                    <tspan x="66" y="492">  </tspan>
+                </text>
+                <text id="goededoelen.nl-copy" opacity="0.364797108" font-family="Chivo-Regular, Chivo" font-size="7" font-weight="normal" fill="#030303">
+                    <tspan x="67" y="445">goededoelen.nl</tspan>
+                    <tspan x="67" y="454"></tspan>
+                    <tspan x="67" y="463"></tspan>
+                    <tspan x="67" y="472"></tspan>
+                    <tspan x="67" y="481"></tspan>
+                    <tspan x="67" y="490">  </tspan>
+                </text>
+                <rect id="Rectangle-19" fill="#FFC883" x="36" y="340" width="250" height="32" rx="16"></rect>
+                <text id="Ik-stuur-je-wel-de-l" opacity="0.740496735" font-family="Chivo-Bold, Chivo" font-size="15" font-weight="bold" fill="#030303">
+                    <tspan x="67" y="361">Ik stuur je wel de link! </tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

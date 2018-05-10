@@ -1,0 +1,63 @@
+@import '~imports.scss';
+
+.nav {
+  width: 100vw;
+  height: 100vh;
+
+  .fill-remaining-space {
+    flex: 1 1 auto;
+  }
+ 
+  .logo {
+    margin: 0;
+    height: 64px;
+ 
+    p {
+      margin-top: 5px;
+      font-size: 2vw;
+    }
+  }
+ 
+  .logo_mobile {
+    width: 100%;
+    margin-top: 5px;
+    height: 56px;
+  }
+  
+  mat-toolbar {
+    .mat-raised-button {
+      color: white;
+      background-color: transparent;
+      stroke: 5px solid black;
+    }
+  }
+
+  mat-sidenav {
+    padding: 0 5px;
+  }
+
+  mat-sidenav-content {
+    .body-content {
+      // reserve 50px for the navigation and 220px for the footer
+      min-height: calc(100vh - 270px);
+    }
+  }
+}
+
+.default {
+  mat-toolbar {
+    background-color: white;
+    .mat-button {
+      color: orange;
+    }
+  }
+}
+
+.homepage {
+  mat-toolbar {
+    background-color: $primary;
+    .mat-button {
+      color: white;
+    }
+  }
+}

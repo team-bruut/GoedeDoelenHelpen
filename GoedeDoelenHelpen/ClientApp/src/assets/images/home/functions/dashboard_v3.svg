@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="354px" height="656px" viewBox="0 0 354 656" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>dashboard_mobile</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="332" height="634" rx="34"></rect>
+        <filter x="-4.8%" y="-2.2%" width="111.4%" height="106.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="3" dy="5" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.701960784   0 0 0 0 0.701960784   0 0 0 0 0.701960784  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-3" x="0" y="0" width="279" height="86" rx="9"></rect>
+        <radialGradient cx="50%" cy="0%" fx="50%" fy="0%" r="14958.9844%" gradientTransform="translate(0.500000,0.000000),scale(0.006297,1.000000),rotate(90.000000),translate(-0.500000,-0.000000)" id="radialGradient-5">
+            <stop stop-color="#F5F7F9" offset="0%"></stop>
+            <stop stop-color="#E7EBEF" offset="100%"></stop>
+        </radialGradient>
+        <ellipse id="path-6" cx="9" cy="9" rx="8.75" ry="8.82692308"></ellipse>
+        <radialGradient cx="50%" cy="0%" fx="50%" fy="0%" r="14958.9844%" gradientTransform="translate(0.500000,0.000000),scale(0.003774,1.000000),rotate(90.000000),translate(-0.500000,-0.000000)" id="radialGradient-8">
+            <stop stop-color="#F5F7F9" offset="0%"></stop>
+            <stop stop-color="#E7EBEF" offset="100%"></stop>
+        </radialGradient>
+        <ellipse id="path-9" cx="183.269007" cy="142.777967" rx="3.73099343" ry="3.65884527"></ellipse>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3-Copy" transform="translate(-832.000000, -19.000000)">
+            <g id="dashboard_mobile" transform="translate(-4502.000000, -3479.000000)">
+                <g transform="translate(5342.000000, 3504.000000)">
+                    <g id="Dashboard_voorbeeld">
+                        <g id="iphone-2">
+                            <g id="Rectangle">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                            </g>
+                            <rect id="Rectangle-13" fill="#F4F4F4" x="15.4418605" y="70.6898955" width="303.322259" height="489.30662"></rect>
+                            <ellipse id="Oval" fill="#F2F2F2" cx="164.89701" cy="592.580139" rx="24.8172757" ry="24.8519164"></ellipse>
+                            <rect id="Rectangle-14" fill="#F1F1F1" x="135.667774" y="35.3449477" width="62.8704319" height="7.73170732" rx="3.86585366"></rect>
+                        </g>
+                    </g>
+                    <rect id="Rectangle-20-Copy" fill="#FFFFFF" x="15" y="71" width="307" height="62"></rect>
+                    <ellipse id="Oval-4-Copy-2" fill="#E8E8E8" cx="42.5" cy="100" rx="16.5" ry="16"></ellipse>
+                    <rect id="Rectangle-22" fill="#F2BC78" x="274" y="91" width="30.7814155" height="4"></rect>
+                    <rect id="Rectangle-22-Copy" fill="#F2BC78" x="274" y="100" width="30.7814155" height="4"></rect>
+                    <rect id="Rectangle-22-Copy-2" fill="#F2BC78" x="274" y="109" width="30.7814155" height="4"></rect>
+                    <rect id="Rectangle-7" fill="#FEFEFE" x="30" y="220" width="134" height="86" rx="9"></rect>
+                    <rect id="Rectangle-7-Copy-2" fill="#FEFEFE" x="30" y="318" width="279" height="145" rx="9"></rect>
+                    <rect id="Rectangle-7-Copy" fill="#FEFEFE" x="175" y="220" width="134" height="86" rx="9"></rect>
+                    <text id="Goedemorgen-Linda!" font-family="Chivo-LightItalic, Chivo" font-size="20" font-style="italic" font-weight="300" letter-spacing="-0.136304811" fill="#FDB051">
+                        <tspan x="27" y="159">Goedemorgen Linda!</tspan>
+                    </text>
+                    <text id="Niveau:-Enthousiaste" font-family="Chivo-LightItalic, Chivo" font-size="12" font-style="italic" font-weight="300" letter-spacing="-0.0368022732" fill="#A7A7A7">
+                        <tspan x="29" y="180">Niveau: Enthousiasteling</tspan>
+                    </text>
+                    <text id="Opgehaald-bedrag-op" font-family="Chivo-Regular, Chivo" font-size="9" font-weight="normal" letter-spacing="0.171000034" fill="#646464">
+                        <tspan x="52.7005298" y="240">Opgehaald bedrag </tspan>
+                        <tspan x="59.3650298" y="250">op het moment: </tspan>
+                    </text>
+                    <text id="€950,05,-" font-family="Chivo-Bold, Chivo" font-size="19" font-weight="bold" letter-spacing="0.361000031">
+                        <tspan x="52" y="285" fill="#FDB051">€950,05,-</tspan>
+                        <tspan x="139.913" y="285" font-family="Chivo-Regular, Chivo" font-weight="normal" fill="#646464"> </tspan>
+                    </text>
+                    <g id="progress-bar-copy" transform="translate(29.000000, 186.000000)">
+                        <rect id="Rectangle-Copy" fill="#EFEFEF" x="0.309447472" y="0" width="202.688094" height="4.30894376" rx="2.15447188"></rect>
+                        <rect id="Rectangle-Copy-2" fill="#FDB051" x="0" y="0" width="81.0752377" height="4.30894376" rx="2.15447188"></rect>
+                        <ellipse id="Oval-8" fill="#E79F47" cx="2.5" cy="2.15447188" rx="2.5" ry="2.15447188"></ellipse>
+                        <ellipse id="Oval-8-Copy" fill="#E79F47" cx="52.0115956" cy="2.15447188" rx="2.5" ry="2.15447188"></ellipse>
+                        <ellipse id="Oval-8-Copy-2" fill="#D8D8D8" cx="101.213744" cy="2.15447188" rx="2.5" ry="2.15447188"></ellipse>
+                        <ellipse id="Oval-8-Copy-4" fill="#D8D8D8" cx="150.415892" cy="2.15447188" rx="2.5" ry="2.15447188"></ellipse>
+                        <ellipse id="Oval-8-Copy-5" fill="#D8D8D8" cx="200.498771" cy="2.15447188" rx="2.49877091" ry="2.15447188"></ellipse>
+                        <g id="info_select" transform="translate(60.000000, 8.000000)" fill="#FEFEFE" opacity="0.9">
+                            <path d="M0,0.989243209 C0,0.438685864 0.457323194,-0.00412280347 0.998841735,2.89579819e-05 L84.0011583,0.636398338 C84.5528033,0.640627738 85,1.08469554 85,1.6409286 L85,54.3887571 C85,54.9393145 84.5447341,55.3856294 83.9979201,55.3856294 L44.4615385,55.3856294 L41.1923077,57.8886359 L37.8772949,55.2891223 L0.993656408,54.7485083 C0.444875127,54.7404646 0,54.2933048 0,53.7370717 L0,0.989243209 Z" id="Rectangle-128-Copy" transform="translate(42.500000, 28.944318) scale(1, -1) translate(-42.500000, -28.944318) "></path>
+                        </g>
+                        <text id="Niveau:" opacity="0.204524254" font-family="Chivo-Regular, Chivo" font-size="9" font-weight="normal" letter-spacing="0.0539999977">
+                            <tspan x="86.696" y="24" fill="#B2B1B1">Niveau:</tspan>
+                            <tspan x="118.25" y="24" fill="#FDB051"> </tspan>
+                        </text>
+                        <text id="Aantal-posts-nodig:" font-family="Chivo-Regular, Chivo" font-size="8" font-weight="normal" letter-spacing="0.0479999967">
+                            <tspan x="67.42" y="48" fill="#B2B1B1">Aantal posts nodig: </tspan>
+                            <tspan x="101.028" y="57" font-family="Chivo-Bold, Chivo" font-weight="bold" fill="#FDB051">5</tspan>
+                            <tspan x="105.972" y="57" fill="#B2B1B1"></tspan>
+                            <tspan x="103.476" y="67" fill="#FDB051"> </tspan>
+                        </text>
+                        <text id="Gedreven" opacity="0.204524254" font-family="Chivo-Bold, Chivo" font-size="9" font-weight="bold" letter-spacing="0.0539999977" fill="#FDB051">
+                            <tspan x="81.251" y="35">Gedreven</tspan>
+                            <tspan x="123.695" y="35"> </tspan>
+                        </text>
+                    </g>
+                    <g id="bars" transform="translate(29.000000, 476.000000)">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <use id="Mask" fill="#FEFEFE" xlink:href="#path-3"></use>
+                        <g mask="url(#mask-4)">
+                            <g transform="translate(34.045087, 54.411294)">
+                                <g id="6" transform="translate(169.837450, 23.796197)">
+                                    <polygon id="Rectangle-6" fill="#FFCA88" transform="translate(9.955988, 36.310076) rotate(-270.000000) translate(-9.955988, -36.310076) " points="-26.3540871 26.3540871 46.2660641 26.3540871 46.2660641 46.2660641 -26.3540871 46.2660641"></polygon>
+                                    <polygon id="Rectangle-6" fill="#E8A149" transform="translate(9.955988, 8.199049) rotate(-270.000000) translate(-9.955988, -8.199049) " points="1.75693914 -1.75693914 18.1550378 -1.75693914 18.1550378 18.1550378 1.75693914 18.1550378"></polygon>
+                                    <polygon id="Rectangle-6" fill="#FDB051" transform="translate(9.955988, 32.210551) rotate(-270.000000) translate(-9.955988, -32.210551) " points="-5.85646381 22.2545625 25.7684407 22.2545625 25.7684407 42.1665394 -5.85646381 42.1665394"></polygon>
+                                </g>
+                                <g id="5" transform="translate(135.869960, 2.712928)">
+                                    <polygon id="Rectangle-6" fill="#FFCA88" transform="translate(9.955988, 46.851710) rotate(-270.000000) translate(-9.955988, -46.851710) " points="-36.895722 36.895722 56.8076989 36.895722 56.8076989 56.8076989 -36.895722 56.8076989"></polygon>
+                                    <polygon id="Rectangle-6" fill="#E8A149" transform="translate(9.955988, 18.740684) rotate(-270.000000) translate(-9.955988, -18.740684) " points="-8.78469571 8.78469571 28.6966726 8.78469571 28.6966726 28.6966726 -8.78469571 28.6966726"></polygon>
+                                    <polygon id="Rectangle-6" fill="#FDB051" transform="translate(9.955988, 44.509125) rotate(-270.000000) translate(-9.955988, -44.509125) " points="2.9282319 34.5531365 16.983745 34.5531365 16.983745 54.4651134 2.9282319 54.4651134"></polygon>
+                                </g>
+                                <g id="4" transform="translate(101.902470, 29.652661)">
+                                    <polygon id="Rectangle-6" fill="#FFCA88" transform="translate(9.955988, 33.381844) rotate(-270.000000) translate(-9.955988, -33.381844) " points="-23.4258552 23.4258552 43.3378322 23.4258552 43.3378322 43.3378322 -23.4258552 43.3378322"></polygon>
+                                    <polygon id="Rectangle-6" fill="#E8A149" transform="translate(9.955988, 12.298574) rotate(-270.000000) translate(-9.955988, -12.298574) " points="-2.34258552 2.34258552 22.2545625 2.34258552 22.2545625 22.2545625 -2.34258552 22.2545625"></polygon>
+                                    <polygon id="Rectangle-6" fill="#FDB051" transform="translate(9.955988, 37.481368) rotate(-270.000000) translate(-9.955988, -37.481368) " points="-2.9282319 27.5253799 22.8402088 27.5253799 22.8402088 47.4373568 -2.9282319 47.4373568"></polygon>
+                                </g>
+                                <g id="3" transform="translate(67.934980, 13.840209)">
+                                    <polygon id="Rectangle-6" fill="#FFCA88" transform="translate(9.955988, 41.288070) rotate(-270.000000) translate(-9.955988, -41.288070) " points="-31.3320814 31.3320814 51.2440583 31.3320814 51.2440583 51.2440583 -31.3320814 51.2440583"></polygon>
+                                    <polygon id="Rectangle-6" fill="#E8A149" transform="translate(9.955988, 26.061264) rotate(-270.000000) translate(-9.955988, -26.061264) " points="-16.1052755 16.1052755 36.0172524 16.1052755 36.0172524 36.0172524 -16.1052755 36.0172524"></polygon>
+                                    <polygon id="Rectangle-6" fill="#FDB051" transform="translate(9.955988, 62.078516) rotate(-270.000000) translate(-9.955988, -62.078516) " points="1.42108547e-14 52.1225279 19.9119769 52.1225279 19.9119769 72.0345048 2.20132319e-14 72.0345048"></polygon>
+                                </g>
+                                <g id="2" transform="translate(33.967490, 31.409600)">
+                                    <polygon id="Rectangle-6" fill="#FFCA88" transform="translate(9.955988, 32.503374) rotate(-270.000000) translate(-9.955988, -32.503374) " points="-22.5473857 22.5473857 42.4593626 22.5473857 42.4593626 42.4593626 -22.5473857 42.4593626"></polygon>
+                                    <polygon id="Rectangle-6" fill="#E8A149" transform="translate(9.955988, 11.420104) rotate(-270.000000) translate(-9.955988, -11.420104) " points="-1.46411595 1.46411595 21.3760929 1.46411595 21.3760929 21.3760929 -1.46411595 21.3760929"></polygon>
+                                    <polygon id="Rectangle-6" fill="#FDB051" transform="translate(9.955988, 35.724429) rotate(-270.000000) translate(-9.955988, -35.724429) " points="-2.9282319 25.7684407 22.8402088 25.7684407 22.8402088 45.6804177 -2.9282319 45.6804177"></polygon>
+                                </g>
+                                <g id="1">
+                                    <polygon id="Rectangle-6" fill="#FFCA89" transform="translate(9.955988, 49.708174) rotate(-270.000000) translate(-9.955988, -49.708174) " points="-36.7521858 39.7521858 56.6641627 39.7521858 56.6641627 59.6641627 -36.7521858 59.6641627"></polygon>
+                                    <polygon id="Rectangle-6" fill="#E8A149" transform="translate(9.955988, 15.272006) rotate(-270.000000) translate(-9.955988, -15.272006) " points="-4.77200577 5.3160173 24.6839827 5.3160173 24.6839827 25.2279942 -4.77200577 25.2279942"></polygon>
+                                    <polygon id="Rectangle-6" fill="#FDB051" transform="translate(9.955988, 51.028754) rotate(-270.000000) translate(-9.955988, -51.028754) " points="-12.0057508 41.0727655 31.9177277 41.0727655 31.9177277 60.9847425 -12.0057508 60.9847425"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="lines" transform="translate(83.253350, 529.959796)" stroke="url(#radialGradient-5)" stroke-width="0.6" stroke-linecap="square">
+                        <path d="M0,1.2751072 L246.181506,1.2751072" id="6"></path>
+                        <path d="M0,25.7751072 L246.181506,25.7751072" id="5"></path>
+                    </g>
+                </g>
+                <g id="Oval-3-Copy" transform="translate(5526.000000, 3751.500000)">
+                    <mask id="mask-7" fill="white">
+                        <use xlink:href="#path-6"></use>
+                    </mask>
+                    <use id="Mask" fill="#FFC883" xlink:href="#path-6"></use>
+                    <ellipse fill="#F3F3F3" mask="url(#mask-7)" cx="9" cy="15.9428571" rx="7.5" ry="3.6"></ellipse>
+                </g>
+                <ellipse id="Oval-3" fill="#F3F3F3" cx="5535" cy="3759.72857" rx="4.5" ry="4.62857143"></ellipse>
+                <circle id="Oval-3-Copy-4" fill="#F3F3F3" cx="5363" cy="3929" r="9"></circle>
+                <text id="“Heel-tof-dat-je-dit" font-family="Chivo-Regular, Chivo" font-size="7" font-weight="normal" letter-spacing="0.0839999914" fill="#B0B1B1">
+                    <tspan x="5550" y="3761">“Heel tof dat je dit </tspan>
+                    <tspan x="5550" y="3770">organiseert! Hopelijk haal </tspan>
+                    <tspan x="5550" y="3779">je zoveel mogelijk geld op!”</tspan>
+                </text>
+                <text id="Doneert:-€5,00,-" font-family="Chivo-Bold, Chivo" font-size="7" font-weight="bold" letter-spacing="0.0839999914" fill="#CACACC">
+                    <tspan x="5550" y="3791">Doneert: €5,00,-</tspan>
+                </text>
+                <rect id="Rectangle-16" fill="#EEECEC" x="5645.94043" y="3749" width="3.05956652" height="52"></rect>
+                <rect id="Rectangle-16-Copy" fill="#DDD9D9" x="5645.94043" y="3749" width="3.05956652" height="24"></rect>
+                <path d="M5523,3744.5 L5661.5,3744.5" id="Path-6" stroke="#F4F4F4"></path>
+                <g id="graph_13" transform="translate(5373.000000, 3728.000000)">
+                    <g id="graph" transform="translate(0.000000, 0.622849)">
+                        <g id="lines" transform="translate(31.253350, 139.336946)" stroke="url(#radialGradient-8)" stroke-width="0.6" stroke-linecap="square">
+                            <path d="M0.180292639,0.578220368 L246.361799,0.578220368" id="6"></path>
+                            <path d="M0.180292639,15.3555398 L246.361799,15.3555398" id="5"></path>
+                            <path d="M0.180292639,30.1328593 L246.361799,30.1328593" id="4"></path>
+                            <path d="M0.180292639,44.9101787 L246.361799,44.9101787" id="3"></path>
+                            <path d="M0.180292639,59.6874982 L246.361799,59.6874982" id="2"></path>
+                            <path d="M0.180292639,74.4648177 L246.361799,74.4648177" id="1"></path>
+                        </g>
+                        <rect id="Rectangle-17" fill="#E8A149" x="100.045087" y="329.788444" width="20" height="3"></rect>
+                        <path d="M35.7825114,194.280223 C38.1005948,196.494855 42.4874203,199.054341 49.0287021,196.955451 C55.569984,194.856562 55.0667874,192.954644 57.6387261,188.26096 C60.2106649,183.567277 65.9595693,192.568076 71.5472265,192.119529 C79.4008452,191.489083 80.0893592,187.940596 90.4230483,172.8784 C100.756737,157.816203 105.656168,164.875145 112.941573,174.216014 C120.226978,183.556883 119.949284,176.982616 128.505847,177.560049 C137.062409,178.137482 142.353927,207.284485 155.660538,208.32517 C168.967149,209.365854 169.227942,139.684712 177.89068,139.268765 C186.553419,138.852817 185.186485,166.996184 191.425253,167.527944 C197.664021,168.059705 194.236038,204.248769 207.651837,205.649942 C221.067635,207.051114 222.056283,164.314374 232.15729,163.515102 C242.258296,162.71583 245.90742,220.202844 257.987362,196.955451 C270.067303,173.708058 272.127541,200.658928 273.88279,200.968293 C275.638039,201.277658 278.305102,200.968293 278.305102,200.968293 L278.305102,214.414814 L31.8427734,214.414814 L31.8427734,194.94903 L33.1332732,194.94903 C33.1332732,194.94903 34.1267375,195.018434 35.7825114,194.280223 Z" id="Path-2" fill="#FFE3C1" opacity="0.478952892"></path>
+                        <path d="M31.7659382,195.19826 C31.7659382,195.19826 34.6445442,193.926908 37.5440465,195.19826 C40.4435487,196.469612 43.2617249,198.637874 48.9538007,196.918067 C54.6458765,195.19826 54.9939598,192.806765 57.5658985,188.226715 C60.1378372,183.646664 65.336434,192.750237 70.9240912,192.31255 C78.7777099,191.697366 80.5691438,187.309909 90.9028329,172.612363 C101.236522,157.914817 105.037012,164.404256 112.601848,174.158053 C120.166684,183.911849 119.106432,177.314177 127.662995,177.877631 C136.219557,178.441084 141.864193,207.059437 155.170804,208.074927 C168.477414,209.090417 169.11974,140.411145 177.782479,140.005267 C178.829442,139.956214 179.723242,140.316252 180.496622,140.988131 M182.605821,143.691888 C185.972007,149.899627 186.240831,166.276391 190.561097,166.635714 C196.799865,167.1546 193.999385,204.02739 207.415184,205.394641 C220.830982,206.761892 221.717287,164.025363 231.818293,163.245441 C241.919299,162.46552 245.919339,219.721326 257.999281,197.036745 C270.079223,174.352164 271.927173,200.039191 273.682422,200.341066 C275.437671,200.642942 277.897073,200.458851 277.897073,200.458851" id="Path-2" stroke="#FDB051" stroke-width="2"></path>
+                        <g id="Oval-2">
+                            <use fill="#FDB051" fill-rule="evenodd" xlink:href="#path-9"></use>
+                            <ellipse stroke-opacity="0.682319973" stroke="#FEF1E0" stroke-width="3" cx="183.269007" cy="142.777967" rx="5.23099343" ry="5.15884527"></ellipse>
+                        </g>
+                        <rect id="Rectangle-7-Copy-6" fill="#F3F3F3" x="202" y="100.290048" width="68.7788981" height="12.9561201" rx="3"></rect>
+                        <path d="M252.5,100.592264 L252.5,113.273551" id="Line-Copy" stroke="#FEFEFE" fill="#E9E9E9" stroke-linecap="square"></path>
+                        <polygon id="Triangle-Copy" fill="#CBC9C9" points="262.39791 110.001149 258.647076 104.779206 266.148743 104.779206"></polygon>
+                        <g id="select_info" transform="translate(0.000000, 101.000000)">
+                            <text id="April" opacity="0.578882929" font-family="Chivo-Bold, Chivo" font-size="9" font-weight="bold" letter-spacing="0.171000034" fill="#4D4D4D">
+                                <tspan x="207" y="8.5">April</tspan>
+                            </text>
+                            <path d="M192.116146,16.9975545 C192.116146,16.4466204 192.572098,16 193.111965,16 L284.004181,16 C284.554157,16 285,16.4573669 285,17.0081594 L285,61.2028851 C285,61.7596762 284.544048,62.2110446 284.004181,62.2110446 L193.111965,62.2110446 C192.561989,62.2110446 192.116146,61.7727844 192.116146,61.2143072 L192.116146,47.0198406 L186.020967,40.3891624 L192.116146,34.0753202 L192.116146,16.9975545 Z" id="Rectangle" fill="#F3F3F3" opacity="0.9"></path>
+                            <text id="23-Maart-2018" opacity="0.578882929" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000042" fill="#707070">
+                                <tspan x="197" y="31">23 Maart 2018</tspan>
+                            </text>
+                            <text id="220-bezoekers" opacity="0.920242537" font-family="Chivo-Regular, Chivo" font-size="11" font-weight="normal" letter-spacing="0.209000066" fill="#646464">
+                                <tspan x="196.934499" y="47.0406844">220 bezoekers</tspan>
+                            </text>
+                            <text id="250" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="3" y="31"> 250</tspan>
+                            </text>
+                            <text id="50" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="0.5" y="211.5">    50</tspan>
+                            </text>
+                            <text id="200" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="3" y="48"> 200</tspan>
+                            </text>
+                            <text id="40" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="0.5" y="228.5">    40</tspan>
+                            </text>
+                            <text id="150" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="3" y="65"> 150</tspan>
+                            </text>
+                            <text id="100" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="3" y="82"> 100</tspan>
+                            </text>
+                            <text id="50" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="4" y="99">   50</tspan>
+                            </text>
+                            <text id="1" font-family="Chivo-Regular, Chivo" font-size="11" font-weight="normal" letter-spacing="0.209000096" fill="#646464">
+                                <tspan x="28" y="127">  1</tspan>
+                            </text>
+                            <text id="8" font-family="Chivo-Regular, Chivo" font-size="11" font-weight="normal" letter-spacing="0.209000096" fill="#646464">
+                                <tspan x="72" y="128">  8</tspan>
+                            </text>
+                            <text id="15" font-family="Chivo-Regular, Chivo" font-size="11" font-weight="normal" letter-spacing="0.209000096" fill="#646464">
+                                <tspan x="117" y="128">  15</tspan>
+                            </text>
+                            <text id="22" font-family="Chivo-Regular, Chivo" font-size="11" font-weight="normal" letter-spacing="0.209000096" fill="#646464">
+                                <tspan x="166" y="128">  22</tspan>
+                            </text>
+                            <text id="31" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="248" y="128">  31</tspan>
+                            </text>
+                            <text id="29" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="207" y="128">  29</tspan>
+                            </text>
+                            <text id="0" font-family="Chivo-Regular, Chivo" font-size="10" font-weight="normal" letter-spacing="0.190000087" fill="#646464">
+                                <tspan x="4" y="116">     0</tspan>
+                            </text>
+                        </g>
+                        <rect id="Rectangle-18" fill="#E8A149" x="168" y="328" width="19.7999992" height="5"></rect>
+                        <text id="Bezoekers-op-Doneerp" font-family="Chivo-Bold, Chivo" font-size="11" font-weight="bold" letter-spacing="0.209000066" fill="#646464">
+                            <tspan x="12" y="111">Bezoekers op Doneerpagina</tspan>
+                        </text>
+                        <text id="Aantal-keer-gedeeld" font-family="Chivo-Bold, Chivo" font-size="11" font-weight="bold" letter-spacing="0.209000066" fill="#646464">
+                            <tspan x="10" y="270.117973">Aantal keer gedeeld op Social Media </tspan>
+                        </text>
+                        <text id="Live-reacties" font-family="Chivo-Bold, Chivo" font-size="11" font-weight="bold" letter-spacing="0.209000066" fill="#646464">
+                            <tspan x="151" y="10">Live reacties</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g id="graph_4" transform="translate(5383.000000, 4008.000000)">
+                    <g id="legends">
+                        <g id="3" transform="translate(158.000000, 0.000000)">
+                            <text id="Instagram" font-family="Chivo-Regular, Chivo" font-size="9" font-weight="normal" letter-spacing="-0.0539999977" fill="#485465">
+                                <tspan x="15" y="8">Instagram</tspan>
+                            </text>
+                            <circle id="Oval" fill="#D3974D" cx="4.5" cy="5.5" r="4.5"></circle>
+                        </g>
+                        <g id="2" transform="translate(79.000000, 0.000000)">
+                            <text id="Facebook" font-family="Chivo-Regular, Chivo" font-size="9" font-weight="normal" letter-spacing="-0.0539999977" fill="#485465">
+                                <tspan x="15" y="8">Facebook</tspan>
+                            </text>
+                            <ellipse id="Oval" fill="#FDB051" cx="4.5" cy="5.5" rx="4.5" ry="4.5"></ellipse>
+                        </g>
+                        <g id="1">
+                            <text id="Twitter" font-family="Chivo-Regular, Chivo" font-size="9" font-weight="normal" letter-spacing="-0.0539999977" fill="#485465">
+                                <tspan x="15" y="8">Twitter</tspan>
+                            </text>
+                            <ellipse id="Oval" fill="#FEF2E3" cx="4.5" cy="5.5" rx="4.5" ry="4.5"></ellipse>
+                        </g>
+                    </g>
+                    <g id="graph" transform="translate(47.000000, 9.000000)"></g>
+                </g>
+                <rect id="Rectangle-23" fill="#E8A149" x="5575" y="4059" width="19.7999992" height="3"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

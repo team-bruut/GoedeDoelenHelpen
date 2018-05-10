@@ -5,11 +5,11 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class RoundedButtonDirective {
 
-  constructor(private el: ElementRef) { }
+  @Input() backgroundColor: string;
+  @Input() marginTop: string;
 
-  @Input() highlightColor: string;
-
-  private highlight(color: string) {
-    this.el.nativeElement.style.backgroundColor = color;
+  constructor(private el: ElementRef) {
+    this.el.nativeElement.style.marginTop = this.marginTop;
+    this.el.nativeElement.style.borderRadius = '15px';
   }
 }

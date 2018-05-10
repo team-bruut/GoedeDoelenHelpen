@@ -1,0 +1,28 @@
+@import '../default.scss';
+
+.partial {
+    color: white;
+
+    .selling-point-bubble {
+        width: 55%;
+
+        img {
+            width: 100%;
+        }
+
+        p {
+            font-size: 1.2em;
+            text-align: center;
+        }
+    }
+
+    #two {
+        margin-top: 70px;
+        margin-left: 15vw;
+    }
+
+    #three {
+        margin-top: 50px;
+        margin-left: 15vw;
+    }
+}

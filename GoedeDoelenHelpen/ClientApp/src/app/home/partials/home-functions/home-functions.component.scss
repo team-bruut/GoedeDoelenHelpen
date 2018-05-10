@@ -1,0 +1,30 @@
+@import '../default.scss';
+
+.partial {
+    .left {
+        li {
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+            font-size: 1.7em;
+            margin-top: 20px;
+        }
+
+        .active {
+            color: white;
+        }
+
+        .mat-raised-button {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+    }
+
+    .right {
+        img {
+            width: 80%;
+            min-width: 200px;
+            max-width: 350px;
+        }
+    }
+}
