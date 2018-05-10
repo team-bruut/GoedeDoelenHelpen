@@ -12,6 +12,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using GoedeDoelenHelpen.Services;
 using GoedeDoelenHelpen.Data;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json.Serialization;
+using GoedeDoelenHelpen.Extensions;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace GoedeDoelenHelpen
 {
@@ -70,7 +74,10 @@ namespace GoedeDoelenHelpen
                 options.SlidingExpiration = true;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions( options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver()
+                );
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -85,6 +92,17 @@ namespace GoedeDoelenHelpen
 
             services.AddSingleton<IEmailSender, Services.EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
+
+            // Add the ViewRenderService
+            services.AddTransient<IViewRenderService, ViewRenderService>();
+
+            // Add the embedded file provider
+            var viewAssembly = typeof(ViewRenderService).Assembly;
+            var fileProvider = new EmbeddedFileProvider(viewAssembly);
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.FileProviders.Add(fileProvider);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoedeDoelenHelpen.Data;
+using GoedeDoelenHelpen.Extensions;
 using GoedeDoelenHelpen.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -20,15 +21,18 @@ namespace GoedeDoelenHelpen.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly IViewRenderService _renderService;
 
         public AuthenticationController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IViewRenderService renderService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _renderService = renderService;
         }
 
 
@@ -46,8 +50,9 @@ namespace GoedeDoelenHelpen.Controllers
                     // Send an email with this link
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                    await _emailSender.SendEmailAsync(model.Username, "Bevestig je account",
-                        "Bevestig je account door op deze link te klikken: <a href=\"" + callbackUrl + "\">link</a>");
+                    var activationMailModel = new ActivationMailModel { ActivationLink = callbackUrl, Name = model.Username };
+                    var emailBody = _renderService.RenderToString("~/Mail/ActivationMail.cshtml", activationMailModel); 
+                    await _emailSender.SendEmailAsync(model.Username, "Bevestig je account", emailBody);
                     // await _signInManager.SignInAsync(user, isPersistent: false);
                     return Ok();
                 }
@@ -94,7 +99,7 @@ namespace GoedeDoelenHelpen.Controllers
         [HttpGet("[action]")]
         [ProducesResponseType(typeof(AuthenticationInfoLoggedIn), 200)]
         [ProducesResponseType(typeof(AuthenticationInfoNotLoggedIn), 201)]
-        public async Task<ActionResult<IAuthenticationInfo>> AuthenticationInfo()
+        public ActionResult<IAuthenticationInfo> AuthenticationInfo()
         {
             if (!User.Identity.IsAuthenticated)
             {
