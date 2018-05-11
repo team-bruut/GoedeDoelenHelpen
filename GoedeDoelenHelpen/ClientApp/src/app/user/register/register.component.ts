@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { AuthenticationInfoLoggedIn } from '../../../client';
 import { AuthenticationService } from '../../authentication.service';
 
 @Component({
@@ -13,6 +12,7 @@ export class RegisterComponent implements OnInit {
   userRegisterGroup: FormGroup;
   emailC: AbstractControl;
   passwordC: AbstractControl;
+
 
   constructor(
     private fb: FormBuilder,

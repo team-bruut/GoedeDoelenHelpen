@@ -1,0 +1,12 @@
+﻿@using GoedeDoelenHelpen.Models;
+@model ActivationMailModel;
+<p>Hi @Model.Name,</p>
+
+<p>Je bent nog maar 1 stap verwijderd van een succesvolle promotie voor je evenement! Klik op onderstaande link om je account te activeren en je kunt direct beginnen:</p>
+
+<p><a href="@Model.ActivationLink" >@Model.ActivationLink</a></p>
+
+<p>Groeten,</p>
+
+<p>GoedeDoelenHelpen.nl</p>
+

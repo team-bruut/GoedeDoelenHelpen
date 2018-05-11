@@ -24,6 +24,7 @@ import { RegisterService } from './user/register/register.service';
 import { AuthenticationService } from './authentication.service';
 import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
 import { ActivatedComponent } from './user/activated/activated.component';
+import { LoginComponent } from './user/login/login.component';
 
 // Dashboard
 import { DashboardComponent } from './user/dashboard/dashboard.component';
@@ -37,6 +38,7 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
     RoundedButtonDirective,
     ConfirmEmailComponent,
     ActivatedComponent,
+    LoginComponent,
     SiteMapComponent,
     DashboardComponent,
   ],
@@ -55,8 +57,11 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
       { path: 'user/register', component: RegisterComponent },
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
+      { path: 'user/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent }
-    ])
+    ]),
+    AppMaterialModule,
+    ReactiveFormsModule,
   ],
   providers: [RegisterService, AuthenticationService, NavMenuService],
   bootstrap: [AppComponent]

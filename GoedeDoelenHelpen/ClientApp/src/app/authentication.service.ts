@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { AuthenticationInfo } from './authenticationInfo';
 
 export type SignUpModel = {
   username: string;
@@ -27,5 +28,11 @@ export class AuthenticationService {
     return this.http.post<void>(`${this.baseUrl}/api/Authentication/Register`, signUpModel);
   }
 
+  public login(model: SignUpModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/api/Authentication/Login`, model);
+  }
 
+  public get AuthenticationInfo(): Observable<AuthenticationInfo> {
+    return this.http.get<AuthenticationInfo>(`${this.baseUrl}/api/Authentication/AuthenticationInfo`);
+  }
 }

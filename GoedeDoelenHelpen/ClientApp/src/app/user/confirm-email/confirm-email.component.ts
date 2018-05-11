@@ -17,7 +17,6 @@ export class ConfirmEmailComponent implements OnInit {
   ) {
     this.route.queryParams.pipe(
       map(params => ({code: params['code'], userId: params['userId']})),
-      map(params => console.log(params) || params),
       switchMap(params => authenticationService.activateAccount(params))
     ).subscribe(
       () => this.router.navigate(['/user/activated']),
