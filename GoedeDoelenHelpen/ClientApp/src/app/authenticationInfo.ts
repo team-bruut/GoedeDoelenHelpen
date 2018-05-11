@@ -7,6 +7,6 @@ export type AuthenticationInfoLoggedIn = {
     username: string;
 };
 
-export type authenticationInfo =
+export type AuthenticationInfo =
     | AuthenticationInfoLoggedIn
     | AuthenticationInfoNotLoggedIn;

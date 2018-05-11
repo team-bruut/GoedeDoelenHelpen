@@ -64,6 +64,6 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
     ReactiveFormsModule,
   ],
   providers: [RegisterService, AuthenticationService, NavMenuService],
-  bootstrap : [AppComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
