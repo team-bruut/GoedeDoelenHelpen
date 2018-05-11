@@ -24,7 +24,7 @@ export class AuthenticationService {
     return this.http.post<void>(`${this.baseUrl}api/Authentication/ConfirmEmail`, model);
   }
   signUp(signUpModel: SignUpModel): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/api/Authentication/Register`, signUpModel);
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, signUpModel);
   }
 
 
