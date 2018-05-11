@@ -11,6 +11,7 @@ import { AppMaterialModule } from './app.material.module';
 // General
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavMenuService } from './nav-menu/nav-menu.service';
 import { SiteMapComponent } from './site-map/site-map.component';
 import { RoundedButtonDirective } from './elements/rounded-button.directive';
 
@@ -28,7 +29,12 @@ import { LoginComponent } from './user/login/login.component';
 
 // Dashboard
 import { DashboardComponent } from './user/dashboard/dashboard.component';
-import { NavMenuService } from './nav-menu/nav-menu.service';
+import { DonatedComponent } from './user/dashboard/donated/donated.component';
+import { VisitorsChartComponent } from './user/dashboard/visitors-chart/visitors-chart.component';
+import { LikesChartComponent } from './user/dashboard/likes-chart/likes-chart.component';
+import { DonationsChartComponent } from './user/dashboard/donations-chart/donations-chart.component';
+import { LiveCommentsComponent } from './user/dashboard/live-comments/live-comments.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -41,6 +47,11 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
     LoginComponent,
     SiteMapComponent,
     DashboardComponent,
+    VisitorsChartComponent,
+    LikesChartComponent,
+    DonationsChartComponent,
+    LiveCommentsComponent,
+    DonatedComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,6 +62,7 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
     HomeModule,
     AppMaterialModule,
     ReactiveFormsModule,
+    NgxChartsModule,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
