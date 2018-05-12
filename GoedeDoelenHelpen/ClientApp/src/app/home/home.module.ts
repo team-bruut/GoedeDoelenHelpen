@@ -1,7 +1,6 @@
 // Modules
 import { NgModule, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AppMaterialModule } from '../app.material.module';
+import { SharedModule } from './../shared/shared.module';
 
 // Home Components
 import { HomeComponent } from './home.component';
@@ -19,8 +18,7 @@ import { CirclesGeneratorComponent } from '../elements/circles/circles.component
 
 @NgModule({
   imports: [
-    CommonModule,
-    AppMaterialModule
+    SharedModule
   ],
   declarations: [
     HomeComponent,
@@ -38,5 +36,4 @@ import { CirclesGeneratorComponent } from '../elements/circles/circles.component
   ]
 })
 
-export class HomeModule {
-}
+export class HomeModule { }

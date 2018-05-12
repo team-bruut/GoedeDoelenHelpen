@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as shape from 'd3-shape';
-import * as d3 from 'd3';
+import { ChartSettings } from '../dashboard.component';
 
 @Component({
   selector: 'app-visitors-chart',
@@ -8,36 +7,50 @@ import * as d3 from 'd3';
   styleUrls: ['./visitors-chart.component.scss']
 })
 export class VisitorsChartComponent implements OnInit {
+  cs = new ChartSettings();
 
-  schemeType = 'linear';
+  legendTitle = 'Legend';
+  xAxisLabel = 'Country';
+  yAxisLabel = 'GDP Per Capita';
+  xScaleMin: any;
+  xScaleMax: any;
+  yScaleMin: number;
+  yScaleMax: number;
+  timeline = false;
+
+  chartGroups: any[];
+  chart: any;
+  realTimeData = false;
+  countries: any[];
+  single: any[];
+  multi: any[];
+  fiscalYearReport: any[];
+  dateData: any[];
+  dateDataWithRange: any[];
+  calendarData: any[];
+  statusData: any[];
+  sparklineData: any[];
+  timelineFilterBarData: any[];
+  graph: { links: any[], nodes: any[] };
+  bubble: any;
+  linearScale = false;
+  range = false;
+
+  width = 700;
+  height = 300;
+
   chartType = 'line-chart';
   view: any[];
-  curves = {
-    Basis: shape.curveBasis,
-    'Basis Closed': shape.curveBasisClosed,
-    Bundle: shape.curveBundle.beta(1),
-    Cardinal: shape.curveCardinal,
-    'Cardinal Closed': shape.curveCardinalClosed,
-    'Catmull Rom': shape.curveCatmullRom,
-    'Catmull Rom Closed': shape.curveCatmullRomClosed,
-    Linear: shape.curveLinear,
-    'Linear Closed': shape.curveLinearClosed,
-    'Monotone X': shape.curveMonotoneX,
-    'Monotone Y': shape.curveMonotoneY,
-    Natural: shape.curveNatural,
-    Step: shape.curveStep,
-    'Step After': shape.curveStepAfter,
-    'Step Before': shape.curveStepBefore,
-    default: shape.curveLinear
-  };
 
   // line interpolation
   curveType = 'Linear';
-  curve: any = this.curves[this.curveType];
-  interpolationTypes = [
-    'Basis', 'Bundle', 'Cardinal', 'Catmull Rom', 'Linear', 'Monotone X',
-    'Monotone Y', 'Natural', 'Step', 'Step After', 'Step Before'
-  ];
+  curve: any = this.cs.getCurve(this.curveType);
+
+  closedCurveType = 'Linear Closed';
+  closedCurve: any = this.cs.getCurve(this.closedCurveType);
+
+  scheme = this.cs.getColorScheme('flame');
+  schemeType = 'ordinal';
 
   results = [
     {
@@ -167,10 +180,8 @@ export class VisitorsChartComponent implements OnInit {
     }
   ];
 
-
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

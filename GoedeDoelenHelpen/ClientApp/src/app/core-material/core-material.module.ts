@@ -22,4 +22,4 @@ import {
     MatInputModule
   ]
 })
-export class AppMaterialModule { }
+export class CoreMaterialModule { }
