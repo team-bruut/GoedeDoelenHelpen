@@ -10,12 +10,12 @@ export class LikesChartComponent implements OnInit {
   cs = new ChartSettings();
 
   chartType = 'bar-vertical-stacked';
-  view: any[];
+  view = [500, 300];
   legendTitle = 'Legend';
   xAxisLabel = 'Country';
   yAxisLabel = 'GDP Per Capita';
 
-  scheme = this.cs.getColorScheme('flame');
+  scheme = this.cs.getColorScheme(this.cs.colorScheme);
   schemeType = 'ordinal';
 
   results = [

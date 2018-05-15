@@ -1,0 +1,13 @@
+<ngx-charts-linear-gauge
+  *ngIf="chartType === 'linear-gauge'"
+  class="chart-container"
+  [view]="view"
+  [scheme]="scheme"
+  [animations]="animations"
+  [min]="gaugeMin"
+  [max]="gaugeMax"
+  [value]="gaugeValue"
+  [previousValue]="gaugePreviousValue"
+  [units]="gaugeUnits"
+  (select)="select($event)">
+</ngx-charts-linear-gauge>

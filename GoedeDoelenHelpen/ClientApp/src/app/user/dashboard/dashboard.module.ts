@@ -10,6 +10,8 @@ import { LikesChartComponent } from './likes-chart/likes-chart.component';
 import { DonationsChartComponent } from './donations-chart/donations-chart.component';
 import { LiveCommentsComponent } from './live-comments/live-comments.component';
 import { DashboardComponent } from './dashboard.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import { DashboardComponent } from './dashboard.component';
     VisitorsChartComponent,
     LikesChartComponent,
     DonationsChartComponent,
-    LiveCommentsComponent
+    LiveCommentsComponent,
+    ProgressBarComponent,
+    HeaderComponent
   ],
   exports: [
     DashboardComponent

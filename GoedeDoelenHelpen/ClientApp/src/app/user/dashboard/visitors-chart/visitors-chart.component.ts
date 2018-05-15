@@ -36,9 +36,6 @@ export class VisitorsChartComponent implements OnInit {
   linearScale = false;
   range = false;
 
-  width = 700;
-  height = 300;
-
   chartType = 'line-chart';
   view: any[];
 
@@ -49,7 +46,7 @@ export class VisitorsChartComponent implements OnInit {
   closedCurveType = 'Linear Closed';
   closedCurve: any = this.cs.getCurve(this.closedCurveType);
 
-  scheme = this.cs.getColorScheme('flame');
+  scheme = this.cs.getColorScheme(this.cs.colorScheme);
   schemeType = 'ordinal';
 
   results = [

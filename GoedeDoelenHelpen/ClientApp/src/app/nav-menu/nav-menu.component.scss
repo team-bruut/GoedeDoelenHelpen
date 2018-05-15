@@ -51,6 +51,10 @@
       color: orange;
     }
   }
+
+  .body-content {
+    background-color: $background-color;
+  }
 }
 
 .homepage {
@@ -59,5 +63,9 @@
     .mat-button {
       color: white;
     }
+  }
+
+  .body-content {
+    background-color: transparent;
   }
 }

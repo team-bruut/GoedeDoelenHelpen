@@ -1,19 +1,12 @@
-<mat-card class="partial" id="donated">
-  <app-donated></app-donated>
-</mat-card>
-
-<mat-card class="partial" id="visitors_chart">
-  <app-visitors-chart></app-visitors-chart>
-</mat-card>
-
-<mat-card class="partial" id="likes_chart">
-  <app-likes-chart></app-likes-chart>
-</mat-card>
-
-<mat-card class="partial" id="donations_chart">
-  <app-donations-chart></app-donations-chart>
-</mat-card>
-
-<mat-card class="partial" id="live_comments">
-  <app-live-comments></app-live-comments>
-</mat-card>
+<app-header></app-header>
+<div class="partial" id="part-one">
+    <div class="column left">
+        <app-donated></app-donated>
+    </div>
+    <div class="column right">
+        <app-visitors-chart></app-visitors-chart>
+    </div>
+</div>
+<app-likes-chart></app-likes-chart>
+<app-donations-chart></app-donations-chart>
+<app-live-comments></app-live-comments>

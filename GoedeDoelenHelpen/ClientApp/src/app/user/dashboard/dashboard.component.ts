@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit {
 
 export class ChartSettings {
   theme = 'light';
+  colorScheme = 'flame';
+
   showGridLines = true;
   showXAxis = true;
   showYAxis = true;

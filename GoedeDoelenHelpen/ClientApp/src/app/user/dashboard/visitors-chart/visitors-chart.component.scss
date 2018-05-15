@@ -1,0 +1,12 @@
+@import '../dashboard.component.scss';
+
+.partial {
+    width: 97%;
+    height: 100%;
+    max-height: 500px;
+    overflow: hidden;
+
+    ngx-charts-line-chart {
+        width: 50%;
+    }
+}

@@ -1,5 +1,49 @@
-mat-card {
-    padding: 10px;
-    margin: 10px;
+@import '~imports.scss';
+
+.partial {
+    display: flex;
     overflow: hidden;
+    position: relative;
+
+    @include breakpoint(mobileonly) {
+        display: block;
+    }
+
+    .column {
+        padding: 5%;
+    }
+    
+    .left {
+        flex: 0 0 50%;
+        padding-top: 5%;
+    
+        @include breakpoint(mobileonly) {
+            flex: 0 0 100%;
+        }
+    }
+
+    .right {
+        flex: 1;
+    }
+}
+
+#part-one {
+    .column {
+        height: 30em;
+
+        @include breakpoint(mobileonly) {
+            height: inherit;
+        }
+    }
+
+    .left {
+        flex: 0 0 35%;
+    }
+}
+
+mat-card {
+    padding: 2%;
+    margin: 1%;
+    overflow: hidden;
+    border-radius: 5px;
 }
