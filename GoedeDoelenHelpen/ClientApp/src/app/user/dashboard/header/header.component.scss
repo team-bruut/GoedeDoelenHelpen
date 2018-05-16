@@ -2,6 +2,8 @@
 @import '../dashboard.component.scss';
 
 .partial {
+    box-sizing: content-box;
+
     .left {
         #title {
             font-size: 2em;
@@ -24,5 +26,9 @@
                 }
             }
         }
+    }
+
+    mat-card {
+        margin: 0;
     }
 }

@@ -1,12 +1,19 @@
-<app-header></app-header>
-<div class="partial" id="part-one">
-    <div class="column left">
+<div class="dashboard">
+    <div class="grid-layout">
+        <app-header></app-header>
         <app-donated></app-donated>
-    </div>
-    <div class="column right">
         <app-visitors-chart></app-visitors-chart>
+        <app-likes-chart></app-likes-chart>
+        <app-donations-chart></app-donations-chart>
+        <app-live-comments></app-live-comments>
+        <mat-card class="screen-warning">
+            <mat-card-title>
+                Scherm te klein
+            </mat-card-title>
+            <mat-card-content>
+                Je scherm is te klein om de grafieken goed weer te geven.
+                Bekijk deze pagina op een apparaat met een groter scherm.
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>
-<app-likes-chart></app-likes-chart>
-<app-donations-chart></app-donations-chart>
-<app-live-comments></app-live-comments>

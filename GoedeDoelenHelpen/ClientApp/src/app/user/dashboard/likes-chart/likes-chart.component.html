@@ -1,26 +1,29 @@
 <mat-card class="partial" id="likes_chart">
-        <ngx-charts-bar-vertical-stacked
-                *ngIf="chartType === 'bar-vertical-stacked'"
-                class="chart-container"
-                [view]="view"
-                [results]="results"
-                [scheme]="scheme"
-                [schemeType]="schemeType"
-                [legendTitle]="legendTitle"
-                (legendLabelClick)="onLegendLabelClick($event)"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                (select)="select($event)"
+        <p>Aantal likes op Social Media</p>
+        <div class="chart">
+                <ngx-charts-bar-vertical-stacked
+                        *ngIf="chartType === 'bar-vertical-stacked'"
+                        class="chart-container"
+                        [view]="view"
+                        [results]="results"
+                        [scheme]="scheme"
+                        [schemeType]="schemeType"
+                        [legendTitle]="legendTitle"
+                        (legendLabelClick)="onLegendLabelClick($event)"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        (select)="select($event)"
 
-                [animations]="cs.animations"
-                [legend]="cs.showLegend"
-                [gradient]="cs.gradient"
-                [xAxis]="cs.showXAxis"
-                [yAxis]="cs.showYAxis"
-                [showXAxisLabel]="cs.showXAxisLabel"
-                [showYAxisLabel]="cs.showYAxisLabel"
-                [showGridLines]="cs.showGridLines"
-                [roundDomains]="cs.roundDomains"
-                [tooltipDisabled]="cs.tooltipDisabled">
-        </ngx-charts-bar-vertical-stacked>
+                        [animations]="cs.animations"
+                        [legend]="cs.showLegend"
+                        [gradient]="cs.gradient"
+                        [xAxis]="cs.showXAxis"
+                        [yAxis]="cs.showYAxis"
+                        [showXAxisLabel]="cs.showXAxisLabel"
+                        [showYAxisLabel]="cs.showYAxisLabel"
+                        [showGridLines]="cs.showGridLines"
+                        [roundDomains]="cs.roundDomains"
+                        [tooltipDisabled]="cs.tooltipDisabled">
+                </ngx-charts-bar-vertical-stacked>
+        </div>
 </mat-card>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartSettings } from '../dashboard.component';
+import { log } from 'util';
 
 @Component({
   selector: 'app-visitors-chart',
@@ -9,9 +10,9 @@ import { ChartSettings } from '../dashboard.component';
 export class VisitorsChartComponent implements OnInit {
   cs = new ChartSettings();
 
-  legendTitle = 'Legend';
-  xAxisLabel = 'Country';
-  yAxisLabel = 'GDP Per Capita';
+  legendTitle = '';
+  xAxisLabel = 'Datum';
+  yAxisLabel = 'Aantal';
   xScaleMin: any;
   xScaleMax: any;
   yScaleMin: number;
@@ -38,147 +39,95 @@ export class VisitorsChartComponent implements OnInit {
 
   chartType = 'line-chart';
   view: any[];
+  // view = ['1000', '300'];
 
   // line interpolation
-  curveType = 'Linear';
+  curveType = 'Natural';
   curve: any = this.cs.getCurve(this.curveType);
-
-  closedCurveType = 'Linear Closed';
-  closedCurve: any = this.cs.getCurve(this.closedCurveType);
 
   scheme = this.cs.getColorScheme(this.cs.colorScheme);
   schemeType = 'ordinal';
 
   results = [
     {
-      'name': 'Morocco',
+      'name': 'Bezoekers',
       'series': [
         {
-          'value': 2839,
-          'name': '2016-09-20T03:15:35.469Z'
+          'value': 39,
+          'name': '2018-04-01T03:15:35.469Z',
         },
         {
-          'value': 6228,
-          'name': '2016-09-14T19:30:10.542Z'
+          'value': 19,
+          'name': '2018-04-04T03:15:35.469Z',
         },
         {
-          'value': 3552,
-          'name': '2016-09-21T08:19:17.115Z'
+          'value': 43,
+          'name': '2018-04-07T03:15:35.469Z',
         },
         {
-          'value': 4914,
-          'name': '2016-09-17T19:16:41.397Z'
+          'value': 64,
+          'name': '2018-04-10T03:15:35.469Z',
         },
         {
-          'value': 6551,
-          'name': '2016-09-17T12:41:01.595Z'
+          'value': 79,
+          'name': '2018-04-13T03:15:35.469Z',
+        },
+        {
+          'value': 92,
+          'name': '2018-04-17T03:15:35.469Z'
+        },
+        {
+          'value': 61,
+          'name': '2018-04-20T03:15:35.469Z'
         }
       ]
     },
     {
-      'name': 'Algeria',
+      'name': 'Donaties',
       'series': [
         {
-          'value': 2816,
-          'name': '2016-09-20T03:15:35.469Z'
+          'value': 9,
+          'name': '2018-04-01T03:15:35.469Z',
         },
         {
-          'value': 5940,
-          'name': '2016-09-14T19:30:10.542Z'
+          'value': 3,
+          'name': '2018-04-04T03:15:35.469Z',
         },
         {
-          'value': 5489,
-          'name': '2016-09-21T08:19:17.115Z'
+          'value': 8,
+          'name': '2018-04-07T03:15:35.469Z',
         },
         {
-          'value': 5025,
-          'name': '2016-09-17T19:16:41.397Z'
+          'value': 23,
+          'name': '2018-04-10T03:15:35.469Z',
         },
         {
-          'value': 2661,
-          'name': '2016-09-17T12:41:01.595Z'
+          'value': 30,
+          'name': '2018-04-13T03:15:35.469Z',
+        },
+        {
+          'value': 59,
+          'name': '2018-04-17T03:15:35.469Z'
+        },
+        {
+          'value': 45,
+          'name': '2018-04-20T03:15:35.469Z'
         }
       ]
     },
-    {
-      'name': 'Philippines',
-      'series': [
-        {
-          'value': 6289,
-          'name': '2016-09-20T03:15:35.469Z'
-        },
-        {
-          'value': 5214,
-          'name': '2016-09-14T19:30:10.542Z'
-        },
-        {
-          'value': 3898,
-          'name': '2016-09-21T08:19:17.115Z'
-        },
-        {
-          'value': 5336,
-          'name': '2016-09-17T19:16:41.397Z'
-        },
-        {
-          'value': 2610,
-          'name': '2016-09-17T12:41:01.595Z'
-        }
-      ]
-    },
-    {
-      'name': 'Equatorial Guinea',
-      'series': [
-        {
-          'value': 6905,
-          'name': '2016-09-20T03:15:35.469Z'
-        },
-        {
-          'value': 3636,
-          'name': '2016-09-14T19:30:10.542Z'
-        },
-        {
-          'value': 4372,
-          'name': '2016-09-21T08:19:17.115Z'
-        },
-        {
-          'value': 2823,
-          'name': '2016-09-17T19:16:41.397Z'
-        },
-        {
-          'value': 4737,
-          'name': '2016-09-17T12:41:01.595Z'
-        }
-      ]
-    },
-    {
-      'name': 'Maldives',
-      'series': [
-        {
-          'value': 4433,
-          'name': '2016-09-20T03:15:35.469Z'
-        },
-        {
-          'value': 2213,
-          'name': '2016-09-14T19:30:10.542Z'
-        },
-        {
-          'value': 4775,
-          'name': '2016-09-21T08:19:17.115Z'
-        },
-        {
-          'value': 6880,
-          'name': '2016-09-17T19:16:41.397Z'
-        },
-        {
-          'value': 6100,
-          'name': '2016-09-17T12:41:01.595Z'
-        }
-      ]
-    }
   ];
 
-  constructor() { }
+  constructor() {
+    this.results.forEach(o => o.series.forEach(s => s.name = this.toLocalDate(s.name)));
+  }
 
   ngOnInit() { }
+
+  toLocalDate(dateString: string): string {
+    const options = { month: 'short', day: 'numeric' };
+
+    const date = new Date(dateString);
+    return date.toLocaleDateString('nl-NL', options);
+  }
 
 }

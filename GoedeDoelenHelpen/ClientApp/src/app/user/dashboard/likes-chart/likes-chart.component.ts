@@ -10,145 +10,114 @@ export class LikesChartComponent implements OnInit {
   cs = new ChartSettings();
 
   chartType = 'bar-vertical-stacked';
-  view = [500, 300];
-  legendTitle = 'Legend';
-  xAxisLabel = 'Country';
-  yAxisLabel = 'GDP Per Capita';
+  view: any[];
+  legendTitle = '';
+  xAxisLabel = 'Maand';
+  yAxisLabel = 'Likes';
 
   scheme = this.cs.getColorScheme(this.cs.colorScheme);
   schemeType = 'ordinal';
 
   results = [
     {
-      'name': 'Morocco',
+      'name': '2018-01-01T03:15:35.469Z',
       'series': [
         {
-          'value': 2839,
-          'name': '2016-09-20T03:15:35.469Z'
+          'value': 95,
+          'name': 'Facebook',
         },
         {
-          'value': 6228,
-          'name': '2016-09-14T19:30:10.542Z'
+          'value': 72,
+          'name': 'Twitter'
         },
         {
-          'value': 3552,
-          'name': '2016-09-21T08:19:17.115Z'
+          'value': 20,
+          'name': 'LinkedIn'
         },
-        {
-          'value': 4914,
-          'name': '2016-09-17T19:16:41.397Z'
-        },
-        {
-          'value': 6551,
-          'name': '2016-09-17T12:41:01.595Z'
-        }
       ]
     },
     {
-      'name': 'Algeria',
+      'name': '2018-02-01T03:15:35.469Z',
       'series': [
         {
-          'value': 2816,
-          'name': '2016-09-20T03:15:35.469Z'
+          'value': 65,
+          'name': 'Facebook',
         },
         {
-          'value': 5940,
-          'name': '2016-09-14T19:30:10.542Z'
+          'value': 35,
+          'name': 'Twitter'
         },
         {
-          'value': 5489,
-          'name': '2016-09-21T08:19:17.115Z'
+          'value': 12,
+          'name': 'LinkedIn'
         },
-        {
-          'value': 5025,
-          'name': '2016-09-17T19:16:41.397Z'
-        },
-        {
-          'value': 2661,
-          'name': '2016-09-17T12:41:01.595Z'
-        }
       ]
     },
     {
-      'name': 'Philippines',
+      'name': '2018-03-01T03:15:35.469Z',
       'series': [
         {
-          'value': 6289,
-          'name': '2016-09-20T03:15:35.469Z'
+          'value': 30,
+          'name': 'Facebook',
         },
         {
-          'value': 5214,
-          'name': '2016-09-14T19:30:10.542Z'
+          'value': 55,
+          'name': 'Twitter'
         },
         {
-          'value': 3898,
-          'name': '2016-09-21T08:19:17.115Z'
+          'value': 45,
+          'name': 'LinkedIn'
         },
-        {
-          'value': 5336,
-          'name': '2016-09-17T19:16:41.397Z'
-        },
-        {
-          'value': 2610,
-          'name': '2016-09-17T12:41:01.595Z'
-        }
       ]
     },
     {
-      'name': 'Equatorial Guinea',
+      'name': '2018-04-01T03:15:35.469Z',
       'series': [
         {
-          'value': 6905,
-          'name': '2016-09-20T03:15:35.469Z'
+          'value': 130,
+          'name': 'Facebook',
         },
         {
-          'value': 3636,
-          'name': '2016-09-14T19:30:10.542Z'
+          'value': 150,
+          'name': 'Twitter'
         },
         {
-          'value': 4372,
-          'name': '2016-09-21T08:19:17.115Z'
+          'value': 13,
+          'name': 'LinkedIn'
         },
-        {
-          'value': 2823,
-          'name': '2016-09-17T19:16:41.397Z'
-        },
-        {
-          'value': 4737,
-          'name': '2016-09-17T12:41:01.595Z'
-        }
       ]
     },
     {
-      'name': 'Maldives',
+      'name': '2018-05-01T03:15:35.469Z',
       'series': [
         {
-          'value': 4433,
-          'name': '2016-09-20T03:15:35.469Z'
+          'value': 105,
+          'name': 'Facebook',
         },
         {
-          'value': 2213,
-          'name': '2016-09-14T19:30:10.542Z'
+          'value': 100,
+          'name': 'Twitter'
         },
         {
-          'value': 4775,
-          'name': '2016-09-21T08:19:17.115Z'
+          'value': 25,
+          'name': 'LinkedIn'
         },
-        {
-          'value': 6880,
-          'name': '2016-09-17T19:16:41.397Z'
-        },
-        {
-          'value': 6100,
-          'name': '2016-09-17T12:41:01.595Z'
-        }
       ]
-    }
+    },
   ];
 
-  constructor() { }
+  constructor() {
+    this.results.forEach(o => o.name = this.toLocalDate(o.name));
+  }
 
   ngOnInit() {
+  }
+
+  toLocalDate(dateString: string): string {
+    const options = { month: 'short' };
+
+    const date = new Date(dateString);
+    return date.toLocaleDateString('nl-NL', options);
   }
 
 }

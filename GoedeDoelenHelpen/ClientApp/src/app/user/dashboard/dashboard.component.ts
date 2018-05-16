@@ -25,11 +25,11 @@ export class ChartSettings {
   theme = 'light';
   colorScheme = 'flame';
 
-  showGridLines = true;
+  showGridLines = false;
   showXAxis = true;
   showYAxis = true;
-  showYAxisLabel = true;
-  showXAxisLabel = true;
+  showYAxisLabel = false;
+  showXAxisLabel = false;
 
   fitContainer = true;
   gradient = false;
@@ -40,6 +40,7 @@ export class ChartSettings {
   roundEdges = true;
   animations = true;
   autoScale = true;
+  roundDomains = true;
 
   private colorSets = [{
       name: 'fire',
@@ -52,7 +53,7 @@ export class ChartSettings {
       selectable: false,
       group: 'Ordinal',
       domain: [
-          '#A10A28', '#D3342D', '#EF6D49', '#FAAD67', '#FDDE90', '#DBED91', '#A9D770', '#6CBA67', '#2C9653', '#146738'
+          '#ea972a', '#D3342D', '#EF6D49', '#FAAD67', '#FDDE90', '#DBED91', '#A9D770', '#6CBA67', '#2C9653', '#146738'
       ]}
   ];
 

@@ -1,49 +1,71 @@
 @import '~imports.scss';
 
-.partial {
-    display: flex;
-    overflow: hidden;
-    position: relative;
+.dashboard {
+    width: 100%;
 
-    @include breakpoint(mobileonly) {
-        display: block;
-    }
+    .grid-layout {
 
-    .column {
-        padding: 5%;
-    }
-    
-    .left {
-        flex: 0 0 50%;
-        padding-top: 5%;
-    
-        @include breakpoint(mobileonly) {
-            flex: 0 0 100%;
+        app-header { grid-area: header; }
+        app-donated { grid-area: donated; }
+        app-visitors-chart { grid-area: visitors; }
+        app-live-comments { grid-area: live-comments; }
+        app-donatations-chart { grid-area: donations-chart; }
+        app-likes-chart { grid-area: likes-chart; }
+        .screen-warning { grid-area: screen-warning }
+
+        display: grid !important;
+        grid-template-areas:
+            'header header header'
+            'donated visitors visitors'
+            'live-comments likes-chart likes-chart'
+            'live-comments donations-chart donations-chart';
+        grid-gap: 10px;
+        padding: 8px;
+        overflow: hidden;
+        position: relative;
+
+        mat-card {
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .screen-warning {
+            display: none;
+        }
+
+        @include breakpoint(desktop) {
+            grid-template-areas:
+                'header header header'
+                'donated visitors visitors'
+                'live-comments likes-chart donations-chart';
+        }
+
+        @include breakpoint(laptoponly) {
+            grid-template-areas:
+                'header'
+                'donated'
+                'visitors'
+                'live-comments'
+                'likes-chart'
+                'donations-chart';
+        }
+
+        @include breakpoint(tinyonly) {
+            grid-template-areas:
+                'header'
+                'donated'
+                'live-comments'
+                'screen-warning';
+
+            .screen-warning {
+                display: initial;
+            }
+
+            app-visitors-chart,
+            app-donations-chart,
+            app-likes-chart {
+                display: none;
+            }
         }
     }
-
-    .right {
-        flex: 1;
-    }
-}
-
-#part-one {
-    .column {
-        height: 30em;
-
-        @include breakpoint(mobileonly) {
-            height: inherit;
-        }
-    }
-
-    .left {
-        flex: 0 0 35%;
-    }
-}
-
-mat-card {
-    padding: 2%;
-    margin: 1%;
-    overflow: hidden;
-    border-radius: 5px;
 }
