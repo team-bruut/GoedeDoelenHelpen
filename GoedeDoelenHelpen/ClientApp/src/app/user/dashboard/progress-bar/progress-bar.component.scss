@@ -1,0 +1,108 @@
+@import '../dashboard.component.scss';
+
+#container {
+    width: 90%;
+    margin: 0 5%;
+
+    #levelBar {
+        width: 100%;
+
+        #level {
+            font-style: italic;
+            color: darkgray;
+        }
+    }
+
+    #progressBar {
+        height: 30px;
+        width: 100%;
+        background-color: #ddd;
+        border-radius: 25px;
+
+        #progress {
+            min-width: 30px;
+            height: 30px;
+            margin-top: -35px;
+            background-color: $primary;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border-radius: 25px;
+
+            p {
+                position: relative;
+                display: none;
+            }
+        }
+        
+        .tick {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            background-color: #6E6E6E;
+            border-radius: 100%;
+            display: inline-block;
+
+            .tooltiptext {
+                visibility: hidden;
+                width: 120px;
+                background-color: white;
+                color: black;
+                text-align: center;
+                border-radius: 6px;
+                padding: 5px 0;
+                position: absolute;
+                z-index: 1;
+                top: 120%;
+                left: 50%;
+                margin-left: -60px;
+            }
+
+            .tooltiptext::after {
+                content: "";
+                position: absolute;
+                bottom: 120%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent transparent white transparent;
+            }
+        }
+
+        .tick:first-child {
+            margin: 0 !important;
+        }
+        
+        .tick:hover .tooltiptext {
+            visibility: visible;
+        }
+
+        .achieved {
+            background-color: $secondary;
+        }
+
+        .current {
+            background-color: $tertiary;
+        }
+    }
+
+    #stepsBar {
+        margin-top: 20px;
+        width: fit-content;
+
+        mat-card-subtitle {
+            font-weight: 700;
+        }
+
+        mat-card-content {
+            .todo {
+                color: $secondary;
+            }
+
+            .done {
+                color: $tertiary;
+            }
+        }
+    }
+}

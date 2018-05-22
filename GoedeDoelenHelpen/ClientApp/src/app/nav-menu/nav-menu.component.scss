@@ -14,7 +14,7 @@
  
     p {
       margin-top: 5px;
-      font-size: 2vw;
+      font-size: 1.3em;
     }
   }
  
@@ -22,6 +22,27 @@
     width: 100%;
     margin-top: 5px;
     height: 56px;
+  }
+
+  .buttons {
+
+    .mat-raised-button {
+      color: $primary;
+      overflow: hidden;
+      margin: 0 10px;
+    }
+
+    #login-button {
+      display: none;
+    }
+
+    #user-button {
+      min-width: 50px;
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      padding: 0;
+    }
   }
   
   mat-toolbar {
@@ -34,6 +55,15 @@
 
   mat-sidenav {
     padding: 0 5px;
+    background-color: $background-color;
+
+    .buttons {
+
+      button {
+        display: block;
+      margin: 5px;
+      } 
+    }
   }
 
   mat-sidenav-content {
@@ -43,6 +73,9 @@
     }
   }
 }
+
+
+// Themes
 
 .default {
   mat-toolbar {
@@ -62,6 +95,11 @@
     background-color: $primary;
     .mat-button {
       color: white;
+    }
+
+    .mat-raised-button {
+      color: black;
+      background-color: white;
     }
   }
 

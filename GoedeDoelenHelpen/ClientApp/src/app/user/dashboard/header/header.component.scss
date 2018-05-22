@@ -1,34 +1,64 @@
 @import '~imports.scss';
 @import '../dashboard.component.scss';
 
-.partial {
-    box-sizing: content-box;
+.header {
+    width: 100%;
 
-    .left {
-        #title {
-            font-size: 2em;
+    .grid-layout {
+        .welcome-message { grid-area: welcome-message; }
+        .page-select { grid-area: page-select; }
+        app-progress-bar { grid-area: progress-bar; }
+        .divider { grid-area: divider; }
+
+        display: grid;
+        grid-template-areas:
+            'welcome-message welcome-message welcome-message page-select'
+            'progress-bar progress-bar progress-bar progress-bar'
+            'divider divider divider divider';
+        grid-gap: 10px;
+        position: relative;
+
+        .welcome-message {
+            font-size: 2.5em;
             font-style: italic;
             color: $primary;
+            margin: 20px;
         }
-    }
 
-    .right {
-        .page-buttons {
-            display: inline-flex;
+        .page-select {
+            width: 80%;
+            margin: 0 10%;
 
-            .dashboard-button {
-                img {
-                    width: 50px;
-                    height: 50px;
-                    color: $primary;
-                    border-radius: 100%;
-                    background-color: white;
+            .page-buttons {
+                display: block;
+    
+                .dashboard-button {
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        color: $primary;
+                        border-radius: 100%;
+                        background-color: white;
+                    }
                 }
             }
         }
-    }
 
-    mat-card {
-        margin: 0;
+        @include breakpoint(mobileonly) {
+            grid-template-areas:
+                'welcome-message'
+                'page-select'
+                'progress-bar'
+                'divider';
+
+            .page-select {
+                width: 90%;
+                margin: 0 5%;
+
+                .page-buttons {
+                    display: inline-block;
+                }
+            }
+        }
     }
 }
