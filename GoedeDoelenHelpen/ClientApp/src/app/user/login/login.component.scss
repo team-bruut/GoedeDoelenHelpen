@@ -1,20 +1,79 @@
 @import '~imports.scss';
 
-.login {
-    min-height: 500px;
-    min-width: 500px;
+.loginWrapper {
 
-    app-circles-generated {
-        z-index: 1500;
+    padding-top: 100px;
+    
+    .loginContainer {
+        margin: 0 auto;
+        margin-top: 100px;
+        width: 500px;
+        height: 500px;
+        overflow: hidden;
+        border-radius: 10px;
 
-        #CircleCanvas {
-            z-index: 1 !important;
+        @include breakpoint(mobileonly) {
+            width: 90%;
+            height: 100%;
         }
-    }
 
-    app-gradient {
-        svg {
-            z-index: 0;
+        .imageContainer {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+
+            @include breakpoint(mobileonly) {
+                display: none;
+            }
+        }
+
+        .login {
+            width: 50%;
+            height: 100%;
+            margin-left: 50%;
+            margin-top: -500px;
+            z-index: 2;
+            padding: 20px;
+            background-color: white;
+
+            .title {
+                font-weight: bold;
+                font-size: 2em;
+                text-align: center;
+                color: darkgray;
+            }
+
+            .loginForm {
+
+                .registerForm {
+
+                    mat-form-field {
+                        display: block;
+                    }
+
+                    .login-form-button {
+                        margin: 5px;
+                    }
+
+                    .login-button {
+                        width: 100%;
+                        margin: 20px auto;
+                        border-radius: 5px;
+                    }
+
+                    .login-button.active {
+                        background-color: $primary;
+                        color: white;
+                    }
+                }
+            }
+
+            @include breakpoint(mobileonly) {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 0;
+            }
         }
     }
 }

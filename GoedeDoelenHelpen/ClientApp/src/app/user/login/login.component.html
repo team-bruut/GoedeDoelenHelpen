@@ -1,26 +1,36 @@
-<div class="login">
-  <app-circles-generated></app-circles-generated>
-  <div class="box">
-    <app-gradient></app-gradient>
-    <p>Hello world</p>
+<div class="loginWrapper">
+  <div class="loginContainer">
+    <div class="imageContainer">
+      <div class="circleContainer">
+        <app-gradient [zindex]=0></app-gradient>
+        <app-circles-generated></app-circles-generated>
+      </div>
+    </div>
+    <div class="login">
+      <p class="title">Log in</p>
+      <div class="loginForm">
+        <form fxLayout="column" (submit)="onSubmit()" class="registerForm" [formGroup]="userLoginGroup">
+          <mat-form-field fxFlexFill>
+            <input type="email" matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="emailC.hasError('email') && !emailC.hasError('required')">
+              Vul een geldig e-mailadres in.
+            </mat-error>
+            <mat-error *ngIf="emailC.hasError('required')">
+              Email is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlexFill>
+            <input type="password" matInput placeholder="Wachtwoord" formControlName="password">
+            <mat-error *ngIf="passwordC.hasError('required')">
+              Wachtwoord is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+          <button [disabled]="!userLoginGroup.valid" fxFlexFill role="submit" mat-raised-button class="login-button" [ngClass]="userLoginGroup.valid ? 'active' : 'disabled'">Inloggen</button>
+          <button mat-button class="login-form-button">Nog geen account?</button>
+          <button mat-button class="login-form-button">Wachtwoord vergeten?</button>
+          <p>{{message}}</p>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
-<!-- <form fxLayout="column" (submit)="onSubmit()" class="register-form" [formGroup]="userLoginGroup">
-  <mat-form-field fxFlexFill>
-    <input type="email" matInput placeholder="Email" formControlName="email">
-    <mat-error *ngIf="emailC.hasError('email') && !emailC.hasError('required')">
-      Vul een geldig e-mailadres in.
-    </mat-error>
-    <mat-error *ngIf="emailC.hasError('required')">
-      Email is <strong>verplicht</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field fxFlexFill>
-    <input type="password" matInput placeholder="wachtwoord" formControlName="password">
-    <mat-error *ngIf="passwordC.hasError('required')">
-      Wachtwoord is <strong>verplicht</strong>
-    </mat-error>
-  </mat-form-field>
-  <button [disabled]="!userLoginGroup.valid" fxFlexFill role="submit" mat-raised-button color="primary">login</button>
-  <p>{{message}}</p>
-</form> -->

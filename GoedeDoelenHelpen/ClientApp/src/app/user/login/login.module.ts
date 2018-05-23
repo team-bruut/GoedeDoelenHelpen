@@ -11,7 +11,8 @@ import { LoginComponent } from './login.component';
     LoginComponent
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    SharedModule
   ]
 })
 export class LoginModule { }

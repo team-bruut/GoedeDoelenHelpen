@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreMaterialModule } from './../core-material/core-material.module';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { RoundedButtonDirective } from '../elements/rounded-button.directive';
 import { GradientComponent } from '../elements/gradient/gradient.component';
 import { CirclesGeneratorComponent } from '../elements/circles/circles.component';
@@ -12,6 +14,8 @@ import { CirclesGeneratorComponent } from '../elements/circles/circles.component
   imports: [
     CommonModule,
     CoreMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     RoundedButtonDirective,
@@ -21,6 +25,8 @@ import { CirclesGeneratorComponent } from '../elements/circles/circles.component
   exports: [
     CommonModule,
     CoreMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     RoundedButtonDirective,
     GradientComponent,
     CirclesGeneratorComponent

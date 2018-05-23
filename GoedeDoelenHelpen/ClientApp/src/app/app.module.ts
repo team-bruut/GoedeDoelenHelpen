@@ -4,7 +4,6 @@ import { CoreMaterialModule } from './core-material/core-material.module';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -51,11 +50,9 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule,
     FlexLayoutModule,
     HomeModule,
     LoginModule,
-    ReactiveFormsModule,
     DashboardModule,
 
     RouterModule.forRoot([
