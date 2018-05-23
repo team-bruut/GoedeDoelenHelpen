@@ -7,7 +7,10 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatDividerModule,
-  MatCardModule
+  MatCardModule,
+  MatStepperModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
 } from '@angular/material';
 
 @NgModule({
@@ -19,7 +22,10 @@ import {
     MatSidenavModule,
     MatDividerModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatStepperModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ]
 })
 export class AppMaterialModule { }

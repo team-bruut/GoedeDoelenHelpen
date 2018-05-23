@@ -1,7 +1,7 @@
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -29,6 +29,7 @@ import { LoginComponent } from './user/login/login.component';
 // Dashboard
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { NavMenuService } from './nav-menu/nav-menu.service';
+import { DefaultRegisterComponent } from './event/default-register/default-register.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
     LoginComponent,
     SiteMapComponent,
     DashboardComponent,
+    DefaultRegisterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -58,7 +60,8 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent }
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'event/register', component: DefaultRegisterComponent },
     ]),
     AppMaterialModule,
     ReactiveFormsModule,
