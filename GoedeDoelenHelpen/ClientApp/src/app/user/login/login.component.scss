@@ -46,25 +46,32 @@
 
             .loginForm {
 
-                .registerForm {
+                .registerForm, .passwordResetForm {
 
                     mat-form-field {
                         display: block;
                     }
 
-                    .login-form-button {
+                    .form-button {
                         margin: 5px;
                     }
 
-                    .login-button {
+                    .submit-button {
                         width: 100%;
                         margin: 20px auto;
                         border-radius: 5px;
                     }
 
-                    .login-button.active {
+                    .submit-button.active {
                         background-color: $primary;
                         color: white;
+                    }
+
+                    .description {
+                        margin: 10px;
+                        color: $primary;
+                        font-size: 1.2em;
+                        text-align: center;
                     }
                 }
             }

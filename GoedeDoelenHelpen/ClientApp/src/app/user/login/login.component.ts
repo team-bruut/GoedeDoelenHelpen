@@ -12,7 +12,12 @@ export class LoginComponent implements OnInit {
   userLoginGroup: FormGroup;
   emailC: AbstractControl;
   passwordC: AbstractControl;
-  message: string;
+  loginMessage: string;
+
+  passwordResetGroup: FormGroup;
+  emailReset: AbstractControl;
+  resetPassword: boolean;
+  resetMessage: string;
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +32,14 @@ export class LoginComponent implements OnInit {
 
     this.emailC = this.userLoginGroup.get('email');
     this.passwordC = this.userLoginGroup.get('password');
+
+    this.passwordResetGroup = fb.group(
+      {
+        email: ['', Validators.compose([Validators.required, Validators.email])]
+      }
+    );
+    this.emailReset = this.passwordResetGroup.get('email');
+    this.resetPassword = false;
   }
 
   onSubmit()  {
@@ -34,10 +47,14 @@ export class LoginComponent implements OnInit {
       this.authenticationService
         .login({username: this.emailC.value, password: this.passwordC.value})
         .subscribe(
-          success => this.message = 'Je bent ingelogd',
-          err => this.message = 'Je bent niet ingelogd'
+          success => this.loginMessage = 'Je bent ingelogd',
+          err => this.loginMessage = 'Je bent niet ingelogd'
         );
     }
+  }
+
+  onSubmitPasswordReset() {
+    // TODO: create password reset submission
   }
 
   ngOnInit() {

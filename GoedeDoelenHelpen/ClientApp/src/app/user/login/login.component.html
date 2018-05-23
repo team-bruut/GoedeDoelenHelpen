@@ -9,7 +9,9 @@
     <div class="login">
       <p class="title">Log in</p>
       <div class="loginForm">
-        <form fxLayout="column" (submit)="onSubmit()" class="registerForm" [formGroup]="userLoginGroup">
+
+        <!-- Login -->
+        <form fxLayout="column" (submit)="onSubmit()" class="registerForm" [formGroup]="userLoginGroup" *ngIf="!resetPassword">
           <mat-form-field fxFlexFill>
             <input type="email" matInput placeholder="Email" formControlName="email">
             <mat-error *ngIf="emailC.hasError('email') && !emailC.hasError('required')">
@@ -25,11 +27,28 @@
               Wachtwoord is <strong>verplicht</strong>
             </mat-error>
           </mat-form-field>
-          <button [disabled]="!userLoginGroup.valid" fxFlexFill role="submit" mat-raised-button class="login-button" [ngClass]="userLoginGroup.valid ? 'active' : 'disabled'">Inloggen</button>
-          <button mat-button class="login-form-button">Nog geen account?</button>
-          <button mat-button class="login-form-button">Wachtwoord vergeten?</button>
-          <p>{{message}}</p>
+          <button [disabled]="!userLoginGroup.valid" fxFlexFill role="submit" mat-raised-button class="submit-button" [ngClass]="userLoginGroup.valid ? 'active' : 'disabled'">Inloggen</button>
+          <p>{{ loginMessage }}</p>
         </form>
+
+        <!-- Password Reset -->
+        <form fxLayout="column" (submit)="onSubmitPasswordReset()" class="passwordResetForm" [formGroup]="passwordResetGroup" *ngIf="resetPassword">
+          <mat-form-field fxFlexFill>
+            <input type="email" matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="emailC.hasError('email') && !emailC.hasError('required')">
+              Vul een geldig e-mailadres in.
+            </mat-error>
+            <mat-error *ngIf="emailC.hasError('required')">
+              Email is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+          <p class="description">We zullen naar dit adres een email sturen om je wachtwoord te resetten.</p>
+          <button [disabled]="!passwordResetGroup.valid" fxFlexFill role="submit" mat-raised-button class="submit-button" [ngClass]="passwordResetGroup.valid ? 'active' : 'disabled'">Reset wachtwoord</button>
+          <p>{{ resetMessage }}</p>
+        </form>
+
+        <button mat-button class="form-button">Nog geen account?</button>
+        <button mat-button class="form-button" (click)="resetPassword = true" *ngIf="!resetPassword">Wachtwoord vergeten?</button>
       </div>
     </div>
   </div>
