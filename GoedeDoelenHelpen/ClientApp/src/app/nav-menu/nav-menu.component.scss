@@ -3,6 +3,7 @@
 .nav {
   width: 100vw;
   height: 100vh;
+  background-color: $background-color;
 
   .fill-remaining-space {
     flex: 1 1 auto;
@@ -46,6 +47,10 @@
   }
   
   mat-toolbar {
+    margin-bottom: 7px;
+    box-shadow: 1px 1px 7px #bcbcbc;
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+
     .mat-raised-button {
       color: white;
       background-color: transparent;
@@ -93,6 +98,8 @@
 .homepage {
   mat-toolbar {
     background-color: $primary;
+    margin-bottom: 0;
+
     .mat-button {
       color: white;
     }

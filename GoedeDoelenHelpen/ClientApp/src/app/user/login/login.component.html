@@ -1,4 +1,11 @@
-<form fxLayout="column" (submit)="onSubmit()" class="register-form" [formGroup]="userLoginGroup">
+<div class="login">
+  <app-circles-generated></app-circles-generated>
+  <div class="box">
+    <app-gradient></app-gradient>
+    <p>Hello world</p>
+  </div>
+</div>
+<!-- <form fxLayout="column" (submit)="onSubmit()" class="register-form" [formGroup]="userLoginGroup">
   <mat-form-field fxFlexFill>
     <input type="email" matInput placeholder="Email" formControlName="email">
     <mat-error *ngIf="emailC.hasError('email') && !emailC.hasError('required')">
@@ -16,4 +23,4 @@
   </mat-form-field>
   <button [disabled]="!userLoginGroup.valid" fxFlexFill role="submit" mat-raised-button color="primary">login</button>
   <p>{{message}}</p>
-</form>
+</form> -->

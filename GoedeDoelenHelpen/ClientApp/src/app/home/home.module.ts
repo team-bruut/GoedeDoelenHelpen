@@ -11,11 +11,6 @@ import { HomeHighlightsComponent } from './partials/home-highlights/home-highlig
 import { HomeFunctionsComponent } from './partials/home-functions/home-functions.component';
 import { HomeQuoteComponent } from './partials/home-quote/home-quote.component';
 
-// General Components
-import { RoundedButtonDirective } from '../elements/rounded-button.directive';
-import { GradientComponent } from '../elements/gradient/gradient.component';
-import { CirclesGeneratorComponent } from '../elements/circles/circles.component';
-
 @NgModule({
   imports: [
     SharedModule
@@ -28,8 +23,6 @@ import { CirclesGeneratorComponent } from '../elements/circles/circles.component
     HomeSellingPointsComponent,
     HomeFunctionsComponent,
     HomeQuoteComponent,
-    GradientComponent,
-    CirclesGeneratorComponent
   ],
   exports: [
     HomeComponent

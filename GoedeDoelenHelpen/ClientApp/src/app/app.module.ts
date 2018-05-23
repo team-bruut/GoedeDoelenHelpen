@@ -11,7 +11,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // General
 import { AppComponent } from './app.component';
 import { SiteMapComponent } from './site-map/site-map.component';
-import { RoundedButtonDirective } from './elements/rounded-button.directive';
 
 // Navigation
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -21,13 +20,18 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
 import { HomeModule } from './home/home.module';
 import { HomeComponent } from './home/home.component';
 
-// Authentication
+// Login
+import { LoginModule } from './user/login/login.module';
+import { LoginComponent } from './user/login/login.component';
+
+// Registration
 import { RegisterComponent } from './user/register/register.component';
 import { RegisterService } from './user/register/register.service';
+
+// Authentication
 import { AuthenticationService } from './authentication.service';
 import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
 import { ActivatedComponent } from './user/activated/activated.component';
-import { LoginComponent } from './user/login/login.component';
 
 // Dashboard
 import { DashboardComponent } from './user/dashboard/dashboard.component';
@@ -39,10 +43,8 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
     NavMenuComponent,
     SiteMapComponent,
     RegisterComponent,
-    RoundedButtonDirective,
     ConfirmEmailComponent,
     ActivatedComponent,
-    LoginComponent,
   ],
   imports: [
     CoreMaterialModule,
@@ -52,6 +54,7 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
     FormsModule,
     FlexLayoutModule,
     HomeModule,
+    LoginModule,
     ReactiveFormsModule,
     DashboardModule,
 
