@@ -1,56 +1,62 @@
 // Modules
+import { NgModule } from '@angular/core';
+import { CoreMaterialModule } from './core-material/core-material.module';
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppMaterialModule } from './app.material.module';
 
 // General
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { SiteMapComponent } from './site-map/site-map.component';
-import { RoundedButtonDirective } from './elements/rounded-button.directive';
+
+// Navigation
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavMenuService } from './nav-menu/nav-menu.service';
 
 // Home
 import { HomeModule } from './home/home.module';
 import { HomeComponent } from './home/home.component';
 
-// Authentication
+// Login
+import { LoginModule } from './user/login/login.module';
+import { LoginComponent } from './user/login/login.component';
+
+// Registration
 import { RegisterComponent } from './user/register/register.component';
 import { RegisterService } from './user/register/register.service';
+
+// Authentication
 import { AuthenticationService } from './authentication.service';
 import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
 import { ActivatedComponent } from './user/activated/activated.component';
-import { LoginComponent } from './user/login/login.component';
 
 // Dashboard
 import { DashboardComponent } from './user/dashboard/dashboard.component';
-import { NavMenuService } from './nav-menu/nav-menu.service';
+import { DashboardModule } from './user/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
+    SiteMapComponent,
     RegisterComponent,
-    RoundedButtonDirective,
     ConfirmEmailComponent,
     ActivatedComponent,
-    LoginComponent,
-    SiteMapComponent,
-    DashboardComponent,
   ],
   imports: [
+    CoreMaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     FlexLayoutModule,
     HomeModule,
-    AppMaterialModule,
+    LoginModule,
     ReactiveFormsModule,
+    DashboardModule,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -60,8 +66,6 @@ import { NavMenuService } from './nav-menu/nav-menu.service';
       { path: 'user/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent }
     ]),
-    AppMaterialModule,
-    ReactiveFormsModule,
   ],
   providers: [RegisterService, AuthenticationService, NavMenuService],
   bootstrap: [AppComponent]

@@ -1,0 +1,44 @@
+<div id="container">
+  <div id="levelBar">
+    <p id="level">Niveau: {{ levelString }}</p>
+  </div>
+  <div #progressBar id="progressBar">
+    <div *ngFor="let levelElement of levelArray; index as index" class="tick" [ngClass]="index + 1 < level ? 'achieved' : index + 1 == level ? 'current' : '' " matTooltip="Tooltip!" style="margin-left: calc((100% - (5 * 30px)) / 4);">
+      <span class="tooltiptext">{{ levelElement.name }}</span>
+    </div>
+    <div id="progress" [style.width]="valueString">
+      <p>
+        {{valueString}}
+      </p>
+    </div>
+  </div>
+  <div id="stepsBar">
+    <mat-card *ngIf="level != maxLevels">
+      <mat-card-subtitle>
+        Maak jezelf een {{ levelArray[level].name }} door:
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div *ngIf="levelArray[level].steps.length == 0">
+          Er zijn momenteel geen stappen die je voor dit niveau kunt nemen, maar kijk eens bij de tools!
+        </div>
+        <div class="steps" *ngFor="let levelStep of levelArray[level].steps" [ngClass]="levelStep.done == true ? 'done' : 'todo'">
+          <a mat-button>{{ levelStep.done == true ? '✓' : '+' }} {{levelStep.desc }}</a>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-raised-button>TOOLS</button>
+          <button mat-raised-button>UITLEG</button>
+          <button mat-raised-button (click)="move(1)">NIVEAU OMHOOG</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card *ngIf="level == maxLevels">
+      <mat-card-subtitle>
+        Hoera! Je bent een echte {{ levelString }}!
+      </mat-card-subtitle>
+      <mat-card-content>
+        Ga vooral zo door, en check de <a>tools</a> om je draagvlak verder te vergroten!
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

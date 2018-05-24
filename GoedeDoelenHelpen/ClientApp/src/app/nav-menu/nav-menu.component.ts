@@ -35,6 +35,14 @@ export class NavMenuComponent implements OnInit, OnDestroy {
     link: '/user/login'
   };
 
+  user = {
+    username: 'fjwillemsen',
+    firstname: 'Floris-Jan',
+    name: 'Willemsen',
+  };
+
+  username_abbreviation = this.user.firstname[0] + '. ' + this.user.name[0] + '.';
+
   constructor(private navMenuService: NavMenuService) { }
 
   ngOnInit() {

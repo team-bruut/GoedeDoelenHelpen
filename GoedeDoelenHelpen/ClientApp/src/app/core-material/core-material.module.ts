@@ -7,7 +7,9 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatDividerModule,
-  MatCardModule
+  MatCardModule,
+  MatSelectModule,
+  MatOptionModule,
 } from '@angular/material';
 
 @NgModule({
@@ -19,7 +21,9 @@ import {
     MatSidenavModule,
     MatDividerModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
   ]
 })
-export class AppMaterialModule { }
+export class CoreMaterialModule { }

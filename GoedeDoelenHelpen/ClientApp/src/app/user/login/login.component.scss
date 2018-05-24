@@ -1,0 +1,20 @@
+@import '~imports.scss';
+
+.login {
+    min-height: 500px;
+    min-width: 500px;
+
+    app-circles-generated {
+        z-index: 1500;
+
+        #CircleCanvas {
+            z-index: 1 !important;
+        }
+    }
+
+    app-gradient {
+        svg {
+            z-index: 0;
+        }
+    }
+}
