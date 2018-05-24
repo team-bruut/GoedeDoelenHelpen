@@ -14,12 +14,12 @@ The frontend application is created with Angular version 6+
 
 The frontend is served by asp.net using a proxy to the frontend server.
 
-In the frontend we make use of Angular material. This is een component library primarily created an maintained by the Angular team. This library has a wide variety of high quality frontend libraries.  documentation can be found at https://material.angular.io/ 
+In the frontend we make use of Angular material. This is a component library primarily created and maintained by the Angular team. This library has a wide variety of high quality frontend libraries. Documentation can be found at https://material.angular.io/.
 
-for charts used on the dashboard we have used a charting library. We have made the choice for this based on several points
-- Making a chart with the canvas API is to much work for the scope of this project.
-- the change on error in our own charting library is to big.
-- The library is actively maintained and used by several people.
+For charts used on the dashboard we have used a charting library. We have made the choice for this based on several points
+- making a chart with the canvas API is too much work for the scope of this project
+- the chance of errors in our own charting library is too big
+- the library is actively maintained and used by several people
 - Barld had already a good experience with this library from his internship
 
-The library we have chosen is: https://github.com/swimlane/ngx-charts
+The library we have chosen can be found at: https://github.com/swimlane/ngx-charts
