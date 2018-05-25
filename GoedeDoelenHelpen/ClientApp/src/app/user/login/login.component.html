@@ -27,8 +27,11 @@
               Wachtwoord is <strong>verplicht</strong>
             </mat-error>
           </mat-form-field>
-          <button [disabled]="!userLoginGroup.valid" fxFlexFill role="submit" mat-raised-button class="submit-button" [ngClass]="userLoginGroup.valid ? 'active' : 'disabled'">Inloggen</button>
-          <p>{{ loginMessage }}</p>
+          <button (click)="setDialog(loginDialog)" [disabled]="!userLoginGroup.valid" fxFlexFill role="submit" mat-raised-button class="submit-button" [ngClass]="userLoginGroup.valid ? 'active' : 'disabled'">Inloggen</button>
+
+          <ng-template #loginDialog>
+            <p>{{ loginMessage }}</p>
+          </ng-template>
         </form>
 
         <!-- Password Reset -->
@@ -43,8 +46,11 @@
             </mat-error>
           </mat-form-field>
           <p class="description">We zullen naar dit adres een email sturen om je wachtwoord te resetten.</p>
-          <button [disabled]="!passwordResetGroup.valid" fxFlexFill role="submit" mat-raised-button class="submit-button" [ngClass]="passwordResetGroup.valid ? 'active' : 'disabled'">Reset wachtwoord</button>
-          <p>{{ resetMessage }}</p>
+          <button (click)="setDialog(resetDialog)" [disabled]="!passwordResetGroup.valid" fxFlexFill role="submit" mat-raised-button class="submit-button" [ngClass]="passwordResetGroup.valid ? 'active' : 'disabled'">Reset wachtwoord</button>
+
+          <ng-template #resetDialog>
+            <p>{{ resetMessage }}</p>
+          </ng-template>
         </form>
 
         <button mat-button class="form-button">Nog geen account?</button>

@@ -29,7 +29,7 @@ deploy:
 - provider: WebDeploy
   artifact: GoedeDoelenHelpen
   server: 
-    secure: PIlYeDqNoP4Bh5C6FO5/kyXE3KFX0q6aEeMaFjteDfzkM6nMvoqA5GPZqPaWPXfNaqvpZvxyIKokIeqct+KenXhzcp3y/f8e05o3YIncVYg=
+    secure: NinHkDpuNSuY3OugiiFVZ7DIEw+4QbFTJOrE/8rSWT8o49pTRrgQzJETPQF5lGIxGy2r7/xDW8UYGGTemkxs+J84txunB4K4TE1xgU+cFbsMgntN0hcS/t8xs36uZa57
   website: GoedeDoelenHelpen
   username: $GoedeDoelenHelpen
   password:

@@ -20,7 +20,7 @@ import { CirclesGeneratorComponent } from '../elements/circles/circles.component
   declarations: [
     RoundedButtonDirective,
     GradientComponent,
-    CirclesGeneratorComponent
+    CirclesGeneratorComponent,
   ],
   exports: [
     CommonModule,
