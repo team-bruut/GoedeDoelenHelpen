@@ -155,8 +155,9 @@ namespace GoedeDoelenHelpen.Controllers
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.Action("UserPasswordResetLink", "User", 
                     new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+                var mailModel = new ResetPasswordMailModel { Name = user.FirstName, CallbackURL = callbackUrl };
+                var emailBody = _renderService.RenderToString("~/Mail/ResetPassword.cshtml", mailModel);
+                await _emailSender.SendEmailAsync(model.Email, "Reset Password", emailBody);
                 return new ActionResultModel { Success = true, Message = "Mail is verzonden" };
 
             }
@@ -164,6 +165,28 @@ namespace GoedeDoelenHelpen.Controllers
             // If we got this far, something failed, redisplay form
             return new ActionResultModel { Success = false, Message = "Er is iets misgegaan" };
 
+        }
+
+        [HttpPost("[action]")]
+        [AllowAnonymous]
+        public async Task<ActionResult<ActionResultModel>> ResetPassword([FromBody]ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new ActionResultModel { Success = false, Message = "Er is iets misgegaan." };
+            }
+            var user = await _userManager.FindByNameAsync(model.Email);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                return new ActionResultModel { Success = true, Message = "Wachtwoord is veranderd" };
+            }
+            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return new ActionResultModel { Success = true, Message = "Wachtwoord is veranderd" };
+            }
+            return new ActionResultModel { Success = false, Message = "Er is iets misgegaan." };
         }
 
 
