@@ -27,8 +27,7 @@ artifacts:
   type: WebDeployPackage
 deploy:
 - provider: WebDeploy
-  server: 
-    secure: NinHkDpuNSuY3OugiiFVZ7DIEw+4QbFTJOrE/8rSWT8o49pTRrgQzJETPQF5lGIxGy2r7/xDW8UYGGTemkxs+J84txunB4K4TE1xgU+cFbsMgntN0hcS/t8xs36uZa57
+  server: https://goededoelenhelpen.scm.azurewebsites.net:443/msdeploy.axd?site=goededoelenhelpen
   website: GoedeDoelenHelpen
   username: $GoedeDoelenHelpen
   password:
