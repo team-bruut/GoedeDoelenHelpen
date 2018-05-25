@@ -73,6 +73,14 @@ export class LoginComponent implements OnInit {
     this.authenticationService
       .forgotPassword(this.emailReset.value)
       .subscribe(
+        success => {
+          this.resetMessage = 'Er is een mail naar je e-mailadress verzonden';
+          this.openDialog();
+        },
+        err => {
+          this.resetMessage = 'Er is iets misgegaan probeer het nog een keer';
+          this.openDialog();
+        }
       );
   }
 

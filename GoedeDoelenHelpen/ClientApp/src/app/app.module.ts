@@ -35,6 +35,7 @@ import { ActivatedComponent } from './user/activated/activated.component';
 // Dashboard
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { DashboardModule } from './user/dashboard/dashboard.module';
+import { PasswordResetLinkComponent } from './user/password-reset-link/password-reset-link.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
     RegisterComponent,
     ConfirmEmailComponent,
     ActivatedComponent,
+    PasswordResetLinkComponent,
   ],
   imports: [
     CoreMaterialModule,
@@ -61,7 +63,8 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent }
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'User/UserPasswordResetLink', component: PasswordResetLinkComponent}
     ]),
   ],
   providers: [RegisterService, AuthenticationService, NavMenuService],
