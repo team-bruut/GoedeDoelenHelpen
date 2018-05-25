@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   passwordResetGroup: FormGroup;
   emailReset: AbstractControl;
-  resetPassword: boolean;
+  resetPassword = false;
   resetMessage: string;
 
   constructor(
@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
       }
     );
     this.emailReset = this.passwordResetGroup.get('email');
-    this.resetPassword = false;
   }
 
   onSubmit()  {
@@ -54,7 +53,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitPasswordReset() {
-    // TODO: create password reset submission
+    this.authenticationService
+      .forgotPassword(this.emailReset.value)
+      .subscribe(
+      );
   }
 
   ngOnInit() {
