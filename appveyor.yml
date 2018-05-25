@@ -23,10 +23,11 @@ after_build:
   - ps: npm run build-ci
 artifacts:
 - path: '\GoedeDoelenHelpen\bin\Debug\netcoreapp2.1\publish'
-  name: WebSite
+  name: GoedeDoelenHelpen
   type: WebDeployPackage
 deploy:
 - provider: WebDeploy
+  artifact: GoedeDoelenHelpen
   server: 
     secure: PIlYeDqNoP4Bh5C6FO5/kyXE3KFX0q6aEeMaFjteDfzkM6nMvoqA5GPZqPaWPXfNaqvpZvxyIKokIeqct+KenXhzcp3y/f8e05o3YIncVYg=
   website: GoedeDoelenHelpen
