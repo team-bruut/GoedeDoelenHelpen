@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../authentication.service';
+import { SharedModule } from '../../shared/shared.module';
 import { MatDialog } from '@angular/material';
 
 @Component({

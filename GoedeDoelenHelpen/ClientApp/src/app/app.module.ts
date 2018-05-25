@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // General
+import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 
@@ -20,7 +21,6 @@ import { HomeModule } from './home/home.module';
 import { HomeComponent } from './home/home.component';
 
 // Login
-import { LoginModule } from './user/login/login.module';
 import { LoginComponent } from './user/login/login.component';
 
 // Registration
@@ -41,18 +41,19 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
     AppComponent,
     NavMenuComponent,
     SiteMapComponent,
+    LoginComponent,
     RegisterComponent,
     ConfirmEmailComponent,
     ActivatedComponent,
   ],
   imports: [
+    SharedModule,
     CoreMaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BrowserAnimationsModule,
     HttpClientModule,
     FlexLayoutModule,
     HomeModule,
-    LoginModule,
     DashboardModule,
 
     RouterModule.forRoot([
