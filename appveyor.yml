@@ -25,20 +25,20 @@ artifacts:
 - path: '\GoedeDoelenHelpen\bin\Debug\netcoreapp2.1\publish'
   name: GoedeDoelenHelpen
   type: WebDeployPackage
-deploy:
-- provider: WebDeploy
-  server: 
-    secure: NinHkDpuNSuY3OugiiFVZ7DIEw+4QbFTJOrE/8rSWT8o49pTRrgQzJETPQF5lGIxGy2r7/xDW8UYGGTemkxs+J84txunB4K4TE1xgU+cFbsMgntN0hcS/t8xs36uZa57
-  website: GoedeDoelenHelpen
-  username: $GoedeDoelenHelpen
-  password:
-    secure: Gta6kVSNFhlosj6KZ8eDPs//BQtatFuLyG2dkkEqd8PHS88J1Q8iFCA+dPmQWI9e0R3Wcn8dfeSEwCjXJAeH3A==
-  ntlm: false
-  artifact: GoedeDoelenHelpen
-  aspnet_core: true
-  aspnet_core_force_restart: true
-  on:
-    branch: develop
+# deploy:
+# - provider: WebDeploy
+#   server: https://goededoelenhelpen.scm.azurewebsites.net:443/msdeploy.axd?site=goededoelenhelpen
+#   website: GoedeDoelenHelpen
+#   username: $GoedeDoelenHelpen
+#   password:
+#     secure: Gta6kVSNFhlosj6KZ8eDPs//BQtatFuLyG2dkkEqd8PHS88J1Q8iFCA+dPmQWI9e0R3Wcn8dfeSEwCjXJAeH3A==
+#   ntlm: false
+#   artifact: GoedeDoelenHelpen
+#   publishMethod: MSDeploy
+#   aspnet_core: true
+#   aspnet_core_force_restart: true
+#   on:
+#     branch: develop
 notifications:
 - provider: Slack
   incoming_webhook: 
