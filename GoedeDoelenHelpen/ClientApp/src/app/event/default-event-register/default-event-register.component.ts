@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-default-register',
-  templateUrl: './default-register.component.html',
-  styleUrls: ['./default-register.component.css']
+  selector: 'app-default-event-register',
+  templateUrl: './default-event-register.component.html',
+  styleUrls: ['./default-event-register.component.css']
 })
-export class DefaultRegisterComponent implements OnInit {
+export class DefaultEventRegisterComponent implements OnInit {
   step1: FormGroup;
   step2: FormGroup;
   step3: FormGroup;

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { MatIconRegistry } from '@angular/material';
 import { NavMenuService } from './nav-menu.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -34,6 +33,14 @@ export class NavMenuComponent implements OnInit, OnDestroy {
     text: 'inloggen',
     link: '/user/login'
   };
+
+  user = {
+    username: 'fjwillemsen',
+    firstname: 'Floris-Jan',
+    name: 'Willemsen',
+  };
+
+  username_abbreviation = this.user.firstname[0] + '. ' + this.user.name[0] + '.';
 
   constructor(private navMenuService: NavMenuService) { }
 

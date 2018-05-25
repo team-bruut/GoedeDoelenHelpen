@@ -8,9 +8,12 @@ import {
   MatSidenavModule,
   MatDividerModule,
   MatCardModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatDialogModule,
   MatStepperModule,
-  MatNativeDateModule,
   MatDatepickerModule,
+  MatNativeDateModule,
 } from '@angular/material';
 
 @NgModule({
@@ -23,9 +26,12 @@ import {
     MatDividerModule,
     MatCardModule,
     MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatDialogModule,
     MatStepperModule,
     MatNativeDateModule,
     MatDatepickerModule,
   ]
 })
-export class AppMaterialModule { }
+export class CoreMaterialModule { }

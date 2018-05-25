@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DefaultRegisterComponent } from './default-register.component';
+import { VisitorsChartComponent } from './visitors-chart.component';
 
-describe('DefaultRegisterComponent', () => {
-  let component: DefaultRegisterComponent;
-  let fixture: ComponentFixture<DefaultRegisterComponent>;
+describe('VisitorsChartComponent', () => {
+  let component: VisitorsChartComponent;
+  let fixture: ComponentFixture<VisitorsChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DefaultRegisterComponent ]
+      declarations: [ VisitorsChartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DefaultRegisterComponent);
+    fixture = TestBed.createComponent(VisitorsChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

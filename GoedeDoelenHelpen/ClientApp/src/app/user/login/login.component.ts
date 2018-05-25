@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../authentication.service';
+import { SharedModule } from '../../shared/shared.module';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +14,19 @@ export class LoginComponent implements OnInit {
   userLoginGroup: FormGroup;
   emailC: AbstractControl;
   passwordC: AbstractControl;
-  message: string;
+  loginMessage: string;
+
+  passwordResetGroup: FormGroup;
+  emailReset: AbstractControl;
+  resetPassword = false;
+  resetMessage: string;
+
+  templateRef: TemplateRef<any>;
 
   constructor(
     private fb: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private dialog: MatDialog
   ) {
     this.userLoginGroup = fb.group(
       {
@@ -27,6 +37,23 @@ export class LoginComponent implements OnInit {
 
     this.emailC = this.userLoginGroup.get('email');
     this.passwordC = this.userLoginGroup.get('password');
+
+    this.passwordResetGroup = fb.group(
+      {
+        email: ['', Validators.compose([Validators.required, Validators.email])]
+      }
+    );
+    this.emailReset = this.passwordResetGroup.get('email');
+  }
+
+  setDialog(templateRef) {
+    this.templateRef = templateRef;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(this.templateRef, {
+      width: '250px',
+    });
   }
 
   onSubmit()  {
@@ -34,10 +61,28 @@ export class LoginComponent implements OnInit {
       this.authenticationService
         .login({username: this.emailC.value, password: this.passwordC.value})
         .subscribe(
-          success => this.message = 'Je bent ingelogd',
-          err => this.message = 'Je bent niet ingelogd'
+          success => this.loginMessage = 'Je bent ingelogd',
+          err => {
+            this.loginMessage = 'Je bent niet ingelogd';
+            this.openDialog();
+          }
         );
     }
+  }
+
+  onSubmitPasswordReset() {
+    this.authenticationService
+      .forgotPassword(this.emailReset.value)
+      .subscribe(
+        success => {
+          this.resetMessage = 'Er is een mail naar je e-mailadress verzonden';
+          this.openDialog();
+        },
+        err => {
+          this.resetMessage = 'Er is iets misgegaan probeer het nog een keer';
+          this.openDialog();
+        }
+      );
   }
 
   ngOnInit() {

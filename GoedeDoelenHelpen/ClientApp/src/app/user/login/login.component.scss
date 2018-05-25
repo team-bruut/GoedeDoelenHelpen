@@ -1,0 +1,84 @@
+@import '~imports.scss';
+
+.loginWrapper {
+    padding: 50px 0;
+    
+    .loginContainer {
+        margin: 50px auto;
+        width: 500px;
+        height: 500px;
+        overflow: hidden;
+        border-radius: 10px;
+
+        @include breakpoint(mobileonly) {
+            width: 90%;
+            height: 100%;
+        }
+
+        .imageContainer {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+
+            @include breakpoint(mobileonly) {
+                display: none;
+            }
+        }
+
+        .login {
+            width: 50%;
+            height: 100%;
+            margin-left: 50%;
+            margin-top: -500px;
+            z-index: 2;
+            padding: 20px;
+            background-color: white;
+
+            .title {
+                font-weight: bold;
+                font-size: 2em;
+                text-align: center;
+                color: darkgray;
+            }
+
+            .loginForm {
+
+                .registerForm, .passwordResetForm {
+
+                    mat-form-field {
+                        display: block;
+                    }
+
+                    .form-button {
+                        margin: 5px;
+                    }
+
+                    .submit-button {
+                        width: 100%;
+                        margin: 20px auto;
+                        border-radius: 5px;
+                    }
+
+                    .submit-button.active {
+                        background-color: $primary;
+                        color: white;
+                    }
+
+                    .description {
+                        margin: 10px;
+                        color: $primary;
+                        font-size: 1.2em;
+                        text-align: center;
+                    }
+                }
+            }
+
+            @include breakpoint(mobileonly) {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 0;
+            }
+        }
+    }
+}

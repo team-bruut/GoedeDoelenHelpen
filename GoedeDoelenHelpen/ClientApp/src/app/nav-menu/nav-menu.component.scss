@@ -3,6 +3,7 @@
 .nav {
   width: 100vw;
   height: 100vh;
+  background-color: $background-color;
 
   .fill-remaining-space {
     flex: 1 1 auto;
@@ -14,7 +15,7 @@
  
     p {
       margin-top: 5px;
-      font-size: 2vw;
+      font-size: 1.3em;
     }
   }
  
@@ -23,8 +24,33 @@
     margin-top: 5px;
     height: 56px;
   }
+
+  .buttons {
+
+    .mat-raised-button {
+      color: $primary;
+      overflow: hidden;
+      margin: 0 10px;
+    }
+
+    #login-button {
+      display: none;
+    }
+
+    #user-button {
+      min-width: 50px;
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      padding: 0;
+    }
+  }
   
   mat-toolbar {
+    margin-bottom: 7px;
+    box-shadow: 1px 1px 7px #bcbcbc;
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+
     .mat-raised-button {
       color: white;
       background-color: transparent;
@@ -34,6 +60,15 @@
 
   mat-sidenav {
     padding: 0 5px;
+    background-color: $background-color;
+
+    .buttons {
+
+      button {
+        display: block;
+      margin: 5px;
+      } 
+    }
   }
 
   mat-sidenav-content {
@@ -44,6 +79,9 @@
   }
 }
 
+
+// Themes
+
 .default {
   mat-toolbar {
     background-color: white;
@@ -51,13 +89,28 @@
       color: orange;
     }
   }
+
+  .body-content {
+    background-color: $background-color;
+  }
 }
 
 .homepage {
   mat-toolbar {
     background-color: $primary;
+    margin-bottom: 0;
+
     .mat-button {
       color: white;
     }
+
+    .mat-raised-button {
+      color: black;
+      background-color: white;
+    }
+  }
+
+  .body-content {
+    background-color: transparent;
   }
 }

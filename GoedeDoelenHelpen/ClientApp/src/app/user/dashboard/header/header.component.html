@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="grid-layout">
+    <p class="welcome-message">Goedemorgen Koen!</p>
+    <div class="page-select">
+      <mat-form-field>
+          <mat-select placeholder="Pagina">
+            <mat-option *ngFor="let page of pages" [value]="page">
+              {{ page }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="page-buttons">
+          <button mat-button class="dashboard-button">
+            <img src="{{ images }}/view.svg" alt="Bekijk eventpagina"></button>
+          <button mat-button class="dashboard-button">
+            <img src="{{ images }}/edit.svg" alt="Bewerk eventpagina"></button>
+        </div>
+    </div>
+    <app-progress-bar></app-progress-bar>
+    <mat-divider class="divider"></mat-divider>
+  </div>
+</div>
