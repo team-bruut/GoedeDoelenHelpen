@@ -3,7 +3,7 @@
     <p id="level">Niveau: {{ levelString }}</p>
   </div>
   <div #progressBar id="progressBar">
-    <div *ngFor="let levelElement of levelArray; index as index" class="tick" [ngClass]="index + 1 < level ? 'achieved' : index + 1 == level ? 'current' : '' " matTooltip="Tooltip!" style="margin-left: calc((100% - (5 * 30px)) / 4);">
+    <div *ngFor="let levelElement of levelArray; index as index" class="tick" [ngClass]="index + 1 < level ? 'achieved' : index + 1 == level ? 'current' : '' " style="margin-left: calc((100% - (5 * 30px)) / 4);">
       <span class="tooltiptext">{{ levelElement.name }}</span>
     </div>
     <div id="progress" [style.width]="valueString">

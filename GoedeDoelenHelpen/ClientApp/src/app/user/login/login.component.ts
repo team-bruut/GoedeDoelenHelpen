@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../authentication.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -19,9 +20,12 @@ export class LoginComponent implements OnInit {
   resetPassword = false;
   resetMessage: string;
 
+  templateRef: TemplateRef<any>;
+
   constructor(
     private fb: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private dialog: MatDialog
   ) {
     this.userLoginGroup = fb.group(
       {
@@ -41,13 +45,26 @@ export class LoginComponent implements OnInit {
     this.emailReset = this.passwordResetGroup.get('email');
   }
 
+  setDialog(templateRef) {
+    this.templateRef = templateRef;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(this.templateRef, {
+      width: '250px',
+    });
+  }
+
   onSubmit()  {
     if (this.userLoginGroup.valid) {
       this.authenticationService
         .login({username: this.emailC.value, password: this.passwordC.value})
         .subscribe(
           success => this.loginMessage = 'Je bent ingelogd',
-          err => this.loginMessage = 'Je bent niet ingelogd'
+          err => {
+            this.loginMessage = 'Je bent niet ingelogd';
+            this.openDialog();
+          }
         );
     }
   }
