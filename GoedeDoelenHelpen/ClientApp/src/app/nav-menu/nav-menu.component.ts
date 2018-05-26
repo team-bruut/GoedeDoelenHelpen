@@ -2,6 +2,8 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { NavMenuService } from './nav-menu.service';
 import { Subscription } from 'rxjs/Subscription';
+import { AuthenticationService } from '../authentication.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav-menu',
@@ -41,9 +43,28 @@ export class NavMenuComponent implements OnInit, OnDestroy {
     name: 'Willemsen',
   };
 
-  username_abbreviation = this.user.firstname[0] + '. ' + this.user.name[0] + '.';
+  // username_abbreviation = this.user.firstname[0] + '. ' + this.user.name[0] + '.';
+  get username_abbreviation() {
+    return this.authenticationService.AuthenticationInfo.pipe(map(info => {
+      if (info.loggedIn) {
+        return info.username[0];
+      } else {
+        return '?';
+      }
+    }));
+  }
 
-  constructor(private navMenuService: NavMenuService) { }
+  get user_logedIn() {
+    return this.authenticationService
+      .AuthenticationInfo.pipe(
+        map(info => info.loggedIn)
+      );
+  }
+
+  constructor(
+    private navMenuService: NavMenuService,
+    private authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit() {
     this.subscription = this.navMenuService.theme.subscribe(
