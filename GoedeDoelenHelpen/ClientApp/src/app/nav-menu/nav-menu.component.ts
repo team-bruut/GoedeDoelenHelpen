@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { MatIconRegistry } from '@angular/material';
 import { NavMenuService } from './nav-menu.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthenticationService } from '../authentication.service';

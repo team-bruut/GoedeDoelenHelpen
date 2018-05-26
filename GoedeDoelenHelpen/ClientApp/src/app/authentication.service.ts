@@ -2,8 +2,9 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthenticationInfo } from './authenticationInfo';
-import { Subject, BehaviorSubject, ReplaySubject } from 'rxjs';
-import { share, switchMap, startWith, publish } from 'rxjs/operators';
+import { ReplaySubject } from 'rxjs';
+import { ActionResult } from './actionResult';
+import { ResetPassword } from './resetPassword';
 
 export type SignUpModel = {
   username: string;
@@ -17,7 +18,6 @@ export type ActivateAccountModel = {
 
 @Injectable()
 export class AuthenticationService {
-
   private _authenticationInfo: ReplaySubject<AuthenticationInfo> = new ReplaySubject();
   public get AuthenticationInfo(): Observable<AuthenticationInfo> {
     return this._authenticationInfo;
@@ -28,6 +28,10 @@ export class AuthenticationService {
     @Inject('BASE_URL') private baseUrl: string
   ) {
     this.refreshAuthInfo();
+  }
+
+  resetPassword(model: ResetPassword): Observable<ActionResult> {
+    return this.http.post<ActionResult>(`${this.baseUrl}api/Authentication/ResetPassword/`, model);
   }
 
   public refreshAuthInfo() {
@@ -45,4 +49,7 @@ export class AuthenticationService {
     return this.http.post<void>(`${this.baseUrl}/api/Authentication/Login`, model);
   }
 
+  public forgotPassword(email: string): Observable<ActionResult> {
+    return this.http.post<ActionResult>(`${this.baseUrl}api/Authentication/ForgotPassword/`, {email: email});
+  }
 }
