@@ -14,6 +14,15 @@ namespace GoedeDoelenHelpen.Data
         public Guid Id { get; set; }
 
         [Required]
+        public string AccessToken {get; set;}
+        [Required]
+        public DateTime ExpiresIn {get; set;}
+        [Required]
+        public string SignedRequest {get; set;}
+        [Required]
+        public string FacebookUserId {get; set; }
+
+        [Required]
         public DateTime TimeStamp { get; set; }
         [Required]
         public Guid EventUserId { get; set; }
