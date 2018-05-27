@@ -19,8 +19,6 @@ namespace GoedeDoelenHelpen.Data
         public DateTime ExpiresIn {get; set;}
         [Required]
         public string SignedRequest {get; set;}
-        [Required]
-        public string FacebookUserId {get; set; }
 
         [Required]
         public DateTime TimeStamp { get; set; }
