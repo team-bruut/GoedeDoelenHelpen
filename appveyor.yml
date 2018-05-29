@@ -17,13 +17,13 @@ build:
   publish_wap_xcopy: true
   verbosity: normal
 build_script:
-  # output will be in ./GoedeDoelenHelpen/bin/Debug/netcoreapp2.1/publish
+  # output will be in ./GoedeDoelenHelpen/bin/x86/Debug/netcoreapp2.1/publish
   - cmd: dotnet publish ./GoedeDoelenHelpen/GoedeDoelenHelpen.csproj
 after_build:
   - ps: cd ./GoedeDoelenHelpen/ClientApp
   - ps: npm run build-ci --prod
 artifacts:
-- path: ./GoedeDoelenHelpen/bin/Debug/netcoreapp2.1/publish
+- path: ./GoedeDoelenHelpen/bin/x86/Debug/netcoreapp2.1/publish/
   name: GoedeDoelenHelpen
   type: Zip
 deploy:
