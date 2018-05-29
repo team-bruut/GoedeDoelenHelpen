@@ -16,9 +16,8 @@ build_script:
   # output will be in ./GoedeDoelenHelpen/bin/debug/netcoreapp2.1/publish
   - cmd: dotnet publish ./GoedeDoelenHelpen/GoedeDoelenHelpen.csproj
 after_build:
-- ps: >-
-    cd ./GoedeDoelenHelpen/ClientApp
-    npm run build --prod
+  - ps: cd ./GoedeDoelenHelpen/ClientApp
+  - ps: npm run build --prod
 artifacts:
 - path: '\GoedeDoelenHelpen\bin\Debug\netcoreapp2.1\publish'
   name: GoedeDoelenHelpen
