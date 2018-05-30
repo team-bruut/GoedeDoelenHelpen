@@ -16,6 +16,7 @@ using Newtonsoft.Json.Serialization;
 using GoedeDoelenHelpen.Extensions;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace GoedeDoelenHelpen
 {
@@ -40,6 +41,13 @@ namespace GoedeDoelenHelpen
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication(sharedOptions =>
+            {
+                sharedOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                sharedOptions.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                // sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            }).AddCookie();
 
             services.Configure<IdentityOptions>(options =>
             {

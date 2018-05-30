@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GoedeDoelenHelpen.Data;
 using GoedeDoelenHelpen.Extensions;
 using GoedeDoelenHelpen.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -42,7 +43,13 @@ namespace GoedeDoelenHelpen.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Username };
+                var user = new ApplicationUser {
+                    UserName = model.Username,
+                    Email = model.Username,
+                    NameInsertion = "",
+                    FirstName = "Barld",
+                    LastName = "Boot"
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -66,11 +73,14 @@ namespace GoedeDoelenHelpen.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody]RegisterViewModel model)
         {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     return Ok();
@@ -99,6 +109,7 @@ namespace GoedeDoelenHelpen.Controllers
         [HttpGet("[action]")]
         [ProducesResponseType(typeof(AuthenticationInfoLoggedIn), 200)]
         [ProducesResponseType(typeof(AuthenticationInfoNotLoggedIn), 201)]
+        [Authorize]
         public ActionResult<IAuthenticationInfo> AuthenticationInfo()
         {
             if (!User.Identity.IsAuthenticated)

@@ -35,7 +35,9 @@ export class AuthenticationService {
   }
 
   public refreshAuthInfo() {
-    this.http.get<AuthenticationInfo>(`${this.baseUrl}/api/Authentication/AuthenticationInfo`).subscribe(this._authenticationInfo);
+    this.http.get<AuthenticationInfo>(`${this.baseUrl}/api/Authentication/AuthenticationInfo`, {
+      withCredentials: true
+    }).subscribe(this._authenticationInfo);
   }
 
   public activateAccount(model: ActivateAccountModel): Observable<void> {
@@ -46,7 +48,9 @@ export class AuthenticationService {
   }
 
   public login(model: SignUpModel): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/api/Authentication/Login`, model);
+    return this.http.post<void>(`${this.baseUrl}/api/Authentication/Login`, model, {
+      withCredentials: true
+    });
   }
 
   public forgotPassword(email: string): Observable<ActionResult> {
