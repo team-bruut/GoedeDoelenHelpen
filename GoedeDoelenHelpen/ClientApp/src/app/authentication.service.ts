@@ -2,6 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthenticationInfo } from './authenticationInfo';
+import { ActionResult } from './actionResult';
+import { ResetPassword } from './resetPassword';
 
 export type SignUpModel = {
   username: string;
@@ -15,6 +17,9 @@ export type ActivateAccountModel = {
 
 @Injectable()
 export class AuthenticationService {
+  resetPassword(model: ResetPassword): Observable<ActionResult> {
+    return this.http.post<ActionResult>(`${this.baseUrl}api/Authentication/ResetPassword/`, model);
+  }
 
   constructor(
     private http: HttpClient,
@@ -34,5 +39,9 @@ export class AuthenticationService {
 
   public get AuthenticationInfo(): Observable<AuthenticationInfo> {
     return this.http.get<AuthenticationInfo>(`${this.baseUrl}/api/Authentication/AuthenticationInfo`);
+  }
+
+  public forgotPassword(email: string): Observable<ActionResult> {
+    return this.http.post<ActionResult>(`${this.baseUrl}api/Authentication/ForgotPassword/`, {email: email});
   }
 }

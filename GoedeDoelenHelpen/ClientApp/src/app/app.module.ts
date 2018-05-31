@@ -4,11 +4,11 @@ import { CoreMaterialModule } from './core-material/core-material.module';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // General
+import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 
@@ -21,7 +21,6 @@ import { HomeModule } from './home/home.module';
 import { HomeComponent } from './home/home.component';
 
 // Login
-import { LoginModule } from './user/login/login.module';
 import { LoginComponent } from './user/login/login.component';
 
 // Registration
@@ -36,26 +35,27 @@ import { ActivatedComponent } from './user/activated/activated.component';
 // Dashboard
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { DashboardModule } from './user/dashboard/dashboard.module';
+import { PasswordResetLinkComponent } from './user/password-reset-link/password-reset-link.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     SiteMapComponent,
+    LoginComponent,
     RegisterComponent,
     ConfirmEmailComponent,
     ActivatedComponent,
+    PasswordResetLinkComponent,
   ],
   imports: [
+    SharedModule,
     CoreMaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule,
     FlexLayoutModule,
     HomeModule,
-    LoginModule,
-    ReactiveFormsModule,
     DashboardModule,
 
     RouterModule.forRoot([
@@ -64,7 +64,8 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent }
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'User/UserPasswordResetLink', component: PasswordResetLinkComponent}
     ]),
   ],
   providers: [RegisterService, AuthenticationService, NavMenuService],

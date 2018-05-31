@@ -42,7 +42,7 @@ namespace GoedeDoelenHelpen.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Username };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Username, FirstName = "FJ", LastName = "Willemsen", NameInsertion = "de" };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -132,6 +132,61 @@ namespace GoedeDoelenHelpen.Controllers
 
             var result = await _userManager.ConfirmEmailAsync(user, model.Code);
             return Ok(true);
+        }
+
+        //reset password
+        [HttpPost("[action]")]
+        [AllowAnonymous]
+        public async Task<ActionResult<ActionResultModel>> ForgotPassword([FromBody]ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                {
+                    // Don't reveal that the user does not exist or is not confirmed
+                    return new ActionResultModel { Success = true, Message = "Mail is verzonden" };
+
+                }
+
+                // For more information on how to enable account confirmation and password reset please
+                // visit https://go.microsoft.com/fwlink/?LinkID=532713
+                // example: https://localhost:44333/UserPasswordResetLink/ConfirmEmail?userId=5cf1688a-fa61-464d-a924-adc8048180be&code=CfDJ8IuddpyUj2ZNk6o%2FU14BzYIcM8g0Jz1uG7p2TRfs5KU85Fa%2FaDAZmVpHjl7UTODlN326gkRgNLbMpx%2B6Dsv%2FViYFA2TrSyQvY9bsArcc4UVxGs9KTtVp6CBjnbAeyoXMAZ%2F438DH15wluzko5DnbJTe2orUqYaAJMUTfv0ZYSvqLJNWIRBJRxK52OqhsPunDsVmg38JvbPB378PRpvcdDjbeum6AxGG5qYQROPZDQlPC
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action("UserPasswordResetLink", "User", 
+                    new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                var mailModel = new ResetPasswordMailModel { Name = user.FirstName, CallbackURL = callbackUrl };
+                var emailBody = _renderService.RenderToString("~/Mail/ResetPassword.cshtml", mailModel);
+                await _emailSender.SendEmailAsync(model.Email, "Reset Password", emailBody);
+                return new ActionResultModel { Success = true, Message = "Mail is verzonden" };
+
+            }
+
+            // If we got this far, something failed, redisplay form
+            return new ActionResultModel { Success = false, Message = "Er is iets misgegaan" };
+
+        }
+
+        [HttpPost("[action]")]
+        [AllowAnonymous]
+        public async Task<ActionResult<ActionResultModel>> ResetPassword([FromBody]ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new ActionResultModel { Success = false, Message = "Er is iets misgegaan." };
+            }
+            var user = await _userManager.FindByNameAsync(model.Email);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                return new ActionResultModel { Success = true, Message = "Wachtwoord is veranderd" };
+            }
+            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return new ActionResultModel { Success = true, Message = "Wachtwoord is veranderd" };
+            }
+            return new ActionResultModel { Success = false, Message = "Er is iets misgegaan." };
         }
 
 
