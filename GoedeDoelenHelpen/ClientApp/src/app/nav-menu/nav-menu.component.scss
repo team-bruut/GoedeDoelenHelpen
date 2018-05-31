@@ -51,6 +51,10 @@
     box-shadow: 1px 1px 7px #bcbcbc;
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
 
+    .mat-button {
+      color: $primary;
+    }
+
     .mat-raised-button {
       color: white;
       background-color: transparent;
@@ -85,14 +89,15 @@
 .default {
   mat-toolbar {
     background-color: white;
-    .mat-button {
-      color: orange;
-    }
   }
 
   .body-content {
     background-color: $background-color;
   }
+}
+
+.registration {
+  background-color: $primary;
 }
 
 .homepage {

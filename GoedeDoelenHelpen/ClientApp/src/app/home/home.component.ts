@@ -17,6 +17,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.navMenuService.setTheme('homepage');
+    this.navMenuService.setTheme('default');
   }
 }

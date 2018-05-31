@@ -14,6 +14,7 @@ import {
   MatStepperModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatAutocompleteModule,
 } from '@angular/material';
 
 @NgModule({
@@ -32,6 +33,7 @@ import {
     MatStepperModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatAutocompleteModule,
   ]
 })
 export class CoreMaterialModule { }
