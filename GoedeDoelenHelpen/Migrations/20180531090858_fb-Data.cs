@@ -21,16 +21,26 @@ namespace GoedeDoelenHelpen.Migrations
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<string>(
-                name: "FacebookUserId",
-                table: "FacebookRecords",
-                nullable: false,
-                defaultValue: "");
-
-            migrationBuilder.AddColumn<string>(
                 name: "SignedRequest",
                 table: "FacebookRecords",
                 nullable: false,
                 defaultValue: "");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "LastName",
+                table: "AspNetUsers",
+                maxLength: 128,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldMaxLength: 64);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "FirstName",
+                table: "AspNetUsers",
+                maxLength: 128,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldMaxLength: 64);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -44,12 +54,24 @@ namespace GoedeDoelenHelpen.Migrations
                 table: "FacebookRecords");
 
             migrationBuilder.DropColumn(
-                name: "FacebookUserId",
-                table: "FacebookRecords");
-
-            migrationBuilder.DropColumn(
                 name: "SignedRequest",
                 table: "FacebookRecords");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "LastName",
+                table: "AspNetUsers",
+                maxLength: 64,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldMaxLength: 128);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "FirstName",
+                table: "AspNetUsers",
+                maxLength: 64,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldMaxLength: 128);
         }
     }
 }

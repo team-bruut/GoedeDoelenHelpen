@@ -36,11 +36,11 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(64);
+                        .HasMaxLength(128);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(64);
+                        .HasMaxLength(128);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -233,9 +233,6 @@ namespace GoedeDoelenHelpen.Migrations
                     b.Property<Guid>("EventUserId");
 
                     b.Property<DateTime>("ExpiresIn");
-
-                    b.Property<string>("FacebookUserId")
-                        .IsRequired();
 
                     b.Property<string>("SignedRequest")
                         .IsRequired();
