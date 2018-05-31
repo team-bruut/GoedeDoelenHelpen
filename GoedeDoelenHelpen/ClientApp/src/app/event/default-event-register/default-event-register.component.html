@@ -1,95 +1,92 @@
-<mat-horizontal-stepper [linear]="true">
-  <mat-step [stepControl]="step1">
-    <form [formGroup]="step1">
-      <ng-template matStepLabel>stap 1</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="hi wat is je naam" [formControl]="nameC" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Volgende</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="step2">
-    <form [formGroup]="step2">
-      <ng-template matStepLabel>stap 2</ng-template>
-      <label>Mogen we ook je achternaam weten, {{nameC.valueChanges | async}}?</label>
-      <mat-form-field>          
-        <input matInput placeholder="achternaam" [formControl]="surNameC" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Vorige</button>
-        <button mat-button matStepperNext>Volgende</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="step3">
-      <form [formGroup]="step3">
-          <ng-template matStepLabel>stap 3</ng-template>
-          <mat-form-field>
-            <input matInput placeholder="Welk goede doel ga je helpen?" [formControl]="foundationNameC" required>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Vorige</button>
-            <button mat-button matStepperNext>Volgende</button>
-          </div>
-        </form>
-  </mat-step>
-  <mat-step [stepControl]="step4">
-      <form [formGroup]="step4">
-          <ng-template matStepLabel>stap 4</ng-template>
-          <label>wat gaaf dat je {{foundationNameC.valueChanges | async}} wilt helpen! Kan je kort vertellen waarom je dit goede doel wilt helpen?</label>
-          <mat-form-field>
-            <input matInput placeholder="" [formControl]="eventDescriptionC" required>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Vorige</button>
-            <button mat-button matStepperNext>Volgende</button>
-          </div>
-        </form>
-  </mat-step>
-  <mat-step [stepControl]="step5">
-      <form [formGroup]="step5">
-          <ng-template matStepLabel>stap 5</ng-template>
-          <label>wat gaaf dat je zo gepassioneerd bent! Wat is de naam van je evenement</label>
-          <mat-form-field>
-            <input matInput placeholder="evenement naam" [formControl]="eventNameC" required>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Vorige</button>
-            <button mat-button matStepperNext>Volgende</button>
-          </div>
-        </form>
-  </mat-step>
-  <mat-step [stepControl]="step6">
-      <form [formGroup]="step6">
-          <ng-template matStepLabel>stap 6</ng-template>
-          <input matInput [matDatepicker]="picker" [formControl]="eventDateC" placeholder="Wanneer vind {{eventNameC.valueChanges | async}} plaats?">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <div>
-            <button mat-button matStepperPrevious>Vorige</button>
-            <button mat-button matStepperNext>Volgende</button>
-          </div>
-        </form>
-  </mat-step>
-  <mat-step>
-    <label>
-      Wat goed dat je bijdraagt aan een betere wereld,
-      {{nameC.valueChanges | async}}! We wensen je heel veel succes met {{eventNameC.valueChanges | async}} op {{eventDateC.valueChanges | async | date}}
-      voor {{foundationNameC.valueChanges | async}}. Met jouw motivatie komt dat vast goed!
-    </label>
-  </mat-step>
-  <mat-step [stepControl]="step7">
-      <form [formGroup]="step7">
-          <ng-template matStepLabel>stap 7</ng-template>
-          <label>Om je profiel persoonlijker te maken kan je eventueel een profielfoto toevoegen(bijvoorbeeld van jezelf of van het goede doel)</label>
+<div id="eventRegistration">
+  <mat-horizontal-stepper [linear]="true">
+    <mat-step [stepControl]="step1">
+      <form [formGroup]="step1">
+        <ng-template matStepLabel>Naam en Email</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="voornaam" [formControl]="firstnameC" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="achternaam" [formControl]="lastnameC" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="emailadres" [formControl]="emailC" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Volgende</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="step2">
+      <form [formGroup]="step2">
+        <ng-template matStepLabel>Goede Doel</ng-template>
+        <label>Welk goed doel ga je helpen, {{firstnameC.valueChanges | async}}?</label>
+        <mat-form-field>
+          <input matInput placeholder="Goed Doel" [formControl]="charityC" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Vorige</button>
+          <button mat-button matStepperNext>Volgende</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="step3">
+        <form [formGroup]="step3">
+            <ng-template matStepLabel>stap 3</ng-template>
+            <label>Kan je kort vertellen waarom je {{charityC.valueChanges | async}} wilt helpen?</label>
+            <mat-form-field>
+              <input matInput placeholder="" [formControl]="eventDescriptionC" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Vorige</button>
+              <button mat-button matStepperNext>Volgende</button>
+            </div>
+          </form>
+    </mat-step>
+    <mat-step [stepControl]="step4">
+        <form [formGroup]="step4">
+            <ng-template matStepLabel>stap 4</ng-template>
+            <label>wat gaaf dat je zo gepassioneerd bent! Wat is de naam van je evenement</label>
+            <mat-form-field>
+              <input matInput placeholder="evenement naam" [formControl]="eventNameC" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Vorige</button>
+              <button mat-button matStepperNext>Volgende</button>
+            </div>
+          </form>
+    </mat-step>
+    <mat-step [stepControl]="step5">
+        <form [formGroup]="step5">
+            <ng-template matStepLabel>stap 5</ng-template>
+            <input matInput [matDatepicker]="picker" [formControl]="eventDateC" placeholder="Wanneer vind {{eventNameC.valueChanges | async}} plaats?">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <div>
+              <button mat-button matStepperPrevious>Vorige</button>
+              <button mat-button matStepperNext>Volgende</button>
+            </div>
+          </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Overzicht</ng-template>
+      <label>
+        Wat goed dat je bijdraagt aan een betere wereld,
+        {{firstnameC.valueChanges | async}}! We wensen je heel veel succes met {{eventNameC.valueChanges | async}} op {{eventDateC.valueChanges | async | date}}
+        voor {{charityC.valueChanges | async}}. Met jouw motivatie komt dat vast goed!
+      </label>
+    </mat-step>
+    <mat-step [stepControl]="step6">
+        <form [formGroup]="step6">
+            <ng-template matStepLabel>Profielfoto</ng-template>
+            <label>Om je profiel persoonlijker te maken kan je eventueel een profielfoto toevoegen(bijvoorbeeld van jezelf of van het goede doel)</label>
 
-          <input type="file" placeholder="" [formControl]="profileImageC" required>
-          <div>
-            <button mat-button matStepperPrevious>Vorige</button>
-            <button mat-button matStepperNext>Volgende</button>
-          </div>
-        </form>
-  </mat-step>
-</mat-horizontal-stepper>
+            <input type="file" placeholder="" [formControl]="profileImageC" required>
+            <div>
+              <button mat-button matStepperPrevious>Vorige</button>
+              <button mat-button matStepperNext>Volgende</button>
+            </div>
+          </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -1,0 +1,14 @@
+@import '~imports.scss';
+
+#eventRegistration {
+    mat-horizontal-stepper {
+        mat-step {
+            form {
+                mat-form-field {
+                    display: block;
+                    width: fit-content;
+                }
+            }
+        }
+    }
+}

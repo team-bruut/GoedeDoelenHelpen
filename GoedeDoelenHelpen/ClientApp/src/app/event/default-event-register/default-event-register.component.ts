@@ -4,7 +4,7 @@ import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/fo
 @Component({
   selector: 'app-default-event-register',
   templateUrl: './default-event-register.component.html',
-  styleUrls: ['./default-event-register.component.css']
+  styleUrls: ['./default-event-register.component.scss']
 })
 export class DefaultEventRegisterComponent implements OnInit {
   step1: FormGroup;
@@ -14,9 +14,10 @@ export class DefaultEventRegisterComponent implements OnInit {
   step5: FormGroup;
   step6: FormGroup;
   step7: FormGroup;
-  nameC: AbstractControl;
-  surNameC: AbstractControl;
-  foundationNameC: AbstractControl;
+  firstnameC: AbstractControl;
+  lastnameC: AbstractControl;
+  emailC: AbstractControl;
+  charityC: AbstractControl;
   eventDescriptionC: AbstractControl;
   eventNameC: AbstractControl;
   eventDateC: AbstractControl;
@@ -26,33 +27,38 @@ export class DefaultEventRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.step1 = this.fb.group({
-      name: ['', Validators.required]
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', Validators.required]
     });
-    this.nameC = this.step1.get('name');
+    this.firstnameC = this.step1.get('firstname');
+    this.lastnameC = this.step1.get('lastname');
+    this.emailC = this.step1.get('email');
+
     this.step2 = this.fb.group({
-      surName: ['', Validators.required]
+      charity: ['', Validators.required]
     });
-    this.surNameC = this.step2.get('surName');
+    this.charityC = this.step2.get('charity');
+
     this.step3 = this.fb.group({
-      foundationName: ['', Validators.required]
-    });
-    this.foundationNameC = this.step3.get('foundationName');
-    this.step4 = this.fb.group({
       eventDescription: ['', Validators.compose([Validators.required, Validators.maxLength(280)])]
     });
-    this.eventDescriptionC = this.step4.get('eventDescription');
-    this.step5 = this.fb.group({
+    this.eventDescriptionC = this.step3.get('eventDescription');
+
+    this.step4 = this.fb.group({
       eventName: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(12)])]
     });
-    this.eventNameC = this.step5.get('eventName');
-    this.step6 = this.fb.group({
+    this.eventNameC = this.step4.get('eventName');
+
+    this.step5 = this.fb.group({
       eventDate: ['', Validators.required]
     });
-    this.eventDateC = this.step6.get('eventDate');
-    this.step7 = this.fb.group({
+    this.eventDateC = this.step5.get('eventDate');
+
+    this.step6 = this.fb.group({
       profileImage: ['']
     });
-    this.profileImageC = this.step7.get('profileImage');
+    this.profileImageC = this.step6.get('profileImage');
   }
 
 }
