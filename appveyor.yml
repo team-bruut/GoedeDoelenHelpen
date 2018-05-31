@@ -15,21 +15,30 @@ before_build:
 build:
   publish_wap: true
   verbosity: minimal
+build_script:
+  # output will be in ./GoedeDoelenHelpen/bin/debug/netcoreapp2.1/publish
+  - cmd: dotnet publish ./GoedeDoelenHelpen/GoedeDoelenHelpen.csproj
 after_build:
   - ps: cd ./GoedeDoelenHelpen/ClientApp
   - ps: npm run build-ci
-deploy:
-- provider: WebDeploy
-  server: 
-    secure: PIlYeDqNoP4Bh5C6FO5/kyXE3KFX0q6aEeMaFjteDfzkM6nMvoqA5GPZqPaWPXfNaqvpZvxyIKokIeqct+KenXhzcp3y/f8e05o3YIncVYg=
-  website: GoedeDoelenHelpen
-  username: $GoedeDoelenHelpen
-  password:
-    secure: Gta6kVSNFhlosj6KZ8eDPs//BQtatFuLyG2dkkEqd8PHS88J1Q8iFCA+dPmQWI9e0R3Wcn8dfeSEwCjXJAeH3A==
-  aspnet_core: true
-  aspnet_core_force_restart: true
-  on:
-    branch: develop
+artifacts:
+- path: '\GoedeDoelenHelpen\bin\Debug\netcoreapp2.1\publish'
+  name: GoedeDoelenHelpen
+  type: WebDeployPackage
+# deploy:
+# - provider: WebDeploy
+#   server: https://goededoelenhelpen.scm.azurewebsites.net:443/msdeploy.axd?site=goededoelenhelpen
+#   website: GoedeDoelenHelpen
+#   username: $GoedeDoelenHelpen
+#   password:
+#     secure: Gta6kVSNFhlosj6KZ8eDPs//BQtatFuLyG2dkkEqd8PHS88J1Q8iFCA+dPmQWI9e0R3Wcn8dfeSEwCjXJAeH3A==
+#   ntlm: false
+#   artifact: GoedeDoelenHelpen
+#   publishMethod: MSDeploy
+#   aspnet_core: true
+#   aspnet_core_force_restart: true
+#   on:
+#     branch: develop
 notifications:
 - provider: Slack
   incoming_webhook: 
