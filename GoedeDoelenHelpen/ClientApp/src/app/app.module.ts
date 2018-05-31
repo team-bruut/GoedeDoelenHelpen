@@ -4,7 +4,7 @@ import { CoreMaterialModule } from './core-material/core-material.module';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // General
@@ -36,6 +36,7 @@ import { ActivatedComponent } from './user/activated/activated.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { DashboardModule } from './user/dashboard/dashboard.module';
 import { PasswordResetLinkComponent } from './user/password-reset-link/password-reset-link.component';
+import { TokenInterceptor } from './token.interceptor';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,11 @@ import { PasswordResetLinkComponent } from './user/password-reset-link/password-
       { path: 'User/UserPasswordResetLink', component: PasswordResetLinkComponent}
     ]),
   ],
-  providers: [RegisterService, AuthenticationService, NavMenuService],
+  providers: [RegisterService, AuthenticationService, NavMenuService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
