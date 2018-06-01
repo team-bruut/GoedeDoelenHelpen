@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { NavMenuService } from '../../nav-menu/nav-menu.service';
+import { AuthenticationService } from '../../authentication.service';
 
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -38,10 +39,15 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
   profileImageForm: FormGroup;
   profileImageC: AbstractControl;
 
+  passwordForm: FormGroup;
+  passwordC: AbstractControl;
+  passwordRepeatC: AbstractControl;
+
   constructor(
     private fb: FormBuilder,
-    private navMenuService: NavMenuService) {
-    this.navMenuService.setTheme('registration');
+    private navMenuService: NavMenuService,
+    private authenticationService: AuthenticationService) {
+      this.navMenuService.setTheme('registration');
   }
 
   ngOnInit() {
@@ -108,11 +114,71 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
       profileImage: ['']
     });
     this.profileImageC = this.profileImageForm.get('profileImage');
+
+    // password
+    this.passwordForm = this.fb.group({
+        password: [
+          '', [
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(64),
+            // Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[A-Z])')
+          ])]
+        ],
+        passwordRepeat: ['', Validators.required]
+      }
+    );
+    this.passwordC = this.passwordForm.get('password');
+    this.passwordRepeatC = this.passwordForm.get('passwordRepeat');
   }
 
-  filterCharities(name: string) {
+  filterCharities(name: string): Charity[] {
     return this.charities.filter(charity =>
       charity.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
+  }
+
+  toLocalDate(dateString: Date) {
+    const options = { month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('nl-NL', options);
+  }
+
+  validPassword(password: AbstractControl) {
+    return new RegExp('(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[A-Z])').test(password.value);
+  }
+
+  equalPasswords(password: AbstractControl, repeat: AbstractControl): boolean {
+    return password.value === repeat.value ? true : false;
+  }
+
+  allRequiredFieldsValid() {
+    if (
+      this.personalDetailsForm.valid &&
+      this.charityForm.valid &&
+      this.eventDescriptionForm.valid &&
+      this.eventNameForm.valid &&
+      this.eventDateForm.valid &&
+      this.passwordForm.valid &&
+      this.validPassword(this.passwordC)
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  onSubmit() {
+    console.log('submit');
+    if (this.allRequiredFieldsValid()) {
+      this.authenticationService.signUp({
+        username: this.emailC.value,
+        password: this.passwordC.value,
+        firstname: this.firstnameC.value,
+        lastname: this.lastnameC.value,
+        email: this.emailC.value,
+        profileimage: this.profileImageC.value
+      }).subscribe();
+    }
   }
 
   ngOnDestroy() {

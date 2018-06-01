@@ -23,10 +23,6 @@ import { HomeComponent } from './home/home.component';
 // Login
 import { LoginComponent } from './user/login/login.component';
 
-// Registration
-import { RegisterComponent } from './user/register/register.component';
-import { RegisterService } from './user/register/register.service';
-
 // Authentication
 import { AuthenticationService } from './authentication.service';
 import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
@@ -46,7 +42,6 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
     NavMenuComponent,
     SiteMapComponent,
     LoginComponent,
-    RegisterComponent,
     ConfirmEmailComponent,
     ActivatedComponent,
     PasswordResetLinkComponent,
@@ -64,16 +59,15 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'user/register', component: RegisterComponent },
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
-      { path: 'User/UserPasswordResetLink', component: PasswordResetLinkComponent},
+      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
     ]),
   ],
-  providers: [RegisterService, AuthenticationService, NavMenuService],
+  providers: [AuthenticationService, NavMenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

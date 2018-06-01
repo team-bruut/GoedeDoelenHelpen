@@ -8,6 +8,21 @@ import { ResetPassword } from './resetPassword';
 export type SignUpModel = {
   username: string;
   password: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  profileimage: any;
+};
+
+export type EventModel = {
+  eventname: string;
+  eventdescription: string;
+  eventdate: Date;
+};
+
+export type SignInModel = {
+  username: string;
+  password: string;
 };
 
 export type ActivateAccountModel = {
@@ -33,7 +48,7 @@ export class AuthenticationService {
     return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, signUpModel);
   }
 
-  public login(model: SignUpModel): Observable<void> {
+  public login(model: SignInModel): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/api/Authentication/Login`, model);
   }
 

@@ -39,7 +39,6 @@ export class VisitorsChartComponent implements OnInit {
 
   chartType = 'line-chart';
   view: any[];
-  // view = ['1000', '300'];
 
   // line interpolation
   curveType = 'Natural';

@@ -2,18 +2,27 @@
 <app-circles-generated></app-circles-generated>
 <div id="eventRegistrationContainer">
   <div id="eventRegistration">
-    <mat-horizontal-stepper [linear]="false">
+    <mat-horizontal-stepper [linear]="true">
       <mat-step [stepControl]="personalDetailsForm">
         <form [formGroup]="personalDetailsForm">
           <mat-form-field>
             <input matInput placeholder="voornaam" [formControl]="firstnameC" required>
           </mat-form-field>
+          <mat-error *ngIf="firstnameC.hasError('required')">
+            Voornaam is <strong>verplicht</strong>
+          </mat-error>
           <mat-form-field>
             <input matInput placeholder="achternaam" [formControl]="lastnameC" required>
           </mat-form-field>
+          <mat-error *ngIf="lastnameC.hasError('required')">
+            Achternaam is <strong>verplicht</strong>
+          </mat-error>
           <mat-form-field>
             <input matInput placeholder="emailadres" [formControl]="emailC" required>
           </mat-form-field>
+          <mat-error *ngIf="emailC.hasError('required')">
+            Email is <strong>verplicht</strong>
+          </mat-error>
           <div>
             <button mat-button matStepperNext class="next" [ngClass]="personalDetailsForm.valid ? 'active' : ''">Volgende</button>
           </div>
@@ -31,6 +40,9 @@
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
+          <mat-error *ngIf="charityC.hasError('required')">
+            Goede doel is <strong>verplicht</strong>
+          </mat-error>
           <div>
             <button mat-button matStepperPrevious>Vorige</button>
             <button mat-button matStepperNext class="next" [ngClass]="charityForm.valid ? 'active' : ''">Volgende</button>
@@ -38,44 +50,53 @@
         </form>
       </mat-step>
       <mat-step [stepControl]="eventDescriptionForm">
-          <form [formGroup]="eventDescriptionForm">
-              <label>Kan je kort vertellen waarom je {{charityC.valueChanges | async}} wilt helpen?</label>
-              <mat-form-field id="#description-form-field">
-                <textarea matInput placeholder="beschrijving van het evenement" [formControl]="eventDescriptionC" required></textarea>
-              </mat-form-field>
-              <div>
-                <button mat-button matStepperPrevious>Vorige</button>
-                <button mat-button matStepperNext class="next" [ngClass]="eventDescriptionForm.valid ? 'active' : ''">Volgende</button>
-              </div>
-            </form>
+        <form [formGroup]="eventDescriptionForm">
+          <label>Kan je kort vertellen waarom je {{charityC.valueChanges | async}} wilt helpen?</label>
+          <mat-form-field id="#description-form-field">
+            <textarea matInput placeholder="beschrijving van het evenement" [formControl]="eventDescriptionC" required></textarea>
+          </mat-form-field>
+          <mat-error *ngIf="eventDescriptionC.hasError('required')">
+            Beschrijving is <strong>verplicht</strong>
+          </mat-error>
+          <div>
+            <button mat-button matStepperPrevious>Vorige</button>
+            <button mat-button matStepperNext class="next" [ngClass]="eventDescriptionForm.valid ? 'active' : ''">Volgende</button>
+          </div>
+        </form>
       </mat-step>
       <mat-step [stepControl]="eventNameForm">
-          <form [formGroup]="eventNameForm">
-              <label>Wat is de naam van je evenement?</label>
-              <mat-form-field>
-                <input matInput placeholder="evenement naam" [formControl]="eventNameC" required>
-              </mat-form-field>
-              <div>
-                <button mat-button matStepperPrevious>Vorige</button>
-                <button mat-button matStepperNext class="next" [ngClass]="eventNameForm.valid ? 'active' : ''">Volgende</button>
-              </div>
-            </form>
+        <form [formGroup]="eventNameForm">
+          <label>Wat is de naam van je evenement?</label>
+          <mat-form-field>
+            <input matInput placeholder="evenement naam" [formControl]="eventNameC" required>
+          </mat-form-field>
+          <mat-error *ngIf="eventNameC.hasError('required')">
+            Evenement naam is <strong>verplicht</strong>
+          </mat-error>
+          <div>
+            <button mat-button matStepperPrevious>Vorige</button>
+            <button mat-button matStepperNext class="next" [ngClass]="eventNameForm.valid ? 'active' : ''">Volgende</button>
+          </div>
+        </form>
       </mat-step>
       <mat-step [stepControl]="eventDateForm">
-          <form [formGroup]="eventDateForm">
-              <input matInput [matDatepicker]="picker" [formControl]="eventDateC" placeholder="Wanneer vind {{eventNameC.valueChanges | async}} plaats?">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <div>
-                <button mat-button matStepperPrevious>Vorige</button>
-                <button mat-button matStepperNext class="next" [ngClass]="eventDateForm.valid ? 'active' : ''">Volgende</button>
-              </div>
-            </form>
+        <form [formGroup]="eventDateForm">
+          <input matInput [matDatepicker]="picker" [formControl]="eventDateC" placeholder="Wanneer vind '{{eventNameC.valueChanges | async}}' plaats?">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="eventDateC.hasError('required')">
+            Datum is <strong>verplicht</strong>
+          </mat-error>
+          <div>
+            <button mat-button matStepperPrevious>Vorige</button>
+            <button mat-button matStepperNext class="next" [ngClass]="eventDateForm.valid ? 'active' : ''">Volgende</button>
+          </div>
+        </form>
       </mat-step>
-      <mat-step> 
+      <mat-step> <!-- Event Overview -->
         <label>
           Wat goed dat je bijdraagt aan een betere wereld,
-          {{firstnameC.valueChanges | async}}! We wensen je heel veel succes met {{eventNameC.valueChanges | async}} op {{eventDateC.valueChanges | async | date}}
+          {{firstnameC.valueChanges | async}}! We wensen je heel veel succes met {{eventNameC.valueChanges | async}} op {{ toLocalDate(eventDateC.valueChanges | async | date) }}
           voor {{charityC.valueChanges | async}}. Met jouw motivatie komt dat vast goed!
         </label>
         <div>
@@ -84,16 +105,54 @@
         </div>
       </mat-step>
       <mat-step [stepControl]="profileImageForm">
-          <form [formGroup]="profileImageForm">
-              <label>
-                Om je profiel extra mooi te maken kan je hier een profielfoto toevoegen.
-              </label>
-              <input type="file" placeholder="" [formControl]="profileImageC" required>
-              <div>
-                <button mat-button matStepperPrevious>Vorige</button>
-                <button mat-button matStepperNext>Volgende</button>
-              </div>
-            </form>
+        <form [formGroup]="profileImageForm">
+          <label>
+            Om je profiel extra mooi te maken kan je hier een profielfoto toevoegen.
+          </label>
+          <input type="file" placeholder="" [formControl]="profileImageC">
+          <div>
+            <button mat-button matStepperPrevious>Vorige</button>
+            <button mat-button matStepperNext>Volgende</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="passwordForm">
+        <form [formGroup]="passwordForm">
+          <mat-form-field>
+            <input type="password" matInput placeholder="wachtwoord" [formControl]="passwordC" required>
+          </mat-form-field>
+          <mat-hint>Minimaal 8, maximaal 64 karakters, minimaal 1 hoofdletter en 1 nummer</mat-hint>
+          <mat-error *ngIf="passwordC.hasError('required')">
+            Wachtwoord is <strong>vereist</strong>
+          </mat-error>
+          <mat-error *ngIf="!passwordC.hasError('required') && !validPassword(passwordC) == true">
+            Wachtwoord mist <strong>hoofdletter en / of nummer</strong>
+          </mat-error>
+          <mat-error *ngIf="passwordC.hasError('maxlength')">
+            Wachtwoord is <strong>te lang</strong>
+          </mat-error>
+          <mat-error *ngIf="passwordC.hasError('minlength')">
+            Wachtwoord is <strong>te kort</strong>
+          </mat-error>
+          
+          <mat-form-field>
+            <input type="password" matInput placeholder="herhaal wachtwoord" [formControl]="passwordRepeatC" required>
+          </mat-form-field>
+          <mat-error *ngIf="passwordRepeatC.hasError('required')">
+            Wachtwoord herhalen is <strong>vereist</strong>
+          </mat-error>
+          <mat-error *ngIf="equalPasswords(passwordC, passwordRepeatC) == false">
+            Wachtwoorden <strong>komen niet overeen</strong>
+          </mat-error>
+
+          <div>
+            <button mat-button matStepperPrevious>Vorige</button>
+            <button type="submit" (click)="onSubmit()" [disabled]="!allRequiredFieldsValid()" mat-button matStepperNext class="next" [ngClass]="allRequiredFieldsValid() ? 'active' : ''">Registreer</button>
+          </div>
+          <mat-error *ngIf="!allRequiredFieldsValid()">
+            Niet alle verplichte velden zijn ingevuld
+          </mat-error>
+        </form>
       </mat-step>
     </mat-horizontal-stepper>
   </div>
