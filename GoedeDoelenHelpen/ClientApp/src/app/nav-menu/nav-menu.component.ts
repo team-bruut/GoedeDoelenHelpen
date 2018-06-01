@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { NavMenuService } from './nav-menu.service';
 import { Subscription } from 'rxjs/Subscription';
+import { AuthenticationService } from '../authentication.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav-menu',
@@ -34,15 +36,28 @@ export class NavMenuComponent implements OnInit, OnDestroy {
     link: '/user/login'
   };
 
-  user = {
-    username: 'fjwillemsen',
-    firstname: 'Floris-Jan',
-    name: 'Willemsen',
-  };
+  // username_abbreviation = this.user.firstname[0] + '. ' + this.user.name[0] + '.';
+  get username_abbreviation() {
+    return this.authenticationService.AuthenticationInfo.pipe(map(info => {
+      if (info.loggedIn) {
+        return `${info.firstName[0]}, ${info.lastName[0]}`;
+      } else {
+        return '?';
+      }
+    }));
+  }
 
-  username_abbreviation = this.user.firstname[0] + '. ' + this.user.name[0] + '.';
+  get user_logedIn() {
+    return this.authenticationService
+      .AuthenticationInfo.pipe(
+        map(info => info.loggedIn)
+      );
+  }
 
-  constructor(private navMenuService: NavMenuService) { }
+  constructor(
+    private navMenuService: NavMenuService,
+    private authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit() {
     this.subscription = this.navMenuService.theme.subscribe(

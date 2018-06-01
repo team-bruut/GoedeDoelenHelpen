@@ -23,7 +23,5 @@ namespace GoedeDoelenHelpen.Data
         [Required]
         [StringLength(128)]
         public string LastName { get; set; }
-
-         //Tussenvoegsel
     }
 }
