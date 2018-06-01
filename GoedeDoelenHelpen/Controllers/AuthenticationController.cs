@@ -166,7 +166,7 @@ namespace GoedeDoelenHelpen.Controllers
             }
             else
             {
-                var aUser = await _userManager.FindByEmailAsync(User.Claims.FirstOrDefault(c => c.Type == @"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+                var aUser = await this.GetApplicationUserAsync(_userManager);
 
                 return new AuthenticationInfoLoggedIn
                 {
