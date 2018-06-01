@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthenticationService } from './authentication.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class IsAuthenticated implements CanActivate {
@@ -14,12 +15,10 @@ export class IsAuthenticated implements CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
-      ): boolean {
-        if (this.authenticationService.isAuthenticated()) {
-            return true;
-        } else {
-            this.router.navigate(['user/login']);
-            return false;
-        }
+      ): Observable<boolean> {
+          return this.authenticationService.isAuthenticated()
+            .pipe(
+                tap(x => x ? {} : this.router.navigate(['user/login']))
+            );
       }
 }

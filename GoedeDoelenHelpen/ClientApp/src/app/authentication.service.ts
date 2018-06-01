@@ -41,8 +41,7 @@ export class AuthenticationService {
   }
 
   public refreshAuthInfo() {
-    console.log('refresh');
-    // this.http.get<AuthenticationInfo>(`${this.baseUrl}/api/Authentication/AuthenticationInfo`).subscribe(this._authenticationInfo);
+    this._refresh.next(true);
   }
 
   public activateAccount(model: ActivateAccountModel): Observable<void> {
@@ -75,8 +74,8 @@ export class AuthenticationService {
     return new Date(localStorage.getItem('TokenExpiration'));
   }
 
-  isAuthenticated(): boolean {
-    return this.getToken() && this.getExpirationFromToke() > new Date();
+  isAuthenticated(): Observable<boolean> {
+    return this.AuthenticationInfo.pipe(map(inf => inf.loggedIn));
 }
 
 }
