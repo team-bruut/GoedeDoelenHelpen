@@ -75,18 +75,16 @@ namespace GoedeDoelenHelpen.Controllers
                 {
                     return Ok();
                 }
-                else if (result.IsLockedOut)
-                {
-                    return Unauthorized();
-                }
-                else
-                {
-                    return Unauthorized();
-                }
+                return Unauthorized();
             }
 
             // If we got this far, something failed, redisplay form
             return Unauthorized();
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AssignFB() {
+            
         }
 
         [HttpPost("[action]")]

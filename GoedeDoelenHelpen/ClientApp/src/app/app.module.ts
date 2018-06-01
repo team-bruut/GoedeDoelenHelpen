@@ -37,9 +37,6 @@ import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { DashboardModule } from './user/dashboard/dashboard.module';
 import { PasswordResetLinkComponent } from './user/password-reset-link/password-reset-link.component';
 
-import { SocialLoginModule, AuthServiceConfig } from "angular5-social-login";
-import { FacebookLoginProvider } from "angular5-social-login";
-
 @NgModule({
   declarations: [
     AppComponent,

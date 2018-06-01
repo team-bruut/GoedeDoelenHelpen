@@ -17,7 +17,6 @@ namespace GoedeDoelenHelpen.Data
         [StringLength(128)]
         public string FirstName { get; set; }
 
-        [Required]
         [StringLength(64)]
         public string NameInsertion { get; set; }
 

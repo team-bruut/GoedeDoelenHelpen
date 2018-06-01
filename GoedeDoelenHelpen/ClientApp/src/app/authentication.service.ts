@@ -15,6 +15,13 @@ export type ActivateAccountModel = {
   code: string;
 };
 
+export type FBModel = {
+  userId: string;
+  accessToken: string;
+  expiresIn: string;
+  signedRequest: string;
+};
+
 @Injectable()
 export class AuthenticationService {
   resetPassword(model: ResetPassword): Observable<ActionResult> {
@@ -34,14 +41,18 @@ export class AuthenticationService {
   }
 
   public login(model: SignUpModel): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/api/Authentication/Login`, model);
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/Login`, model);
   }
 
   public get AuthenticationInfo(): Observable<AuthenticationInfo> {
-    return this.http.get<AuthenticationInfo>(`${this.baseUrl}/api/Authentication/AuthenticationInfo`);
+    return this.http.get<AuthenticationInfo>(`${this.baseUrl}api/Authentication/AuthenticationInfo`);
   }
 
   public forgotPassword(email: string): Observable<ActionResult> {
     return this.http.post<ActionResult>(`${this.baseUrl}api/Authentication/ForgotPassword/`, {email: email});
+  }
+
+  public assignFB(model: FBModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/FB`, model);
   }
 }
