@@ -104,8 +104,34 @@ namespace GoedeDoelenHelpen.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AssignFB() {
-            
+        public async Task<IActionResult> AssignFB([FromBody]FacebookModel model) {
+            ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
+            List<EventUser> eventUsers = user.EventUsers.Where(eu => eu.EventId == new Guid(model.EventId)).ToList();
+            if (user != null) { 
+                if (eventUsers.Count == 1) {
+                    EventUser eventUser = eventUsers.First();
+                    if (eventUser.FacebookRecords.Count != 0) {
+                        return Unauthorized();//Moet andere IAction zijn
+                    }else {
+                        try {
+                            eventUser.FacebookRecords.Add(new FacebookRecord {
+                                Id = new Guid(model.UserId),
+                                ExpiresIn = model.ExpiresIn,
+                                AccessToken = model.AccessToken,
+                                SignedRequest = model.SignedRequest,
+                                TimeStamp = DateTime.Now
+                            });
+                            return Ok();
+                        } catch {
+                            return BadRequest();
+                        }
+                    }
+                } else {
+                    return BadRequest();
+                }
+            } else {
+                return Unauthorized();
+            }
         }
 
         [HttpPost("[action]")]
