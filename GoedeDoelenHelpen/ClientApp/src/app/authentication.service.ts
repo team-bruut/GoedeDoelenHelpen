@@ -33,7 +33,6 @@ export class AuthenticationService {
       switchMap(() => this.http.get<AuthenticationInfo>(`${this.baseUrl}/api/Authentication/AuthenticationInfo`)),
       shareReplay()
     );
-    // this.refreshAuthInfo();
   }
 
   resetPassword(model: ResetPassword): Observable<ActionResult> {
@@ -42,6 +41,10 @@ export class AuthenticationService {
 
   public refreshAuthInfo() {
     this._refresh.next(true);
+  }
+
+  signUp(signUpModel: SignUpModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, signUpModel);
   }
 
   public activateAccount(model: ActivateAccountModel): Observable<void> {
