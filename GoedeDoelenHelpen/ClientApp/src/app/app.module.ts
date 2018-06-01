@@ -37,6 +37,7 @@ import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { DashboardModule } from './user/dashboard/dashboard.module';
 import { PasswordResetLinkComponent } from './user/password-reset-link/password-reset-link.component';
 import { TokenInterceptor } from './token.interceptor';
+import { IsAuthenticated } from './IsAuthenticated.guard';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { TokenInterceptor } from './token.interceptor';
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
       { path: 'User/UserPasswordResetLink', component: PasswordResetLinkComponent}
     ]),
   ],
@@ -73,7 +74,8 @@ import { TokenInterceptor } from './token.interceptor';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }],
+  },
+  IsAuthenticated],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

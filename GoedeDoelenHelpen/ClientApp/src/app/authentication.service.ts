@@ -75,4 +75,8 @@ export class AuthenticationService {
     return new Date(localStorage.getItem('TokenExpiration'));
   }
 
+  isAuthenticated(): boolean {
+    return this.getToken() && this.getExpirationFromToke() > new Date();
+}
+
 }
