@@ -42,7 +42,7 @@ namespace GoedeDoelenHelpen.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Username };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Username, FirstName = "FJ", LastName = "Willemsen", NameInsertion = "de" };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

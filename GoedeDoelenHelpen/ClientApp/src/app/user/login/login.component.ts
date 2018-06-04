@@ -3,6 +3,7 @@ import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/fo
 import { AuthenticationService } from '../../authentication.service';
 import { SharedModule } from '../../shared/shared.module';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authenticationService: AuthenticationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.userLoginGroup = fb.group(
       {
@@ -61,7 +63,7 @@ export class LoginComponent implements OnInit {
       this.authenticationService
         .login({username: this.emailC.value, password: this.passwordC.value})
         .subscribe(
-          success => this.loginMessage = 'Je bent ingelogd',
+          success => this.router.navigate(['dashboard']),
           err => {
             this.loginMessage = 'Je bent niet ingelogd';
             this.openDialog();

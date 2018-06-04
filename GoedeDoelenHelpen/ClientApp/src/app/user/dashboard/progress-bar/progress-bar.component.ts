@@ -9,35 +9,41 @@ import { ChartSettings } from './../dashboard.component';
 export class ProgressBarComponent implements OnInit {
   @ViewChild('progressBar') progressBar: ElementRef;
 
-  level = 1;
+  level: number;
   levelString: String;
-  // levelArray = ['Beginner', 'Enthousiasteling', 'Professional', 'Expert', 'Legend'];
-  levelArray = [
-    { 'name': 'Beginner', 'steps': [] },
-    { 'name': 'Enthousiasteling', 'steps': [
-        { 'desc': 'Je Facebook account toe te voegen', 'link': '<>', 'done': true },
-        { 'desc': 'Vandaag iets te posten', 'link': '<>', 'done': false },
-        { 'desc': 'Je Twitter account toe te voegen', 'link': '<>', 'done': false }
-      ] },
-    { 'name': 'Professional', 'steps': [
-      { 'desc': 'Je LinkedIn account toe te voegen', 'link': '<>', 'done': false },
-      { 'desc': 'Deze week twee keer  iets te posten', 'link': '<>', 'done': true },
-      { 'desc': 'Je Hyves account toe te voegen', 'link': '<>', 'done': true }
-    ] },
-    { 'name': 'Expert', 'steps': [] },
-    { 'name': 'Legend', 'steps': [] }
-  ];
-  maxLevels = this.levelArray.length;
+  levelArray: any[];
+  maxLevels: number;
 
-  value = 0;
+  value: number;
   v: number;
   valueString: string;
-  maxValue = 100;
+  maxValue: number;
 
   constructor() {
   }
 
   ngOnInit() {
+    this.level = 1;
+    this.levelArray = [
+      { 'name': 'Beginner', 'steps': [] },
+      { 'name': 'Enthousiasteling', 'steps': [
+          { 'desc': 'Je Facebook account toe te voegen', 'link': '<>', 'done': true },
+          { 'desc': 'Vandaag iets te posten', 'link': '<>', 'done': false },
+          { 'desc': 'Je Twitter account toe te voegen', 'link': '<>', 'done': false }
+        ] },
+      { 'name': 'Professional', 'steps': [
+        { 'desc': 'Je LinkedIn account toe te voegen', 'link': '<>', 'done': false },
+        { 'desc': 'Deze week twee keer  iets te posten', 'link': '<>', 'done': true },
+        { 'desc': 'Je Hyves account toe te voegen', 'link': '<>', 'done': true }
+      ] },
+      { 'name': 'Expert', 'steps': [] },
+      { 'name': 'Legend', 'steps': [] }
+    ];
+    this.maxLevels = this.levelArray.length;
+
+    this.value = 0;
+    this.maxValue = 100;
+
     this.updateLevel();
     this.updateValue();
   }
