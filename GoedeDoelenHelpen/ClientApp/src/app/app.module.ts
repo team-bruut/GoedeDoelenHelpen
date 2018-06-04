@@ -38,6 +38,9 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
 import { PasswordResetLinkComponent } from './user/password-reset-link/password-reset-link.component';
 import { TokenInterceptor } from './token.interceptor';
 
+//Events
+//import { EventsService } from './services/events/events.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +51,7 @@ import { TokenInterceptor } from './token.interceptor';
     ConfirmEmailComponent,
     ActivatedComponent,
     PasswordResetLinkComponent,
+    //EventsService,
   ],
   imports: [
     SharedModule,
@@ -58,6 +62,7 @@ import { TokenInterceptor } from './token.interceptor';
     FlexLayoutModule,
     HomeModule,
     DashboardModule,
+    //EventsService,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

@@ -4,8 +4,8 @@
     <div class="page-select">
       <mat-form-field>
           <mat-select placeholder="Pagina">
-            <mat-option *ngFor="let page of pages" [value]="page">
-              {{ page }}
+            <mat-option *ngFor="let page of pages" [value]="page.id">
+              {{ page.title }}
             </mat-option>
           </mat-select>
         </mat-form-field>
