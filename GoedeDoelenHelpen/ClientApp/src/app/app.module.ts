@@ -23,10 +23,6 @@ import { HomeComponent } from './home/home.component';
 // Login
 import { LoginComponent } from './user/login/login.component';
 
-// Registration
-import { RegisterComponent } from './user/register/register.component';
-import { RegisterService } from './user/register/register.service';
-
 // Authentication
 import { AuthenticationService } from './authentication.service';
 import { ConfirmEmailComponent } from './user/confirm-email/confirm-email.component';
@@ -39,16 +35,19 @@ import { PasswordResetLinkComponent } from './user/password-reset-link/password-
 import { TokenInterceptor } from './token.interceptor';
 import { IsAuthenticated } from './IsAuthenticated.guard';
 
+// Event
+import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     SiteMapComponent,
     LoginComponent,
-    RegisterComponent,
     ConfirmEmailComponent,
     ActivatedComponent,
     PasswordResetLinkComponent,
+    DefaultEventRegisterComponent,
   ],
   imports: [
     SharedModule,
@@ -62,20 +61,20 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'user/register', component: RegisterComponent },
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
-      { path: 'User/UserPasswordResetLink', component: PasswordResetLinkComponent}
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'evenement/register', component: DefaultEventRegisterComponent },
+      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent },
     ]),
   ],
-  providers: [RegisterService, AuthenticationService, NavMenuService, {
+  providers: [AuthenticationService, NavMenuService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
   },
-  IsAuthenticated],
+    IsAuthenticated],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

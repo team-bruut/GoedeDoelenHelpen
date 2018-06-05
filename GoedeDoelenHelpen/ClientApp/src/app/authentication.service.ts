@@ -10,6 +10,21 @@ import { map, startWith, switchMap, share, shareReplay } from 'rxjs/operators';
 export type SignUpModel = {
   username: string;
   password: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  profileimage: any;
+};
+
+export type EventModel = {
+  eventname: string;
+  eventdescription: string;
+  eventdate: Date;
+};
+
+export type SignInModel = {
+  username: string;
+  password: string;
 };
 
 export type ActivateAccountModel = {
@@ -26,14 +41,11 @@ export class AuthenticationService {
     private http: HttpClient,
     @Inject('BASE_URL') private baseUrl: string
   ) {
-    console.log('consturct');
-    // this._authenticationInfo = new BehaviorSubject<AuthenticationInfo>({loggedIn: false});
     this.AuthenticationInfo = this._refresh.pipe(
       startWith(true),
       switchMap(() => this.http.get<AuthenticationInfo>(`${this.baseUrl}/api/Authentication/AuthenticationInfo`)),
       shareReplay()
     );
-    // this.refreshAuthInfo();
   }
 
   resetPassword(model: ResetPassword): Observable<ActionResult> {
