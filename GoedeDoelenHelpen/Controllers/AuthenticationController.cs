@@ -54,7 +54,6 @@ namespace GoedeDoelenHelpen.Controllers
         {
             if (ModelState.IsValid)
             {
-<<<<<<< HEAD
                 var user = new ApplicationUser {
                     UserName = model.Username,
                     Email = model.Username,
@@ -62,9 +61,6 @@ namespace GoedeDoelenHelpen.Controllers
                     FirstName = "Barld",
                     LastName = "Boot"
                 };
-=======
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Username, FirstName = "FJ", LastName = "Willemsen", NameInsertion = "de" };
->>>>>>> origin/eventRegister
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
