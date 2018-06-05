@@ -6,6 +6,8 @@ import { ReplaySubject, BehaviorSubject, Subject } from 'rxjs';
 import { ActionResult } from './actionResult';
 import { ResetPassword } from './resetPassword';
 import { map, startWith, switchMap, share, shareReplay } from 'rxjs/operators';
+import { FBAuthModel } from './models/FBAuthModel';
+import { FBAssignModel } from './models/FBAssignModel';
 
 export type SignUpModel = {
   username: string;
@@ -17,14 +19,11 @@ export type ActivateAccountModel = {
   code: string;
 };
 
-export type FBModel = {
-  userId: string;
-  accessToken: string;
-  expiresIn: string;
-  signedRequest: string;
-};
 
-@Injectable()
+
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthenticationService {
   private _refresh = new Subject<boolean>();
   public readonly AuthenticationInfo: Observable<AuthenticationInfo>;
@@ -33,7 +32,7 @@ export class AuthenticationService {
     private http: HttpClient,
     @Inject('BASE_URL') private baseUrl: string
   ) {
-    console.log('consturct');
+    console.log('construct');
     // this._authenticationInfo = new BehaviorSubject<AuthenticationInfo>({loggedIn: false});
     this.AuthenticationInfo = this._refresh.pipe(
       startWith(true),
@@ -82,7 +81,11 @@ export class AuthenticationService {
     return new Date(localStorage.getItem('TokenExpiration'));
   }
 
-  public assignFB(model: FBModel): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}api/Authentication/FB`, model);
+  public getFB(): Observable<FBAuthModel> {
+    return this.http.get<FBAuthModel>(`${this.baseUrl}api/Authentication/FacebookInfo`);
+  }
+
+  public assignFB(model: FBAssignModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/AssignFB`, model);
   }
 }

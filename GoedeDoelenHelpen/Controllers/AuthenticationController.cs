@@ -108,23 +108,18 @@ namespace GoedeDoelenHelpen.Controllers
             ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
             List<EventUser> eventUsers = user.EventUsers.Where(eu => eu.EventId == new Guid(model.EventId)).ToList();
             if (user != null) { 
-                if (eventUsers.Count == 1) {
-                    EventUser eventUser = eventUsers.First();
-                    if (eventUser.FacebookRecords.Count != 0) {
-                        return Unauthorized();//Moet andere IAction zijn
-                    }else {
-                        try {
-                            eventUser.FacebookRecords.Add(new FacebookRecord {
-                                Id = new Guid(model.UserId),
-                                ExpiresIn = model.ExpiresIn,
-                                AccessToken = model.AccessToken,
-                                SignedRequest = model.SignedRequest,
-                                TimeStamp = DateTime.Now
-                            });
+                if (user.FacebookRecords.Count == 0) {
+                    try {
+                        user.FacebookRecords.Add(new FacebookRecord {
+                            Id = new Guid(model.UserId),
+                            ExpiresIn = model.ExpiresIn,
+                            AccessToken = model.AccessToken,
+                            SignedRequest = model.SignedRequest,
+                            TimeStamp = DateTime.Now });
+
                             return Ok();
-                        } catch {
-                            return BadRequest();
-                        }
+                    } catch {
+                        return BadRequest();
                     }
                 } else {
                     return BadRequest();
@@ -274,6 +269,27 @@ namespace GoedeDoelenHelpen.Controllers
                 return new ActionResultModel { Success = true, Message = "Wachtwoord is veranderd" };
             }
             return new ActionResultModel { Success = false, Message = "Er is iets misgegaan." };
+        }
+
+        [HttpGet("[action]")]
+        [ProducesResponseType(typeof(FaceBookHookedUp), 200)]
+        [ProducesResponseType(typeof(FaceBookNotHookedUp), 201)]
+        [Authorize]
+        public async Task<ActionResult<IFaceBookInfo>> FacebookInfo() {
+            ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
+            if (user != null) {
+                
+                if (user.FacebookRecords.Count == 1) {
+                    if (user.FacebookRecords.Count == 1) {
+                        return new FaceBookHookedUp{
+                            expiresIn = user.FacebookRecords[0].ExpiresIn.ToString()
+                        };//Moet andere IAction zijn
+                    } else if (user.FacebookRecords.Count == 0){
+                        return new FaceBookNotHookedUp();
+                    }
+                }
+            }
+            return BadRequest();
         }
 
 
