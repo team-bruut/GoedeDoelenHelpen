@@ -59,11 +59,11 @@ export class AuthenticationService {
   public activateAccount(model: ActivateAccountModel): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}api/Authentication/ConfirmEmail`, model);
   }
-  public signUp(signUpModel: SignUpModel): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, signUpModel);
+  public signUp(model: SignUpModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, model);
   }
 
-  public login(model: SignUpModel): Observable<void> {
+  public login(model: SignInModel): Observable<void> {
     return this.http.post<{token: string, expiration: string}>(`${this.baseUrl}api/Authentication/createToken`, model).pipe(
       map(({token, expiration}) => {
         localStorage.setItem('token', token);

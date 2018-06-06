@@ -69,7 +69,7 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
       { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
     ]),
   ],
-  providers: [RegisterService, AuthenticationService, NavMenuService, {
+  providers: [AuthenticationService, NavMenuService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
