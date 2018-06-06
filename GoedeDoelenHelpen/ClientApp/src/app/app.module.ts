@@ -37,6 +37,7 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 
 // Event
 import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
+import { EventRegisterService } from './event/default-event-register/event-register.service';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,9 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
     useClass: TokenInterceptor,
     multi: true
   },
-    IsAuthenticated],
+    IsAuthenticated,
+    EventRegisterService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

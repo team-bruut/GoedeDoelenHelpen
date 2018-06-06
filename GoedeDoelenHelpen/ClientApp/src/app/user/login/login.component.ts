@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
   onSubmit()  {
     if (this.userLoginGroup.valid) {
       this.authenticationService
-        .login({username: this.emailC.value, password: this.passwordC.value})
+        .login({username: this.emailC.value as string, password: this.passwordC.value as string})
         .subscribe(
           success => this.router.navigate(['dashboard']),
           err => {

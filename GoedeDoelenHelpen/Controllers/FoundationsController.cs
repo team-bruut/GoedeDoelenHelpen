@@ -46,7 +46,7 @@ namespace GoedeDoelenHelpen.Controllers
                     await _context.SaveChangesAsync();
                 }
             }
-            return _context.Foundations.Where(f => f.Name.Contains(model.Q)).OrderBy(f => f.Name).Take(50);
+            return _context.Foundations.Where(f => f.Name.Contains(model.Q)).OrderBy(f => f.Name).OrderBy(f => f.Name.StartsWith(model.Q)).Take(50);
         }
 
         private bool FoundationExists(int id)

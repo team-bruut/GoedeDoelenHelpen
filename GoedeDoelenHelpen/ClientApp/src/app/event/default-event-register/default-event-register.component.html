@@ -35,7 +35,6 @@
             <input type="text" matInput placeholder="Goede Doel" [formControl]="charityC" required [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let charity of filteredCharities | async" [value]="charity.name">
-                <img style="vertical-align:middle;" aria-hidden src="{{charity.logo}}" height="25" width="35" class="logo" [ngClass]="charity.logo == null ? 'hidden' : ''" />
                 <span>  {{ charity.name }}</span>
               </mat-option>
             </mat-autocomplete>
