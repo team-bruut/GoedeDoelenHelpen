@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LiveCommentsComponent implements OnInit {
 
+  liveComments: string[];
+
   constructor() { }
 
   ngOnInit() {
+    this.liveComments = ['This platform is awesome!', 'Check out this website guys!', 'Donate for Save The Children now'];
   }
 
 }
