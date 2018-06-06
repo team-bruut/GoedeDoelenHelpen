@@ -65,9 +65,9 @@ import { EventRegisterService } from './event/default-event-register/event-regis
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent },
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
       { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
     ]),
   ],
   providers: [AuthenticationService, NavMenuService, {

@@ -64,8 +64,8 @@ export class AuthenticationService {
   public activateAccount(model: ActivateAccountModel): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}api/Authentication/ConfirmEmail`, model);
   }
-  public signUp(signUpModel: SignUpModel): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, signUpModel);
+  public signUp(model: SignUpModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, model);
   }
 
   public login(model: LoginModel): Observable<void> {

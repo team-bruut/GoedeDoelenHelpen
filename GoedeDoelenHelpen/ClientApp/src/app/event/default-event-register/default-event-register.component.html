@@ -7,22 +7,37 @@
         <form [formGroup]="personalDetailsForm">
           <mat-form-field>
             <input matInput placeholder="voornaam" [formControl]="firstnameC" required>
+            <mat-error *ngIf="firstnameC.hasError('required')">
+              Voornaam is <strong>verplicht</strong>
+            </mat-error>
+            <mat-error *ngIf="firstnameC.hasError('minlength')">
+              Voornaam is <strong>te kort</strong>
+            </mat-error>
+            <mat-error *ngIf="firstnameC.hasError('maxlength')">
+              Voornaam is <strong>te lang</strong>
+            </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="firstnameC.hasError('required')">
-            Voornaam is <strong>verplicht</strong>
-          </mat-error>
           <mat-form-field>
             <input matInput placeholder="achternaam" [formControl]="lastnameC" required>
+            <mat-error *ngIf="lastnameC.hasError('required')">
+              Achternaam is <strong>verplicht</strong>
+            </mat-error>
+            <mat-error *ngIf="lastnameC.hasError('minlength')">
+              Achternaam is <strong>te kort</strong>
+            </mat-error>
+            <mat-error *ngIf="lastnameC.hasError('maxlength')">
+              Achternaam is <strong>te lang</strong>
+            </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="lastnameC.hasError('required')">
-            Achternaam is <strong>verplicht</strong>
-          </mat-error>
           <mat-form-field>
             <input matInput placeholder="emailadres" [formControl]="emailC" required>
+            <mat-error *ngIf="emailC.hasError('required')">
+              Email is <strong>verplicht</strong>
+            </mat-error>
+            <mat-error *ngIf="emailC.hasError('email')">
+              Email is <strong>niet correct</strong>
+            </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="emailC.hasError('required')">
-            Email is <strong>verplicht</strong>
-          </mat-error>
           <div>
             <button mat-button matStepperNext class="next" [ngClass]="personalDetailsForm.valid ? 'active' : ''">Volgende</button>
           </div>
@@ -38,10 +53,10 @@
                 <span>  {{ charity.name }}</span>
               </mat-option>
             </mat-autocomplete>
+            <mat-error *ngIf="charityC.hasError('required')">
+              Goede doel is <strong>verplicht</strong>
+            </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="charityC.hasError('required')">
-            Goede doel is <strong>verplicht</strong>
-          </mat-error>
           <div>
             <button mat-button matStepperPrevious>Vorige</button>
             <button mat-button matStepperNext class="next" [ngClass]="charityForm.valid ? 'active' : ''">Volgende</button>
@@ -53,10 +68,10 @@
           <label>Kan je kort vertellen waarom je {{charityC.valueChanges | async}} wilt helpen?</label>
           <mat-form-field id="#description-form-field">
             <textarea matInput placeholder="beschrijving van het evenement" [formControl]="eventDescriptionC" required></textarea>
+            <mat-error *ngIf="eventDescriptionC.hasError('required')">
+              Beschrijving is <strong>verplicht</strong>
+            </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="eventDescriptionC.hasError('required')">
-            Beschrijving is <strong>verplicht</strong>
-          </mat-error>
           <div>
             <button mat-button matStepperPrevious>Vorige</button>
             <button mat-button matStepperNext class="next" [ngClass]="eventDescriptionForm.valid ? 'active' : ''">Volgende</button>
@@ -68,10 +83,10 @@
           <label>Wat is de naam van je evenement?</label>
           <mat-form-field>
             <input matInput placeholder="evenement naam" [formControl]="eventNameC" required>
+            <mat-error *ngIf="eventNameC.hasError('required')">
+              Evenement naam is <strong>verplicht</strong>
+            </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="eventNameC.hasError('required')">
-            Evenement naam is <strong>verplicht</strong>
-          </mat-error>
           <div>
             <button mat-button matStepperPrevious>Vorige</button>
             <button mat-button matStepperNext class="next" [ngClass]="eventNameForm.valid ? 'active' : ''">Volgende</button>
@@ -83,7 +98,7 @@
           <input matInput [matDatepicker]="picker" [formControl]="eventDateC" placeholder="Wanneer vind '{{eventNameC.valueChanges | async}}' plaats?">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="eventDateC.hasError('required')">
+          <mat-error *ngIf="eventDateC.touched && eventDateC.hasError('required')">
             Datum is <strong>verplicht</strong>
           </mat-error>
           <div>
@@ -119,36 +134,36 @@
         <form [formGroup]="passwordForm">
           <mat-form-field>
             <input type="password" matInput placeholder="wachtwoord" [formControl]="passwordC" required>
+            <mat-hint>Minimaal 8, maximaal 64 karakters, minimaal 1 hoofdletter en 1 nummer</mat-hint>
+            <mat-error *ngIf="passwordC.hasError('required')">
+              Wachtwoord is <strong>vereist</strong>
+            </mat-error>
+            <mat-error *ngIf="!passwordC.hasError('required') && !validPassword(passwordC) == true">
+              Wachtwoord mist <strong>hoofdletter en / of nummer</strong>
+            </mat-error>
+            <mat-error *ngIf="passwordC.hasError('maxlength')">
+              Wachtwoord is <strong>te lang</strong>
+            </mat-error>
+            <mat-error *ngIf="passwordC.hasError('minlength')">
+              Wachtwoord is <strong>te kort</strong>
+            </mat-error>
           </mat-form-field>
-          <mat-hint>Minimaal 8, maximaal 64 karakters, minimaal 1 hoofdletter en 1 nummer</mat-hint>
-          <mat-error *ngIf="passwordC.hasError('required')">
-            Wachtwoord is <strong>vereist</strong>
-          </mat-error>
-          <mat-error *ngIf="!passwordC.hasError('required') && !validPassword(passwordC) == true">
-            Wachtwoord mist <strong>hoofdletter en / of nummer</strong>
-          </mat-error>
-          <mat-error *ngIf="passwordC.hasError('maxlength')">
-            Wachtwoord is <strong>te lang</strong>
-          </mat-error>
-          <mat-error *ngIf="passwordC.hasError('minlength')">
-            Wachtwoord is <strong>te kort</strong>
-          </mat-error>
           
           <mat-form-field>
             <input type="password" matInput placeholder="herhaal wachtwoord" [formControl]="passwordRepeatC" required>
+            <mat-error *ngIf="passwordRepeatC.hasError('required')">
+              Wachtwoord herhalen is <strong>vereist</strong>
+            </mat-error>
+            <mat-error *ngIf="equalPasswords(passwordC, passwordRepeatC) == false">
+              Wachtwoorden <strong>komen niet overeen</strong>
+            </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="passwordRepeatC.hasError('required')">
-            Wachtwoord herhalen is <strong>vereist</strong>
-          </mat-error>
-          <mat-error *ngIf="equalPasswords(passwordC, passwordRepeatC) == false">
-            Wachtwoorden <strong>komen niet overeen</strong>
-          </mat-error>
 
           <div>
             <button mat-button matStepperPrevious>Vorige</button>
-            <button type="submit" (click)="onSubmit()" [disabled]="!allRequiredFieldsValid()" mat-button matStepperNext class="next" [ngClass]="allRequiredFieldsValid() ? 'active' : ''">Registreer</button>
+            <button type="submit" (click)="onSubmit()" [disabled]="!eventRegisterForm.valid" mat-button matStepperNext class="next" [ngClass]="eventRegisterForm.valid ? 'active' : ''">Registreer</button>
           </div>
-          <mat-error *ngIf="!allRequiredFieldsValid()">
+          <mat-error *ngIf="!eventRegisterForm.valid">
             Niet alle verplichte velden zijn ingevuld
           </mat-error>
         </form>
