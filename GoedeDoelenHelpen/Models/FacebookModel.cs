@@ -7,10 +7,15 @@ namespace GoedeDoelenHelpen.Models
 {
     public class FacebookModel
     {
-        public string EventId { get; set; }
-        public string UserId { get; set; }
-        public string AccessToken { get; set; }
-        public DateTime ExpiresIn { get; set; }
-        public string SignedRequest { get; set; }
+        //public string EventId { get; set; }
+        public string status { get; set; }
+        public FBAuthResponse authResponse { get; set; }
+    }
+
+    public class FBAuthResponse {
+        public string userId { get; set; }
+        public string accessToken { get; set; }
+        public string expiresIn { get; set; }
+        public string signedRequest { get; set; }
     }
 }

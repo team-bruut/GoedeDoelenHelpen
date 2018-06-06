@@ -37,6 +37,7 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 
 // Event
 import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
+import { FacebookComponent } from './user/facebook/facebook.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
     ActivatedComponent,
     PasswordResetLinkComponent,
     DefaultEventRegisterComponent,
+    FacebookComponent,
   ],
   imports: [
     SharedModule,

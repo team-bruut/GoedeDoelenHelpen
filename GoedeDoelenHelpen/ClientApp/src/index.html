@@ -1,6 +1,65 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId: '198342834133525',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v0.1'
+    });
+
+    FB.AppEvents.logPageView();
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+  function postFBData() {
+    FB.login()
+    for (i = 0; i < 10; i++){
+      setTimeout(function () {
+        if (FB.getLoginStatus(function (response) {
+          console.log(i);
+          if (response.status == true) {
+            return true;
+          }
+        }) == true){ break; }
+      }, 1000)
+    }
+  }
+
+  function post(path, params) {
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", path);
+
+    for (var key in params) {
+      if (params.hasOwnProperty(key)) {
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", key);
+        hiddenField.setAttribute("value", params[key]);
+
+        form.appendChild(hiddenField);
+      }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+</script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Goede Doelen Helpen</title>
   <base href="/">

@@ -106,15 +106,19 @@ namespace GoedeDoelenHelpen.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> AssignFB([FromBody]FacebookModel model) {
             ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
-            List<EventUser> eventUsers = user.EventUsers.Where(eu => eu.EventId == new Guid(model.EventId)).ToList();
             if (user != null) { 
+                if (user.FacebookRecords == null) {
+                    user.FacebookRecords = new List<FacebookRecord>();
+                }
+
                 if (user.FacebookRecords.Count == 0) {
                     try {
                         user.FacebookRecords.Add(new FacebookRecord {
-                            Id = new Guid(model.UserId),
-                            ExpiresIn = model.ExpiresIn,
-                            AccessToken = model.AccessToken,
-                            SignedRequest = model.SignedRequest,
+
+                            Id = new Guid(model.authResponse.userId),
+                            ExpiresIn = DateTime.Parse(model.authResponse.expiresIn),
+                            AccessToken = model.authResponse.accessToken,
+                            SignedRequest = model.authResponse.signedRequest,
                             TimeStamp = DateTime.Now });
 
                             return Ok();
@@ -230,7 +234,7 @@ namespace GoedeDoelenHelpen.Controllers
 
                 }
 
-                // For more information on how to enable account confirmation and password reset please
+                // For more information on how to enable account nfirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 // example: https://localhost:44333/UserPasswordResetLink/ConfirmEmail?userId=5cf1688a-fa61-464d-a924-adc8048180be&code=CfDJ8IuddpyUj2ZNk6o%2FU14BzYIcM8g0Jz1uG7p2TRfs5KU85Fa%2FaDAZmVpHjl7UTODlN326gkRgNLbMpx%2B6Dsv%2FViYFA2TrSyQvY9bsArcc4UVxGs9KTtVp6CBjnbAeyoXMAZ%2F438DH15wluzko5DnbJTe2orUqYaAJMUTfv0ZYSvqLJNWIRBJRxK52OqhsPunDsVmg38JvbPB378PRpvcdDjbeum6AxGG5qYQROPZDQlPC
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -278,14 +282,12 @@ namespace GoedeDoelenHelpen.Controllers
             ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
             if (user != null) {
                 
-                if (user.FacebookRecords.Count == 1) {
-                    if (user.FacebookRecords.Count == 1) {
-                        return new FaceBookHookedUp{
-                            expiresIn = user.FacebookRecords[0].ExpiresIn.ToString()
-                        };//Moet andere IAction zijn
-                    } else if (user.FacebookRecords.Count == 0){
-                        return new FaceBookNotHookedUp();
-                    }
+                if (user.FacebookRecords == null || user.FacebookRecords.Count == 0) {
+                    return new FaceBookNotHookedUp();
+                }else if (user.FacebookRecords.Count == 1) {
+                    return new FaceBookHookedUp{
+                        expiresIn = user.FacebookRecords[0].ExpiresIn.ToString()
+                    };//Moet andere IAction 
                 }
             }
             return BadRequest();
