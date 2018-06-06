@@ -14,6 +14,6 @@ export class EventRegisterService {
   ) { }
 
   public searchCharity(q: string): Observable<SearchCharity[]> {
-    return this.http.post<SearchCharity[]>(`${this.baseUrl}api/Foundations/Search`, { q: q});
+    return this.http.post<SearchCharity[]>(`${this.baseUrl}api/Charities/Search`, { q: q});
   }
 }

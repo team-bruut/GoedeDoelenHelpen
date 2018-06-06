@@ -15,11 +15,11 @@ namespace GoedeDoelenHelpen.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FoundationsController : ControllerBase
+    public class CharitiesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public FoundationsController(ApplicationDbContext context)
+        public CharitiesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -30,28 +30,23 @@ namespace GoedeDoelenHelpen.Controllers
         /// <param name="model">search model</param>
         /// <returns></returns>
         [HttpPost("[action]")]
-        public async Task<IEnumerable<Foundation>> Search([FromBody]SimpleSearch model)
+        public async Task<IEnumerable<Charity>> Search([FromBody]SimpleSearch model)
         {
-            if (!await _context.Foundations.AnyAsync())
+            if (!await _context.Charities.AnyAsync())
             {
                 var serializer = new XmlSerializer(typeof(List<beschikking>), new XmlRootAttribute("publicatieAnbiInstellingen"));
-                IEnumerable<Foundation> EFFoundations = new List<Foundation>();
+                IEnumerable<Charity> EFFoundations = new List<Charity>();
                 using (Stream stream = typeof(Program).Assembly.
                    GetManifestResourceStream("GoedeDoelenHelpen.Files.anbi.xml"))
                 {
                     var foundations = (List<beschikking>)serializer.Deserialize(new StreamReader(stream));
-                    EFFoundations = foundations.ToList().Select((f, index) => new Foundation { FiscusNumber = f.fiscaalNummer, Name = f.aliasNaam ?? f.naam });
+                    EFFoundations = foundations.ToList().Select((f, index) => new Charity { FiscusNumber = f.fiscaalNummer, Name = f.aliasNaam ?? f.naam });
 
-                    await _context.Foundations.AddRangeAsync(EFFoundations);
+                    await _context.Charities.AddRangeAsync(EFFoundations);
                     await _context.SaveChangesAsync();
                 }
             }
-            return _context.Foundations.Where(f => f.Name.Contains(model.Q)).OrderBy(f => f.Name).OrderBy(f => f.Name.StartsWith(model.Q)).Take(50);
-        }
-
-        private bool FoundationExists(int id)
-        {
-            return _context.Foundations.Any(e => e.Id == id);
+            return _context.Charities.Where(f => f.Name.Contains(model.Q)).OrderBy(f => f.Name).OrderBy(f => f.Name.StartsWith(model.Q)).Take(50);
         }
     }
 }

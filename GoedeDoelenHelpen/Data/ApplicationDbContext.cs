@@ -22,7 +22,7 @@ namespace GoedeDoelenHelpen.Data
         public DbSet<EmailRecord> EmailRecords { get; set; }
         public DbSet<FacebookRecord> FacebookRecords { get; set; }
         public DbSet<EventInvite> EventInvites { get; set;}
-        public DbSet<Foundation> Foundations { get; set; }
+        public DbSet<Charity> Charities { get; set; }
         
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -90,8 +90,6 @@ namespace GoedeDoelenHelpen.Data
 
             modelBuilder.Entity<ViewRecord>()
                 .HasKey(vr => new { vr.SessionId, vr.EventId});
-
-
         }
     }    
 }

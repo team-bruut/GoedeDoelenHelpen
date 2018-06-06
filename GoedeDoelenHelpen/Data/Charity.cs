@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GoedeDoelenHelpen.Data
 {
-    public class Foundation
+    public class Charity
     {
         public int Id { get; set; }
         public string FiscusNumber { get; set; }
