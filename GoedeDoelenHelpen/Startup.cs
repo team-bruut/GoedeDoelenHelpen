@@ -16,6 +16,11 @@ using Newtonsoft.Json.Serialization;
 using GoedeDoelenHelpen.Extensions;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace GoedeDoelenHelpen
 {
@@ -36,10 +41,30 @@ namespace GoedeDoelenHelpen
 
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
+
                 config.SignIn.RequireConfirmedEmail = true;
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication(o =>
+            {
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+             {
+                 o.TokenValidationParameters = new TokenValidationParameters()
+                 {
+                     ValidIssuer = Configuration["JwtSecurityToke:Issuer"],
+                     ValidAudience = Configuration["JwtSecurityToke:Audience"],
+                     ValidateAudience = false,
+                     ValidateIssuer = false,
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSecurityToken:key"])),
+                     ValidateLifetime = true
+                 };
+             });
+
+            services.AddSingleton<IConfiguration>(Configuration);
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -118,6 +143,8 @@ namespace GoedeDoelenHelpen
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -129,7 +156,7 @@ namespace GoedeDoelenHelpen
                     template: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();

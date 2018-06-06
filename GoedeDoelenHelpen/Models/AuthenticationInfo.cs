@@ -19,5 +19,7 @@ namespace GoedeDoelenHelpen.Models
     {
         public bool LoggedIn => true;
         public string Username { get; set; }
+        public string FirstName { get; internal set; }
+        public string LastName { get; internal set; }
     }
 }
