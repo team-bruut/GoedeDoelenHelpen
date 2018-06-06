@@ -43,6 +43,8 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
   passwordC: AbstractControl;
   passwordRepeatC: AbstractControl;
 
+  eventRegisterForm: FormGroup;
+
   constructor(
     private fb: FormBuilder,
     private navMenuService: NavMenuService,
@@ -123,14 +125,21 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
             Validators.required,
             Validators.minLength(8),
             Validators.maxLength(64),
-            // Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[A-Z])')
           ])]
         ],
         passwordRepeat: ['', Validators.required]
-      }
-    );
+      }, this.passwordValidator );
     this.passwordC = this.passwordForm.get('password');
     this.passwordRepeatC = this.passwordForm.get('passwordRepeat');
+
+    this.eventRegisterForm = this.fb.group({
+      personalDetails: this.personalDetailsForm,
+      charity: this.charityForm,
+      eventName: this.eventNameForm,
+      eventDescription: this.eventDescriptionForm,
+      eventDate: this.eventDateForm,
+      password: this.passwordForm,
+    });
   }
 
   filterCharities(name: string): Charity[] {
@@ -144,7 +153,14 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
     return date.toLocaleDateString('nl-NL', options);
   }
 
-  validPassword(password: AbstractControl) {
+  passwordValidator(passwordForm: FormGroup) {
+    const passwordC = passwordForm.get('password');
+    const passwordRepeatC = passwordForm.get('passwordRepeat');
+    return this.validPassword(passwordC) && this.equalPasswords(passwordC, passwordRepeatC)
+      ? null : {'invalid': true };
+  }
+
+  validPassword(password: AbstractControl): boolean {
     return new RegExp('(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[A-Z])').test(password.value);
   }
 
@@ -152,24 +168,8 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
     return password.value === repeat.value ? true : false;
   }
 
-  allRequiredFieldsValid() {
-    if (
-      this.personalDetailsForm.valid &&
-      this.charityForm.valid &&
-      this.eventDescriptionForm.valid &&
-      this.eventNameForm.valid &&
-      this.eventDateForm.valid &&
-      this.passwordForm.valid &&
-      this.validPassword(this.passwordC)
-    ) {
-      return true;
-    }
-    return false;
-  }
-
   onSubmit() {
-    console.log('submit');
-    if (this.allRequiredFieldsValid()) {
+    if (this.eventRegisterForm.valid) {
       this.authenticationService.signUp({
         username: this.emailC.value,
         password: this.passwordC.value,
@@ -184,5 +184,4 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.navMenuService.setTheme('default');
   }
-
 }
