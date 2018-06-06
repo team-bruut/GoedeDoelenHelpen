@@ -1,5 +1,6 @@
-version: 0.1.{build}
+version: 0.2.{build}
 image: Visual Studio 2017 Preview
+platform: x86
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
@@ -13,32 +14,29 @@ install:
 before_build:
   - nuget restore
 build:
-  publish_wap: true
-  verbosity: minimal
+  publish_wap_xcopy: true
+  verbosity: normal
 build_script:
-  # output will be in ./GoedeDoelenHelpen/bin/debug/netcoreapp2.1/publish
+  # output will be in ./GoedeDoelenHelpen/bin/x86/Debug/netcoreapp2.1/publish
   - cmd: dotnet publish ./GoedeDoelenHelpen/GoedeDoelenHelpen.csproj
 after_build:
   - ps: cd ./GoedeDoelenHelpen/ClientApp
   - ps: npm run build-ci
 artifacts:
-- path: '\GoedeDoelenHelpen\bin\Debug\netcoreapp2.1\publish'
+- path: ./GoedeDoelenHelpen/bin/x86/Debug/netcoreapp2.1/publish/
   name: GoedeDoelenHelpen
-  type: WebDeployPackage
-# deploy:
-# - provider: WebDeploy
-#   server: https://goededoelenhelpen.scm.azurewebsites.net:443/msdeploy.axd?site=goededoelenhelpen
-#   website: GoedeDoelenHelpen
-#   username: $GoedeDoelenHelpen
-#   password:
-#     secure: Gta6kVSNFhlosj6KZ8eDPs//BQtatFuLyG2dkkEqd8PHS88J1Q8iFCA+dPmQWI9e0R3Wcn8dfeSEwCjXJAeH3A==
-#   ntlm: false
-#   artifact: GoedeDoelenHelpen
-#   publishMethod: MSDeploy
-#   aspnet_core: true
-#   aspnet_core_force_restart: true
-#   on:
-#     branch: develop
+  type: Zip
+deploy:
+- provider: AzureAppServiceZipDeploy
+  aspnet_core_force_restart: true
+  appservice_environment: true
+  website: goededoelenhelpen
+  username: $GoedeDoelenHelpen
+  password:
+    secure: Gta6kVSNFhlosj6KZ8eDPs//BQtatFuLyG2dkkEqd8PHS88J1Q8iFCA+dPmQWI9e0R3Wcn8dfeSEwCjXJAeH3A==
+  appservice_environment_name: GoedeDoelenHelpen
+  on:
+    branch: develop
 notifications:
 - provider: Slack
   incoming_webhook: 

@@ -10,6 +10,21 @@ import { map, startWith, switchMap, share, shareReplay } from 'rxjs/operators';
 export type SignUpModel = {
   username: string;
   password: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  profileimage: any;
+};
+
+export type EventModel = {
+  eventname: string;
+  eventdescription: string;
+  eventdate: Date;
+};
+
+export type SignInModel = {
+  username: string;
+  password: string;
 };
 
 export type ActivateAccountModel = {
@@ -44,11 +59,11 @@ export class AuthenticationService {
   public activateAccount(model: ActivateAccountModel): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}api/Authentication/ConfirmEmail`, model);
   }
-  public signUp(signUpModel: SignUpModel): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, signUpModel);
+  public signUp(model: SignUpModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, model);
   }
 
-  public login(model: SignUpModel): Observable<void> {
+  public login(model: SignInModel): Observable<void> {
     return this.http.post<{token: string, expiration: string}>(`${this.baseUrl}api/Authentication/createToken`, model).pipe(
       map(({token, expiration}) => {
         localStorage.setItem('token', token);

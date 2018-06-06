@@ -1,0 +1,42 @@
+@import '~imports.scss';
+
+#eventRegistrationContainer {
+    padding: 20px;
+
+    #eventRegistration {
+        position: relative;
+        overflow: hidden;
+        min-width: 350px;
+        overflow-x: auto;
+        background-color: white;
+        border-radius: 10px;
+
+        mat-horizontal-stepper {
+            form {
+                mat-form-field {
+                    display: block;
+                    width: fit-content;
+                    min-width: 50%;
+
+                    mat-autocomplete {
+                        .logo {
+                            display: initial;
+                        }
+            
+                        .logo.empty {
+                            display: none;
+                        }
+                    }
+                }
+
+                .next {
+                    color: grey;
+                }
+
+                .next.active {
+                    color: $primary;
+                }
+            }
+        }
+    }
+}

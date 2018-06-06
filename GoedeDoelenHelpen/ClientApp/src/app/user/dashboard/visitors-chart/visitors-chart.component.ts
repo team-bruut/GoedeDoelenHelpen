@@ -22,7 +22,6 @@ export class VisitorsChartComponent implements OnInit {
   chartType: string;
   view: number[];
   results: any[];
-
   curveType: string;
   curve: object;
 
