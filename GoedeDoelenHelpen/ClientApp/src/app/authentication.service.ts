@@ -26,8 +26,6 @@ export class AuthenticationService {
     private http: HttpClient,
     @Inject('BASE_URL') private baseUrl: string
   ) {
-    console.log('consturct');
-    // this._authenticationInfo = new BehaviorSubject<AuthenticationInfo>({loggedIn: false});
     this.AuthenticationInfo = this._refresh.pipe(
       startWith(true),
       switchMap(() => this.http.get<AuthenticationInfo>(`${this.baseUrl}/api/Authentication/AuthenticationInfo`)),
