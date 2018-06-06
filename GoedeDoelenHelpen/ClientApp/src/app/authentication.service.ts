@@ -16,11 +16,6 @@ export type SignUpModel = {
   profileimage: any;
 };
 
-export type LoginModel = {
-  username: string;
-  password: string;
-};
-
 export type EventModel = {
   eventname: string;
   eventdescription: string;
@@ -68,7 +63,7 @@ export class AuthenticationService {
     return this.http.post<void>(`${this.baseUrl}api/Authentication/Register`, model);
   }
 
-  public login(model: LoginModel): Observable<void> {
+  public login(model: SignInModel): Observable<void> {
     return this.http.post<{token: string, expiration: string}>(`${this.baseUrl}api/Authentication/createToken`, model).pipe(
       map(({token, expiration}) => {
         localStorage.setItem('token', token);
