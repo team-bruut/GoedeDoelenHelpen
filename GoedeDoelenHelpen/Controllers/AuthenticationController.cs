@@ -96,18 +96,37 @@ namespace GoedeDoelenHelpen.Controllers
                 {
                     return Ok();
                 }
-                else if (result.IsLockedOut)
-                {
-                    return Unauthorized();
-                }
-                else
-                {
-                    return Unauthorized();
-                }
+                return Unauthorized();
             }
 
             // If we got this far, something failed, redisplay form
             return Unauthorized();
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AssignFB([FromBody]FacebookModel model) {
+            ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
+            List<EventUser> eventUsers = user.EventUsers.Where(eu => eu.EventId == new Guid(model.EventId)).ToList();
+            if (user != null) { 
+                if (user.FacebookRecords.Count == 0) {
+                    try {
+                        user.FacebookRecords.Add(new FacebookRecord {
+                            Id = new Guid(model.UserId),
+                            ExpiresIn = model.ExpiresIn,
+                            AccessToken = model.AccessToken,
+                            SignedRequest = model.SignedRequest,
+                            TimeStamp = DateTime.Now });
+
+                            return Ok();
+                    } catch {
+                        return BadRequest();
+                    }
+                } else {
+                    return BadRequest();
+                }
+            } else {
+                return Unauthorized();
+            }
         }
 
         [HttpPost("[action]")]
@@ -249,6 +268,27 @@ namespace GoedeDoelenHelpen.Controllers
                 return new ActionResultModel { Success = true, Message = "Wachtwoord is veranderd" };
             }
             return new ActionResultModel { Success = false, Message = "Er is iets misgegaan." };
+        }
+
+        [HttpGet("[action]")]
+        [ProducesResponseType(typeof(FaceBookHookedUp), 200)]
+        [ProducesResponseType(typeof(FaceBookNotHookedUp), 201)]
+        [Authorize]
+        public async Task<ActionResult<IFaceBookInfo>> FacebookInfo() {
+            ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
+            if (user != null) {
+                
+                if (user.FacebookRecords.Count == 1) {
+                    if (user.FacebookRecords.Count == 1) {
+                        return new FaceBookHookedUp{
+                            expiresIn = user.FacebookRecords[0].ExpiresIn.ToString()
+                        };//Moet andere IAction zijn
+                    } else if (user.FacebookRecords.Count == 0){
+                        return new FaceBookNotHookedUp();
+                    }
+                }
+            }
+            return BadRequest();
         }
 
 

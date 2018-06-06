@@ -14,15 +14,16 @@ namespace GoedeDoelenHelpen.Data
         public List<EventUser> EventUsers { get; set; }
         
         [Required]
-        [StringLength(64)]
+        [StringLength(128)]
         public string FirstName { get; set; }
 
-        [Required]
         [StringLength(64)]
         public string NameInsertion { get; set; }
 
         [Required]
-        [StringLength(64)]
+        [StringLength(128)]
         public string LastName { get; set; }
+
+        public List<FacebookRecord> FacebookRecords { get; set; }
     }
 }

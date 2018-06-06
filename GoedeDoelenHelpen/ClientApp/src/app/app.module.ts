@@ -58,6 +58,7 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
     FlexLayoutModule,
     HomeModule,
     DashboardModule,
+    //EventsService,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
