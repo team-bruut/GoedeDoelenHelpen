@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using GoedeDoelenHelpen.Data;
 using GoedeDoelenHelpen.Extensions;
 using GoedeDoelenHelpen.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace GoedeDoelenHelpen.Controllers
 {
@@ -22,17 +28,23 @@ namespace GoedeDoelenHelpen.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly IViewRenderService _renderService;
+        private readonly IPasswordHasher<ApplicationUser> _passwordHasher;
+        private readonly IConfiguration _configurationRoot;
 
         public AuthenticationController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            IViewRenderService renderService)
+            IViewRenderService renderService,
+            IPasswordHasher<ApplicationUser> passwordHasher,
+            IConfiguration configurationRoot)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _renderService = renderService;
+            _passwordHasher = passwordHasher;
+            _configurationRoot = configurationRoot;
         }
 
 
@@ -42,7 +54,13 @@ namespace GoedeDoelenHelpen.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Username, FirstName = "FJ", LastName = "Willemsen", NameInsertion = "de" };
+                var user = new ApplicationUser {
+                    UserName = model.Username,
+                    Email = model.Username,
+                    NameInsertion = "",
+                    FirstName = "Barld",
+                    LastName = "Boot"
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -66,11 +84,14 @@ namespace GoedeDoelenHelpen.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody]RegisterViewModel model)
         {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     return Ok();
@@ -90,6 +111,43 @@ namespace GoedeDoelenHelpen.Controllers
         }
 
         [HttpPost("[action]")]
+        public async Task<IActionResult> CreateToken([FromBody]RegisterViewModel model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Username);
+            if(user == null)
+            {
+                return Unauthorized();
+            }
+            if(_passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) == PasswordVerificationResult.Success)
+            {
+                var userClaims = await _userManager.GetClaimsAsync(user);
+                var claims = new[]
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                }.Union(userClaims);
+
+                var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configurationRoot["JwtSecurityToken:key"]));
+                var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+
+                var jwtSecurityToken = new JwtSecurityToken(
+                    issuer: _configurationRoot["JwtSecurityToken:Issuer"],
+                    audience: _configurationRoot["JwtSecurityToken:Audience"],
+                    claims: claims,
+                    expires: DateTime.UtcNow.AddDays(7),
+                    signingCredentials: signingCredentials
+                    );
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+                    expiration = jwtSecurityToken.ValidTo
+                });
+            }
+            return Unauthorized();
+        }
+
+        [HttpPost("[action]")]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -99,7 +157,7 @@ namespace GoedeDoelenHelpen.Controllers
         [HttpGet("[action]")]
         [ProducesResponseType(typeof(AuthenticationInfoLoggedIn), 200)]
         [ProducesResponseType(typeof(AuthenticationInfoNotLoggedIn), 201)]
-        public ActionResult<IAuthenticationInfo> AuthenticationInfo()
+        public async Task<ActionResult<IAuthenticationInfo>> AuthenticationInfo()
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -107,9 +165,13 @@ namespace GoedeDoelenHelpen.Controllers
             }
             else
             {
+                var aUser = await this.GetApplicationUserAsync(_userManager);
+
                 return new AuthenticationInfoLoggedIn
                 {
-                    Username = _userManager.GetUserName(this.User)
+                    Username = aUser.Email,
+                    FirstName = aUser.FirstName,
+                    LastName = aUser.LastName
                 };
             }
         }
