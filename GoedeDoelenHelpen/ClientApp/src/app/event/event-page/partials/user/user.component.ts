@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class UserComponent implements OnInit {
 
   images = '../../../../assets/images/event';
-  user: object;
-  event: object;
+  user: {
+    firstName: string,
+    lastName: string,
+  };
+  event: {
+    charity: string,
+  };
 
   constructor() { }
 
