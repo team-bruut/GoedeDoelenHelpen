@@ -38,4 +38,14 @@
             color: $primary;
         }
     }
+
+    .donate-button {
+        .mat-raised-button {
+            width: 200px;
+            margin: 20px;
+            background-color: $accent;
+            color: white;
+            border-radius: 10px;
+        }
+    }
 }
