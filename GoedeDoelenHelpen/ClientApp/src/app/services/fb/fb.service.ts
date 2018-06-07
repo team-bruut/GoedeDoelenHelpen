@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FBAuthModel } from '../../models/FBAuthModel';
 import { AuthenticationService } from '../../authentication.service';
+import { WindowWrapper } from '../../classes/windowwrapper/windowwrapper';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +10,17 @@ export class FbService {
   public fbstatus: FBAuthModel;
 
   constructor(private authService: AuthenticationService) {
-    this.getStatus();
   }
 
   getStatus(): boolean {
-    console.log("bbb");
-    this.authService.getFB().subscribe(result => this.writeFBStatus(result));
-    return this.fbstatus.loggedIn;
+    return false;
   }
+
+  
 
   writeFBStatus(data: FBAuthModel) {
     this.fbstatus = data;
-    alert(this.fbstatus.loggedIn);
+    alert(this.fbstatus.status);
     
   }
 }

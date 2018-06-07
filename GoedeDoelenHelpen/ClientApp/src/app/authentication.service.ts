@@ -96,7 +96,7 @@ export class AuthenticationService {
     return this.http.get<FBAuthModel>(`${this.baseUrl}api/Authentication/FacebookInfo`);
   }
 
-  public assignFB(model: FBAssignModel): Observable<void> {
+  public assignFB(model: FBAuthModel): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}api/Authentication/AssignFB`, model);
   }
   isAuthenticated(): Observable<boolean> {

@@ -35,6 +35,7 @@
     <None Remove="ClientApp\src\app\app.component.ts" />
     <None Remove="ClientApp\src\app\app.material.module.ts" />
     <None Remove="ClientApp\src\app\app.module.ts" />
+    <None Remove="ClientApp\src\app\classes\windowwrapper\windowwrapper.ts" />
     <None Remove="ClientApp\src\app\counter\counter.component.spec.ts" />
     <None Remove="ClientApp\src\app\counter\counter.component.ts" />
     <None Remove="ClientApp\src\app\fetch-data\fetch-data.component.ts" />
@@ -66,6 +67,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\app.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.material.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\classes\windowwrapper\windowwrapper.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\counter\counter.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\counter\counter.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\fetch-data\fetch-data.component.ts" />
@@ -88,6 +90,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\services\fb\" />
+    <Folder Include="ClientApp\src\app\user\fb\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

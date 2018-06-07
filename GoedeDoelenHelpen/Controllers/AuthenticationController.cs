@@ -113,16 +113,18 @@ namespace GoedeDoelenHelpen.Controllers
 
                 if (user.FacebookRecords.Count == 0) {
                     try {
+                        DateTime _expiresIn = DateTime.Now;
                         user.FacebookRecords.Add(new FacebookRecord {
 
-                            Id = new Guid(model.authResponse.userId),
-                            ExpiresIn = DateTime.Parse(model.authResponse.expiresIn),
+                            Id = model.authResponse.userId,
+                            ExpiresIn = _expiresIn.AddMinutes(int.Parse(model.authResponse.expiresIn)),
                             AccessToken = model.authResponse.accessToken,
                             SignedRequest = model.authResponse.signedRequest,
                             TimeStamp = DateTime.Now });
 
                             return Ok();
-                    } catch {
+                    } catch(Exception e){
+                        throw e;
                         return BadRequest();
                     }
                 } else {

@@ -37,6 +37,7 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 
 // Event
 import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
+import { WindowWrapper } from './classes/windowwrapper/windowwrapper';
 import { FacebookComponent } from './user/facebook/facebook.component';
 
 @NgModule({
@@ -69,15 +70,19 @@ import { FacebookComponent } from './user/facebook/facebook.component';
       { path: 'user/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
-      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
+      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent },
+      { path: 'user/assignfb', component: FacebookComponent },
     ]),
   ],
-  providers: [AuthenticationService, NavMenuService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true
-  },
-  IsAuthenticated],
+  providers: [AuthenticationService,
+    NavMenuService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    IsAuthenticated,
+    WindowWrapper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

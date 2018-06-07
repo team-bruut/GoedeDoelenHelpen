@@ -11,7 +11,7 @@ namespace GoedeDoelenHelpen.Data
 {
     public class FacebookRecord
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         public string AccessToken {get; set;}
