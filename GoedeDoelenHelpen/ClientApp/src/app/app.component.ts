@@ -12,9 +12,9 @@ export class AppComponent {
   title = 'app';
 
   // icons
-  iconfolder = './assets/images/';
-  constructor(iconReg: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconReg.addSvgIcon('logo', sanitizer.bypassSecurityTrustResourceUrl(this.iconfolder + 'LOGO_NO_TEXT.svg'))
-           .addSvgIcon('logo_text', sanitizer.bypassSecurityTrustResourceUrl(this.iconfolder + 'LOGO_TEXT.svg'));
+  iconfolder = './../assets/images/';
+  constructor(private iconReg: MatIconRegistry, sanitizer: DomSanitizer) {
+    this.iconReg.addSvgIcon('logo', sanitizer.bypassSecurityTrustResourceUrl(this.iconfolder + 'LOGO_NO_TEXT.svg'));
+    this.iconReg.addSvgIcon('logo_text', sanitizer.bypassSecurityTrustResourceUrl(this.iconfolder + 'LOGO_TEXT.svg'));
   }
 }
