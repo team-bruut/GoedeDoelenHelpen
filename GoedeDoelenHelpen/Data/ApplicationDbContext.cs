@@ -56,8 +56,13 @@ namespace GoedeDoelenHelpen.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<FacebookRecord>()
-                .HasOne(fr => fr.EventUser)
-                .WithMany(eu => eu.FacebookRecords)
+                .HasOne(fr => fr.ApplicationUser)
+                .WithMany(au => au.FacebookRecords)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<FacebookPost>()
+                .HasOne(fp => fp.EventUser)
+                .WithMany(eu => eu.FacebookPosts)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<EmailRecord>()

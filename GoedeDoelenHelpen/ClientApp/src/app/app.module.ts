@@ -37,6 +37,8 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 
 // Event
 import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
+import { WindowWrapper } from './classes/windowwrapper/windowwrapper';
+import { FacebookComponent } from './user/facebook/facebook.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
     ActivatedComponent,
     PasswordResetLinkComponent,
     DefaultEventRegisterComponent,
+    FacebookComponent,
   ],
   imports: [
     SharedModule,
@@ -58,6 +61,7 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
     FlexLayoutModule,
     HomeModule,
     DashboardModule,
+    //EventsService,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -66,15 +70,19 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
       { path: 'user/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
-      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
+      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent },
+      { path: 'user/assignfb', component: FacebookComponent },
     ]),
   ],
-  providers: [AuthenticationService, NavMenuService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true
-  },
-  IsAuthenticated],
+  providers: [AuthenticationService,
+    NavMenuService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    IsAuthenticated,
+    WindowWrapper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
