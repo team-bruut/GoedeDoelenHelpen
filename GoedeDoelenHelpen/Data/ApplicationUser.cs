@@ -24,5 +24,6 @@ namespace GoedeDoelenHelpen.Data
         [Required]
         [StringLength(64)]
         public string LastName { get; set; }
+        public string ProfileImage { get; internal set; }
     }
 }
