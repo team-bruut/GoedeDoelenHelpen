@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+  event: object;
+
+  constructor() {
+    this.event = {
+      title: 'Carwash Capelle',
+      date: '9 juli 2018',
+      charity: 'WEM Nederland',
+    };
+  }
 
   ngOnInit() {
   }

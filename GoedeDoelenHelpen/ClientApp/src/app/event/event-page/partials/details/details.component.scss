@@ -1,0 +1,41 @@
+@import '../default.scss';
+
+.details {
+    margin-top: 20px;
+
+    .title {
+        color: $primary;
+        font-size: 1.5em;
+        font-style: italic;
+
+        p {
+            display: inline;
+        }
+
+        .edit-icon {
+            margin: 10px;
+            display: inline;
+
+            .mat-raised-button {
+                min-width: 40px;
+                height: 40px;
+                overflow: hidden;
+                border-radius: 100%;
+                color: $primary;
+                padding: 0;
+
+                mat-icon {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .description {
+
+        .event-variable {
+            color: $primary;
+        }
+    }
+}

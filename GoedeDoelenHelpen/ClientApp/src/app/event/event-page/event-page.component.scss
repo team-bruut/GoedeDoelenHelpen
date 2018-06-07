@@ -17,6 +17,7 @@
     width: 100%;
     position: relative;
     background-color: white;
+    overflow: visible;
 
     .grid-layout {
 
@@ -33,7 +34,6 @@
             'comments comments comments charity charity charity';
         grid-gap: 0;
         padding: 8px;
-        overflow: hidden;
         position: relative;
 
         .screen-warning {
@@ -60,6 +60,10 @@
             .screen-warning {
                 display: initial;
             }
+        }
+
+        app-user {
+            margin-top: -100px;
         }
     }
 }
