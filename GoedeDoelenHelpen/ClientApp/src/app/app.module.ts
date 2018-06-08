@@ -37,6 +37,7 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 
 // Event
 import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
+import { EventRegisterService } from './event/default-event-register/event-register.service';
 
 @NgModule({
   declarations: [
@@ -64,9 +65,9 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
-      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
+      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
     ]),
   ],
   providers: [AuthenticationService, NavMenuService, {
@@ -74,7 +75,9 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
     useClass: TokenInterceptor,
     multi: true
   },
-  IsAuthenticated],
+    IsAuthenticated,
+    EventRegisterService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,11 +4,9 @@ import { NavMenuService } from '../../nav-menu/nav-menu.service';
 import { AuthenticationService } from '../../authentication.service';
 
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-
-export class Charity {
-  constructor(public name: string, public logo: string) { }
-}
+import {map, startWith, switchMap, debounce, debounceTime} from 'rxjs/operators';
+import { SearchCharity } from './searchCharity';
+import { EventRegisterService } from './event-register.service';
 
 @Component({
   selector: 'app-default-event-register',
@@ -24,8 +22,7 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
 
   charityForm: FormGroup;
   charityC: AbstractControl;
-  charities: Charity[];
-  filteredCharities: Observable<any[]>;
+  filteredCharities: Observable<SearchCharity[]>;
 
   eventDescriptionForm: FormGroup;
   eventDescriptionC: AbstractControl;
@@ -48,7 +45,9 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private navMenuService: NavMenuService,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private eventRegisterService: EventRegisterService
+  ) {
       this.navMenuService.setTheme('registration');
   }
 
@@ -69,28 +68,10 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
       charity: ['', Validators.required]
     });
     this.charityC = this.charityForm.get('charity');
-    this.charities = [
-      {
-        name: 'WNF',
-        logo: 'https://www.designboom.com/wp-content/uploads/2015/11/panda-transormation-designboom-818.gif'
-      },
-      {
-        name: 'WEM',
-        logo: 'https://s3-eu-west-1.amazonaws.com/votecompany/5910900-www.goudengans.nl.6128438.jpg'
-      },
-      {
-        name: 'KIKA',
-        logo: 'https://i1.wp.com/10emeidoorn.nl/wp-content/uploads/2016/03/Kika-logo.jpg'
-      },
-      {
-        name: 'Wakker Dier',
-        logo: 'https://d2l8h2eumdtj2d.cloudfront.net/app/uploads/2018/01/Wakker-Dier-Logo-272x205.jpg'
-      }
-    ];
     this.filteredCharities = this.charityC.valueChanges
       .pipe(
-        startWith(''),
-        map(charity => charity ? this.filterCharities(charity) : this.charities.slice())
+        debounceTime(200),
+        switchMap((value: string) => this.eventRegisterService.searchCharity(value))
       );
 
     // event description
@@ -140,11 +121,6 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
       eventDate: this.eventDateForm,
       password: this.passwordForm,
     });
-  }
-
-  filterCharities(name: string): Charity[] {
-    return this.charities.filter(charity =>
-      charity.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
 
   toLocalDate(dateString: Date) {
