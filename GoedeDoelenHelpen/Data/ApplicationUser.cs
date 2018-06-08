@@ -11,7 +11,7 @@ namespace GoedeDoelenHelpen.Data
 {
     public class ApplicationUser : IdentityUser {
         
-        public List<EventUser> EventUsers { get; set; }
+        
         
         [Required]
         [StringLength(128)]
@@ -24,6 +24,8 @@ namespace GoedeDoelenHelpen.Data
         [StringLength(128)]
         public string LastName { get; set; }
 
-        public List<FacebookRecord> FacebookRecords { get; set; }
+        public Guid FacebookRecordId { get; set;}
+        public FacebookRecord FacebookRecord { get; set; }
+        public List<EventUser> EventUsers { get; set; }
     }
 }

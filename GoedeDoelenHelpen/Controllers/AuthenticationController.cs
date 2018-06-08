@@ -111,29 +111,24 @@ namespace GoedeDoelenHelpen.Controllers
         public async Task<IActionResult> AssignFB([FromBody]FacebookModel model) {
             ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
             if (user != null) { 
-                if (user.FacebookRecords == null) {
-                    user.FacebookRecords = new List<FacebookRecord>();
-                }
-
-                if (user.FacebookRecords.Count == 0) {
+                if (user.FacebookRecord == null) {
                     try {
                         DateTime _expiresIn = DateTime.Now;
-                        user.FacebookRecords.Add(new FacebookRecord {
+                        user.FacebookRecord = new FacebookRecord {
 
-                            Id = model.authResponse.userId,
+                            UserId = model.authResponse.userId,
                             ExpiresIn = _expiresIn.AddMinutes(int.Parse(model.authResponse.expiresIn)),
                             AccessToken = model.authResponse.accessToken,
                             SignedRequest = model.authResponse.signedRequest,
                             TimeStamp = DateTime.Now,
-                            ApplicationUser = user,
-                            ApplicationUserId = user.Id});
+                            ApplicationUser = user};
                         
-                        await _context.FacebookRecords.AddRangeAsync(user.FacebookRecords);
+                        await _context.FacebookRecords.AddAsync(user.FacebookRecord);
                         _context.SaveChanges();
                         return Ok();
                     } catch (Exception e) {
                         throw e;
-                        return BadRequest();
+                        //return BadRequest();
                     }
                 } else {
                     return BadRequest();
@@ -292,11 +287,11 @@ namespace GoedeDoelenHelpen.Controllers
             ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
             if (user != null) {
                 
-                if (user.FacebookRecords == null || user.FacebookRecords.Count == 0) {
+                if (user.FacebookRecord == null) {
                     return new FaceBookNotHookedUp();
-                }else if (user.FacebookRecords.Count == 1) {
+                }else {
                     return new FaceBookHookedUp{
-                        expiresIn = user.FacebookRecords[0].ExpiresIn.ToString()
+                        expiresIn = user.FacebookRecord.ExpiresIn.ToString()
                     };//Moet andere IAction 
                 }
             }

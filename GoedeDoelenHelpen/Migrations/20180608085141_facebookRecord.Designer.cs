@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoedeDoelenHelpen.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180608074932_facebookRecords")]
-    partial class facebookRecords
+    [Migration("20180608085141_facebookRecord")]
+    partial class facebookRecord
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,8 @@ namespace GoedeDoelenHelpen.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<Guid>("FacebookRecordId");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -71,6 +73,9 @@ namespace GoedeDoelenHelpen.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FacebookRecordId")
+                        .IsUnique();
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -243,14 +248,13 @@ namespace GoedeDoelenHelpen.Migrations
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookRecord", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AccessToken")
                         .IsRequired();
 
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired();
+                    b.Property<Guid>("ApplicationUserId");
 
                     b.Property<DateTime>("ExpiresIn");
 
@@ -259,9 +263,9 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<DateTime>("TimeStamp");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserId");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasKey("Id");
 
                     b.ToTable("FacebookRecords");
                 });
@@ -443,6 +447,14 @@ namespace GoedeDoelenHelpen.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.ApplicationUser", b =>
+                {
+                    b.HasOne("GoedeDoelenHelpen.Data.FacebookRecord", "FacebookRecord")
+                        .WithOne("ApplicationUser")
+                        .HasForeignKey("GoedeDoelenHelpen.Data.ApplicationUser", "FacebookRecordId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("GoedeDoelenHelpen.Data.Donation", b =>
                 {
                     b.HasOne("GoedeDoelenHelpen.Data.EventUser", "EventUser")
@@ -501,14 +513,6 @@ namespace GoedeDoelenHelpen.Migrations
                     b.HasOne("GoedeDoelenHelpen.Data.EventUser", "EventUser")
                         .WithMany("FacebookPosts")
                         .HasForeignKey("EventUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookRecord", b =>
-                {
-                    b.HasOne("GoedeDoelenHelpen.Data.ApplicationUser", "ApplicationUser")
-                        .WithMany("FacebookRecords")
-                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

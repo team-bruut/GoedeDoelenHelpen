@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GoedeDoelenHelpen.Migrations
 {
-    public partial class facebookRecords : Migration
+    public partial class facebookRecord : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,21 +15,15 @@ namespace GoedeDoelenHelpen.Migrations
                 name: "IX_FacebookRecords_EventUserId",
                 table: "FacebookRecords");
 
-            migrationBuilder.DropColumn(
+            migrationBuilder.RenameColumn(
                 name: "EventUserId",
-                table: "FacebookRecords");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Id",
                 table: "FacebookRecords",
-                nullable: false,
-                oldClrType: typeof(Guid));
+                newName: "ApplicationUserId");
 
             migrationBuilder.AddColumn<string>(
-                name: "ApplicationUserId",
+                name: "UserId",
                 table: "FacebookRecords",
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
 
             migrationBuilder.AlterColumn<double>(
                 name: "Amount",
@@ -44,6 +38,12 @@ namespace GoedeDoelenHelpen.Migrations
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 64);
+
+            migrationBuilder.AddColumn<Guid>(
+                name: "FacebookRecordId",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
             migrationBuilder.CreateTable(
                 name: "FacebookPost",
@@ -66,9 +66,10 @@ namespace GoedeDoelenHelpen.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_FacebookRecords_ApplicationUserId",
-                table: "FacebookRecords",
-                column: "ApplicationUserId");
+                name: "IX_AspNetUsers_FacebookRecordId",
+                table: "AspNetUsers",
+                column: "FacebookRecordId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_FacebookPost_EventUserId",
@@ -76,10 +77,10 @@ namespace GoedeDoelenHelpen.Migrations
                 column: "EventUserId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_FacebookRecords_AspNetUsers_ApplicationUserId",
-                table: "FacebookRecords",
-                column: "ApplicationUserId",
-                principalTable: "AspNetUsers",
+                name: "FK_AspNetUsers_FacebookRecords_FacebookRecordId",
+                table: "AspNetUsers",
+                column: "FacebookRecordId",
+                principalTable: "FacebookRecords",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
@@ -87,31 +88,28 @@ namespace GoedeDoelenHelpen.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_FacebookRecords_AspNetUsers_ApplicationUserId",
-                table: "FacebookRecords");
+                name: "FK_AspNetUsers_FacebookRecords_FacebookRecordId",
+                table: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "FacebookPost");
 
             migrationBuilder.DropIndex(
-                name: "IX_FacebookRecords_ApplicationUserId",
+                name: "IX_AspNetUsers_FacebookRecordId",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "UserId",
                 table: "FacebookRecords");
 
             migrationBuilder.DropColumn(
+                name: "FacebookRecordId",
+                table: "AspNetUsers");
+
+            migrationBuilder.RenameColumn(
                 name: "ApplicationUserId",
-                table: "FacebookRecords");
-
-            migrationBuilder.AlterColumn<Guid>(
-                name: "Id",
                 table: "FacebookRecords",
-                nullable: false,
-                oldClrType: typeof(string));
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "EventUserId",
-                table: "FacebookRecords",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
+                newName: "EventUserId");
 
             migrationBuilder.AlterColumn<decimal>(
                 name: "Amount",

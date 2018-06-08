@@ -11,8 +11,8 @@ namespace GoedeDoelenHelpen.Data
 {
     public class FacebookRecord
     {
-        [Required]
-        public string Id { get; set; }
+        public Guid Id { get; set;}
+        public string UserId { get; set; }
 
         [Required]
         public string AccessToken {get; set;}
@@ -24,7 +24,7 @@ namespace GoedeDoelenHelpen.Data
         [Required]
         public DateTime TimeStamp { get; set; }
         [Required]
-        public string ApplicationUserId { get; set; }
+        public Guid ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
     }

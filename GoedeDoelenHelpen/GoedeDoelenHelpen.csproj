@@ -32,6 +32,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20180608074045_facebookRecords.cs" />
     <Compile Remove="Migrations\20180608074045_facebookRecords.Designer.cs" />
+    <Compile Remove="Migrations\20180608074932_facebookRecords.cs" />
+    <Compile Remove="Migrations\20180608074932_facebookRecords.Designer.cs" />
+    <Compile Remove="Migrations\20180608084219_facebookRecord.cs" />
+    <Compile Remove="Migrations\20180608084219_facebookRecord.Designer.cs" />
+    <Compile Remove="Migrations\20180608084452_facebookRecord.cs" />
+    <Compile Remove="Migrations\20180608084452_facebookRecord.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
