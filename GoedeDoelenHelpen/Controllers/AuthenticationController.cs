@@ -30,6 +30,7 @@ namespace GoedeDoelenHelpen.Controllers
         private readonly IViewRenderService _renderService;
         private readonly IPasswordHasher<ApplicationUser> _passwordHasher;
         private readonly IConfiguration _configurationRoot;
+        private readonly ApplicationDbContext _context;
 
         public AuthenticationController(
             UserManager<ApplicationUser> userManager,
@@ -37,7 +38,9 @@ namespace GoedeDoelenHelpen.Controllers
             IEmailSender emailSender,
             IViewRenderService renderService,
             IPasswordHasher<ApplicationUser> passwordHasher,
-            IConfiguration configurationRoot)
+            IConfiguration configurationRoot,
+            ApplicationDbContext context
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -45,6 +48,7 @@ namespace GoedeDoelenHelpen.Controllers
             _renderService = renderService;
             _passwordHasher = passwordHasher;
             _configurationRoot = configurationRoot;
+            _context = context;
         }
 
 
@@ -120,10 +124,14 @@ namespace GoedeDoelenHelpen.Controllers
                             ExpiresIn = _expiresIn.AddMinutes(int.Parse(model.authResponse.expiresIn)),
                             AccessToken = model.authResponse.accessToken,
                             SignedRequest = model.authResponse.signedRequest,
-                            TimeStamp = DateTime.Now });
-
-                            return Ok();
-                    } catch(Exception e){
+                            TimeStamp = DateTime.Now,
+                            ApplicationUser = user,
+                            ApplicationUserId = user.Id});
+                        
+                        await _context.FacebookRecords.AddRangeAsync(user.FacebookRecords);
+                        _context.SaveChanges();
+                        return Ok();
+                    } catch (Exception e) {
                         throw e;
                         return BadRequest();
                     }
