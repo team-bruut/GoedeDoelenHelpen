@@ -36,6 +36,14 @@
         padding: 8px;
         position: relative;
 
+        .app-user,
+        .app-details,
+        .app-donated,
+        .app-comments,
+        .app-charity {
+            width: 100%;
+        }
+
         .screen-warning {
             display: none;
         }
