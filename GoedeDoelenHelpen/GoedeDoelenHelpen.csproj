@@ -19,6 +19,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
     <PackageReference Include="Sendgrid" Version="9.9.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
   </ItemGroup>
@@ -52,10 +53,15 @@
     <None Remove="ClientApp\src\test.ts" />
     <None Remove="ClientApp\src\typings.d.ts" />
     <None Remove="ClientApp\tsconfig.json" />
+    <None Remove="Files\anbi.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="ClientApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Files\anbi.xml" />
   </ItemGroup>
 
   <ItemGroup>

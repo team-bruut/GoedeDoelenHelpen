@@ -37,6 +37,7 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 
 // Event
 import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
+import { EventRegisterService } from './event/default-event-register/event-register.service';
 import { EventPageComponent } from './event/event-page/event-page.component';
 import { EventPageModule } from './event/event-page/event-page.module';
 
@@ -67,10 +68,10 @@ import { EventPageModule } from './event/event-page/event-page.module';
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
       { path: 'evenement/user/eventname', component: EventPageComponent },
       { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
+      { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
     ]),
   ],
   providers: [AuthenticationService, NavMenuService, {
@@ -78,7 +79,9 @@ import { EventPageModule } from './event/event-page/event-page.module';
     useClass: TokenInterceptor,
     multi: true
   },
-  IsAuthenticated],
+    IsAuthenticated,
+    EventRegisterService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
