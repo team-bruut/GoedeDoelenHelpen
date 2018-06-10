@@ -30,6 +30,7 @@ namespace GoedeDoelenHelpen.Controllers
         private readonly IViewRenderService _renderService;
         private readonly IPasswordHasher<ApplicationUser> _passwordHasher;
         private readonly IConfiguration _configurationRoot;
+        private readonly ApplicationDbContext _context;
 
         public AuthenticationController(
             UserManager<ApplicationUser> userManager,
@@ -37,7 +38,8 @@ namespace GoedeDoelenHelpen.Controllers
             IEmailSender emailSender,
             IViewRenderService renderService,
             IPasswordHasher<ApplicationUser> passwordHasher,
-            IConfiguration configurationRoot)
+            IConfiguration configurationRoot,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -45,6 +47,7 @@ namespace GoedeDoelenHelpen.Controllers
             _renderService = renderService;
             _passwordHasher = passwordHasher;
             _configurationRoot = configurationRoot;
+            _context = context;
         }
 
 
@@ -114,15 +117,18 @@ namespace GoedeDoelenHelpen.Controllers
                 if (user.FacebookRecords.Count == 0) {
                     try {
                         DateTime _expiresIn = DateTime.Now;
-                        user.FacebookRecords.Add(new FacebookRecord {
+                        FacebookRecord record = new FacebookRecord {
 
-                            Id = model.authResponse.userId,
+                            FBUserId = model.authResponse.userId,
                             ExpiresIn = _expiresIn.AddMinutes(int.Parse(model.authResponse.expiresIn)),
                             AccessToken = model.authResponse.accessToken,
                             SignedRequest = model.authResponse.signedRequest,
-                            TimeStamp = DateTime.Now });
+                            TimeStamp = DateTime.Now };
 
-                            return Ok();
+                        await _context.FacebookRecords.AddAsync(record);
+                        await _context.SaveChangesAsync();
+
+                        return Ok();
                     } catch(Exception e){
                         throw e;
                         return BadRequest();
