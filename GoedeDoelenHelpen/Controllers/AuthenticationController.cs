@@ -115,24 +115,19 @@ namespace GoedeDoelenHelpen.Controllers
                 }
 
                 if (user.FacebookRecords.Count == 0) {
-                    try {
-                        DateTime _expiresIn = DateTime.Now;
-                        FacebookRecord record = new FacebookRecord {
-                            ApplicationUser = user,
-                            FBUserId = model.authResponse.userId,
-                            ExpiresIn = _expiresIn.AddMinutes(int.Parse(model.authResponse.expiresIn)),
-                            AccessToken = model.authResponse.accessToken,
-                            SignedRequest = model.authResponse.signedRequest,
-                            TimeStamp = DateTime.Now };
+                    DateTime _expiresIn = DateTime.Now;
+                    FacebookRecord record = new FacebookRecord {
+                        ApplicationUser = user,
+                        FBUserId = model.authResponse.userId,
+                        ExpiresIn = _expiresIn.AddMinutes(int.Parse(model.authResponse.expiresIn)),
+                        AccessToken = model.authResponse.accessToken,
+                        SignedRequest = model.authResponse.signedRequest,
+                        TimeStamp = DateTime.Now };
 
-                        await _context.FacebookRecords.AddAsync(record);
-                        await _context.SaveChangesAsync();
+                    await _context.FacebookRecords.AddAsync(record);
+                    await _context.SaveChangesAsync();
 
-                        return Ok();
-                    } catch(Exception e){
-                        throw e;
-                        return BadRequest();
-                    }
+                    return Ok();
                 } else {
                     return BadRequest();
                 }
