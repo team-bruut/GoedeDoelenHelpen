@@ -9,3 +9,9 @@ export type FBAuthResponse = {
   signedRequest: string;
   userId: string;
 }
+
+export type FBBackendResponse = {
+  AccessToken: string;
+  ExpiresIn: string;
+  loggedIn: boolean;
+}

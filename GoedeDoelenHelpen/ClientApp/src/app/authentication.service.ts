@@ -6,7 +6,7 @@ import { ReplaySubject, BehaviorSubject, Subject } from 'rxjs';
 import { ActionResult } from './actionResult';
 import { ResetPassword } from './resetPassword';
 import { map, startWith, switchMap, share, shareReplay } from 'rxjs/operators';
-import { FBAuthModel } from './models/FBAuthModel';
+import { FBAuthModel, FBBackendResponse } from './models/FBAuthModel';
 import { FBAssignModel } from './models/FBAssignModel';
 
 export type SignUpModel = {
@@ -92,8 +92,10 @@ export class AuthenticationService {
     return new Date(localStorage.getItem('TokenExpiration'));
   }
 
-  public getFB(): Observable<FBAuthModel> {
-    return this.http.get<FBAuthModel>(`${this.baseUrl}api/Authentication/FacebookInfo`);
+  public getFB(): Observable<FBBackendResponse> {
+    let a: Observable<FBBackendResponse> = this.http.get<FBBackendResponse>(`${this.baseUrl}api/Authentication/FacebookInfo`);
+    a.subscribe((result) => { console.log(result) });
+    return a;
   }
 
   public assignFB(model: FBAuthModel): Observable<void> {

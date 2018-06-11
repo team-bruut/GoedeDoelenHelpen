@@ -15,43 +15,27 @@ export class HeaderComponent implements OnInit {
 
   images = '../../../assets/images/dashboard';
 
-  isLoggedIn: FBAuthModel;
-  //FB: any;
-
   pages: EventsModel[];
 
   constructor(private eventsService: EventsService,
     private authService: AuthenticationService,
-    private windowWrapper: WindowWrapper) {
+    private windowWrapper: WindowWrapper,
+    private fbService : FbService) {
     
   }
 
   ngOnInit() {
-    //this.fbAuth();
     this.pages = this.eventsService.getEvents();
-    this.authService.getFB().subscribe(result => this.isLoggedIn = result);
-    //FB is defined
-    
   }
 
   ngAfterContentInit() {
-    console.log(this.windowWrapper.nativeWindow);
   }
 
-  fbAuth() {
-    console.log(this.isLoggedIn);
-  }
-
-  fbTestLogin() {
-    let FB: any = this.windowWrapper.nativeWindow.FB;
-    if (FB == undefined) {
-      alert("Issues connecting to Facebook Server, please try again by refreshing");
+  fbAuth(): boolean { //Checks if user is authorized with facebook through backend
+    if (this.fbService != undefined) {
+      return (this.fbService.loggedIn());
     } else {
-      FB.login();
-      FB.getLoginStatus(function (result) { console.log(result) });
-    }    
+      return true;
+    }
   }
-
-
-
 }
