@@ -1,0 +1,24 @@
+@import '../default.scss';
+
+.comments {
+    margin: 20px;
+
+    .title {
+        color: $primary;
+        font-size: 2em;
+        font-style: italic;
+    }
+    
+    .comments_container {
+        width: fit-content;
+
+        .comment {
+            margin: 10px;
+
+            .amount {
+                color: grey;
+                font-weight: bold;
+            }
+        }
+    }
+}

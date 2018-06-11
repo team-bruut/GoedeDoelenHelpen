@@ -38,6 +38,8 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 // Event
 import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
 import { EventRegisterService } from './event/default-event-register/event-register.service';
+import { EventPageComponent } from './event/event-page/event-page.component';
+import { EventPageModule } from './event/event-page/event-page.module';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { EventRegisterService } from './event/default-event-register/event-regis
     FlexLayoutModule,
     HomeModule,
     DashboardModule,
+    EventPageModule,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -66,7 +69,8 @@ import { EventRegisterService } from './event/default-event-register/event-regis
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
-      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent },
+      { path: 'evenement/user/eventname', component: EventPageComponent },
+      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
       { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
     ]),
   ],

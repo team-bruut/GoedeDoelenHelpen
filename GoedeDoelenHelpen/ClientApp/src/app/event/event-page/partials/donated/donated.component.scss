@@ -1,0 +1,23 @@
+@import '../default.scss';
+
+.donated {
+    width: 300px;
+
+    .circle {
+        border-radius: 100%;
+        background-color: $primary;
+        overflow: hidden;
+        color: white;
+        padding: 50px 20px;
+        width: 175px;
+        height: 175px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+
+        .amount {
+            margin-top: 10px;
+            font-size: 2.2em;
+        }
+    }
+}

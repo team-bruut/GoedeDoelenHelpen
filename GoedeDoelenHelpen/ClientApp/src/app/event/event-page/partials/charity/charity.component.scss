@@ -1,0 +1,12 @@
+@import '../default.scss';
+
+.charity {
+    margin: 20px;
+    padding-right: 30px;
+
+    .title {
+        color: $primary;
+        font-size: 2em;
+        font-style: italic;
+    }
+}
