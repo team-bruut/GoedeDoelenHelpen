@@ -38,4 +38,7 @@ export class HeaderComponent implements OnInit {
       return true;
     }
   }
+  fbLoginPrompt(): boolean {
+    return this.fbService.fbLoginPrompt();
+  }
 }
