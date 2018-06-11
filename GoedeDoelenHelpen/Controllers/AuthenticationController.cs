@@ -118,7 +118,7 @@ namespace GoedeDoelenHelpen.Controllers
                     try {
                         DateTime _expiresIn = DateTime.Now;
                         FacebookRecord record = new FacebookRecord {
-
+                            ApplicationUser = user,
                             FBUserId = model.authResponse.userId,
                             ExpiresIn = _expiresIn.AddMinutes(int.Parse(model.authResponse.expiresIn)),
                             AccessToken = model.authResponse.accessToken,
@@ -289,13 +289,17 @@ namespace GoedeDoelenHelpen.Controllers
         public async Task<ActionResult<IFaceBookInfo>> FacebookInfo() {
             ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
             if (user != null) {
-                
-                if (user.FacebookRecords == null || user.FacebookRecords.Count == 0) {
+
+                List<FacebookRecord> userFBRecords = _context.FacebookRecords.Where((i) => i.ApplicationUserId == user.Id).ToList();
+
+
+                if (_context.FacebookRecords.Count() != 0 && userFBRecords.Count == 1) {
+                    return new FaceBookHookedUp {
+                        ExpiresIn = userFBRecords[0].ExpiresIn.ToString(),
+                        AccessToken = userFBRecords[0].AccessToken
+                    };
+                } else {
                     return new FaceBookNotHookedUp();
-                }else if (user.FacebookRecords.Count == 1) {
-                    return new FaceBookHookedUp{
-                        expiresIn = user.FacebookRecords[0].ExpiresIn.ToString()
-                    };//Moet andere IAction 
                 }
             }
             return BadRequest();

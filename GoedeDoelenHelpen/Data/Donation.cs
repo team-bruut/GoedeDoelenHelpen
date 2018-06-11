@@ -20,7 +20,8 @@ namespace GoedeDoelenHelpen.Data
         [Required]
         public Guid EventUserId { get; set; }
         public EventUser EventUser { get; set; }
-        public Message Message { get; set; }
+
+        public string Message { get; set; }
 
     }
 }

@@ -26,7 +26,7 @@ namespace GoedeDoelenHelpen.Data
         [Required]
         public DateTime TimeStamp { get; set; }
         [Required]
-        public Guid ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
     }

@@ -30,6 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180611084554_guidToString.cs" />
+    <Compile Remove="Migrations\20180611084554_guidToString.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\e2e\app.e2e-spec.ts" />
     <None Remove="ClientApp\e2e\app.po.ts" />
     <None Remove="ClientApp\src\app\app.component.ts" />
