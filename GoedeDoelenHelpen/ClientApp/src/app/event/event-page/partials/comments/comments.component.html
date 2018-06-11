@@ -1,0 +1,14 @@
+<div class="comments">
+  <div class="title">
+    Reacties
+  </div>
+  <div class="comments_container">
+    <mat-card class="comment" *ngFor="let comment of comments">
+      <mat-card-subtitle>{{ comment.user }}</mat-card-subtitle>
+      <mat-card-content>
+          <p class="message">"{{ comment.message }}"</p>
+          <p class="amount">Doneert €{{ comment.amount }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

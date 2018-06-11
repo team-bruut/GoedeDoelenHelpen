@@ -36,17 +36,18 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(128);
+                        .HasMaxLength(64);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(128);
+                        .HasMaxLength(64);
 
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("NameInsertion")
+                        .IsRequired()
                         .HasMaxLength(64);
 
                     b.Property<string>("NormalizedEmail")
@@ -81,16 +82,29 @@ namespace GoedeDoelenHelpen.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.Charity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FiscusNumber");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Charities");
+                });
+
             modelBuilder.Entity("GoedeDoelenHelpen.Data.Donation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("Amount");
+                    b.Property<decimal>("Amount");
 
                     b.Property<Guid>("EventUserId");
-
-                    b.Property<string>("Message");
 
                     b.Property<DateTime>("Timestamp");
 
@@ -223,7 +237,7 @@ namespace GoedeDoelenHelpen.Migrations
                     b.ToTable("EventUsers");
                 });
 
-            modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookPost", b =>
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookRecord", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -232,41 +246,34 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<DateTime>("TimeStamp");
 
-                    b.Property<int>("likes");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EventUserId");
 
-                    b.ToTable("FacebookPost");
+                    b.ToTable("FacebookRecords");
                 });
 
-            modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookRecord", b =>
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.Message", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AccessToken")
-                        .IsRequired();
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired();
+                    b.Property<Guid>("DonationId");
 
-                    b.Property<DateTime>("ExpiresIn");
-
-                    b.Property<string>("FBUserId")
-                        .IsRequired();
-
-                    b.Property<string>("SignedRequest")
-                        .IsRequired();
-
-                    b.Property<DateTime>("TimeStamp");
+                    b.Property<string>("Name")
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("DonationId")
+                        .IsUnique();
 
-                    b.ToTable("FacebookRecords");
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("GoedeDoelenHelpen.Data.ReceivingParty", b =>
@@ -476,19 +483,19 @@ namespace GoedeDoelenHelpen.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookPost", b =>
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookRecord", b =>
                 {
                     b.HasOne("GoedeDoelenHelpen.Data.EventUser", "EventUser")
-                        .WithMany("FacebookPosts")
+                        .WithMany("FacebookRecords")
                         .HasForeignKey("EventUserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("GoedeDoelenHelpen.Data.FacebookRecord", b =>
+            modelBuilder.Entity("GoedeDoelenHelpen.Data.Message", b =>
                 {
-                    b.HasOne("GoedeDoelenHelpen.Data.ApplicationUser", "ApplicationUser")
-                        .WithMany("FacebookRecords")
-                        .HasForeignKey("ApplicationUserId")
+                    b.HasOne("GoedeDoelenHelpen.Data.Donation", "Donation")
+                        .WithOne("Message")
+                        .HasForeignKey("GoedeDoelenHelpen.Data.Message", "DonationId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

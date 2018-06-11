@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace GoedeDoelenHelpen.Data
 {
@@ -19,6 +21,7 @@ namespace GoedeDoelenHelpen.Data
         public DbSet<EmailRecord> EmailRecords { get; set; }
         public DbSet<FacebookRecord> FacebookRecords { get; set; }
         public DbSet<EventInvite> EventInvites { get; set;}
+        public DbSet<Charity> Charities { get; set; }
         
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -86,11 +89,6 @@ namespace GoedeDoelenHelpen.Data
 
             modelBuilder.Entity<ViewRecord>()
                 .HasKey(vr => new { vr.SessionId, vr.EventId});
-
-
-
-            //modelBuilder.Entity<EventUser>()
-            //    .HasDiscriminator(eu => eu.EventUserRole);
         }
     }    
 }

@@ -37,6 +37,9 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 
 // Event
 import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
+import { EventRegisterService } from './event/default-event-register/event-register.service';
+import { EventPageComponent } from './event/event-page/event-page.component';
+import { EventPageModule } from './event/event-page/event-page.module';
 import { WindowWrapper } from './classes/windowwrapper/windowwrapper';
 import { FacebookComponent } from './user/facebook/facebook.component';
 
@@ -61,26 +64,27 @@ import { FacebookComponent } from './user/facebook/facebook.component';
     FlexLayoutModule,
     HomeModule,
     DashboardModule,
-    //EventsService,
+    EventPageModule,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Account/ConfirmEmail', component: ConfirmEmailComponent },
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
-      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent },
+      { path: 'evenement/user/eventname', component: EventPageComponent },
+      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
       { path: 'user/assignfb', component: FacebookComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
     ]),
   ],
-  providers: [AuthenticationService,
-    NavMenuService, {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
+  providers: [AuthenticationService, NavMenuService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  },
     IsAuthenticated,
+    EventRegisterService,
     WindowWrapper
   ],
   bootstrap: [AppComponent]

@@ -1,11 +1,8 @@
 <div class="nav" [ngClass]="theme">
     <mat-toolbar>
-        <a class="logo" href="/" mat-button>
-            <!-- <mat-icon class="logo" svgIcon="logo" fxShow="true" fxHide.lt-sm="true"></mat-icon> -->
-            <!-- <p mat-title fxShow="true" fxHide.lt-sm="true">Goede Doelen Helpen</p> -->
-            <!-- Show a logo without text on mobile devices -->
-            <!-- <mat-icon class="logo logo_mobile" svgIcon="logo_text" fxShow="true" fxHide.gt-xs="true"></mat-icon> -->
-            <p mat-title>Goede Doelen Helpen</p>
+        <a class="logo_container" href="/" mat-button>
+            <mat-icon class="logo_text" svgIcon="logo_text"></mat-icon>
+            <mat-icon class="logo_no_text" svgIcon="logo"></mat-icon>
         </a>
         <span class="fill-remaining-space"></span>
         <div class="buttons" fxShow="true" fxHide.lt-sm="true">
