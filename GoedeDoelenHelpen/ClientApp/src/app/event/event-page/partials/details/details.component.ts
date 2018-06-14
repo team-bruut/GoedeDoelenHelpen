@@ -30,13 +30,17 @@ export class DetailsComponent implements OnInit {
 
   edit(): void {
     const dialogRef = this.dialog.open(EditDetailsComponent, {
-      width: '250px',
-      data: { name: this.name, animal: this.animal }
+      data: this.event
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      this.event = result;
     });
+  }
+
+  toLocalDate(dateString: Date) {
+    const options = { month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('nl-NL', options);
   }
 }

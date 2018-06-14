@@ -1,6 +1,31 @@
 <div id="editDetailsContainer">
-  <p>
-    edit-details works!
-  </p>
+  <p class="header">Bewerk je evenement</p>
+  <!-- Charity -->
+  <form [formGroup]="charityForm">
+    <label>Welk goed doel ga je helpen, {{ user.firstName }}?</label>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{ event.charity }}" [formControl]="charityC" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let charity of filteredCharities | async" [value]="charity.name">
+          <span>  {{ charity.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <!-- Name -->
+  <form [formGroup]="eventNameForm">
+    <label>Wat is de naam van je evenement?</label>
+    <mat-form-field>
+      <input matInput placeholder="{{ event.title }}" [formControl]="eventNameC">
+    </mat-form-field>
+  </form>
+  <!-- Date -->
+  <form [formGroup]="eventDateForm">
+    <input matInput [matDatepicker]="picker" [formControl]="eventDateC" placeholder="Wanneer vind het evenement plaats?">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </form>
+  <button (click)="changeValues()" mat-raised-button>
+    Opslaan
+  </button>
 </div>
-

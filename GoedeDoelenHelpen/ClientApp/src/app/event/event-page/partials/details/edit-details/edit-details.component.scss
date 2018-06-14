@@ -2,4 +2,16 @@
 
 #editDetailsContainer {
     min-width: 250px;
+
+    #header {
+        color: grey;
+        text-align: center;
+        font-size: 1.3em;
+    }
+
+    form {
+        mat-form-field {
+            display: block;
+        }
+    }
 }
