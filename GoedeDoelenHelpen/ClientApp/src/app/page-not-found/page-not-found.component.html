@@ -1,6 +1,15 @@
-<h1>
-  This is not the page you're looking for
-</h1>
-<p>
-  404: page not found
-</p>
+<app-gradient [zindex]=0></app-gradient>
+<app-circles-generated></app-circles-generated>
+<div id="pageNotFoundContainer">
+  <div id="pageNotFound">
+    <h1>
+      404
+    </h1>
+    <p>
+      Helaas! Deze pagina hoeft niet geholpen te worden.
+    </p>
+    <a (click)="toHome()">
+      Terug naar homepagina
+    </a>
+  </div>
+</div>
