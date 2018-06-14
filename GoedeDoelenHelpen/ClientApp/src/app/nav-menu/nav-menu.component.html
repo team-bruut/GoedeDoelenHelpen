@@ -1,6 +1,6 @@
 <div class="nav" [ngClass]="theme">
     <mat-toolbar>
-        <a class="logo_container" href="/" mat-button>
+        <a class="logo_container" (click)="toHome()" mat-button>
             <mat-icon class="logo_text" svgIcon="logo_text"></mat-icon>
             <mat-icon class="logo_no_text" svgIcon="logo"></mat-icon>
         </a>

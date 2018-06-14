@@ -11,7 +11,7 @@
           <li (click)="setPhoneImage('dashboard_v3.svg', 3)" [class.active]="selected == 3">
             Houdt je voortgang bij en vergroot je draagvlak via het dashboard</li>
         </ul>
-        <a appRoundedButton mat-raised-button color="accent">
+        <a (click)="toRegistration()" appRoundedButton mat-raised-button color="accent">
             <h1 fxHide.lt-sm="true">Meld je nu aan!</h1>
         </a>
     </div>

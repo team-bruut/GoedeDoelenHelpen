@@ -3,6 +3,7 @@ import { NavMenuService } from './nav-menu.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthenticationService } from '../authentication.service';
 import { map } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -55,7 +56,9 @@ export class NavMenuComponent implements OnInit, OnDestroy {
 
   constructor(
     private navMenuService: NavMenuService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -76,5 +79,9 @@ export class NavMenuComponent implements OnInit, OnDestroy {
 
   toggle() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  toHome() {
+    this.router.navigate(['/']);
   }
 }

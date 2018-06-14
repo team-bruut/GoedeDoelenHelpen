@@ -29,7 +29,7 @@ import { CirclesGeneratorComponent } from '../elements/circles/circles.component
     ReactiveFormsModule,
     RoundedButtonDirective,
     GradientComponent,
-    CirclesGeneratorComponent
+    CirclesGeneratorComponent,
   ]
 })
 

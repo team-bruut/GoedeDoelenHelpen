@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-functions',
@@ -11,7 +12,7 @@ export class HomeFunctionsComponent implements OnInit {
   phoneImage: HTMLElement;
   selected = 0;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.phoneImage = document.getElementById('phoneImage');
@@ -22,4 +23,7 @@ export class HomeFunctionsComponent implements OnInit {
     this.phoneImage.setAttribute('src', this.images + '/' + image);
   }
 
+  toRegistration() {
+    this.router.navigate(['/evenement/register']);
+  }
 }

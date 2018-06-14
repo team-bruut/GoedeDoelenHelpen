@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RoundedButtonDirective } from '../../../elements/rounded-button.directive';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-hero',
@@ -10,9 +10,12 @@ export class HomeHeroComponent implements OnInit {
 
   images = '../../assets/images/home/hero';
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   }
 
+  toRegistration() {
+    this.router.navigate(['/evenement/register']);
+  }
 }

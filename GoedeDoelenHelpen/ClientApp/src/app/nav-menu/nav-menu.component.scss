@@ -123,6 +123,12 @@
 }
 
 .homepage {
+  .logo_container {
+    mat-icon {
+      filter: brightness(500%);
+    }
+  }
+
   mat-toolbar {
     background-color: $primary;
     margin-bottom: 0;
