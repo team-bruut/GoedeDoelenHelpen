@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { EditDetailsComponent } from './edit-details/edit-details.component';
 
 @Component({
   selector: 'app-details',
@@ -13,8 +15,10 @@ export class DetailsComponent implements OnInit {
     charity: string,
   };
 
-  constructor() {
-  }
+  animal: string;
+  name: string;
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.event = {
@@ -24,4 +28,15 @@ export class DetailsComponent implements OnInit {
     };
   }
 
+  edit(): void {
+    const dialogRef = this.dialog.open(EditDetailsComponent, {
+      width: '250px',
+      data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
 }

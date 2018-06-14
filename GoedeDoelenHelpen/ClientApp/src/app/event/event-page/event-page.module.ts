@@ -4,6 +4,7 @@ import { SharedModule } from './../../shared/shared.module';
 import { EventPageComponent } from './event-page.component';
 import { UserComponent } from './partials/user/user.component';
 import { DetailsComponent } from './partials/details/details.component';
+import { EditDetailsComponent } from './partials/details/edit-details/edit-details.component';
 import { DonatedComponent } from './partials/donated/donated.component';
 import { CommentsComponent } from './partials/comments/comments.component';
 import { CharityComponent } from './partials/charity/charity.component';
@@ -20,6 +21,10 @@ import { CharityComponent } from './partials/charity/charity.component';
     DonatedComponent,
     CommentsComponent,
     CharityComponent,
+    EditDetailsComponent,
+  ],
+  entryComponents: [
+    EditDetailsComponent,
   ],
   exports: [
     EventPageComponent
