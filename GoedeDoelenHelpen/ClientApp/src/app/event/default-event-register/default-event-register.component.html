@@ -120,10 +120,12 @@
       </mat-step>
       <mat-step [stepControl]="profileImageForm">
         <form [formGroup]="profileImageForm">
+            <img [src]="imageSrc" style="max-width:300px;max-height:300px"/>
           <label>
             Om je profiel extra mooi te maken kan je hier een profielfoto toevoegen.
           </label>
-          <input type="file" placeholder="" [formControl]="profileImageC">
+          <input type="hidden" name="MAX_FILE_SIZE" value="1048576" /> 
+          <input type="file" accept="image/*" (change)="handleInputChange($event)" placeholder="" [formControl]="profileImageC">
           <div>
             <button mat-button matStepperPrevious>Vorige</button>
             <button mat-button matStepperNext>Volgende</button>
