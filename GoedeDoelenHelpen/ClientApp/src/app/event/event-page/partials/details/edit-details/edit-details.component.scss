@@ -1,7 +1,8 @@
 @import '../../default.scss';
 
 #editDetailsContainer {
-    min-width: 250px;
+    min-width: 300px;
+    width: fit-content;
 
     #header {
         color: grey;

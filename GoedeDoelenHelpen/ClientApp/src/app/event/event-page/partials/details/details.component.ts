@@ -11,19 +11,16 @@ export class DetailsComponent implements OnInit {
 
   event: {
     title: string,
-    date: string,
+    date: Date,
     charity: string,
   };
-
-  animal: string;
-  name: string;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.event = {
       title: 'Carwash Capelle',
-      date: '9 juli 2018',
+      date: new Date('2018-05-16T00:00:00' ),
       charity: 'WEM Nederland',
     };
   }
