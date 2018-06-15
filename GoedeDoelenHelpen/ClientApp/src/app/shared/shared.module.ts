@@ -10,12 +10,15 @@ import { RoundedButtonDirective } from '../elements/rounded-button.directive';
 import { GradientComponent } from '../elements/gradient/gradient.component';
 import { CirclesGeneratorComponent } from '../elements/circles/circles.component';
 
+import { RouterModule } from '@angular/router';
+
 @NgModule({
   imports: [
     CommonModule,
     CoreMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
   declarations: [
     RoundedButtonDirective,
@@ -30,6 +33,7 @@ import { CirclesGeneratorComponent } from '../elements/circles/circles.component
     RoundedButtonDirective,
     GradientComponent,
     CirclesGeneratorComponent,
+    RouterModule,
   ]
 })
 

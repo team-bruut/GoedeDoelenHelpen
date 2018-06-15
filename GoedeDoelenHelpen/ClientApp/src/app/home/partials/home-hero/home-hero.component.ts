@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-hero',
@@ -10,12 +9,8 @@ export class HomeHeroComponent implements OnInit {
 
   images = '../../assets/images/home/hero';
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  toRegistration() {
-    this.router.navigate(['/evenement/register']);
   }
 }

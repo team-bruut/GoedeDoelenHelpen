@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { NavMenuService } from '../nav-menu/nav-menu.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-page-not-found',
@@ -9,15 +9,11 @@ import { NavMenuService } from '../nav-menu/nav-menu.service';
 })
 export class PageNotFoundComponent implements OnInit, OnDestroy {
 
-  constructor(private navMenuService: NavMenuService, private router: Router) {
+  constructor(private navMenuService: NavMenuService) {
     this.navMenuService.setTheme('registration');
   }
 
   ngOnInit() {
-  }
-
-  toHome() {
-    this.router.navigate(['/']);
   }
 
   ngOnDestroy() {
