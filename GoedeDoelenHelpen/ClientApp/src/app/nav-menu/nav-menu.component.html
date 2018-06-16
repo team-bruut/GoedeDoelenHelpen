@@ -1,6 +1,6 @@
 <div class="nav" [ngClass]="theme">
     <mat-toolbar>
-        <a class="logo_container" href="/" mat-button>
+        <a class="logo_container" routerLink="/" mat-button>
             <mat-icon class="logo_text" svgIcon="logo_text"></mat-icon>
             <mat-icon class="logo_no_text" svgIcon="logo"></mat-icon>
         </a>
@@ -13,7 +13,7 @@
             <button mat-raised-button *ngIf="user_logedIn | async" id="user-button">{{ username_abbreviation | async }}</button>
         </div>
         <div fxShow="true" fxHide.gt-xs="true">
-            <a href="#" (click)="sidenav.toggle()" mat-button>
+            <a (click)="sidenav.toggle()" mat-button>
                 <mat-icon>menu</mat-icon>
             </a>
         </div>
@@ -28,8 +28,8 @@
                 </a>
                 <mat-divider></mat-divider>
                 <div class="buttons">
-                    <button mat-raised-button id="user-button" id="user-button">{{ username_abbreviation }}</button>
-                    <button routerLink="{{ button_4.link }}" mat-raised-button id="login-button">{{ button_4.text }}</button>
+                    <button *ngIf="user_logedIn | async" id="user-button" mat-raised-button>{{ username_abbreviation }}</button>
+                    <button *ngIf="!(user_logedIn | async)" routerLink="{{ button_4.link }}"  id="login-button" mat-raised-button>{{ button_4.text }}</button>
                     <button routerLink="{{ button_1.link }}" mat-button>{{ button_1.text }}</button>
                     <button routerLink="{{ button_2.link }}" mat-button>{{ button_2.text }}</button>
                     <button routerLink="{{ button_3.link }}" mat-button>{{ button_3.text }}</button>

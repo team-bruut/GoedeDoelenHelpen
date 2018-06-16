@@ -21,5 +21,4 @@ export class HomeFunctionsComponent implements OnInit {
     this.selected = i;
     this.phoneImage.setAttribute('src', this.images + '/' + image);
   }
-
 }
