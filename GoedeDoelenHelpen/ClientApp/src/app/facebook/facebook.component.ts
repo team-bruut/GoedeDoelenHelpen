@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ContentChild  } from '@angular/core';
 import { WindowWrapper } from '../classes/windowwrapper/windowwrapper';
 import { FBAssignModel } from './FBAssignModel';
 import { FBAuthModel, FBBackendResponse} from './FBAuthModel';
 import { AuthenticationService } from '../authentication.service';
 import { Injectable } from '@angular/core';
 import { FbService } from './fb.service';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -14,7 +15,12 @@ import { FbService } from './fb.service';
 })
 export class FacebookComponent implements OnInit {
 
-  constructor(private windowWrapper: WindowWrapper, private authService: AuthenticationService, private fbService: FbService) { }
+  templateRef: TemplateRef<any>;
+
+  constructor(private windowWrapper: WindowWrapper,
+    private authService: AuthenticationService,
+    private fbService: FbService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -31,10 +37,20 @@ export class FacebookComponent implements OnInit {
     
     if (found == true) {
       this.windowWrapper.nativeWindow.FB.getLoginStatus((result) => this.FBCallBack(result));
-
+      //Succesful dialog here
     } else {
-      alert("Issues with connecting to FB service");
+      //Error dialog here;
     }
+  }
+
+  setDialog(templateRef: TemplateRef<any>) {
+    this.templateRef = templateRef;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(this.templateRef, {
+      width: '250px',
+    });
   }
 
   FBCallBack(data: FBAuthModel): boolean {

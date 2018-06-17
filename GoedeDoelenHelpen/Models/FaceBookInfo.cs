@@ -11,8 +11,6 @@ namespace GoedeDoelenHelpen.Models
 
     public class FaceBookNotHookedUp : IFaceBookInfo {
         public bool LoggedIn => false;
-        public string ExpiresIn => "";
-        public string AccessToken => "";
     }
 
     public class FaceBookHookedUp : IFaceBookInfo {

@@ -5,9 +5,10 @@ import { AuthenticationInfo } from './authenticationInfo';
 import { ReplaySubject, BehaviorSubject, Subject } from 'rxjs';
 import { ActionResult } from './actionResult';
 import { ResetPassword } from './resetPassword';
+import { FBAuthModel, FBBackendResponse } from './facebook/FBAuthModel';
+import { FBAssignModel } from './facebook/FBAssignModel';
 import { map, startWith, switchMap, share, shareReplay } from 'rxjs/operators';
-import { FBAuthModel, FBBackendResponse } from './models/FBAuthModel';
-import { FBAssignModel } from './models/FBAssignModel';
+
 
 export type SignUpModel = {
   username: string;
@@ -93,9 +94,7 @@ export class AuthenticationService {
   }
 
   public getFB(): Observable<FBBackendResponse> {
-    let a: Observable<FBBackendResponse> = this.http.get<FBBackendResponse>(`${this.baseUrl}api/Authentication/FacebookInfo`);
-    a.subscribe((result) => { console.log(result) });
-    return a;
+    return this.http.get<FBBackendResponse>(`${this.baseUrl}api/Authentication/FacebookInfo`);
   }
 
   public assignFB(model: FBAuthModel): Observable<void> {

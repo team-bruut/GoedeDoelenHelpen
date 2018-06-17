@@ -7,8 +7,7 @@ import { WindowWrapper } from '../classes/windowwrapper/windowwrapper';
   providedIn: 'root'
 })
 export class FbService {
-  public fbstatus: FBBackendResponse;
-
+  public fbstatus: FBBackendResponse
 
   constructor(private authService: AuthenticationService, private windowWrapper : WindowWrapper) {
     this.authService.getFB().subscribe((result) => {
@@ -31,7 +30,6 @@ export class FbService {
   fbLoginPrompt(): boolean {
     let FB: any = this.windowWrapper.nativeWindow.FB;
     if (FB == undefined) {
-      console.log("Issues connecting to Facebook Server, please try again by refreshing");
       return false;
     } else {
       FB.login();

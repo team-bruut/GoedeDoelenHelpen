@@ -128,17 +128,6 @@ namespace GoedeDoelenHelpen
             {
                 options.FileProviders.Add(fileProvider);
             });
-
-            //Facebook koppeling
-            
-
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = Configuration["FacebookAppId"];
-                facebookOptions.AppSecret= Configuration["FacebookAppSecret"];
-            });
-            
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
