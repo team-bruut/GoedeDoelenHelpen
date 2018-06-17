@@ -26,8 +26,15 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\user\fb\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\user\fb\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\src\app\user\fb\**" />
+    <None Remove="ClientApp\src\app\user\fb\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -95,10 +102,6 @@
     <TypeScriptCompile Include="ClientApp\src\polyfills.ts" />
     <TypeScriptCompile Include="ClientApp\src\test.ts" />
     <TypeScriptCompile Include="ClientApp\src\typings.d.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\user\fb\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
