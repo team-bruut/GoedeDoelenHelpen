@@ -55,7 +55,7 @@ export class NavMenuComponent implements OnInit, OnDestroy {
 
   constructor(
     private navMenuService: NavMenuService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
   ) { }
 
   ngOnInit() {

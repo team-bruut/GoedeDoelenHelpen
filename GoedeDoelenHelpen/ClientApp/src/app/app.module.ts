@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { SiteMapComponent } from './site-map/site-map.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // Navigation
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -53,6 +54,7 @@ import { FacebookComponent } from './facebook/facebook.component';
     ActivatedComponent,
     PasswordResetLinkComponent,
     DefaultEventRegisterComponent,
+    PageNotFoundComponent,
     FacebookComponent,
   ],
   imports: [
@@ -72,10 +74,11 @@ import { FacebookComponent } from './facebook/facebook.component';
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
-      { path: 'evenement/user/eventname', component: EventPageComponent },
+      { path: 'evenement/:user/:eventname', component: EventPageComponent },
       { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
       { path: 'user/assignfb', component: FacebookComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
+      { path: '**', component: PageNotFoundComponent },
     ]),
   ],
   providers: [AuthenticationService, NavMenuService, {

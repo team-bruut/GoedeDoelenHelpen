@@ -1,0 +1,18 @@
+@import '../../default.scss';
+
+#editDetailsContainer {
+    min-width: 300px;
+    width: fit-content;
+
+    #header {
+        color: grey;
+        text-align: center;
+        font-size: 1.3em;
+    }
+
+    form {
+        mat-form-field {
+            display: block;
+        }
+    }
+}
