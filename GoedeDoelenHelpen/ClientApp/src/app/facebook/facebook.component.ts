@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { WindowWrapper } from '../../classes/windowwrapper/windowwrapper';
-import { FBAssignModel } from '../../models/FBAssignModel';
-import { FBAuthModel } from '../../models/FBAuthModel';
-import { AuthenticationService } from '../../authentication.service';
-import { FbService } from '../../services/fb/fb.service';
+import { WindowWrapper } from '../classes/windowwrapper/windowwrapper';
+import { FBAssignModel } from './FBAssignModel';
+import { FBAuthModel, FBBackendResponse} from './FBAuthModel';
+import { AuthenticationService } from '../authentication.service';
+import { Injectable } from '@angular/core';
+import { FbService } from './fb.service';
+
 
 @Component({
   selector: 'app-facebook',

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventsModel } from '../../../models/EventsModel';
-import { EventsService } from '../../../services/events/events.service';
-import { FbService } from '../../../services/fb/fb.service';
-import { FBAuthModel } from '../../../models/FBAuthModel';
+import { FbService } from '../../../facebook/fb.service';
+import { FBAuthModel } from '../../../facebook/FBAuthModel';
 import { AuthenticationService } from '../../../authentication.service';
 import { WindowWrapper } from '../../../classes/windowwrapper/windowwrapper';
 
@@ -15,17 +13,16 @@ export class HeaderComponent implements OnInit {
 
   images = '../../../assets/images/dashboard';
 
-  pages: EventsModel[];
+  pages = [{ title: "WNF", id: "GPXQD" }, { title: "Power2Fly", id: "JDPQX" }, { title: "Nierstichting", id: "OBOKO" }];
 
-  constructor(private eventsService: EventsService,
-    private authService: AuthenticationService,
+  constructor(private authService: AuthenticationService,
     private windowWrapper: WindowWrapper,
     private fbService : FbService) {
     
   }
 
   ngOnInit() {
-    this.pages = this.eventsService.getEvents();
+
   }
 
   ngAfterContentInit() {

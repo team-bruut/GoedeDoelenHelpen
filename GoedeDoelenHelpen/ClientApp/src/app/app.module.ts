@@ -41,7 +41,7 @@ import { EventRegisterService } from './event/default-event-register/event-regis
 import { EventPageComponent } from './event/event-page/event-page.component';
 import { EventPageModule } from './event/event-page/event-page.module';
 import { WindowWrapper } from './classes/windowwrapper/windowwrapper';
-import { FacebookComponent } from './user/facebook/facebook.component';
+import { FacebookComponent } from './facebook/facebook.component';
 
 @NgModule({
   declarations: [

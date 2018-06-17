@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FBAuthModel, FBBackendResponse } from '../../models/FBAuthModel';
-import { AuthenticationService } from '../../authentication.service';
-import { WindowWrapper } from '../../classes/windowwrapper/windowwrapper';
+import { FBAuthModel, FBBackendResponse } from './FBAuthModel';
+import { AuthenticationService } from '../authentication.service';
+import { WindowWrapper } from '../classes/windowwrapper/windowwrapper';
 
 @Injectable({
   providedIn: 'root'

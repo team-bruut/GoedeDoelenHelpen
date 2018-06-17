@@ -46,8 +46,6 @@
     <None Remove="ClientApp\src\app\counter\counter.component.ts" />
     <None Remove="ClientApp\src\app\fetch-data\fetch-data.component.ts" />
     <None Remove="ClientApp\src\app\home\home.component.ts" />
-    <None Remove="ClientApp\src\app\models\FBAssignModel.ts" />
-    <None Remove="ClientApp\src\app\models\FBAuthModel.ts" />
     <None Remove="ClientApp\src\app\nav-menu\nav-menu.component.ts" />
     <None Remove="ClientApp\src\app\user\register\register.component.spec.ts" />
     <None Remove="ClientApp\src\app\user\register\register.component.ts" />
@@ -83,8 +81,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\counter\counter.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\fetch-data\fetch-data.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\home\home.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\FBAuthModel.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\FBAssignModel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\facebook\FBAuthModel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\facebook\FBAssignModel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\nav-menu\nav-menu.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\user\register\register.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\user\register\register.component.ts" />
@@ -100,7 +98,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\services\fb\" />
     <Folder Include="ClientApp\src\app\user\fb\" />
   </ItemGroup>
 
