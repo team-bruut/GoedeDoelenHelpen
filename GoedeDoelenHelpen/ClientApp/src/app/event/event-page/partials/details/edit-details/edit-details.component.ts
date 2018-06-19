@@ -88,6 +88,6 @@ export class EditDetailsComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close(this.event);
+    // Attempting to close by clicking elsewhere will result in undefined errors
   }
 }
