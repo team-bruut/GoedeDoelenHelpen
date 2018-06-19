@@ -1,5 +1,7 @@
 import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/core';
 import { ChartSettings } from './../dashboard.component';
+import { FbService } from '../../../facebook/fb.service';
+import { AuthenticationService } from '../../../authentication.service';
 
 @Component({
   selector: 'app-progress-bar',
@@ -19,7 +21,10 @@ export class ProgressBarComponent implements OnInit {
   valueString: string;
   maxValue: number;
 
-  constructor() {
+  constructor(
+    private fbService: FbService,
+    private authService: AuthenticationService
+  ) {
   }
 
   ngOnInit() {
@@ -27,14 +32,14 @@ export class ProgressBarComponent implements OnInit {
     this.levelArray = [
       { 'name': 'Beginner', 'steps': [] },
       { 'name': 'Enthousiasteling', 'steps': [
-          { 'desc': 'Je Facebook account toe te voegen', 'link': '<>', 'done': true },
-          { 'desc': 'Vandaag iets te posten', 'link': '<>', 'done': false },
-          { 'desc': 'Je Twitter account toe te voegen', 'link': '<>', 'done': false }
+          { 'desc': 'Je Facebook account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.fbLoginPrompt, 'service': this.fbService },
+        { 'desc': 'Vandaag iets te posten', 'link': '<>', 'done': false, 'onclick': this.stub},
+        { 'desc': 'Je Twitter account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.stub}
         ] },
       { 'name': 'Professional', 'steps': [
-        { 'desc': 'Je LinkedIn account toe te voegen', 'link': '<>', 'done': false },
-        { 'desc': 'Deze week twee keer  iets te posten', 'link': '<>', 'done': true },
-        { 'desc': 'Je Hyves account toe te voegen', 'link': '<>', 'done': true }
+        { 'desc': 'Je LinkedIn account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.stub },
+        { 'desc': 'Deze week twee keer  iets te posten', 'link': '<>', 'done': true, 'onclick': this.stub },
+        { 'desc': 'Je Hyves account toe te voegen', 'link': '<>', 'done': true, 'onclick': this.stub }
       ] },
       { 'name': 'Expert', 'steps': [] },
       { 'name': 'Legend', 'steps': [] }
@@ -46,6 +51,22 @@ export class ProgressBarComponent implements OnInit {
 
     this.updateLevel();
     this.updateValue();
+
+    this.authService.getFB().subscribe(result => this.levelArray[1].steps[0].done = result.loggedIn);
+  }
+
+  //onClickEvents
+  stub(done: boolean) {
+    console.log("Works");
+  }
+
+  fbLoginPrompt(done: boolean): boolean {
+    if (done == false) {
+      let self: any = this;
+      return self.service.fbLoginPrompt();
+    } else {
+      return false;
+    }
   }
 
   updateLevel() {

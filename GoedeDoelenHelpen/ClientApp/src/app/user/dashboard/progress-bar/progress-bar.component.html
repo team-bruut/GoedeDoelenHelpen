@@ -22,7 +22,7 @@
           Er zijn momenteel geen stappen die je voor dit niveau kunt nemen, maar kijk eens bij de tools!
         </div>
         <div class="steps" *ngFor="let levelStep of levelArray[level].steps" [ngClass]="levelStep.done == true ? 'done' : 'todo'">
-          <a mat-button>{{ levelStep.done == true ? '✓' : '+' }} {{levelStep.desc }}</a>
+          <a (click)="levelStep.onclick(levelStep.done)" mat-button>{{ levelStep.done == true ? '✓' : '+' }} {{levelStep.desc }}</a>
         </div>
       </mat-card-content>
       <mat-card-actions>
