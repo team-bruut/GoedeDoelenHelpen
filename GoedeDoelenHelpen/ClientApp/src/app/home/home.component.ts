@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { NavMenuService } from '../nav-menu/nav-menu.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private navMenuService: NavMenuService) {
     this.navMenuService.setTheme('homepage');
@@ -19,5 +19,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.navMenuService.setTheme('default');
+  }
+
+  ngAfterViewInit() {
+    document.getElementsByClassName('mat-sidenav-content').item(0).scrollTop = 0;
   }
 }

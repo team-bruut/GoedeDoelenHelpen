@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { AuthenticationService } from '../../authentication.service';
@@ -8,7 +8,7 @@ import { AuthenticationService } from '../../authentication.service';
   templateUrl: './confirm-email.component.html',
   styleUrls: ['./confirm-email.component.scss']
 })
-export class ConfirmEmailComponent implements OnInit {
+export class ConfirmEmailComponent implements OnInit, AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
@@ -27,4 +27,7 @@ export class ConfirmEmailComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    document.getElementsByClassName('mat-sidenav-content').item(0).scrollTop = 0;
+  }
 }
