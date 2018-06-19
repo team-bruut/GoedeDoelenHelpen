@@ -5,7 +5,10 @@ import { AuthenticationInfo } from './authenticationInfo';
 import { ReplaySubject, BehaviorSubject, Subject } from 'rxjs';
 import { ActionResult } from './actionResult';
 import { ResetPassword } from './resetPassword';
+import { FBAuthModel, FBBackendResponse } from './facebook/FBAuthModel';
+import { FBAssignModel } from './facebook/FBAssignModel';
 import { map, startWith, switchMap, share, shareReplay } from 'rxjs/operators';
+
 
 export type SignUpModel = {
   username: string;
@@ -32,7 +35,11 @@ export type ActivateAccountModel = {
   code: string;
 };
 
-@Injectable()
+
+
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthenticationService {
   private _refresh = new Subject<boolean>();
   public readonly AuthenticationInfo: Observable<AuthenticationInfo>;
@@ -86,6 +93,13 @@ export class AuthenticationService {
     return new Date(localStorage.getItem('TokenExpiration'));
   }
 
+  public getFB(): Observable<FBBackendResponse> {
+    return this.http.get<FBBackendResponse>(`${this.baseUrl}api/Authentication/FacebookInfo`);
+  }
+
+  public assignFB(model: FBAuthModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}api/Authentication/AssignFB`, model);
+  }
   isAuthenticated(): Observable<boolean> {
     return this.AuthenticationInfo.pipe(map(inf => inf.loggedIn));
 }

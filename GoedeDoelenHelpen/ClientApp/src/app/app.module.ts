@@ -41,6 +41,8 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
 import { EventRegisterService } from './event/default-event-register/event-register.service';
 import { EventPageComponent } from './event/event-page/event-page.component';
 import { EventPageModule } from './event/event-page/event-page.module';
+import { WindowWrapper } from './classes/windowwrapper/windowwrapper';
+import { FacebookComponent } from './facebook/facebook.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { EventPageModule } from './event/event-page/event-page.module';
     PasswordResetLinkComponent,
     DefaultEventRegisterComponent,
     PageNotFoundComponent,
+    FacebookComponent,
   ],
   imports: [
     SharedModule,
@@ -73,6 +76,7 @@ import { EventPageModule } from './event/event-page/event-page.module';
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
       { path: 'evenement/:user/:eventname', component: EventPageComponent },
       { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
+      { path: 'user/assignfb', component: FacebookComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
       { path: '**', component: PageNotFoundComponent },
     ]),
@@ -84,6 +88,7 @@ import { EventPageModule } from './event/event-page/event-page.module';
   },
     IsAuthenticated,
     EventRegisterService,
+    WindowWrapper
   ],
   bootstrap: [AppComponent]
 })

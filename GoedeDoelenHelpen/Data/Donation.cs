@@ -16,11 +16,12 @@ namespace GoedeDoelenHelpen.Data
         [Required]
         public DateTime Timestamp { get; set; }
         [Required]
-        public decimal Amount { get; set; }
+        public double Amount { get; set; }
         [Required]
         public Guid EventUserId { get; set; }
         public EventUser EventUser { get; set; }
-        public Message Message { get; set; }
+
+        public string Message { get; set; }
 
     }
 }
