@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Protractor;
 using System;
 
 namespace NUnit.Selenium
@@ -15,7 +16,7 @@ namespace NUnit.Selenium
         {
             // TODO: Add code here that is run before
             //  all tests in the assembly are run    
-            Driver = new ChromeDriver();
+            Driver = new NgWebDriver(new ChromeDriver());
         }
 
         [OneTimeTearDown]

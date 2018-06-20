@@ -13,8 +13,8 @@ namespace NUnit.Selenium
         [Test]
         public void VisitHove()
         {
-            SetupFixture.Driver.Url = "https://localhost:44333";
-            SetupFixture.Driver.Navigate();
+            Helper.Driver.Url = Helper.BaseURL; ;
+            Helper.Driver.Navigate();
         }
     }
 }
