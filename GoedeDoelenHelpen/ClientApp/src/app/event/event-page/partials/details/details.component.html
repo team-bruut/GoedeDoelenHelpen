@@ -11,7 +11,7 @@
     Ik help <a class="event-variable">{{ event.charity }}</a> omdat ik kinderen in Afrika een beter leven wil geven. Dit doe ik door <a class="event-variable">{{ event.title }}</a> te organiseren op <a class="event-variable">{{ toLocalDate(event.date) }}</a>! Hiervoor heb ik jouw hulp nodig! Via onderstaande knop kan je me helpen mijn doel te bereiken.
   </div>
   <div class="donate-button">
-    <button mat-raised-button>
+    <button routerLink="/evenement/user/eventname/doneer" mat-raised-button>
       Doneer nu!
     </button>
   </div>

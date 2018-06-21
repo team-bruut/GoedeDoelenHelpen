@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { NavMenuService } from '../../nav-menu/nav-menu.service';
 import { AuthenticationService } from '../../authentication.service';
@@ -13,8 +13,9 @@ import { EventRegisterService } from './event-register.service';
   templateUrl: './default-event-register.component.html',
   styleUrls: ['./default-event-register.component.scss']
 })
-export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
+export class DefaultEventRegisterComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  imageSrc = '';
   personalDetailsForm: FormGroup;
   firstnameC: AbstractControl;
   lastnameC: AbstractControl;
@@ -144,6 +145,25 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
     return password.value === repeat.value ? true : false;
   }
 
+  handleInputChange(e) {
+    const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    const pattern = /image-*/;
+    const reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+  _handleReaderLoaded(e) {
+    const reader = e.target;
+    const newImage: string = reader.result;
+    if (newImage.length < 1000000) {
+      this.imageSrc = newImage;
+    }
+  }
+
   onSubmit() {
     if (this.eventRegisterForm.valid) {
       this.authenticationService.signUp({
@@ -152,12 +172,16 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
         firstname: this.firstnameC.value,
         lastname: this.lastnameC.value,
         email: this.emailC.value,
-        profileimage: this.profileImageC.value
+        profileimage: this.imageSrc
       }).subscribe();
     }
   }
 
   ngOnDestroy() {
     this.navMenuService.setTheme('default');
+  }
+
+  ngAfterViewInit() {
+    document.getElementsByClassName('mat-sidenav-content').item(0).scrollTop = 0;
   }
 }

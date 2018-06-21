@@ -9,18 +9,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GoedeDoelenHelpen.Data
 {
-    public class Message
+    public class FacebookPost
     {
-        public int Id { get; set; }
-        [StringLength(64)] //optional
-        public string Name { get; set; }
-        
+        public Guid Id { get; set; }
+
         [Required]
-        [StringLength(255)]
-        public string Content { get; set; }
+        public int likes { get; set; }
+
         [Required]
-        public Guid DonationId { get; set; }
-        public Donation Donation { get; set; }
-        
+        public DateTime TimeStamp { get; set; }
+        [Required]
+        public Guid EventUserId { get; set; }
+        public EventUser EventUser { get; set; }
+
     }
 }

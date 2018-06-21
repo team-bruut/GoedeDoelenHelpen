@@ -14,6 +14,7 @@
         .screen-warning { grid-area: screen-warning }
 
         display: grid !important;
+        grid-template-columns: initial;
         grid-template-areas:
             'header header header'
             'donated visitors visitors'
@@ -37,6 +38,7 @@
             grid-template-areas:
                 'header header header'
                 'donated visitors visitors'
+                'live-comments visitors visitors'
                 'live-comments likes-chart donations-chart';
         }
 

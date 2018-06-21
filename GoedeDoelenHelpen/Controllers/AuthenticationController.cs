@@ -30,6 +30,7 @@ namespace GoedeDoelenHelpen.Controllers
         private readonly IViewRenderService _renderService;
         private readonly IPasswordHasher<ApplicationUser> _passwordHasher;
         private readonly IConfiguration _configurationRoot;
+        private readonly ApplicationDbContext _context;
 
         public AuthenticationController(
             UserManager<ApplicationUser> userManager,
@@ -37,7 +38,8 @@ namespace GoedeDoelenHelpen.Controllers
             IEmailSender emailSender,
             IViewRenderService renderService,
             IPasswordHasher<ApplicationUser> passwordHasher,
-            IConfiguration configurationRoot)
+            IConfiguration configurationRoot,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -45,6 +47,7 @@ namespace GoedeDoelenHelpen.Controllers
             _renderService = renderService;
             _passwordHasher = passwordHasher;
             _configurationRoot = configurationRoot;
+            _context = context;
         }
 
 
@@ -58,8 +61,9 @@ namespace GoedeDoelenHelpen.Controllers
                     UserName = model.Username,
                     Email = model.Username,
                     NameInsertion = "",
-                    FirstName = "Barld",
-                    LastName = "Boot"
+                    FirstName = model.Firstname,
+                    LastName = model.Lastname,
+                    ProfileImage = model.ProfileImage
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -96,18 +100,41 @@ namespace GoedeDoelenHelpen.Controllers
                 {
                     return Ok();
                 }
-                else if (result.IsLockedOut)
-                {
-                    return Unauthorized();
-                }
-                else
-                {
-                    return Unauthorized();
-                }
+                return Unauthorized();
             }
 
             // If we got this far, something failed, redisplay form
             return Unauthorized();
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AssignFB([FromBody]FacebookModel model) {
+            ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
+            if (user != null) { 
+                if (user.FacebookRecords == null) {
+                    user.FacebookRecords = new List<FacebookRecord>();
+                }
+
+                if (user.FacebookRecords.Count == 0) {
+                    DateTime _expiresIn = DateTime.Now;
+                    FacebookRecord record = new FacebookRecord {
+                        ApplicationUser = user,
+                        FBUserId = model.authResponse.userId,
+                        ExpiresIn = _expiresIn.AddMinutes(int.Parse(model.authResponse.expiresIn)),
+                        AccessToken = model.authResponse.accessToken,
+                        SignedRequest = model.authResponse.signedRequest,
+                        TimeStamp = DateTime.Now };
+
+                    await _context.FacebookRecords.AddAsync(record);
+                    await _context.SaveChangesAsync();
+
+                    return Ok();
+                } else {
+                    return BadRequest();
+                }
+            } else {
+                return Unauthorized();
+            }
         }
 
         [HttpPost("[action]")]
@@ -211,7 +238,7 @@ namespace GoedeDoelenHelpen.Controllers
 
                 }
 
-                // For more information on how to enable account confirmation and password reset please
+                // For more information on how to enable account nfirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 // example: https://localhost:44333/UserPasswordResetLink/ConfirmEmail?userId=5cf1688a-fa61-464d-a924-adc8048180be&code=CfDJ8IuddpyUj2ZNk6o%2FU14BzYIcM8g0Jz1uG7p2TRfs5KU85Fa%2FaDAZmVpHjl7UTODlN326gkRgNLbMpx%2B6Dsv%2FViYFA2TrSyQvY9bsArcc4UVxGs9KTtVp6CBjnbAeyoXMAZ%2F438DH15wluzko5DnbJTe2orUqYaAJMUTfv0ZYSvqLJNWIRBJRxK52OqhsPunDsVmg38JvbPB378PRpvcdDjbeum6AxGG5qYQROPZDQlPC
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -249,6 +276,29 @@ namespace GoedeDoelenHelpen.Controllers
                 return new ActionResultModel { Success = true, Message = "Wachtwoord is veranderd" };
             }
             return new ActionResultModel { Success = false, Message = "Er is iets misgegaan." };
+        }
+
+        [HttpGet("[action]")]
+        [ProducesResponseType(typeof(FaceBookHookedUp), 200)]
+        [ProducesResponseType(typeof(FaceBookNotHookedUp), 201)]
+        [Authorize]
+        public async Task<ActionResult<IFaceBookInfo>> FacebookInfo() {
+            ApplicationUser user = await this.GetApplicationUserAsync(_userManager);
+            if (user != null) {
+
+                List<FacebookRecord> userFBRecords = _context.FacebookRecords.Where((i) => i.ApplicationUserId == user.Id).ToList();
+
+
+                if (_context.FacebookRecords.Count() != 0 && userFBRecords.Count == 1) {
+                    return new FaceBookHookedUp {
+                        ExpiresIn = userFBRecords[0].ExpiresIn.ToString(),
+                        AccessToken = userFBRecords[0].AccessToken
+                    };
+                } else {
+                    return new FaceBookNotHookedUp();
+                }
+            }
+            return BadRequest();
         }
 
 

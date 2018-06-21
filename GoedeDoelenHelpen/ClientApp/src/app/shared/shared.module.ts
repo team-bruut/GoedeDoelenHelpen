@@ -11,13 +11,13 @@ import { CirclesComponent } from '../elements/circles/circles.component';
 
 import { RouterModule } from '@angular/router';
 
+
 @NgModule({
   imports: [
     CommonModule,
     CoreMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
   ],
   declarations: [
     GradientComponent,

@@ -1,5 +1,20 @@
 <mat-card class="partial" id="donated">
   <p class="title">Opgehaald bedrag:</p>
-  <p class="amount">&euro; 950,-</p>
+  <p class="amount">&euro; {{ results[0].value }},-</p>
+  <div class="chart">
+    <ngx-charts-pie-grid
+      *ngIf="chartType === 'pie-grid'"
+      class="chart-container"
+      [label]="label"
+      [scheme]="scheme"
+      [schemeType]="schemeType"
+      [results]="results"
+      [designatedTotal]="1500"
+      [animations]="animations"
+      [tooltipDisabled]="tooltipDisabled"
+      [tooltipText]="pieTooltipText">
+    </ngx-charts-pie-grid>
+  </div>
+  <p>Doel: &euro;1500</p>
 </mat-card>
 

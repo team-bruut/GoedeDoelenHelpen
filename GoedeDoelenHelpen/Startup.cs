@@ -116,6 +116,7 @@ namespace GoedeDoelenHelpen
 
             services.AddSingleton<IEmailSender, Services.EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
+            
 
             // Add the ViewRenderService
             services.AddTransient<IViewRenderService, ViewRenderService>();

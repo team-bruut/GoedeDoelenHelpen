@@ -62,6 +62,9 @@ namespace GoedeDoelenHelpen.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("ProfileImage")
+                        .HasColumnType("text");
+
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");

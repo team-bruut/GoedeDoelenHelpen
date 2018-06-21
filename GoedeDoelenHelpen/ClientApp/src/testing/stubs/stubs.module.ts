@@ -8,13 +8,13 @@ import { RouterStub } from './router.stub';
 
 @NgModule({
   imports: [
-    CommonModule
-  ],
-  declarations: [
+    CommonModule,
     ActivatedRouteStub,
     AuthenticationServiceStub,
     RouterLinkDirectiveStub,
     RouterStub,
+  ],
+  declarations: [
   ],
   exports: [
     ActivatedRouteStub,

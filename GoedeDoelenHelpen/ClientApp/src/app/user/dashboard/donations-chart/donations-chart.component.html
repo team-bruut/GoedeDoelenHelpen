@@ -1,6 +1,18 @@
 <mat-card class="partial" id="donations_chart">
-  <p>
-    donations-chart works!
-  </p>
+  <p>Percentage doelen behaald</p>
+  <div class="chart">
+    <ngx-charts-pie-grid
+      *ngIf="chartType === 'pie-grid'"
+      class="chart-container"
+      [label]="label"
+      [scheme]="scheme"
+      [schemeType]="schemeType"
+      [results]="results"
+      [designatedTotal]="1000"
+      [animations]="animations"
+      [tooltipDisabled]="tooltipDisabled"
+      [tooltipText]="pieTooltipText">
+    </ngx-charts-pie-grid>
+  </div>
 </mat-card>
 
