@@ -94,9 +94,7 @@ export class AuthenticationService {
   }
 
   public getFB(): Observable<FBBackendResponse> {
-    var a = this.http.get<FBBackendResponse>(`${this.baseUrl}api/Authentication/FacebookInfo`);
-    console.log(a);
-    return a;
+    return this.http.get<FBBackendResponse>(`${this.baseUrl}api/Authentication/FacebookInfo`);
   }
 
   public assignFB(model: FBAuthModel): Observable<void> {
