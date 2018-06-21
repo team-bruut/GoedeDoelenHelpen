@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommentsComponent } from './comments.component';
@@ -8,7 +9,8 @@ describe('CommentsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommentsComponent ]
+      declarations: [ CommentsComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ],
     })
     .compileComponents();
   }));
