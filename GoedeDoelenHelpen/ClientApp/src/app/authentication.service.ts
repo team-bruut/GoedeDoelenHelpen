@@ -17,6 +17,11 @@ export type SignUpModel = {
   lastname: string;
   email: string;
   profileimage: any;
+  event?: {
+    name: string;
+    description: string;
+    startEvent: Date;
+  }
 };
 
 export type EventModel = {

@@ -28,12 +28,12 @@ namespace GoedeDoelenHelpen.Data
         public DateTime EndEvent { get; set; }
         [Required]
         public DateTime EndDate { get; set; }
-        
+
         /// <summary>
         /// Boolean that decides if the event is still in use.
         /// </summary>
         [Required]
-        public bool Active { get; set; }
+        public bool Active { get; set; } = true;
 
         [Required]
         public Guid ReceivingPartyId { get; set; }

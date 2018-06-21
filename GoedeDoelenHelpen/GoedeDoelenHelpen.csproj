@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20180611084554_guidToString.cs" />
     <Compile Remove="Migrations\20180611084554_guidToString.Designer.cs" />
+    <Compile Remove="Migrations\20180621193023_delete-receiving-party.cs" />
+    <Compile Remove="Migrations\20180621193023_delete-receiving-party.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
