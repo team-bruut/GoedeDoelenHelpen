@@ -25,5 +25,6 @@ namespace GoedeDoelenHelpen.Data
         public string LastName { get; set; }
 
         public List<FacebookRecord> FacebookRecords { get; set; }
+        public string ProfileImage { get; internal set; }
     }
 }
