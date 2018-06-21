@@ -1,5 +1,8 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatAutocompleteModule, MatDialogModule } from '@angular/material';
+
+import { NavMenuService } from '../../nav-menu/nav-menu.service';
 
 import { EventPageComponent } from './event-page.component';
 
@@ -19,6 +22,10 @@ describe('EventPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MatAutocompleteModule,
+        MatDialogModule,
+      ],
       declarations: [
         EventPageComponent,
         UserComponent,
@@ -29,6 +36,9 @@ describe('EventPageComponent', () => {
         CharityComponent,
         CirclesComponent,
         GradientComponent,
+      ],
+      providers: [
+        NavMenuService,
       ],
       schemas: [ NO_ERRORS_SCHEMA ],
     })

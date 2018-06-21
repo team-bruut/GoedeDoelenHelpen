@@ -6,15 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { RouterStub } from './../../../testing/router.stub';
+import { ActivatedRouteStub } from './../../../testing/activated-route.stub';
 
 import { ConfirmEmailComponent } from './confirm-email.component';
 
 describe('ConfirmEmailComponent', () => {
   let component: ConfirmEmailComponent;
   let fixture: ComponentFixture<ConfirmEmailComponent>;
-  const fakeActivatedRoute = {
-    snapshot: { data: { } }
-  } as ActivatedRoute;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,7 +26,7 @@ describe('ConfirmEmailComponent', () => {
         AuthenticationService,
         {provide: 'BASE_URL', useValue: ''},
         {provide: Router, useClass: RouterStub},
-        {provide: ActivatedRoute, useValue: fakeActivatedRoute}
+        {provide: ActivatedRoute, useClass: ActivatedRouteStub}
       ],
       schemas: [ NO_ERRORS_SCHEMA ],
     })

@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 export class RouterLinkDirectiveStub {
     @Input('routerLink') linkParams: any;
     navigatedTo: any = null;
+    queryParams: object = { };
 
     onClick() {
         this.navigatedTo = this.linkParams;
