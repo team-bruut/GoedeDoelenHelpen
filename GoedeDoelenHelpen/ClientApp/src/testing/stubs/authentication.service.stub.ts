@@ -1,8 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
-@Injectable
 export class AuthenticationServiceStub {
     constructor(
         private http: HttpClient,
