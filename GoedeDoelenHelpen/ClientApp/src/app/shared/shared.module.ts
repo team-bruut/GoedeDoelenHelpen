@@ -11,7 +11,6 @@ import { GradientComponent } from '../elements/gradient/gradient.component';
 import { CirclesGeneratorComponent } from '../elements/circles/circles.component';
 import { RouterModule } from '@angular/router';
 
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -19,7 +18,6 @@ import { RouterModule } from '@angular/router';
     CoreMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
   ],
   declarations: [
     RoundedButtonDirective,
