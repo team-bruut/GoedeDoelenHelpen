@@ -158,8 +158,10 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
   }
   _handleReaderLoaded(e) {
     const reader = e.target;
-    this.imageSrc = reader.result;
-    console.log(this.imageSrc);
+    const newImage: string = reader.result;
+    if (newImage.length < 1000000) {
+      this.imageSrc = newImage;
+    }
   }
 
   onSubmit() {
