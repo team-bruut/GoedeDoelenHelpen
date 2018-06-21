@@ -5,8 +5,8 @@ import { AuthenticationService } from './../../authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { RouterStub } from './../../../testing/router.stub';
-import { ActivatedRouteStub } from './../../../testing/activated-route.stub';
+import { RouterStub } from './../../../testing/stubs/router.stub';
+import { ActivatedRouteStub } from './../../../testing/stubs/activated-route.stub';
 
 import { ConfirmEmailComponent } from './confirm-email.component';
 

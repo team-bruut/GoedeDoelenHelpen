@@ -6,7 +6,7 @@ import { MatAutocomplete } from '@angular/material';
 import { AuthenticationService } from './../../authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { RouterStub } from './../../../testing/router.stub';
+import { RouterStub } from './../../../testing/stubs/router.stub';
 
 import { NavMenuService } from '../../nav-menu/nav-menu.service';
 

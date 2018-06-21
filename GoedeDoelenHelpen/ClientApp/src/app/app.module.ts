@@ -42,6 +42,9 @@ import { EventRegisterService } from './event/default-event-register/event-regis
 import { EventPageComponent } from './event/event-page/event-page.component';
 import { EventPageModule } from './event/event-page/event-page.module';
 
+// Testing
+import { StubsModule } from './../testing/stubs/stubs.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +67,7 @@ import { EventPageModule } from './event/event-page/event-page.module';
     HomeModule,
     DashboardModule,
     EventPageModule,
+    StubsModule,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

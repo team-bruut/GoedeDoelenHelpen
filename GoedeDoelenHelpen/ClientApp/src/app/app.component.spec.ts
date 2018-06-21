@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
-import { RouterLinkDirectiveStub } from './../testing/router-link-directive-stub';
+import { RouterLinkDirectiveStub } from './../testing/stubs/router-link-directive-stub';
 
 
 describe('AppComponent', () => {

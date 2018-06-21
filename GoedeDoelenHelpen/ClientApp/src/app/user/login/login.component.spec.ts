@@ -6,7 +6,7 @@ import { AuthenticationService } from './../../authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material';
 import { Router } from '@angular/router';
-import { RouterStub } from './../../../testing/router.stub';
+import { RouterStub } from './../../../testing/stubs/router.stub';
 
 import { LoginComponent } from './login.component';
 

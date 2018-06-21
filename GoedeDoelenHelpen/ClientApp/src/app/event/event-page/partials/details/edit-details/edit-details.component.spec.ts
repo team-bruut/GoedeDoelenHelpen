@@ -8,7 +8,7 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './../../../../../authentication.service';
 import { Router } from '@angular/router';
-import { RouterStub } from './../../../../../../testing/router.stub';
+import { RouterStub } from './../../../../../../testing/stubs/router.stub';
 
 describe('EditDetailsComponent', () => {
   let component: EditDetailsComponent;
