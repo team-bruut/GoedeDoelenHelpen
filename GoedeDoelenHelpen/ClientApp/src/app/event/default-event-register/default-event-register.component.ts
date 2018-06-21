@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { NavMenuService } from '../../nav-menu/nav-menu.service';
 import { AuthenticationService } from '../../authentication.service';
@@ -13,7 +13,7 @@ import { EventRegisterService } from './event-register.service';
   templateUrl: './default-event-register.component.html',
   styleUrls: ['./default-event-register.component.scss']
 })
-export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
+export class DefaultEventRegisterComponent implements OnInit, OnDestroy, AfterViewInit {
 
   imageSrc = '';
   personalDetailsForm: FormGroup;
@@ -179,5 +179,9 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.navMenuService.setTheme('default');
+  }
+
+  ngAfterViewInit() {
+    document.getElementsByClassName('mat-sidenav-content').item(0).scrollTop = 0;
   }
 }
