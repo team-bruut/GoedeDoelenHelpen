@@ -15,7 +15,6 @@ namespace GoedeDoelenHelpen.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<EventSubscription> EventSubscriptions { get; set; }
         public DbSet<EventUser> EventUsers { get; set; }
-        public DbSet<Message> Messages { get; set; }
         public DbSet<ReceivingParty> ReceivingParties { get; set; }
         public DbSet<ViewRecord> ViewRecords { get; set; }
         public DbSet<Donation> Donations { get; set; }
@@ -38,11 +37,6 @@ namespace GoedeDoelenHelpen.Data
             //    .HasOne(d => d.Event)
             //    .WithMany(e => e.Donations);
 
-            modelBuilder.Entity<Message>()
-                .HasOne(m => m.Donation)
-                .WithOne(d => d.Message)
-                .OnDelete(DeleteBehavior.Restrict);
-
             modelBuilder.Entity<Donation>()
                 .HasOne(d => d.EventUser)
                 .WithMany(e => e.Donations)
@@ -59,8 +53,13 @@ namespace GoedeDoelenHelpen.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<FacebookRecord>()
-                .HasOne(fr => fr.EventUser)
-                .WithMany(eu => eu.FacebookRecords)
+                .HasOne(fr => fr.ApplicationUser)
+                .WithMany(au => au.FacebookRecords)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<FacebookPost>()
+                .HasOne(fp => fp.EventUser)
+                .WithMany(eu => eu.FacebookPosts)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<EmailRecord>()

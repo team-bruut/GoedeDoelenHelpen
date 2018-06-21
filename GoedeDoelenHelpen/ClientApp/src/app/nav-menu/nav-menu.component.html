@@ -1,11 +1,8 @@
 <div class="nav" [ngClass]="theme">
     <mat-toolbar>
-        <a class="logo" href="/" mat-button>
-            <!-- <mat-icon class="logo" svgIcon="logo" fxShow="true" fxHide.lt-sm="true"></mat-icon> -->
-            <!-- <p mat-title fxShow="true" fxHide.lt-sm="true">Goede Doelen Helpen</p> -->
-            <!-- Show a logo without text on mobile devices -->
-            <!-- <mat-icon class="logo logo_mobile" svgIcon="logo_text" fxShow="true" fxHide.gt-xs="true"></mat-icon> -->
-            <p mat-title>Goede Doelen Helpen</p>
+        <a class="logo_container" routerLink="/" mat-button>
+            <mat-icon class="logo_text" svgIcon="logo_text"></mat-icon>
+            <mat-icon class="logo_no_text" svgIcon="logo"></mat-icon>
         </a>
         <span class="fill-remaining-space"></span>
         <div class="buttons" fxShow="true" fxHide.lt-sm="true">
@@ -16,7 +13,7 @@
             <button mat-raised-button *ngIf="user_logedIn | async" id="user-button">{{ username_abbreviation | async }}</button>
         </div>
         <div fxShow="true" fxHide.gt-xs="true">
-            <a href="#" (click)="sidenav.toggle()" mat-button>
+            <a (click)="sidenav.toggle()" mat-button>
                 <mat-icon>menu</mat-icon>
             </a>
         </div>
@@ -31,8 +28,8 @@
                 </a>
                 <mat-divider></mat-divider>
                 <div class="buttons">
-                    <button mat-raised-button id="user-button" id="user-button">{{ username_abbreviation }}</button>
-                    <button routerLink="{{ button_4.link }}" mat-raised-button id="login-button">{{ button_4.text }}</button>
+                    <button *ngIf="user_logedIn | async" id="user-button" mat-raised-button>{{ username_abbreviation }}</button>
+                    <button *ngIf="!(user_logedIn | async)" routerLink="{{ button_4.link }}"  id="login-button" mat-raised-button>{{ button_4.text }}</button>
                     <button routerLink="{{ button_1.link }}" mat-button>{{ button_1.text }}</button>
                     <button routerLink="{{ button_2.link }}" mat-button>{{ button_2.text }}</button>
                     <button routerLink="{{ button_3.link }}" mat-button>{{ button_3.text }}</button>

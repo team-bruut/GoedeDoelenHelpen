@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { SiteMapComponent } from './site-map/site-map.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // Navigation
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -38,6 +39,10 @@ import { IsAuthenticated } from './IsAuthenticated.guard';
 // Event
 import { DefaultEventRegisterComponent } from './event/default-event-register/default-event-register.component';
 import { EventRegisterService } from './event/default-event-register/event-register.service';
+import { EventPageComponent } from './event/event-page/event-page.component';
+import { EventPageModule } from './event/event-page/event-page.module';
+import { WindowWrapper } from './classes/windowwrapper/windowwrapper';
+import { FacebookComponent } from './facebook/facebook.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +54,8 @@ import { EventRegisterService } from './event/default-event-register/event-regis
     ActivatedComponent,
     PasswordResetLinkComponent,
     DefaultEventRegisterComponent,
+    PageNotFoundComponent,
+    FacebookComponent,
   ],
   imports: [
     SharedModule,
@@ -59,6 +66,7 @@ import { EventRegisterService } from './event/default-event-register/event-regis
     FlexLayoutModule,
     HomeModule,
     DashboardModule,
+    EventPageModule,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -66,8 +74,11 @@ import { EventRegisterService } from './event/default-event-register/event-regis
       { path: 'user/activated', component: ActivatedComponent },
       { path: 'user/login', component: LoginComponent },
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
-      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent },
+      { path: 'evenement/:user/:eventname', component: EventPageComponent },
+      { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
+      { path: 'user/assignfb', component: FacebookComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},
+      { path: '**', component: PageNotFoundComponent },
     ]),
   ],
   providers: [AuthenticationService, NavMenuService, {
@@ -77,6 +88,7 @@ import { EventRegisterService } from './event/default-event-register/event-regis
   },
     IsAuthenticated,
     EventRegisterService,
+    WindowWrapper
   ],
   bootstrap: [AppComponent]
 })

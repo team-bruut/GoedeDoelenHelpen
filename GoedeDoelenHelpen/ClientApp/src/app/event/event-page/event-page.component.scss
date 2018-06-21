@@ -1,0 +1,80 @@
+@import '~imports.scss';
+
+.bubblewrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 200px;
+
+    .bubblecontainer {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.eventpagecontents {
+    width: 100%;
+    position: relative;
+    background-color: white;
+    overflow: visible;
+
+    .grid-layout {
+
+        app-user { grid-area: user; }
+        app-details { grid-area: details; }
+        app-donated { grid-area: donated; }
+        app-comments { grid-area: comments; }
+        app-charity { grid-area: charity; }
+        .screen-warning { grid-area: screen-warning }
+
+        display: grid !important;
+        grid-template-areas:
+            'user user details details donated donated'
+            'comments comments comments charity charity charity';
+        grid-gap: 0;
+        padding: 8px;
+        position: relative;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+
+        .app-user,
+        .app-details,
+        .app-donated,
+        .app-comments,
+        .app-charity {
+            width: 100%;
+        }
+
+        .screen-warning {
+            display: none;
+        }
+
+        @include breakpoint(tabletonly) {
+            grid-template-areas:
+                'user donated'
+                'details details'
+                'comments comments'
+                'charity charity';
+        }
+
+        @include breakpoint(tinyonly) {
+            grid-template-areas:
+                'user'
+                'donated'
+                'details'
+                'comments'
+                'charity'
+                'screen-warning';
+
+            .screen-warning {
+                display: initial;
+            }
+        }
+
+        app-user {
+            margin-top: -100px;
+        }
+    }
+}
