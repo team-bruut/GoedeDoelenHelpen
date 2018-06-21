@@ -1,7 +1,12 @@
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AuthenticationService } from './../../authentication.service';
+import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { RouterStub } from './../../../testing/stubs/router.stub';
 import { NavMenuService } from './../../nav-menu/nav-menu.service';
+import { WindowWrapper } from './../../classes/windowwrapper/windowwrapper';
 
 import { DashboardComponent } from './dashboard.component';
 import { DonatedComponent } from './donated/donated.component';
@@ -18,6 +23,9 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule,
+      ],
       declarations: [
         DashboardComponent,
         DonatedComponent,
@@ -30,6 +38,10 @@ describe('DashboardComponent', () => {
       ],
       providers: [
         { provide: NavMenuService, useClass: NavMenuService },
+        AuthenticationService,
+        WindowWrapper,
+        {provide: 'BASE_URL', useValue: ''},
+        {provide: Router, useClass: RouterStub},
       ],
       schemas: [ NO_ERRORS_SCHEMA ],
     })

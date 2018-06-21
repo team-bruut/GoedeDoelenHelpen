@@ -22,6 +22,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    document.getElementsByClassName('mat-sidenav-content').item(0).scrollTop = 0;
+    const contentWindow = document.getElementsByClassName('mat-sidenav-content');
+    if (contentWindow.length > 0) {
+      contentWindow.item(0).scrollTop = 0;
+    }
   }
 }
