@@ -1,14 +1,45 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FormBuilder } from '@angular/forms';
+import { AuthenticationService } from './../../authentication.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material';
+import { Router } from '@angular/router';
+import { RouterStub } from './../../../testing/router.stub';
+
 import { LoginComponent } from './login.component';
+
+import { CirclesComponent } from './../../elements/circles/circles.component';
+import { GradientComponent } from './../../elements/gradient/gradient.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let httpClientSpy: { get: jasmine.Spy };
+  let authenticationService: AuthenticationService;
 
   beforeEach(async(() => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    authenticationService = new AuthenticationService(<any> httpClientSpy, '');
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      imports: [
+        HttpClientModule,
+        MatDialogModule,
+      ],
+      declarations: [
+        LoginComponent,
+        CirclesComponent,
+        GradientComponent,
+      ],
+      providers: [
+        FormBuilder,
+        AuthenticationService,
+        {provide: 'BASE_URL', useValue: ''},
+        {provide: Router, useClass: RouterStub},
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ],
     })
     .compileComponents();
   }));

@@ -31,8 +31,12 @@ export class CirclesComponent implements AfterViewInit {
 
     ngAfterViewInit() {
       const page: HTMLElement = document.getElementById('content');
-      this.pageWidth = page.offsetWidth;
-      this.pageHeight = page.offsetHeight + 250;
+      this.pageWidth = 300;
+      this.pageWidth = 100;
+      if (page != null) {
+        this.pageWidth = page.offsetWidth;
+        this.pageHeight = page.offsetHeight + 250;
+      }
 
       const ctx: CanvasRenderingContext2D =
         this.canvasRef.nativeElement.getContext('2d');
