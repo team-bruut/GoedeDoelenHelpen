@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartSettings } from '../dashboard.component';
-import { log } from 'util';
 
 @Component({
   selector: 'app-visitors-chart',

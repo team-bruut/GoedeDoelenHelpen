@@ -61,8 +61,9 @@ namespace GoedeDoelenHelpen.Controllers
                     UserName = model.Username,
                     Email = model.Username,
                     NameInsertion = "",
-                    FirstName = "Barld",
-                    LastName = "Boot"
+                    FirstName = model.Firstname,
+                    LastName = model.Lastname,
+                    ProfileImage = model.ProfileImage
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

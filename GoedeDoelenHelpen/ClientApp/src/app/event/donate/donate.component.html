@@ -1,0 +1,80 @@
+<div class="bubblewrapper">
+  <div class="bubblecontainer">
+    <app-gradient [zindex]=0></app-gradient>
+    <app-circles-generated></app-circles-generated>
+  </div>
+</div>
+<div class="donatepagecontents">
+  <a routerLink="/evenement/user/eventname">< Terug</a>
+  <mat-card class="donatepage" *ngIf='payed === false'>
+    <p class="title">Ik wil doneren aan <b>{{ event.name }}</b>!</p>
+    <p>Je donatie is eenmalig en, indien gewenst, anoniem.</p>
+    <form [formGroup]="donateForm">
+
+      <mat-form-field *ngIf="anonymousC.value === false">
+        <input matInput placeholder="volledige naam" [formControl]="nameC">
+        <mat-error *ngIf="nameC.hasError('minlength')">
+          Naam is <strong>te kort</strong>
+        </mat-error>
+        <mat-error *ngIf="nameC.hasError('maxlength')">
+          Naam is <strong>te lang</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-checkbox [formControl]="anonymousC">Ik wil anoniem blijven</mat-checkbox>
+
+      <hr>
+      <mat-form-field>
+        <input matInput placeholder="bedrag" type="number" [formControl]="amountC" style="text-align: right" required>
+        <span matPrefix>€&nbsp;</span>
+        <span matSuffix>,00</span>
+        <mat-error *ngIf="nameC.hasError('minlength')">
+          Naam is <strong>te kort</strong>
+        </mat-error>
+        <mat-error *ngIf="nameC.hasError('maxlength')">
+          Naam is <strong>te lang</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <hr>
+      <mat-form-field>
+        <textarea matInput placeholder="persoonlijk bericht" [formControl]="messageC"></textarea>
+        <mat-error *ngIf="messageC.hasError('minlength')">
+          Bericht is <strong>te kort</strong>
+        </mat-error>
+        <mat-error *ngIf="messageC.hasError('maxlength')">
+          Bericht is <strong>te lang</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <hr>
+      <div>
+        <button type="submit" (click)="onSubmit()" [disabled]="donateForm.valid === false" mat-raised-button class="submit" [ngClass]="donateForm.valid === true ? 'active' : ''">Doneren</button>
+      </div>
+      <mat-error *ngIf="donateForm.valid === false">
+        Niet alle velden zijn correct ingevuld
+      </mat-error>
+    </form>
+  </mat-card>
+
+  <mat-card class="payedpage" *ngIf="payed === true">
+    <p *ngIf="anonymousC.value === true">
+        Bedankt voor het doneren!<br>
+    </p>
+    <p *ngIf="anonymousC.value === false">
+        Bedankt voor het doneren<b> {{ nameC.value }}</b>!<br>
+    </p>
+    <img id="logoAnimation" src="{{ images }}/logo_animated.gif">
+    <p>
+      Dankzij jou kan <b>{{ event.charity }}</b> de wereld weer een stukje mooier maken!
+    </p>
+    <p>
+      <br>
+      Deel dit nieuws met je vrienden!
+    </p>
+    <div class="share">
+      <button mat-raised-button>
+        Delen
+      </button>
+    </div>
+  </mat-card>
+</div>

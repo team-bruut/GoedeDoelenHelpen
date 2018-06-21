@@ -9,10 +9,9 @@ export class HeaderComponent implements OnInit {
 
   images = '../../../assets/images/dashboard';
 
-  pages = [{ title: "WNF", id: "GPXQD" }, { title: "Power2Fly", id: "JDPQX" }, { title: "Nierstichting", id: "OBOKO" }];
+  pages = [{ title: 'WNF', id: 'GPXQD' }, { title: 'Power2Fly', id: 'JDPQX' }, { title: 'Nierstichting', id: 'OBOKO' }];
 
   constructor() {
-    
   }
 
   ngOnInit() {
@@ -21,6 +20,4 @@ export class HeaderComponent implements OnInit {
 
   ngAfterContentInit() {
   }
-
-  
 }

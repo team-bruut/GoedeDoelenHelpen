@@ -1,0 +1,97 @@
+@import '~imports.scss';
+
+.bubblewrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 200px;
+
+    .bubblecontainer {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.donatepagecontents {
+    width: 100%;
+    position: relative;
+    background-color: white;
+    overflow: visible;
+    padding: 1% 10%;
+
+    a {
+        color: $primary;
+    }
+
+    .donatepage {
+        margin: 2% 0;
+
+        p {
+            text-align: center;
+        }
+
+        .title {
+            color: $primary;
+            font-style: italic;
+            font-size: 1.8em;
+        }
+
+        form {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            
+            mat-form-field {
+                display: block;
+                width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .submit {
+                width: 200px;
+                border-radius: 10px;
+            }
+
+            .submit.active {
+                color: white;
+                background-color: $primary;
+            }
+        }
+    }
+
+    .payedpage {
+        margin: 2% 0;
+
+        p {
+            text-align: center;
+            color: $primary;
+            font-style: italic;
+            font-size: 1.5em;
+        }
+
+        #logoAnimation {
+            width: 50%;
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .share {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+
+            button {
+                width: 200px;
+                border-radius: 10px;
+                font-weight: bold;
+                font-size: 1.5em;
+                background-color: $primary;
+                color: white;
+            }
+        }
+    }
+}

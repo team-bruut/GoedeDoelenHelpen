@@ -1,1 +1,28 @@
 @import '../dashboard.component.scss';
+
+.comments {
+    // margin: 20px;
+    overflow: hidden;
+    height: 100%;
+    max-width: 500px;
+
+    .title {
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-left: 5px;
+        margin-top: 2px;
+    }
+    
+    .comments_container {
+        width: 100%;
+
+        .comment {
+            margin: 10px;
+
+            .amount {
+                color: grey;
+                font-weight: bold;
+            }
+        }
+    }
+}

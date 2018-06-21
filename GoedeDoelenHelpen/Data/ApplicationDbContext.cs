@@ -89,6 +89,8 @@ namespace GoedeDoelenHelpen.Data
 
             modelBuilder.Entity<ViewRecord>()
                 .HasKey(vr => new { vr.SessionId, vr.EventId});
+
+            modelBuilder.Entity<ApplicationUser>().Property(au => au.ProfileImage).HasColumnType("text");
         }
     }    
 }

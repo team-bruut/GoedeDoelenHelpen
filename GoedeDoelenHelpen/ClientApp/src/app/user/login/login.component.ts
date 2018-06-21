@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, AfterViewInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../authentication.service';
 import { SharedModule } from '../../shared/shared.module';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
   userLoginGroup: FormGroup;
   emailC: AbstractControl;
@@ -90,4 +90,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    document.getElementsByClassName('mat-sidenav-content').item(0).scrollTop = 0;
+  }
 }
