@@ -20,8 +20,6 @@ export class FbService {
   }
 
   loggedIn(): boolean {
-    console.log(this.fbstatus);
-    console.log("aaa");
     if (this.fbstatus != undefined) {
       return this.fbstatus.loggedIn;
     } else {
