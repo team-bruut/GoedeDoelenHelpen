@@ -18,7 +18,7 @@ import { forEach } from '@angular/router/src/utils/collection';
     templateUrl: './circles.component.html',
     styleUrls: ['./circles.component.scss']
 })
-export class CirclesGeneratorComponent implements AfterViewInit {
+export class CirclesComponent implements AfterViewInit {
     @ViewChild('CircleCanvas') canvasRef: ElementRef;
     pageWidth: number;
     pageHeight: number;
@@ -31,8 +31,12 @@ export class CirclesGeneratorComponent implements AfterViewInit {
 
     ngAfterViewInit() {
       const page: HTMLElement = document.getElementById('content');
-      this.pageWidth = page.offsetWidth;
-      this.pageHeight = page.offsetHeight + 250;
+      this.pageWidth = 300;
+      this.pageWidth = 100;
+      if (page != null) {
+        this.pageWidth = page.offsetWidth;
+        this.pageHeight = page.offsetHeight + 250;
+      }
 
       const ctx: CanvasRenderingContext2D =
         this.canvasRef.nativeElement.getContext('2d');

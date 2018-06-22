@@ -14,7 +14,7 @@
           <img routerLink="/evenement/user/eventpage" src="{{ images }}/view.svg" alt="Bekijk eventpagina"></button>
         <button mat-button class="dashboard-button">
           <img routerLink="/evenement/user/eventpage" src="{{ images }}/edit.svg" alt="Bewerk eventpagina"></button>
-        <button *ngIf="fbAuth()==false" mat-button class="fbauth-button" (click)="fbLoginPrompt()">
+        <button *ngIf="fbAuth()==false" mat-raised-button class="fbauth-button" (click)="fbLoginPrompt()">
           <img src="{{ images }}/../facebook/connect.svg" alt="FB"></button>
       </div>
     </div>
