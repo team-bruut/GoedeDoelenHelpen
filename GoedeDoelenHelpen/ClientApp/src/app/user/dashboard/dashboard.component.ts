@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NavMenuService } from '../../nav-menu/nav-menu.service';
 import * as shape from 'd3-shape';
 import * as d3 from 'd3';
@@ -10,13 +10,20 @@ import * as d3 from 'd3';
   styleUrls: ['./dashboard.component.scss']
 })
 
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
 
   constructor(private navMenuService: NavMenuService) {
     navMenuService.setTheme('default');
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    const contentWindow = document.getElementsByClassName('mat-sidenav-content');
+    if (contentWindow.length > 0) {
+      contentWindow.item(0).scrollTop = 0;
+    }
   }
 
 }

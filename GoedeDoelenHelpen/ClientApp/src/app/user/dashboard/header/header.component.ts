@@ -3,8 +3,8 @@ import { FbService } from '../../../facebook/fb.service';
 import { FBAuthModel } from '../../../facebook/FBAuthModel';
 import { AuthenticationService } from '../../../authentication.service';
 import { WindowWrapper } from '../../../classes/windowwrapper/windowwrapper';
-import { Observable } from '../../../../../node_modules/rxjs';
-import { map } from '../../../../../node_modules/rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { NavMenuService } from '../../nav-menu/nav-menu.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { NavMenuService } from '../../nav-menu/nav-menu.service';
   templateUrl: './event-page.component.html',
   styleUrls: ['./event-page.component.scss']
 })
-export class EventPageComponent implements OnInit, OnDestroy {
+export class EventPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private navMenuService: NavMenuService,
@@ -21,4 +21,10 @@ export class EventPageComponent implements OnInit, OnDestroy {
     this.navMenuService.setTheme('default');
   }
 
+  ngAfterViewInit() {
+    const contentWindow = document.getElementsByClassName('mat-sidenav-content');
+    if (contentWindow.length > 0) {
+      contentWindow.item(0).scrollTop = 0;
+    }
+  }
 }

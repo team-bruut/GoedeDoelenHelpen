@@ -41,6 +41,9 @@ import { DefaultEventRegisterComponent } from './event/default-event-register/de
 import { EventRegisterService } from './event/default-event-register/event-register.service';
 import { EventPageComponent } from './event/event-page/event-page.component';
 import { EventPageModule } from './event/event-page/event-page.module';
+import { DonateComponent } from './event/donate/donate.component';
+
+// Facebook
 import { WindowWrapper } from './classes/windowwrapper/windowwrapper';
 import { FacebookComponent } from './facebook/facebook.component';
 
@@ -54,6 +57,7 @@ import { FacebookComponent } from './facebook/facebook.component';
     ActivatedComponent,
     PasswordResetLinkComponent,
     DefaultEventRegisterComponent,
+    DonateComponent,
     PageNotFoundComponent,
     FacebookComponent,
   ],
@@ -75,6 +79,7 @@ import { FacebookComponent } from './facebook/facebook.component';
       { path: 'user/login', component: LoginComponent },
       { path: 'evenement/register', component: DefaultEventRegisterComponent },
       { path: 'evenement/:user/:eventname', component: EventPageComponent },
+      { path: 'evenement/:user/:eventname/doneer', component: DonateComponent  },
       { path: 'user/userpasswordresetlink', component: PasswordResetLinkComponent},
       { path: 'user/assignfb', component: FacebookComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [IsAuthenticated]},

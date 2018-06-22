@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { AuthenticationService } from '../../authentication.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { map, switchMap } from 'rxjs/operators';
   templateUrl: './password-reset-link.component.html',
   styleUrls: ['./password-reset-link.component.css']
 })
-export class PasswordResetLinkComponent implements OnInit {
+export class PasswordResetLinkComponent implements OnInit, AfterViewInit {
   passwordResetGroup: FormGroup;
   passwordC: AbstractControl;
   passwordRepeatC: AbstractControl;
@@ -62,4 +62,10 @@ export class PasswordResetLinkComponent implements OnInit {
     );
   }
 
+  ngAfterViewInit() {
+    const contentWindow = document.getElementsByClassName('mat-sidenav-content');
+    if (contentWindow.length > 0) {
+      contentWindow.item(0).scrollTop = 0;
+    }
+  }
 }
