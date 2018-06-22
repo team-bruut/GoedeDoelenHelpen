@@ -16,13 +16,18 @@ import { MatDialog } from '@angular/material';
 export class FacebookComponent implements OnInit {
 
   templateRef: TemplateRef<any>;
+  statusText: string;
 
   constructor(private windowWrapper: WindowWrapper,
     private authService: AuthenticationService,
     private fbService: FbService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+
+
+  }
 
   ngOnInit() {
+    this.statusText = "Loading...";
   }
 
   ngAfterContentInit() {
@@ -37,9 +42,9 @@ export class FacebookComponent implements OnInit {
     
     if (found == true) {
       this.windowWrapper.nativeWindow.FB.getLoginStatus((result) => this.FBCallBack(result));
-      //Succesful dialog here
+      this.statusText = "Storing in server...";
     } else {
-      //Error dialog here;
+      this.statusText = "Something went wrong when trying to reach Facebook, please try again!";
     }
   }
 
@@ -57,11 +62,8 @@ export class FacebookComponent implements OnInit {
     console.log(data);
     if (data != undefined) {
       if (data.status == "connected") {
-        console.log("comes here");
-        this.authService.assignFB(data).subscribe(
-          (result) => console.log(result)
-
-        );
+        this.authService.assignFB(data).subscribe();
+        this.statusText = "Facebook hooked up succesfully!";
         return true;
       }
     }

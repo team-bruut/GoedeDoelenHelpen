@@ -38,6 +38,19 @@ export class FbService {
     //After this, a user must be redirected to /user/assignfb, but so far I don't know how to await end of login prompt
   }
 
+  fbSharePrompt(): boolean {
+    let FB: any = this.windowWrapper.nativeWindow.FB;
+    if (FB != undefined) {
+      FB.ui({
+        method: 'share',
+        href: 'https://developers.facebook.com/docs/',
+        quote: 'Ik heb een nieuw evenement opgestart om geld in te zamelen voor een goed doel. Daarvoor heb ik uw steun hard nodig!'
+      });
+      return true;
+    }
+    return false
+  }
+
   //writeFBStatus(data: FBAuthModel): boolean {
      
   //}
