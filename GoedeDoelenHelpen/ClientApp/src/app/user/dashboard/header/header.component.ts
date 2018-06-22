@@ -3,6 +3,8 @@ import { FbService } from '../../../facebook/fb.service';
 import { FBAuthModel } from '../../../facebook/FBAuthModel';
 import { AuthenticationService } from '../../../authentication.service';
 import { WindowWrapper } from '../../../classes/windowwrapper/windowwrapper';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -17,14 +19,17 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
     private windowWrapper: WindowWrapper,
+    private authenticationService: AuthenticationService,
     private fbService: FbService) {
+
+  }
+
+  get username(): Observable<string> {
+    return this.authService.AuthenticationInfo.pipe(map(info => info.loggedIn ? info.firstName : ''));
   }
 
   ngOnInit() {
 
-  }
-
-  ngAfterContentInit() {
   }
 
   fbAuth(): boolean { // Checks if user is authorized with facebook through backend
