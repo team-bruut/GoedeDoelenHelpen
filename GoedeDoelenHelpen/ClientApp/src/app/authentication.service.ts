@@ -7,7 +7,7 @@ import { ActionResult } from './actionResult';
 import { ResetPassword } from './resetPassword';
 import { FBAuthModel, FBBackendResponse } from './facebook/FBAuthModel';
 import { FBAssignModel } from './facebook/FBAssignModel';
-import { map, startWith, switchMap, share, shareReplay } from 'rxjs/operators';
+import { map, startWith, switchMap, share, shareReplay, delay } from 'rxjs/operators';
 
 
 export type SignUpModel = {
@@ -17,6 +17,11 @@ export type SignUpModel = {
   lastname: string;
   email: string;
   profileimage: any;
+  event?: {
+    name: string;
+    description: string;
+    startEvent: Date;
+  }
 };
 
 export type EventModel = {
@@ -77,7 +82,8 @@ export class AuthenticationService {
         localStorage.setItem('TokenExpiration', expiration);
         this.refreshAuthInfo();
         return;
-      })
+      }),
+      delay(2000)
     );
   }
 

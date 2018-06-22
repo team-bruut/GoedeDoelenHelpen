@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoedeDoelenHelpen.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,5 +13,6 @@ namespace GoedeDoelenHelpen.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string ProfileImage { get; set; }
+        public Event Event { get; set; }
     }
 }

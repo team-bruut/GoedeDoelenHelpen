@@ -172,7 +172,12 @@ export class DefaultEventRegisterComponent implements OnInit, OnDestroy, AfterVi
         firstname: this.firstnameC.value,
         lastname: this.lastnameC.value,
         email: this.emailC.value,
-        profileimage: this.imageSrc
+        profileimage: this.imageSrc,
+        event: {
+          description: this.eventDescriptionC.value,
+          name: this.eventNameC.value,
+          startEvent: this.eventDateC.value
+        }
       }).subscribe();
     }
   }

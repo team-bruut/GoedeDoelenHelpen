@@ -63,7 +63,29 @@ namespace GoedeDoelenHelpen.Controllers
                     NameInsertion = "",
                     FirstName = model.Firstname,
                     LastName = model.Lastname,
-                    ProfileImage = model.ProfileImage
+                    ProfileImage = model.ProfileImage,
+                    EventUsers = new List<EventUser>
+                    {
+                        new EventUser
+                        {
+                            Active =true,
+                            Event = new Event
+                            {
+                                Active = true,
+                                Description = model.Event.Description,
+                                Name = model.Event.Name,
+                                StartDate = model.Event.StartDate,
+                                ReceivingParty = new ReceivingParty
+                                {
+                                    Name = "test",
+                                    KvKNumber = 1,
+                                    FiscalNumber = "asd",
+                                    IBAN = "ABNA"
+                                }
+                            }
+
+                        }
+                    }
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -72,7 +94,7 @@ namespace GoedeDoelenHelpen.Controllers
                     // Send an email with this link
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                    var activationMailModel = new ActivationMailModel { ActivationLink = callbackUrl, Name = model.Username };
+                    var activationMailModel = new ActivationMailModel { ActivationLink = callbackUrl, Name = model.Firstname };
                     var emailBody = _renderService.RenderToString("~/Mail/ActivationMail.cshtml", activationMailModel); 
                     await _emailSender.SendEmailAsync(model.Username, "Bevestig je account", emailBody);
                     // await _signInManager.SignInAsync(user, isPersistent: false);
