@@ -33,7 +33,7 @@ export class ProgressBarComponent implements OnInit {
       { 'name': 'Beginner', 'steps': [] },
       { 'name': 'Enthousiasteling', 'steps': [
           { 'desc': 'Je Facebook account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.fbLoginPrompt, 'service': this.fbService },
-        { 'desc': 'Vandaag iets te posten', 'link': '<>', 'done': false, 'onclick': this.fbSharePrompt , 'service': this.fbService },
+        { 'desc': 'Vandaag iets te posten', 'link': '<>', 'done': false, 'onclick': this.fbSharePrompt , 'service': this },
         { 'desc': 'Je Twitter account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.stub}
         ] },
       { 'name': 'Professional', 'steps': [
@@ -73,7 +73,8 @@ export class ProgressBarComponent implements OnInit {
     if (done == false) {
       console.log(this);
       let self: any = this;
-      self.done = self.service.fbSharePrompt();
+      self.service.move(1);
+      self.done = self.service.fbService.fbSharePrompt();
     }
   }
 
