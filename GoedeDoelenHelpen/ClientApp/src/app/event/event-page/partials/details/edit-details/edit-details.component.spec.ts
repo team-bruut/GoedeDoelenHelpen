@@ -6,6 +6,7 @@ import { EditDetailsComponent } from './edit-details.component';
 import { MatAutocompleteModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthenticationService } from './../../../../../authentication.service';
 import { Router } from '@angular/router';
 import { RouterStub } from './../../../../../../testing/stubs/router.stub';
@@ -18,6 +19,7 @@ describe('EditDetailsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
+        HttpClientTestingModule,
         MatAutocompleteModule,
       ],
       declarations: [

@@ -13,7 +13,16 @@ export class ProgressBarComponent implements OnInit {
 
   level: number;
   levelString: String;
-  levelArray: any[];
+  levelArray: {
+    name: string,
+    steps: {
+      desc: string,
+      link: string,
+      done: boolean,
+      onclick: any,
+      service: any,
+    }[],
+  }[];
   maxLevels: number;
 
   value: number;
@@ -34,12 +43,12 @@ export class ProgressBarComponent implements OnInit {
       { 'name': 'Enthousiasteling', 'steps': [
           { 'desc': 'Je Facebook account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.fbLoginPrompt, 'service': this.fbService },
         { 'desc': 'Vandaag iets te posten', 'link': '<>', 'done': false, 'onclick': this.fbSharePrompt , 'service': this },
-        { 'desc': 'Je Twitter account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.stub}
+        { 'desc': 'Je Twitter account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.stub, 'service': this }
         ] },
       { 'name': 'Professional', 'steps': [
-        { 'desc': 'Je LinkedIn account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.stub },
-        { 'desc': 'Deze week twee keer  iets te posten', 'link': '<>', 'done': true, 'onclick': this.stub },
-        { 'desc': 'Je Hyves account toe te voegen', 'link': '<>', 'done': true, 'onclick': this.stub }
+        { 'desc': 'Je LinkedIn account toe te voegen', 'link': '<>', 'done': false, 'onclick': this.stub, 'service': this },
+        { 'desc': 'Deze week twee keer  iets te posten', 'link': '<>', 'done': true, 'onclick': this.stub, 'service': this },
+        { 'desc': 'Je Hyves account toe te voegen', 'link': '<>', 'done': true, 'onclick': this.stub, 'service': this }
       ] },
       { 'name': 'Expert', 'steps': [] },
       { 'name': 'Legend', 'steps': [] }

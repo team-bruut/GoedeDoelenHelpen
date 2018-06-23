@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 
 import { AuthenticationService } from './../../authentication.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { RouterStub } from './../../../testing/stubs/router.stub';
@@ -19,6 +20,7 @@ describe('PasswordResetLinkComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
+        HttpClientTestingModule,
       ],
       declarations: [
         PasswordResetLinkComponent
