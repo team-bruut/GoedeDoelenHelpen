@@ -15,8 +15,13 @@ namespace NUnit.Selenium
         public void OneTimeSetUp()
         {
             // TODO: Add code here that is run before
-            //  all tests in the assembly are run    
-            Driver = new NgWebDriver(new ChromeDriver());
+            //  all tests in the assembly are run  
+            var driver = new ChromeDriver();
+            driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(5);
+            var ngDriver = new NgWebDriver(driver);
+            
+            ngDriver.IgnoreSynchronization = false;
+            Driver = driver;
         }
 
         [OneTimeTearDown]

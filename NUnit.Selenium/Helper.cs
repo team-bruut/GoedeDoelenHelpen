@@ -11,5 +11,7 @@ namespace NUnit.Selenium
     {
         public static IWebDriver Driver => SetupFixture.Driver;
         public static string BaseURL => "https://localhost:44333";
+
+        public static IWebElement GetLinkWithText(string text) => Driver.FindElement(By.PartialLinkText(text));
     }
 }
