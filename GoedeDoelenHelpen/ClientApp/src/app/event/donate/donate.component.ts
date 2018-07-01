@@ -24,6 +24,11 @@ export class DonateComponent implements OnInit, OnDestroy, AfterViewInit {
     charity: string,
   };
 
+  organisator: {
+    firstName: string,
+    lastName: string,
+  };
+
   payed: boolean;
 
   constructor(
@@ -40,6 +45,11 @@ export class DonateComponent implements OnInit, OnDestroy, AfterViewInit {
     this.event = {
       name: 'Carwash Capelle',
       charity: 'WEM Nederland',
+    };
+
+    this.organisator = {
+      firstName: 'Koen',
+      lastName: 'de Vries',
     };
 
     this.payed = false;

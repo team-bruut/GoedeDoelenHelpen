@@ -5,6 +5,7 @@ import { MatAutocomplete } from '@angular/material';
 
 import { AuthenticationService } from './../../authentication.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { RouterStub } from './../../../testing/stubs/router.stub';
 
@@ -23,6 +24,7 @@ describe('DefaultRegisterComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
+        HttpClientTestingModule,
       ],
       declarations: [
         DefaultEventRegisterComponent,

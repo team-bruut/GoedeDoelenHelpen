@@ -2,6 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { RouterStub } from './../../../../testing/stubs/router.stub';
 import { WindowWrapper } from './../../../classes/windowwrapper/windowwrapper';
@@ -16,6 +17,7 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
+        HttpClientTestingModule,
       ],
       declarations: [ HeaderComponent ],
       providers: [
