@@ -6,7 +6,7 @@
       <mat-step [stepControl]="personalDetailsForm">
         <form [formGroup]="personalDetailsForm">
           <mat-form-field>
-            <input matInput placeholder="voornaam" [formControl]="firstnameC" required>
+            <input class="e2e-firstname-input" matInput placeholder="voornaam" [formControl]="firstnameC" required>
             <mat-error *ngIf="firstnameC.hasError('required')">
               Voornaam is <strong>verplicht</strong>
             </mat-error>
@@ -18,7 +18,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="achternaam" [formControl]="lastnameC" required>
+            <input class="e2e-lastname-input" matInput placeholder="achternaam" [formControl]="lastnameC" required>
             <mat-error *ngIf="lastnameC.hasError('required')">
               Achternaam is <strong>verplicht</strong>
             </mat-error>
@@ -30,7 +30,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="emailadres" [formControl]="emailC" required>
+            <input class="e2e-email-input" matInput placeholder="emailadres" [formControl]="emailC" required>
             <mat-error *ngIf="emailC.hasError('required')">
               Email is <strong>verplicht</strong>
             </mat-error>
@@ -39,7 +39,7 @@
             </mat-error>
           </mat-form-field>
           <div>
-            <button mat-button matStepperNext class="next" [ngClass]="personalDetailsForm.valid ? 'active' : ''">Volgende</button>
+            <button class="e2e-volgende-button next" mat-button matStepperNext [ngClass]="personalDetailsForm.valid ? 'active' : ''">Volgende</button>
           </div>
         </form>
       </mat-step>

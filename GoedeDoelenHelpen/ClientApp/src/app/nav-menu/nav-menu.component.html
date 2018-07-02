@@ -9,7 +9,7 @@
             <button routerLink="{{ button_1.link }}" mat-button>{{ button_1.text }}</button>
             <button routerLink="{{ button_2.link }}" mat-button>{{ button_2.text }}</button>
             <button routerLink="{{ button_3.link }}" mat-button>{{ button_3.text }}</button>
-            <button *ngIf="!(user_logedIn | async)" routerLink="{{ button_4.link }}"  mat-raised-button id="login-button">{{ button_4.text }}</button>
+            <button class="e2e-inloggen-button" *ngIf="!(user_logedIn | async)" routerLink="{{ button_4.link }}"  mat-raised-button id="login-button">{{ button_4.text }}</button>
             <button mat-raised-button *ngIf="user_logedIn | async" id="user-button">{{ username_abbreviation | async }}</button>
         </div>
         <div fxShow="true" fxHide.gt-xs="true">
